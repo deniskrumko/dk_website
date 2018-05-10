@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    {# META #}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta property="og:image" content="{{ website_url}}static/images/dnd-meta.jpg"/>
+    <meta name="description" content="{{ website_description }}" />
+
+    {# TITLE #}
+    <title>{{ title }}</title>
+
+    {# FAVICON #}
+    <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
+
+    {# CSS #}
+    <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/PT_Sans.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+
+    {# EXTRA CSS #}
+    {% block extrastyle %}{% endblock %}
+  </head>
+
+  {# BODY #}
+  {% block body %}
+  <body>
+    {# Just for SEO #}
+    <h1 style="display:none;">{{ seo_title }}</h1>
+
+    {# Side meny for mobiles #}
+    {% include "components/side_menu.html" %}
+
+    {# Pusher - for side menu #}
+    <div class="pusher">
+
+      {# Main menu #}
+      {% block menu %}
+      {% include "components/menu.html" %}
+      {% endblock %}
+
+      {# Main container #}
+      <div class="ui container">
+        {% block content %}{% endblock %}
+      </div>
+
+      {# End of body #}
+      {% block afterbody %}{% endblock %}
+
+    </div>
+
+  </body>
+  {% endblock %}
+
+  {# JS #}
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="{% static 'semantic/semantic.min.js' %}"></script>
+
+  {# Menu JS #}
+  <script src="{% static 'js/menu.js' %}"></script>
+
+  {# EXTRA JS #}
+  {% block extrajs %}{% endblock %}
+</html>
