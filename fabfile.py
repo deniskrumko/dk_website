@@ -1,4 +1,5 @@
 from fabric.api import task, local
+from fabric.operations import prompt
 
 
 def print_msg(msg):
@@ -85,10 +86,20 @@ def createsuperuser(email='root@root.ru'):
 @task
 def resetdb():
     """Reset database to initial state."""
+    print_msg('Remove "scr/media" folder')
+    local('rm -rf media/')
+
     print_msg('Reset database')
-    manage('reset_db --noinput -c')
+    manage('reset_db -c --noinput')
+
     migrate()
     createsuperuser()
+
+    print_msg('Populate database?')
+    answer = prompt('\n', default='yes')
+
+    if answer.lower() in ('y', 'yes', 1):
+        populate_db()
 
 
 # STATIC CHECKS: ISORT AND PEP8
@@ -98,11 +109,11 @@ def resetdb():
 def isort():
     """Fix imports formatting."""
     print_msg('Running imports fix')
-    local('isort apps -y -rc')
+    local('isort apps core -y -rc')
 
 
 @task
-def pep8(path='apps'):
+def pep8(path='apps core'):
     """Check PEP8 errors."""
     print_msg('Checking PEP8 errors')
     return local('flake8 --config=.flake8 {}'.format(path))
@@ -131,3 +142,13 @@ def install_base_reqs():
 @task
 def hlogs():
     local('heroku logs --source app --tail')
+
+
+# MANAGEMENT COMMANDS SHORTCUTS
+# ============================================================================
+
+@task
+def populate_db():
+    """Populate database with dummy data."""
+    print_msg('Start populating DB')
+    manage('populate_db')

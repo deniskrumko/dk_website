@@ -6,10 +6,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'adminsortable',
+    'django_object_actions',
+    'imagekit',
 ]
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.music',
+    'apps.files',
 ]
 
 INSTALLED_APPS += LOCAL_APPS

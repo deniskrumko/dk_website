@@ -10,8 +10,17 @@ dj-database-url = "*"
 whitenoise = "*"
 django-extensions = "*"
 "psycopg2-binary" = "*"
+django-admin-sortable = "*"
+django-object-actions = "*"
+django-imagekit = "*"
+pillow = "*"
+unidecode = "*"
 
 [dev-packages]
+factory-boy = "*"
+isort = "*"
+ipdb = "*"
+"flake8" = "*"
 
 [requires]
 python_version = "3.6"

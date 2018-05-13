@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block body %}
+{% for artist in artists %}
+    {{ artist.name }}
+    {% for track in artist.tracks.all %}
+      {{ track.name }}
+    {% endfor %}
+{% endfor %}
+{% endblock %}
