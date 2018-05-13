@@ -1,19 +1,18 @@
+/* Background */
+
 body, html {
-    height: 100%;
+  height: 100%;
 }
 
 .dk-background {
-    /* The image used */
-    background-image: url("../images/fire3.jpg");
-
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("../images/index_bg.jpg");
+  height: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+/* Quote in center */
 
 .dk-quote {
   font-weight: 300;
@@ -21,13 +20,13 @@ body, html {
   transition: all 0.7s ease;
 }
 
-.dk-quote p:first-child{
+.dk-quote p:first-child {
   font-size: 24px;
   margin-bottom: 0px;
 }
 
-@media screen and (max-width: 768px){
-  .dk-quote p:first-child{
+@media screen and (max-width: 768px) {
+  .dk-quote p:first-child {
     font-size: 20px;
   }
 }
@@ -37,13 +36,18 @@ body, html {
   font-style: italic;
 }
 
+/* Navigation bar */
+
 .uk-navbar-container {
   opacity: 0;
   transition: 0.5s all ease;
 }
+
 .uk-navbar-nav>li>a {
-    color: #333;
+  color: #333;
 }
+
+/* Search */
 
 #dk-close {
   padding: 40px 60px;
