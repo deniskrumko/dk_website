@@ -1,0 +1,50 @@
+body, html {
+    height: 100%;
+}
+
+.dk-background {
+    /* The image used */
+    background-image: url("../images/fire3.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.dk-quote {
+  font-weight: 300;
+  padding: 45px;
+  transition: all 0.7s ease;
+}
+
+.dk-quote p:first-child{
+  font-size: 24px;
+  margin-bottom: 0px;
+}
+
+@media screen and (max-width: 768px){
+  .dk-quote p:first-child{
+    font-size: 20px;
+  }
+}
+
+.dk-quote p:last-child {
+  float: right;
+  font-style: italic;
+}
+
+.uk-navbar-container {
+  opacity: 0;
+  transition: 0.5s all ease;
+}
+.uk-navbar-nav>li>a {
+    color: #333;
+}
+
+#dk-close {
+  padding: 40px 60px;
+}
