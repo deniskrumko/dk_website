@@ -7,9 +7,6 @@ body, html {
 .dk-background {
   background-image: url("../images/index_bg.jpg");
   height: 100%;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 /* Quote in center */

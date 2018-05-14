@@ -3,7 +3,6 @@
 
 {% block extrastyle %}
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400" rel="stylesheet">
 {% endblock %}
 
 {% block extrajs %}
@@ -14,16 +13,16 @@
 {% block body %}
 
   {# Background #}
-  <div class="dk-background uk-background-fixed"></div>
+  <div class="dk-background uk-background-fixed" uk-parallax="bgy: -150"></div>
 
   {# Desktop menu #}
-  <div class="uk-container uk-position-top uk-visible@s">
+  <div class="uk-container uk-container-small uk-position-top uk-visible@s">
     <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar uk-sticky="bottom: #offset">
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
                 <li><a href="#">Главная</a></li>
                 <li><a href="#">Блог</a></li>
-                <li><a href="#">Музыка</a></li>
+                <li><a href="music">Музыка</a></li>
                 <li><a href="#">О себе</a></li>
                 <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
             </ul>
@@ -74,6 +73,7 @@
     </div>
   </div>
 
+  {# Search modal window #}
   <div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
     <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
         <button class="uk-modal-close-full uk-close-large" type="button" id="dk-close" uk-close></button>
@@ -84,12 +84,12 @@
 </div>
 
   {# Center smart quote #}
-  <div class="uk-overlay uk-overlay-primary uk-position-center dk-quote">
-    <p>Тут кароч нужно какую-нибудь умную цитату вставить</p>
-    <p>— Денис Крумко, 2018</p>
+  <div class="uk-overlay uk-overlay-primary uk-position-center dk-quote" >
+    <p id="dk-quote-text">Тут кароч нужно какую-нибудь умную цитату вставить</p>
+    <p id="dk-quote-author">— Денис Крумко, 2018</p>
   </div>
   <br>
-  <div class="uk-container">
+  <div class="uk-container uk-container-small ">
     <h2>Новости</h2>
     <div class="uk-child-width-1-3@m" uk-grid>
     <div>
