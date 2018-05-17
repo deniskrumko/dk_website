@@ -5,32 +5,15 @@
   <link rel="stylesheet" href="{% static 'css/tracks_list.css' %}">
 {% endblock %}
 
+{% block extrajs %}
+  <script src="{% static 'js/track-list.js' %}" charset="utf-8"></script>
+{% endblock %}
+
 {% block body %}
 
 <div class="uk-container uk-container-small">
   {% for artist in artists %}
-  <div class="uk-section uk-section-primary uk-preserve-color">
-  <div class="uk-container">
 
-      <div class="uk-panel uk-light uk-margin-medium">
-          <h3>Section Primary with cards</h3>
-      </div>
-
-      <div class="uk-grid-match uk-child-width-expand@m" uk-grid>
-          <div>
-              <div class="uk-card uk-card-default uk-card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              </div>
-          </div>
-          <div>
-              <div class="uk-card uk-card-default uk-card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              </div>
-          </div>
-      </div>
-
-  </div>
-</div>
     <div class="uk-child-width-1-1@s" uk-grid>
 
       {% for track in artist.tracks.all %}
@@ -53,7 +36,7 @@
                 {% endautoescape %}
               </div>
               {# PLAY button #}
-              <button type="button" name="button" class="uk-button uk-button-default dk-play-button">
+              <button type="button" name="button" id="play-track-{{ forloop.counter }}" data-track="track-{{ forloop.counter }}" class="uk-button uk-button-default dk-play-button">
                 Play
               </button>
               {# DETAILS button (desktop) #}
@@ -63,6 +46,14 @@
               {# DETAILS button (mobile) #}
               <a href="#" class="uk-button uk-button-default dk-mobile-details" uk-icon="more"></a>
             </div>
+          </div>
+          <div class="uk-width-3-5@l uk-width-3-4@m uk-width-2-3@s uk-width-2-3 dk-player-timeline">
+            <!--HTML5 audio-->
+            <audio id="track-{{ forloop.counter }}" preload="true" style="display: none;">
+              <source src="{{ track.file.data.url }}">
+            </audio>
+            <div class="dk-player-position"></div>
+            <div class="dk-player-time"></div>
           </div>
         </div>
         {# Single track - end #}

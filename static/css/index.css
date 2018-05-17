@@ -7,6 +7,10 @@ body, html {
 .dk-background {
   background-image: url("../images/index_bg.jpg");
   height: 100%;
+
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Quote in center */
@@ -48,4 +52,29 @@ body, html {
 
 #dk-close {
   padding: 40px 60px;
+}
+
+/* Menu */
+
+.uk-navbar-nav>li {
+    position: relative;
+}
+
+.uk-navbar-nav>li.active::after {
+    content: '';
+    width: calc(100% - 30px);
+    height: 2px;
+    background-color: #5a6f83;
+    position: absolute;
+    bottom: 20px;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
+.uk-navbar-nav>li>a:hover {
+    color: #5a6f83;
+}
+
+.uk-navbar-nav>li.active:hover::after {
+    bottom: 10px;
 }

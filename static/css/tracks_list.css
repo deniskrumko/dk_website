@@ -90,6 +90,9 @@
 /* Less than 450px - iPhone SE screen */
 
 @media screen and (max-width: 450px) {
+  .uk-card-body {
+    padding: 8px 15px;
+  }
   .dk-track-description {
     display: none;
   }
@@ -97,4 +100,49 @@
     font-size: 16px;
     margin-bottom: 10px;
   }
+}
+
+/* Player */
+
+.dk-play-button {
+  transition: all 0.3s ease;
+  width: 104px;
+  padding: 0;
+}
+
+.dk-play-button.active {
+  background-color: #eee;
+}
+
+.dk-player-timeline {
+  cursor: pointer;
+  position: absolute;
+  height: 0px;
+  bottom: 0;
+  right: 0;
+  background-color: #ddd;
+  transition: all 0.3s ease;
+}
+
+.dk-player-timeline.active {
+  height: 7px;
+}
+
+.dk-player-position {
+  width: 0;
+  background-color: #00dea7;
+  height: 7px;
+  transition: all 0.3s ease;
+}
+
+.dk-player-time {
+  font-family: 'Ubuntu';
+  transition: all 0.5s ease;
+  -webkit-font-smoothing: initial;
+  font-weight: 400;
+  position: absolute;
+  opacity: 0;
+  font-size: 13px;
+  bottom: 10px;
+  right: 7px;
 }

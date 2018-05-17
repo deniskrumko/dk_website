@@ -7,6 +7,7 @@ from .static import *  # noqa
 from .templates import *  # noqa
 from .logging import *  # noqa
 from .ckeditor import *  # noqa
+from .aws_s3 import *  # noqa
 
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
