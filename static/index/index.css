@@ -1,0 +1,44 @@
+/* Background */
+
+body, html {
+  height: 100%;
+}
+
+.dk-background {
+  background-image: url("../index/index_bg.jpg");
+  height: 100%;
+
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Quote in center */
+
+.dk-quote {
+  font-weight: 300;
+  padding: 45px;
+  transition: all 0.7s ease;
+}
+
+.dk-quote p:first-child {
+  font-size: 24px;
+  margin-bottom: 0px;
+}
+
+@media screen and (max-width: 768px) {
+  .dk-quote p:first-child {
+    font-size: 20px;
+  }
+}
+
+.dk-quote p:last-child {
+  float: right;
+  font-style: italic;
+}
+
+/* Search */
+
+#dk-close {
+  padding: 40px 60px;
+}

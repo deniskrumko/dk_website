@@ -1,0 +1,32 @@
+/* Menu */
+
+.uk-navbar-container {
+  opacity: 0;
+  transition: 0.5s all ease;
+}
+
+.uk-navbar-nav>li>a {
+  color: #333;
+}
+
+.uk-navbar-nav>li {
+    position: relative;
+}
+
+.uk-navbar-nav>li.active::after {
+    content: '';
+    width: calc(100% - 30px);
+    height: 2px;
+    background-color: #5a6f83;
+    position: absolute;
+    bottom: 20px;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
+.uk-navbar-nav>li.active>a {
+    color: #5a6f83;
+}
+.uk-navbar-nav>li>a:hover {
+    color: #5a6f83;
+}

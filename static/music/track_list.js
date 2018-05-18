@@ -8,7 +8,7 @@ function stop_track(track) {
 }
 
 function getPosition(el) {
-    return el.getBoundingClientRect().left;
+  return el.getBoundingClientRect().left;
 }
 
 function playButtonAsPlay(playButton) {
@@ -44,12 +44,12 @@ function enablePlayer(track) {
 }
 
 function formatTime(seconds) {
-    minutes = Math.floor(seconds / 60);
-    minutes = (minutes >= 10) ? minutes : "0" + minutes;
-    seconds = Math.floor(seconds % 60);
-    seconds = (seconds >= 10) ? seconds : "0" + seconds;
-    return minutes + ":" + seconds;
-  }
+  minutes = Math.floor(seconds / 60);
+  minutes = (minutes >= 10) ? minutes : "0" + minutes;
+  seconds = Math.floor(seconds % 60);
+  seconds = (seconds >= 10) ? seconds : "0" + seconds;
+  return minutes + ":" + seconds;
+}
 
 jQuery(document).ready(function($) {
 
@@ -67,6 +67,29 @@ jQuery(document).ready(function($) {
     var t2 = formatTime(current_track.duration);
 
     $(time_block).text(t1 + ' / ' + t2);
+  }
+
+  function playNextTrack() {
+    if (current_track.currentTime == current_track.duration) {
+
+      var next_track_id = $(current_track).data('next');
+
+      if (next_track_id) {
+        var track = get_track(next_track_id);
+        stop_track(current_track);
+        current_track.removeEventListener("timeupdate", timeUpdate, false);
+        current_track.removeEventListener("timeupdate", playNextTrack, false);
+        disablePlayer(current_track);
+
+        current_track = track;
+        enablePlayer(current_track);
+        current_track.play();
+
+        updatePlayButton(current_track);
+        current_track.addEventListener("timeupdate", timeUpdate, false);
+        current_track.addEventListener("timeupdate", playNextTrack, false);
+      }
+    }
   }
 
   // Play track on "Play" click
@@ -100,6 +123,7 @@ jQuery(document).ready(function($) {
     updatePlayButton(current_track);
 
     current_track.addEventListener("timeupdate", timeUpdate, false);
+    current_track.addEventListener("timeupdate", playNextTrack, false);
 
   });
 
@@ -109,18 +133,18 @@ jQuery(document).ready(function($) {
   });
 
   $('.dk-player-timeline').mouseup(function(event) {
-      console.log('up');
-      var position = event.pageX - $(this).offset().left;
-      var obj_width = $(this).width();
-      var percent = (position * 100 / obj_width);
+    console.log('up');
+    var position = event.pageX - $(this).offset().left;
+    var obj_width = $(this).width();
+    var percent = (position * 100 / obj_width);
 
-      if (current_track) {
-        current_track.currentTime = current_track.duration / 100 * percent;
-        console.log(current_track.duration);
-        console.log(current_track.currentTime);
-      }
+    if (current_track) {
+      current_track.currentTime = current_track.duration / 100 * percent;
+      console.log(current_track.duration);
+      console.log(current_track.currentTime);
+    }
 
-      current_track.addEventListener("timeupdate", timeUpdate, false);
+    current_track.addEventListener("timeupdate", timeUpdate, false);
   });
 
 

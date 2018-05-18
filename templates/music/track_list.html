@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'music/track_list.css' %}">
+  <link rel="stylesheet" href="{% static 'music/dendynotdead.css' %}">
+
+{% endblock %}
+
+{% block extrajs %}
+  <script src="{% static 'music/track_list.js' %}" charset="utf-8"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="dk-background uk-background-fixed" uk-parallax="bgy: -100"></div>
+
+{% include 'components/menu.html' with v=3 %}
+
+<br>
+
+  {% for track in tracks %}
+    {% include 'components/track.html' with track=track %}
+    {% if forloop.counter == 2 %}
+      {% include "components/music/section_dnd.html" %}
+    {% endif %}
+  {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{#  #}
+
+<div class="uk-section uk-section-secondary dk-section">
+  <div class="uk-container uk-container-small">
+    <div class="uk-grid-match" uk-grid>
+      {# Dendy Not Dead - Logo #}
+      <div class="uk-width-1-3@s uk-visible@s">
+        <div class="dk-logo" onclick="location.href='/';">
+          <div class="dk-logo-inner">
+            {% for line in logo %}
+            <div class="dk-logo-line">
+              {% for pixel in line %}
+              <div class="dk-logo-pixel {% if pixel == '1' %}dk-logo-white{% elif pixel == '2' %}dk-logo-red{% endif %}"></div>
+              {% endfor %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+
+      {# Описание проекта #}
+      <div class="uk-width-2-3@s dk-section-about">
+        <p>
+          <b>Dendy Not Dead</b> — это мой маленький музыкальный проект, в котором я пытаюсь собрать все ритмы и мелодии, приходящие в мою голову, во что-то напоминающее музыку. Получается это плохо или не совсем — судить вам.
+        </p>
+        <p class="uk-margin-remove-top">
+          <a href="#" class="uk-button uk-button-text">О проекте</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>

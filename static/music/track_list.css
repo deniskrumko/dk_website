@@ -1,3 +1,35 @@
+.uk-navbar-nav>li.active::after {
+    background-color: #f35d28;
+}
+
+.uk-navbar-nav>li.active>a {
+    color: #f35d28;
+}
+.uk-navbar-nav>li>a {
+  color: #ddd;
+}
+.uk-navbar-nav>li>a:hover {
+    color: #f35d28;
+}
+
+body, html {
+  height: 100%;
+}
+
+.dk-section-about {
+  text-align: justify;
+  color: #f8f8f8;
+}
+
+.dk-background {
+  background-image: url("../music/music_bg.jpg");
+  height: 50%;
+
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /* Track card */
 
 .uk-card {
@@ -41,6 +73,56 @@
 
 .dk-artist-name {
   font-weight: 300;
+}
+
+
+/* Player */
+
+.dk-play-button {
+  transition: all 0.3s ease;
+  width: 104px;
+  padding: 0;
+}
+
+.dk-play-button.active {
+  background-color: #eee;
+}
+
+.dk-player-timeline {
+  cursor: pointer;
+  position: absolute;
+  height: 0px;
+  bottom: 0;
+  right: 0;
+  background-color: #ddd;
+  transition: all 0.3s ease;
+}
+
+.dk-player-timeline.active {
+  height: 7px;
+}
+
+.dk-player-position {
+  width: 0;
+  background-color: #ee0000;
+  height: 7px;
+  transition: all 0.3s ease;
+}
+
+.dk-player-time {
+  font-family: 'Ubuntu';
+  transition: all 0.5s ease;
+  -webkit-font-smoothing: initial;
+  font-weight: 400;
+  position: absolute;
+  opacity: 0;
+  font-size: 13px;
+  bottom: 10px;
+  right: 7px;
+}
+
+.dk-section {
+  margin-bottom: 35px;
 }
 
 /* MEDIA STYLES =========================================================== */
@@ -100,49 +182,8 @@
     font-size: 16px;
     margin-bottom: 10px;
   }
-}
-
-/* Player */
-
-.dk-play-button {
-  transition: all 0.3s ease;
-  width: 104px;
-  padding: 0;
-}
-
-.dk-play-button.active {
-  background-color: #eee;
-}
-
-.dk-player-timeline {
-  cursor: pointer;
-  position: absolute;
-  height: 0px;
-  bottom: 0;
-  right: 0;
-  background-color: #ddd;
-  transition: all 0.3s ease;
-}
-
-.dk-player-timeline.active {
-  height: 7px;
-}
-
-.dk-player-position {
-  width: 0;
-  background-color: #00dea7;
-  height: 7px;
-  transition: all 0.3s ease;
-}
-
-.dk-player-time {
-  font-family: 'Ubuntu';
-  transition: all 0.5s ease;
-  -webkit-font-smoothing: initial;
-  font-weight: 400;
-  position: absolute;
-  opacity: 0;
-  font-size: 13px;
-  bottom: 10px;
-  right: 7px;
+  .dk-player-time {
+    bottom: -20px;
+    right: 0;
+  }
 }

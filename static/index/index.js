@@ -1,23 +1,10 @@
 jQuery(document).ready(function( $ ) {
 
-  var scroll_navbar = 130;
   var scroll_quote = 500;
   var quote_stage = 1;
   var update = false;
 
-
-  if ($(window).scrollTop() > scroll_navbar) {
-    $('.uk-navbar-container').css('opacity', 0);
-  } else {
-    $('.uk-navbar-container').css('opacity', 1);
-  }
-
   $(window).scroll(function() {
-    if ($(this).scrollTop() > scroll_navbar) {
-      $('.uk-navbar-container').css('opacity', 0);
-    } else {
-      $('.uk-navbar-container').css('opacity', 1);
-    }
 
     if ($(this).scrollTop() > scroll_quote) {
       if (quote_stage == 1) {
