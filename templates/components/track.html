@@ -45,6 +45,11 @@
           {% if not forloop.last %}
             data-next="track-{{ forloop.counter|add:'1' }}"
           {% endif %}
+          {% if not forloop.first %}
+            data-prev="track-{{ forloop.counter|add:'-1' }}"
+          {% endif %}
+            data-artist="{{ track.artist.name }}"
+            data-name="{{ track.name }}"
           preload="true">
           <source src="{{ track.file.data.url }}">
         </audio>
