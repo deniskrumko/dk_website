@@ -24,38 +24,28 @@
     <nav class="uk-navbar-container uk-navbar-transparent" id="dk-mobile-navbar" uk-navbar uk-sticky="bottom: #offset">
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-                <li><a>Главная</a></li>
+                <li><a class="dk-navbar-active">Главная</a></li>
             </ul>
         </div>
         <div class="uk-navbar-right">
-          <a class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-nav"></a>
+          <a class="uk-navbar-toggle dk-navbar-active" uk-navbar-toggle-icon href="#modal-sections" uk-toggle></a>
         </div>
     </nav>
   </div>
 
-  {# Mobile navigation menu #}
-  <div class="uk-offcanvas-content">
-    <div id="offcanvas-nav" uk-offcanvas="overlay: true; flip: true;">
-        <div class="uk-offcanvas-bar">
-            <ul class="uk-nav uk-nav-default">
-                <li class="uk-active"><a href="#">Active</a></li>
-                <li class="uk-parent">
-                    <a href="#">Parent</a>
-                    <ul class="uk-nav-sub">
-                        <li><a href="#">Sub item</a></li>
-                        <li><a href="#">Sub item</a></li>
-                    </ul>
-                </li>
-                <li class="uk-nav-header">Header</li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Item</a></li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Item</a></li>
-                <li class="uk-nav-divider"></li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: trash"></span> Item</a></li>
-            </ul>
-
+  <div id="modal-sections" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-margin-auto-vertical">
+        <button class="uk-modal-close-default uk-close-large" type="button" uk-close></button>
+        <div class="uk-modal-body">
+          <br>
+            <a href="/" class="uk-button dk-menu-link uk-width-1-1 active">Главная</a>
+            <a href="/blog" class="uk-button dk-menu-link uk-width-1-1">Блог</a>
+            <a href="/music" class="uk-button dk-menu-link uk-width-1-1">Музыка</a>
+            <a href="/about" class="uk-button dk-menu-link uk-width-1-1">О себе</a>
+            <br><br>
         </div>
     </div>
-  </div>
+</div>
 
   {# Search modal window #}
   <div id="modal-full" class="uk-modal-full uk-modal" uk-modal>

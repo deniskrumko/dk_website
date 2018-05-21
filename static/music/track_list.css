@@ -5,6 +5,9 @@
 .uk-navbar-nav>li.active>a {
     color: #f35d28;
 }
+.dk-navbar-active {
+    color: #f35d28 !important;
+}
 .uk-navbar-nav>li>a {
   color: #ddd;
 }
@@ -123,6 +126,47 @@ body, html {
 
 .dk-section {
   margin-bottom: 35px;
+}
+
+.dk-section-about {
+  text-align: justify;
+  color: #f8f8f8;
+}
+
+.dk-section-white {
+  text-align: left;
+  color: #f8f8f8;
+}
+
+.dk-button {
+  border: 1px solid #f8f8f8;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 3px 5px;
+
+}
+
+.dk-button.space {
+  padding: 3px 22px;
+}
+
+.dk-button.arrow {
+  padding: 1px 5px;
+}
+
+.dk-track-container {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.dk-new {
+  position: absolute;
+  right: 65px;
+  top: 20px;
+  background: #de0000;
+  z-index: 100;
 }
 
 /* MEDIA STYLES =========================================================== */

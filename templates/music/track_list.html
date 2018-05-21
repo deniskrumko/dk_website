@@ -24,6 +24,9 @@
     {% if forloop.counter == 2 %}
       {% include "components/music/section_dnd.html" %}
     {% endif %}
+    {% if forloop.counter == 3 %}
+      {% include "components/music/section_help.html" %}
+    {% endif %}
   {% endfor %}
 
 {% endblock %}

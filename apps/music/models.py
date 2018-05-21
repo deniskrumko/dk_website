@@ -134,6 +134,10 @@ class Track(SortableMixin, BaseModel):
 
         super().save(*args, **kwargs)
 
+    @property
+    def is_new(self):
+        return True
+
 
 class TrackFile(SortableMixin, models.Model):
     """Intermediate model for M2M related between ``Track`` and ``File``."""

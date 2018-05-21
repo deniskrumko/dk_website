@@ -1,4 +1,7 @@
-<div class="uk-container uk-container-small" style="margin-bottom: 15px;">
+<div class="uk-container uk-container-small dk-track-container">
+  {% if track.is_new %}
+    <span class="uk-label dk-new uk-visible@s">New</span>
+  {% endif %}
   <div class="uk-child-width-1-1@s" uk-grid>
     <div class="uk-card uk-card-default uk-grid-collapse uk-margin uk-background-muted" uk-grid>
       <div class="uk-card-media-left uk-background-cover
