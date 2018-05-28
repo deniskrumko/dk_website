@@ -19,6 +19,7 @@ body, html {
   font-weight: 300;
   padding: 45px;
   transition: all 0.7s ease;
+  color: #eee;
 }
 
 .dk-quote p:first-child {

@@ -26,11 +26,21 @@ body, html {
 
 .dk-background {
   background-image: url("../music/music_bg.jpg");
-  height: 50%;
-
+  height: 350px;
   background-position: top;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto;
+  background-attachment: fixed;
+}
+
+.uk-divider-icon::before {
+    right: calc(50% + (200px / 4));
+    width: 100%;
+}
+
+.uk-divider-icon::after {
+    left: calc(50% + (200px / 4));
+    width: 100%;
 }
 
 /* Track card */
@@ -44,8 +54,8 @@ body, html {
 
 .dk-track-name {
   margin-bottom: 0px;
-  font-family: 'Open Sans', Arial;
-  font-size: 32px;
+  font-family: 'Knewave', Arial;
+  font-size: 44px;
 }
 
 .dk-track-year {
@@ -89,6 +99,12 @@ body, html {
 
 .dk-play-button.active {
   background-color: #eee;
+  border-color: #eee;
+}
+
+.dk-play-button.active:hover {
+  background-color: #ddd;
+  border-color: #ddd;
 }
 
 .dk-player-timeline {
@@ -107,9 +123,13 @@ body, html {
 
 .dk-player-position {
   width: 0;
-  background-color: #ee0000;
+  background-color: #aaa;
   height: 7px;
   transition: all 0.3s ease;
+}
+
+.dk-player-position.active {
+  background-color: #ee0000;
 }
 
 .dk-player-time {
@@ -163,11 +183,12 @@ body, html {
 
 .dk-new {
   position: absolute;
-  right: 65px;
-  top: 20px;
+  right: 55px;
+  top: 15px;
   background: #de0000;
   z-index: 100;
 }
+
 
 /* MEDIA STYLES =========================================================== */
 
@@ -178,7 +199,7 @@ body, html {
     font-size: 13px;
   }
   .dk-track-name {
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 10px;
   }
 }
@@ -192,6 +213,10 @@ body, html {
   .dk-desktop-details {
     display: none;
   }
+  .dk-track-name {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
   .uk-card-body {
     padding: 15px;
   }
@@ -202,6 +227,10 @@ body, html {
 @media screen and (min-width: 640px) {
   .dk-mobile-details {
     display: none;
+  }
+  .uk-card-body {
+    padding-left: 25px;
+    padding-right: 25px;
   }
 }
 
@@ -216,14 +245,11 @@ body, html {
 /* Less than 450px - iPhone SE screen */
 
 @media screen and (max-width: 450px) {
-  .uk-card-body {
-    padding: 8px 15px;
-  }
   .dk-track-description {
     display: none;
   }
   .dk-track-name {
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 10px;
   }
   .dk-player-time {

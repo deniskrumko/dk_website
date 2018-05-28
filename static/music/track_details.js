@@ -30,22 +30,21 @@ jQuery(document).ready(function($) {
 
   // Set "play-pause" button to "play" state
   function playButtonAsPlay() {
-    $('#play-' + current_track.id).removeClass('active');
-    $('#play-' + current_track.id).text('Play');
+    $('#play-' + current_track.id).show()
+    $('#pause-' + current_track.id).hide()
   }
 
   // Set "play-pause" button to "pause" state
   function playButtonAsPause() {
-    $('#play-' + current_track.id).addClass('active');
-    $('#play-' + current_track.id).text('Pause');
+    $('#play-' + current_track.id).hide();
+    $('#pause-' + current_track.id).show();
   }
 
   // Show notification about current playing track
   function showCurrentPlaying() {
-    var artist = $(current_track).data('artist');
     var name = $(current_track).data('name');
     UIkit.notification({
-      message: `<b>${artist}</b> — ${name}`,
+      message: name,
       timeout: 2000
     });
   }
@@ -133,7 +132,7 @@ jQuery(document).ready(function($) {
   // Method to enable player for current track
   function enablePlayer() {
     $(current_track).parent().addClass('active');
-    setTimeblockOpacity(1);
+    // setTimeblockOpacity(1);
     addAllEventListeners();
   }
 
@@ -146,7 +145,7 @@ jQuery(document).ready(function($) {
     $(current_track).parent().removeClass('active');
     playButtonAsPlay();
     setTimelinePosition(0);
-    setTimeblockOpacity(0);
+    // setTimeblockOpacity(0);
   }
 
   // Initalize player with provided track (or first track)
@@ -190,19 +189,21 @@ jQuery(document).ready(function($) {
   // =========================================================================
 
   // Play or pause track on "play/pause" button click
-  $('.dk-play-button').click(function(event) {
+  $('.dk-music-file').click(function(event) {
     var track_id = $(this).data('track');
     var track = get_track(track_id);
 
-    // If there is no current track - initalize player
-    initalizePlayer(track);
+    if ($(event.target).attr('class') != 'dk-player-timeline active') {
+      // If there is no current track - initalize player
+      initalizePlayer(track);
 
-    if (current_track != track) {
-      // If current track is not clicked track - play another track
-      playAnotherTrack(track)
-    } else {
-      // Otherwise - play/pause current track
-      toggleCurrentTrack();
+      if (current_track != track) {
+        // If current track is not clicked track - play another track
+        playAnotherTrack(track)
+      } else {
+        // Otherwise - play/pause current track
+        toggleCurrentTrack();
+      }
     }
 
   });

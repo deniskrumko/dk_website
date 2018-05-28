@@ -33,6 +33,8 @@ class TrackDetailsView(BaseView):
 
         context = {
             'track': track,
+            'music_files': track.related_files.filter(file__category__name='Музыка'),
+            'other_files': track.related_files.exclude(file__category__name='Музыка')
         }
 
         return self.render_to_response(context)

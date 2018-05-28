@@ -1,7 +1,7 @@
 
   {# Desktop menu #}
   <div class="uk-container uk-container-small uk-position-top uk-visible@s">
-    <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar uk-sticky="bottom: #offset">
+    <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar {% if sticky %}uk-sticky="bottom: #offset"{% endif %}>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
                 <li {% if v == 1 %}class="active"{% endif %}><a href="/">Главная</a></li>
