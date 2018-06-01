@@ -12,9 +12,10 @@ INSTALLED_APPS = [
 ]
 
 LOCAL_APPS = [
-    'apps.users',
-    'apps.music',
+    'apps.blog',
     'apps.files',
+    'apps.music',
+    'apps.users',
 ]
 
 INSTALLED_APPS += LOCAL_APPS

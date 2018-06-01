@@ -2,13 +2,19 @@ from fabric.api import task, local
 from fabric.operations import prompt
 
 
-def print_msg(msg):
+def print_msg(msg, error=False):
     """Print message in console."""
+
     def green_msg(msg):
         """Make message green color in console."""
         return '\033[92m{0}\033[00m'.format(msg)
 
-    print(green_msg('\n{}\n'.format(msg)))
+    def red_msg(msg):
+        """Make message red color in console."""
+        return '\033[91m{0}\033[00m'.format(msg)
+
+    print_function = red_msg if error else green_msg
+    print(print_function('\n{}\n'.format(msg)))
 
 
 # MAIN COMMANDS
@@ -30,6 +36,32 @@ def run():
 def shell():
     """Run server."""
     return manage('shell_plus')
+
+
+@task
+def startapp(app_name):
+    """Start new application.
+
+    Name of application can be nested, like "apps.app_name" or
+    "apps.utils.app_name".
+
+    """
+    names_list = app_name.split('.')
+
+    if len(names_list) == 1:
+        return print_msg(
+            'Name of app must include root folder. '
+            'Like "apps.{}"'.format(names_list[0]),
+            error=True
+        )
+
+    path = '/'.join(names_list)
+    local('mkdir {0}'.format(path))
+    manage(
+        'startapp --template=core/app_template {0} {1}'
+        .format(names_list[-1], path)
+    )
+    return print_msg('Please, add your app to "INSTALLED_APPS"')
 
 
 # GIT
