@@ -25,24 +25,61 @@ body, html {
 }
 
 .dk-background {
-  background-image: url("../music/music_bg.jpg");
   height: 350px;
+  background-color: #1b1b1b;
   background-position: top;
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
   background-attachment: fixed;
 }
 
 .uk-divider-icon::before {
-    right: calc(50% + (200px / 4));
+    right: calc(50% + (80px));
     width: 100%;
 }
 
 .uk-divider-icon::after {
-    left: calc(50% + (200px / 4));
+    left: calc(50% + (80px));
     width: 100%;
 }
 
+.dk-dno {
+  position: relative;
+  text-align: center;
+}
+
+.dk-dno h1 {
+  font-weight: 600;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.dk-dno h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.dk-dno a {
+  display: block;
+  color: #aaa !important;
+  font-size: 16px;
+  margin: 5px 0px;
+}
+
+.dk-dno button {
+  margin-top: 30px;
+  font-size: 16px;
+  color: #666 !important;
+  border-color: #666 !important;
+  transition: all 0.3s ease !important;
+}
+
+.dk-dno button:hover {
+  color: #999 !important;
+  border-color: #999 !important;
+  transform: translateY(-5px);
+}
 /* Track card */
 
 .uk-card {
