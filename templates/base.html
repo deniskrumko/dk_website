@@ -20,6 +20,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'base/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'menu/menu.css' %}">
 
+    <style media="screen">
+    {% with menu|get_color:active_menu as color %}
+    .uk-navbar-nav>li>a {color: {{ color.base }};}
+    .uk-navbar-nav>li.active::after {background-color: {{ color.accent }};}
+    .uk-navbar-nav>li.active>a {color: {{ color.accent }};}
+    .uk-navbar-nav>li>a:hover {color: {{ color.accent }};}
+    .dk-navbar-active {color: {{ color.accent }} !important;}
+    {% endwith %}
+    </style>
+
     {# Google Fonts #}
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400|Open+Sans:800|Knewave" rel="stylesheet">
 

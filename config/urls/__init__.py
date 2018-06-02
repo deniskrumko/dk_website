@@ -1,7 +1,6 @@
 from django.urls import path, include
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic.base import TemplateView
 from django.conf import settings
 
 from django.conf.urls.static import static
@@ -10,9 +9,13 @@ admin.site.site_header = _('Denis Krumko')
 admin.site.site_title = _('DK')
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html')),
-
+    # Apps
+    path('', include('apps.main.urls', namespace='main')),
+    # path('blog/', include('apps.blog.urls', namespace='blog')),
     path('music/', include('apps.music.urls', namespace='music')),
+    path('diary/', include('apps.diary.urls', namespace='diary')),
+
+    # Admin UI
     path('admin/', admin.site.urls),
 ]
 

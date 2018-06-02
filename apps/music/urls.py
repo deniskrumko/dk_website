@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import TrackListView, TrackDetailsView
+from . import views
 
 app_name = 'apps.music'
 
 urlpatterns = [
-    path('', TrackListView.as_view(), name='list'),
-    path('<slug>/', TrackDetailsView.as_view(), name='details'),
+    path('', views.TrackIndexView.as_view(), name='index'),
+    path('<slug>/', views.TrackDetailView.as_view(), name='detail'),
 ]

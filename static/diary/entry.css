@@ -1,0 +1,38 @@
+.dk-cont {
+  margin-top: 100px;
+}
+
+p {
+  margin: 0px;
+}
+
+.dk-entry {
+  background-color: #F8F8F8;
+  padding: 30px 20px;
+  z-index: 3000;
+  position: relative;
+  font-size: 16px;
+}
+
+.dk-entry-date {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+
+.dk-after {
+  margin-top: 10px;
+  margin-bottom: 100px !important;
+  font-size: 12px;
+  color: #999;
+}
+
+.dk-edit-link {
+  float: right;
+}
+
+.dk-center-btn {
+  text-align: center;
+  margin-bottom: 20px;
+}

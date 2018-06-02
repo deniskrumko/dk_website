@@ -1,0 +1,43 @@
+textarea {
+  width: 100%;
+  font-family: 'Ubuntu';
+  font-size: 16px;
+  resize: none;
+  line-height: 24px;
+  border: none;
+  margin: 0px;
+  -webkit-font-smoothing: antialiased;
+  padding: 0px;
+  background-color: #F8F8F8;
+  color: #666666;
+}
+
+.noselect {
+   cursor: default;
+   -webkit-user-select: none;
+   -webkit-touch-callout: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   -o-user-select: none;
+}
+
+.noselect:focus {
+   outline: none;
+}
+
+.dk-edit-mode {
+  float: right;
+  color: #f8f8f8;
+  -webkit-font-smoothing: initial;
+
+  background: #00B5AD;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 30px;
+  margin-top: 2px;
+}
+
+.dk-back {
+  margin-left: 20px;
+}

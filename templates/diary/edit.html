@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'blog/diary/entry.css' %}">
+  <link rel="stylesheet" href="{% static 'blog/diary/edit.css' %}">
+{% endblock %}
+
+{% block extrajs %}
+  <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+  <script src="{% static 'blog/diary/edit.js' %}" charset="utf-8"></script>
+{% endblock %}
+
+{% block body %}
+{% include 'components/menu.html' with v=2 sticky=True %}
+
+<div class="uk-container uk-container-small dk-cont">
+  <form class="" action="/blog/diary/edit/" method="post">
+    {% csrf_token %}
+    <div class="dk-entry">
+      <div class="dk-edit-mode">
+        Режим редактирования
+      </div>
+      <div class="dk-entry-date noselect">
+        {{ entry.date|date:'F d, Y (l)' }}
+      </div>
+
+      <div class="dk-entry-text">
+        <textarea class="noselect" placeholder="Введите текст" name="text">{{ entry.text }}</textarea>
+      </div>
+    </div>
+    <div class="dk-after">
+      <input type="submit" name="_save" class="uk-button uk-button-default" id="save" value="Сохранить">
+      <a href="/blog/diary/entry" class="uk-button uk-button-text dk-back">Назад</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

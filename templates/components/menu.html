@@ -4,10 +4,11 @@
     <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar {% if sticky %}uk-sticky="bottom: #offset"{% endif %}>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-                <li {% if v == 1 %}class="active"{% endif %}><a href="/">Главная</a></li>
-                <li><a href="#">Блог</a></li>
-                <li {% if v == 3 %}class="active"{% endif %}><a href="/music">Музыка</a></li>
-                <li><a href="#">О себе</a></li>
+              {% for code, item in menu.items %}
+                <li {% if code == active_menu %}class="active"{% endif %}>
+                  <a href="{{ item.url }}">{{ item.name}}</a>
+                </li>
+              {% endfor %}
                 <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
             </ul>
         </div>
@@ -24,7 +25,7 @@
     <nav class="uk-navbar-container uk-navbar-transparent" id="dk-mobile-navbar" uk-navbar uk-sticky="bottom: #offset">
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-                <li><a class="dk-navbar-active">Главная</a></li>
+              <li><a class="dk-navbar-active">{{ menu|get_name:active_menu }}</a></li>
             </ul>
         </div>
         <div class="uk-navbar-right">
@@ -38,10 +39,11 @@
         <button class="uk-modal-close-default uk-close-large" type="button" uk-close></button>
         <div class="uk-modal-body">
           <br>
-            <a href="/" class="uk-button dk-menu-link uk-width-1-1 active">Главная</a>
-            <a href="/blog" class="uk-button dk-menu-link uk-width-1-1">Блог</a>
-            <a href="/music" class="uk-button dk-menu-link uk-width-1-1">Музыка</a>
-            <a href="/about" class="uk-button dk-menu-link uk-width-1-1">О себе</a>
+            {% for code, item in menu.items %}
+              <a href="{{ item.url}}" class="uk-button dk-menu-link uk-width-1-1 {% if code == active_menu %}active{% endif %}">
+                {{ item.name }}
+              </a>
+            {% endfor %}
             <br><br>
         </div>
     </div>

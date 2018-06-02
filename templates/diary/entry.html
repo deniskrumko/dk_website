@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'blog/diary/entry.css' %}">
+
+{% endblock %}
+
+{% block extrajs %}
+
+{% endblock %}
+
+{% block body %}
+{% include 'components/menu.html' with v=2 sticky=True %}
+
+<div class="uk-container uk-container-small dk-cont">
+  <ul class="uk-breadcrumb">
+    <li><a href="/blog/diary/">Календарь</a></li>
+    <li><a href="#">2018</a></li>
+    <li><a>Июнь</a></li>
+    <li><span>{{ entry.date|date:'d' }}</span></li>
+  </ul>
+  <div class="dk-entry">
+    <div class="dk-edit-link">
+      <a href="/blog/diary/edit" class="uk-icon-button uk-margin-small-right" uk-icon="icon: pencil; ratio: 1.3;"></a>
+    </div>
+    <div class="dk-entry-date">
+      {{ entry.date|date:'F d, Y (l)' }}
+    </div>
+    <div class="dk-entry-text">
+      {% if entry.text %}
+        {% autoescape off %}
+          {{ entry.html }}
+        {% endautoescape %}
+      {% else %}
+        <div class="dk-center-btn">
+          <a href="/blog/diary/edit" class="uk-button uk-button-default ">Запись не найдена. Заполнить?</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="dk-after">
+    <p>Изменено {{ entry.modified }}</p>
+  </div>
+</div>
+{% endblock %}

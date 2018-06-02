@@ -1,6 +1,8 @@
 import factory
-from .models import Artist, Track, TrackFile
+
 from apps.files.factories import FileFactory
+
+from .models import Artist, Track, TrackFile
 
 __all__ = (
     'ArtistFactory',

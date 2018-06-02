@@ -1,12 +1,15 @@
 from core.views import BaseView
+
 from .models import Track
 
 
-class TrackListView(BaseView):
+class TrackIndexView(BaseView):
     template_name = 'music/track_list.html'
+    menu = 'music'
 
     def get_context_data(self):
-        return {
+        context = super().get_context_data()
+        context.update({
             'tracks': Track.objects.all(),
             'logo': [
                 '1100100011001100101',
@@ -21,20 +24,26 @@ class TrackListView(BaseView):
                 '0010101100101010100',
                 '00111001101110111000'
             ]
-        }
+        })
+        return context
 
 
-class TrackDetailsView(BaseView):
+class TrackDetailView(BaseView):
     template_name = 'music/track_details.html'
+    menu = 'music'
 
     def get(self, request, slug):
 
         track = Track.objects.filter(slug=slug).first()
-
-        context = {
+        context = super().get_context_data()
+        context.update({
             'track': track,
-            'music_files': track.related_files.filter(file__category__name='Музыка'),
-            'other_files': track.related_files.exclude(file__category__name='Музыка')
-        }
+            'music_files': track.related_files.filter(
+                file__category__name='Музыка'
+            ),
+            'other_files': track.related_files.exclude(
+                file__category__name='Музыка'
+            )
+        })
 
         return self.render_to_response(context)
