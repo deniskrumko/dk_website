@@ -1,0 +1,19 @@
+{% with info.day|date:'Y-m-d' as entry_date %}
+
+<a class="uk-padding uk-background-muted dk-calendar-day" href="{% url 'diary:detail' date=entry_date %}">
+
+  <h1>{{ name }}</h1>
+  <h2>{{ info.day|date:'d F, D' }}</h2>
+  {% if info.entry %}
+    {% autoescape off %}
+      {{ info.entry.preview }}
+    {% endautoescape %}
+    <br>
+  {% else %}
+    <p class="dk-muted-text">Запись не найдена :(</p>
+  {% endif %}
+
+</a>
+<br>
+
+{% endwith %}

@@ -36,3 +36,15 @@ class DiaryEntry(BaseModel):
             f'<p>{line}</p>' if line else '<p>&nbsp;<p>'
             for line in self.text.split('\r\n')
         ])
+
+    @property
+    def preview(self):
+        """Property to represent entry text as HTML (only preview)."""
+        preview = ''
+        for part in self.text.split('.'):
+            if len(preview) > 120:
+                return preview
+            else:
+                preview += f'{part}.'
+
+        return self.text

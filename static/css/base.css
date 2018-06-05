@@ -1,0 +1,78 @@
+.uk-notification-message {
+  background-color: #222;
+  color: #f0f0f0;
+  font-size: 14px;
+}
+
+body, html {
+  height: 100%;
+}
+
+.dk-background {
+  height: 250px;
+  background-color: #00B5AD;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.dk-bg-inner {
+  position: absolute;
+  font-family: 'Ubuntu';
+  font-size: 12px;
+  bottom: 5px;
+  right: 10px;
+  color: #fff;
+  mix-blend-mode: overlay;
+}
+
+/* Menu */
+
+.uk-navbar-container {
+  opacity: 0;
+  transition: 0.5s all ease;
+}
+
+.uk-navbar-nav>li {
+  position: relative;
+}
+
+.uk-navbar-nav>li.active::after {
+  content: '';
+  width: calc(100% - 30px);
+  height: 2px;
+  position: absolute;
+  bottom: 20px;
+  transition: all 0.3s ease;
+  margin-left: 15px;
+}
+
+.dk-navbar-active {
+  font-size: 16px !important;
+}
+
+.dk-menu-link {
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.dk-menu-link.active {
+  color: black;
+}
+
+.noselect {
+   cursor: default;
+   -webkit-user-select: none;
+   -webkit-touch-callout: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   -o-user-select: none;
+}
+
+.noselect:focus {
+   outline: none;
+}

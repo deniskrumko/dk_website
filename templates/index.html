@@ -2,25 +2,20 @@
 {% load static i18n %}
 
 {% block extrastyle %}
-  <link rel="stylesheet" href="{% static 'index/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 
 {% block extrajs %}
-  <script src="{% static 'index/index.js' %}" charset="utf-8"></script>
+  <script src="{% static 'js/index.js' %}" charset="utf-8"></script>
 {% endblock %}
 
 {% block body %}
 
-  {# Background #}
-  <div class="dk-background uk-background-fixed" uk-parallax="bgy: -150"></div>
+{# Background #}
+{% include "components/background.html" with image='images/index.jpg' %}
 
-  {% include 'components/menu.html' with v=1 sticky=True %}
-
-  {# Center smart quote #}
-  <div class="uk-overlay uk-overlay-primary uk-position-center dk-quote" >
-    <p id="dk-quote-text">Тут кароч нужно какую-нибудь умную цитату вставить</p>
-    <p id="dk-quote-author">— Денис Крумко, 2018</p>
-  </div>
+{# Menu #}
+{% include 'components/menu.html' with sticky=True %}
 
   <br>
   <div class="uk-container uk-container-small ">

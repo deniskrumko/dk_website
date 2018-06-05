@@ -4,8 +4,9 @@ from .models import Track
 
 
 class TrackIndexView(BaseView):
-    template_name = 'music/track_list.html'
+    template_name = 'music/index.html'
     menu = 'music'
+    title = 'DK - Музыка'
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -29,13 +30,17 @@ class TrackIndexView(BaseView):
 
 
 class TrackDetailView(BaseView):
-    template_name = 'music/track_details.html'
+    template_name = 'music/detail.html'
     menu = 'music'
+
+    def get_title(self, **kwargs):
+        name = kwargs.get('track_name')
+        return f'DK - {name}'
 
     def get(self, request, slug):
 
         track = Track.objects.filter(slug=slug).first()
-        context = super().get_context_data()
+        context = super().get_context_data(track_name=track.name)
         context.update({
             'track': track,
             'music_files': track.related_files.filter(

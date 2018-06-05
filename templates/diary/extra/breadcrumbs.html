@@ -1,0 +1,6 @@
+<ul class="uk-breadcrumb">
+  <li><a href="{% url 'diary:index' %}">Календарь</a></li>
+  <li><a href="#">2018</a></li>
+  <li><a>Июнь</a></li>
+  <li><span>{{ date_obj|date:'d' }}</span></li>
+</ul>

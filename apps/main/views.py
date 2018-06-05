@@ -7,4 +7,4 @@ class IndexView(BaseView):
     """View for index page."""
     template_name = 'index.html'
     menu = 'index'
-    title = 'DK'
+    title = 'DK - Главная'

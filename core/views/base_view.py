@@ -8,9 +8,11 @@ class BaseView(TemplateView):
     title = None
 
     def get_active_menu(self, **kwargs):
+        assert self.menu, 'Add `menu` to {}'.format(self.__class__)
         return self.menu
 
     def get_title(self, **kwargs):
+        assert self.title, 'Add `title` to {}'.format(self.__class__)
         return self.title
 
     def get_context_data(self, **kwargs):

@@ -1,0 +1,54 @@
+.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+    padding: 10px 20px;
+}
+
+.scrollmenu button {
+    display: inline-block;
+    text-align: center;
+    padding: 5px 14px;
+    margin: 0px 3px;
+    text-decoration: none;
+    width: 100px;
+}
+
+.dk-year {
+    display: inline-block;
+    text-align: center;
+    padding: 5px 14px;
+    margin: 0px 3px;
+    text-decoration: none;
+    width: 70px !important;
+}
+
+/* Less than 640px */
+
+@media screen and (max-width: 640px) {
+  .scrollmenu button {
+    padding: 5px 14px;
+    margin: 0px;
+    width: 80px;
+    font-size: 12px;
+  }
+}
+
+.scrollmenu-outer {
+  position: relative;
+}
+
+#shadow-left {
+  position: absolute;
+  background: linear-gradient(90deg, #fff, transparent);
+  width: 20px;
+  height: 100%;
+  left: 0;
+}
+
+#shadow-right {
+  position: absolute;
+  background: linear-gradient(-90deg, #fff, transparent);
+  width: 20px;
+  height: 100%;
+  right: 0;
+}

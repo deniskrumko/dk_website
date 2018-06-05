@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'css/diary/detail.css' %}">
+
+{% endblock %}
+
+{% block extrajs %}
+
+{% endblock %}
+
+{% block body %}
+
+{# Background #}
+{% include "components/background.html" with image='images/diary.jpg' %}
+
+{# Menu #}
+{% include 'components/menu.html' with sticky=True %}
+<br>
+<div class="uk-container uk-container-small">
+
+  {% include "diary/extra/breadcrumbs.html" %}
+
+  <div class="dk-entry">
+    <div class="dk-edit-link">
+      <a href="{% url 'diary:edit' date=date_str %}" class="uk-icon-button uk-margin-small-right" uk-icon="icon: pencil; ratio: 1.3;"></a>
+    </div>
+    <div class="dk-entry-date">
+      {{ date_obj|date:'F d, Y (l)' }}
+    </div>
+    <div class="dk-entry-text">
+      {% if entry.text %}
+        {% autoescape off %}
+          {{ entry.html }}
+        {% endautoescape %}
+      {% else %}
+        <div class="dk-center-btn">
+          <a href="{% url 'diary:edit' date=date_str %}" class="uk-button uk-button-default ">Запись не найдена. Заполнить?</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  {% if entry %}
+  <div class="dk-after">
+    <p>Изменено {{ entry.modified }}</p>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

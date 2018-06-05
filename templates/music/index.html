@@ -2,26 +2,26 @@
 {% load static i18n %}
 
 {% block extrastyle %}
-  <link rel="stylesheet" href="{% static 'music/track_list.css' %}">
-  <link rel="stylesheet" href="{% static 'music/dendynotdead.css' %}">
+  <link rel="stylesheet" href="{% static 'css/music/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/music/logo.css' %}">
 
 {% endblock %}
 
 {% block extrajs %}
-  <script src="{% static 'music/track_list.js' %}" charset="utf-8"></script>
+  <script src="{% static 'js/music/index.js' %}" charset="utf-8"></script>
   <script type="text/javascript">
     jQuery(document).ready(function($) {
       {% for track in tracks %}
       $('#track-image-{{ forloop.counter }}').css('background-image', 'url({{ track.image.url}})');
       {% endfor %}
-      $('.dk-background').css('background-image', 'url("{% static 'music/music_bg.jpg' %}")');
     });
   </script>
 {% endblock %}
 
 {% block body %}
 
-<div class="dk-background"></div>
+{# Background #}
+{% include "components/background.html" with image='images/music.jpg' %}
 
 {% include 'components/menu.html' with v=3 sticky=True %}
 

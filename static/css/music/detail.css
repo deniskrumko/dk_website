@@ -15,19 +15,7 @@
     color: #f35d28;
 }
 
-
-body, html {
-  height: 100%;
-}
-
 .dk-background {
-  background-image: url("../music/music_bg.jpg");
-  height: 350px;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-
   width: 100%;
   z-index: -1;
 }
@@ -68,7 +56,7 @@ body, html {
 }
 
 .dk-description {
-  margin-top: 170px;
+  margin-top: 100px;
 }
 
 .dk-file {

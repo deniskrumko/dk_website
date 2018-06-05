@@ -1,0 +1,90 @@
+.dk-week {
+  max-width: 280px;
+  margin: auto;
+  cursor: pointer;
+}
+.dk-month-preview {
+  text-align: center;
+}
+.dk-calendar-day p {
+  margin: 0;
+}
+
+/* Less than 640px */
+
+@media screen and (max-width: 640px) {
+  .dk-calendar-day h1 {
+    font-size: 30px;
+  }
+  .dk-calendar-day {
+    padding: 20px;
+  }
+}
+
+.dk-week a, .dk-week span {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  display: inline-block;
+  font-size: 15px;
+  vertical-align: middle;
+  text-align: center;
+  color: #999;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.dk-week-bold span {
+  font-weight: bold;
+  color: #333;
+}
+
+.dk-week a.active {
+  background-color: #00B5AD;
+  border-radius: 32px;
+  color: #fff !important;
+}
+
+.dk-week a.active:hover {
+  background-color: #02a8a1;
+  color: #fff !important;
+}
+
+.dk-week a.filled {
+  color: #333;
+}
+
+.dk-week a:hover {
+  text-decoration: none;
+  color: #00B5AD;
+}
+
+.dk-calendar-info h1 {
+  margin: 0px;
+}
+
+.dk-calendar-info h2 {
+  font-size: 14px;
+  color: #999;
+  margin: 0px 0px 20px 0px;
+}
+
+.dk-calendar-day {
+  display: block;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.dk-calendar-day:hover {
+  text-decoration: none;
+  color: #666;
+  background-color: #f0f0f0;;
+}
+
+.dk-all-dates {
+  text-align: center;
+  margin: 0px 40px;
+}
+
+.dk-muted-text {
+  color: #aaa;
+}

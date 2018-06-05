@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'css/diary/calendar.css' %}">
+{% endblock %}
+
+{% block extrajs %}
+{% endblock %}
+
+{% block body %}
+
+{# Background #}
+{% include "components/background.html" with image='images/diary.jpg' %}
+
+{# Menu #}
+{% include 'components/menu.html' with sticky=True %}
+<br>
+<div class="uk-container uk-container-small">
+
+  <h1>Июль 2018</h1>
+
+  <div class="scrollmenu-outer">
+    <span id="shadow-left"></span>
+    <span id="shadow-right"></span>
+
+    <div class="scrollmenu">
+      <span class="shadow"></span>
+      {% for day in months %}
+        <button type="button" name="button" class="uk-button uk-button-default">{{ day|date:'F' }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="scrollmenu">
+      {% for year in years %}
+        <button type="button" name="button" class="uk-button uk-button-default dk-year">{{ year }}</button>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -12,20 +12,6 @@ textarea {
   color: #666666;
 }
 
-.noselect {
-   cursor: default;
-   -webkit-user-select: none;
-   -webkit-touch-callout: none;
-   -khtml-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   -o-user-select: none;
-}
-
-.noselect:focus {
-   outline: none;
-}
-
 .dk-edit-mode {
   float: right;
   color: #f8f8f8;

@@ -15,11 +15,16 @@ def get_menu():
         'diary': MenuItem(
             name='Дневник',
             url=reverse('diary:index'),
-            color=MenuColor('#00B5AD', '#333')
+            color=MenuColor('#fd81a8', '#f0f0f0')
         ),
         'music': MenuItem(
             name='Музыка',
             url=reverse('music:index'),
+            color=MenuColor('#f35d28', '#f0f0f0')
+        ),
+        'admin': MenuItem(
+            name='Админка',
+            url=reverse('admin:index'),
             color=MenuColor('#f35d28', '#f0f0f0')
         ),
     }

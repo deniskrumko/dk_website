@@ -1,19 +1,6 @@
-body, html {
-  height: 100%;
-}
-
 .dk-section-about {
   text-align: justify;
   color: #f8f8f8;
-}
-
-.dk-background {
-  height: 350px;
-  background-color: #1b1b1b;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
 }
 
 .uk-divider-icon::before {

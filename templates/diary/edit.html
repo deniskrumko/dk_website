@@ -3,27 +3,35 @@
 
 
 {% block extrastyle %}
-  <link rel="stylesheet" href="{% static 'blog/diary/entry.css' %}">
-  <link rel="stylesheet" href="{% static 'blog/diary/edit.css' %}">
+  <link rel="stylesheet" href="{% static 'css/diary/detail.css' %}">
+  <link rel="stylesheet" href="{% static 'css/diary/edit.css' %}">
 {% endblock %}
 
 {% block extrajs %}
   <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
-  <script src="{% static 'blog/diary/edit.js' %}" charset="utf-8"></script>
+  <script src="{% static 'js/diary/edit.js' %}" charset="utf-8"></script>
 {% endblock %}
 
 {% block body %}
-{% include 'components/menu.html' with v=2 sticky=True %}
 
+{# Background #}
+{% include "components/background.html" with image='images/diary.jpg' %}
+
+{# Menu #}
+{% include 'components/menu.html' with sticky=True %}
+<br>
 <div class="uk-container uk-container-small dk-cont">
-  <form class="" action="/blog/diary/edit/" method="post">
+
+  {% include "diary/extra/breadcrumbs.html" %}
+
+  <form class="" action="{% url 'diary:edit' date=date_str %}" method="post">
     {% csrf_token %}
     <div class="dk-entry">
       <div class="dk-edit-mode">
         Режим редактирования
       </div>
       <div class="dk-entry-date noselect">
-        {{ entry.date|date:'F d, Y (l)' }}
+        {{ date_obj|date:'F d, Y (l)' }}
       </div>
 
       <div class="dk-entry-text">
@@ -32,7 +40,7 @@
     </div>
     <div class="dk-after">
       <input type="submit" name="_save" class="uk-button uk-button-default" id="save" value="Сохранить">
-      <a href="/blog/diary/entry" class="uk-button uk-button-text dk-back">Назад</a>
+      <a href="{% url 'diary:detail' date=date_str %}" class="uk-button uk-button-text dk-back">Назад</a>
     </div>
   </form>
 </div>

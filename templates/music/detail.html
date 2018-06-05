@@ -3,20 +3,21 @@
 
 
 {% block extrastyle %}
-  <link rel="stylesheet" href="{% static 'music/track_details.css' %}">
+<link rel="stylesheet" href="{% static 'css/music/detail.css' %}">
 
 {% endblock %}
 
 {% block extrajs %}
-<script src="{% static 'music/track_details.js' %}" charset="utf-8"></script>
-
+<script src="{% static 'js/music/detail.js' %}" charset="utf-8"></script>
 {% endblock %}
 
 {% block body %}
-{# Background #}
-<div class="dk-background"></div>
 
-{% include 'components/menu.html' with v=3 sticky=False %}
+{# Background #}
+{% include "components/background.html" with image='images/music.jpg' %}
+
+{# Menu #}
+{% include 'components/menu.html' with sticky=False %}
 
 <div class="uk-container dk-head-container">
   <div class="uk-grid">

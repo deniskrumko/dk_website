@@ -17,9 +17,9 @@
 
     {# CSS #}
     <link rel="stylesheet" type="text/css" href="{% static 'uikit/css/uikit.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'base/base.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'menu/menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
+    {# Menu colors #}
     <style media="screen">
     {% with menu|get_color:active_menu as color %}
     .uk-navbar-nav>li>a {color: {{ color.base }};}
@@ -31,7 +31,7 @@
     </style>
 
     {# Google Fonts #}
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400|Open+Sans:800|Knewave" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400|Knewave" rel="stylesheet">
 
     {# EXTRA CSS #}
     {% block extrastyle %}{% endblock %}
@@ -39,20 +39,17 @@
 
   {# BODY #}
   <body>
-  {% block body %}
-
-  {% endblock %}
+  {% block body %}{% endblock %}
   </body>
 
   {# JS #}
-
   <script
     src="https://code.jquery.com/jquery-3.1.1.min.js"
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
   <script src="{% static 'uikit/js/uikit.min.js' %}"></script>
   <script src="{% static 'uikit/js/uikit-icons.js' %}"></script>
-  <script src="{% static 'menu/menu.js' %}"></script>
+  <script src="{% static 'js/base.js' %}"></script>
 
   {# EXTRA JS #}
   {% block extrajs %}{% endblock %}
