@@ -2,6 +2,7 @@ jQuery(document).ready(function($) {
 
   // Current playing track
   var current_track = false;
+  var buffer_interval = null;
 
   // HELPER METHODS
   // =========================================================================
@@ -112,9 +113,13 @@ jQuery(document).ready(function($) {
     $(current_track).next().width(percent + '%');
   }
 
+  function setBufferedPosition(percent) {
+    $(current_track).next().next().width(percent + '%');
+  }
+
   // Method to set time block opacity (from 0 to 1)
   function setTimeblockOpacity(opacity) {
-    var time_block = $(current_track).next().next().get(0);
+    var time_block = $(current_track).next().next().next().get(0);
     $(time_block).css('opacity', opacity);
   }
 
@@ -135,6 +140,7 @@ jQuery(document).ready(function($) {
     $(current_track).parent().addClass('active');
     setTimeblockOpacity(1);
     addAllEventListeners();
+    activateBufferUpdate();
   }
 
   // Method to disable player for current track
@@ -145,8 +151,10 @@ jQuery(document).ready(function($) {
 
     $(current_track).parent().removeClass('active');
     playButtonAsPlay();
+    setBufferedPosition(0);
     setTimelinePosition(0);
     setTimeblockOpacity(0);
+    deactivateBufferUpdate();
   }
 
   // Initalize player with provided track (or first track)
@@ -173,7 +181,7 @@ jQuery(document).ready(function($) {
     percent = current_track.currentTime * 100 / current_track.duration;
     setTimelinePosition(percent);
 
-    var time_block = $(current_track).next().next().get(0);
+    var time_block = $(current_track).next().next().next().get(0);
     var t1 = formatTime(current_track.currentTime);
     var t2 = formatTime(current_track.duration);
     $(time_block).text(t1 + ' / ' + t2);
@@ -184,6 +192,21 @@ jQuery(document).ready(function($) {
     if (current_track.currentTime == current_track.duration) {
       playNextTrack();
     }
+  }
+
+  function bufferUpdate() {
+    var last_buffer = current_track.buffered.length - 1;
+
+    percent = current_track.buffered.end(last_buffer) * 100 / current_track.duration;
+    setBufferedPosition(percent);
+  }
+
+  function activateBufferUpdate() {
+    buffer_interval = setInterval(function(){bufferUpdate()}, 100);
+  }
+
+  function deactivateBufferUpdate() {
+    clearInterval(buffer_interval);
   }
 
   // EVENT HANDLING

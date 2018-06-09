@@ -14,3 +14,8 @@ def get_color(dictionary, key):
 @register.filter
 def get_name(dictionary, key):
     return dictionary.get(key).name
+
+
+@register.filter
+def get_link(dictionary, key):
+    return dictionary.get(key).url

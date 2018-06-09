@@ -3,9 +3,9 @@ p {
 }
 
 .dk-entry {
-  background-color: #F8F8F8;
+  background-color: #292b36;
   padding: 30px 20px;
-  z-index: 3000;
+  z-index: 1000;
   position: relative;
   font-size: 16px;
 }
@@ -15,7 +15,6 @@ p {
   font-size: 20px;
   margin-bottom: 30px;
 }
-
 
 .dk-after {
   margin-top: 10px;
@@ -31,4 +30,14 @@ p {
 .dk-center-btn {
   text-align: center;
   margin-bottom: 20px;
+}
+
+.uk-icon-button {
+  background: transparent;
+  color: #00B5AD;
+}
+
+.uk-icon-button:hover {
+  background: #23252f;
+  color: #00B5AD;
 }

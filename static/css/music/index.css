@@ -1,6 +1,5 @@
 .dk-section-about {
   text-align: justify;
-  color: #f8f8f8;
 }
 
 .uk-divider-icon::before {
@@ -105,13 +104,14 @@
 }
 
 .dk-play-button.active {
-  background-color: #eee;
-  border-color: #eee;
+  /* background-color: #f45c28; */
+  border-color: #f45c28;
+  color: #f45c28;
 }
 
 .dk-play-button.active:hover {
-  background-color: #ddd;
-  border-color: #ddd;
+  background-color: #1c1e25;
+  /* border-color: #ddd; */
 }
 
 .dk-player-timeline {
@@ -120,7 +120,7 @@
   height: 0px;
   bottom: 0;
   right: 0;
-  background-color: #ddd;
+  background-color: #343743;
   transition: all 0.3s ease;
 }
 
@@ -130,13 +130,24 @@
 
 .dk-player-position {
   width: 0;
-  background-color: #aaa;
+  background-color: #8d391c;
   height: 7px;
   transition: all 0.3s ease;
+  position: absolute;
+  z-index: 2;
+}
+
+.dk-player-buffer {
+  width: 0;
+  background-color: #3b3f4c;
+  height: 7px;
+  transition: all 0.3s ease;
+  position: absolute;
+  z-index: 1;
 }
 
 .dk-player-position.active {
-  background-color: #ee0000;
+  background-color: #f35d28;
 }
 
 .dk-player-time {
@@ -155,24 +166,13 @@
   margin-bottom: 35px;
 }
 
-.dk-section-about {
-  text-align: justify;
-  color: #f8f8f8;
-}
-
-.dk-section-white {
-  text-align: left;
-  color: #f8f8f8;
-}
-
 .dk-button {
-  border: 1px solid #f8f8f8;
+  border: 1px solid #ABB2C0;
   border-radius: 3px;
   font-size: 12px;
   margin-left: 5px;
   margin-right: 5px;
   padding: 3px 5px;
-
 }
 
 .dk-button.space {
@@ -225,7 +225,7 @@
     margin-bottom: 10px;
   }
   .uk-card-body {
-    padding: 15px;
+    padding: 10px 15px 15px 15px;
   }
 }
 
@@ -262,5 +262,11 @@
   .dk-player-time {
     bottom: -20px;
     right: 0;
+  }
+  .dk-section {
+    padding: 20px 0px !important;
+  }
+  .dk-section p {
+    font-size: 13px;
   }
 }

@@ -19,7 +19,7 @@ html {
   -webkit-text-size-adjust: 100%;
   /* 3 */
   background: #fff;
-  color: #8c919c;
+  color: #666;
 }
 /*
  * Remove the margin in all browsers.
@@ -222,7 +222,7 @@ h6,
   margin: 0 0 20px 0;
   font-family: "Ubuntu", Arial, sans-serif;
   font-weight: normal;
-  color: #ABB2C0;
+  color: #333;
   text-transform: none;
 }
 /* Add margin if adjacent element */
@@ -1860,15 +1860,15 @@ select.uk-form-width-xsmall {
  */
 .uk-button-default {
   background-color: transparent;
-  color: #ABB2C0;
-  border: 1px solid #ABB2C0;
+  color: #333;
+  border: 1px solid #e5e5e5;
 }
 /* Hover + Focus */
 .uk-button-default:hover,
 .uk-button-default:focus {
   background-color: transparent;
-  color: #8c919c;
-  border-color: #8c919c;
+  color: #333;
+  border-color: #b2b2b2;
 }
 /* OnClick + Active */
 .uk-button-default:active,
@@ -1974,7 +1974,7 @@ select.uk-form-width-xsmall {
   line-height: 1.5;
   background: none;
   /* 2 */
-  color: #ABB2C0;
+  color: #333;
   position: relative;
 }
 .uk-button-text::before {
@@ -1983,13 +1983,13 @@ select.uk-form-width-xsmall {
   bottom: 0;
   left: 0;
   right: 100%;
-  border-bottom: 1px solid #8c919c;
+  border-bottom: 1px solid #333;
   transition: right 0.3s ease-out;
 }
 /* Hover + Focus */
 .uk-button-text:hover,
 .uk-button-text:focus {
-  color: #8c919c;
+  color: #333;
 }
 .uk-button-text:hover::before,
 .uk-button-text:focus::before {
@@ -2167,7 +2167,7 @@ select.uk-form-width-xsmall {
  * Secondary
  */
 .uk-section-secondary {
-  background: #1c1e25;
+  background: #222;
 }
 /* Overlap modifier
  ========================================================================== */
@@ -2761,11 +2761,11 @@ select.uk-form-width-xsmall {
  */
 .uk-card-default {
   background: #fff;
-  color: #8c919c;
+  color: #666;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 .uk-card-default .uk-card-title {
-  color: #ABB2C0;
+  color: #333;
 }
 .uk-card-default.uk-card-hover:hover {
   background-color: #fff;
@@ -7219,7 +7219,7 @@ iframe.uk-cover {
   background-color: #fff;
 }
 .uk-background-muted {
-  background-color: #242630;
+  background-color: #f8f8f8;
 }
 .uk-background-primary {
   background-color: #1e87f0;
@@ -8887,7 +8887,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']),
 .uk-overlay-primary,
 .uk-offcanvas-bar {
-  color: #ABB2C0;
+  color: rgba(255, 255, 255, 0.7);
 }
 .uk-light a,
 .uk-light .uk-link,
@@ -10186,7 +10186,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-button-text,
 .uk-overlay-primary .uk-button-text,
 .uk-offcanvas-bar .uk-button-text {
-  color: #8c919c;
+  color: #fff;
 }
 .uk-light .uk-button-text::before,
 .uk-section-primary:not(.uk-preserve-color) .uk-button-text::before,
@@ -10199,7 +10199,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-button-text::before,
 .uk-overlay-primary .uk-button-text::before,
 .uk-offcanvas-bar .uk-button-text::before {
-  border-bottom-color: #ABB2C0;
+  border-bottom-color: #fff;
 }
 .uk-light .uk-button-text:hover,
 .uk-light .uk-button-text:focus,
@@ -10223,7 +10223,7 @@ iframe.uk-cover {
 .uk-overlay-primary .uk-button-text:focus,
 .uk-offcanvas-bar .uk-button-text:hover,
 .uk-offcanvas-bar .uk-button-text:focus {
-  color: #ABB2C0;
+  color: #fff;
 }
 .uk-light .uk-button-text:disabled,
 .uk-section-primary:not(.uk-preserve-color) .uk-button-text:disabled,

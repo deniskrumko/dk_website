@@ -18,16 +18,16 @@
 {% include "components/background.html" with image='images/diary.jpg' %}
 
 {# Menu #}
-{% include 'components/menu.html' with sticky=True %}
-<br>
+{% include 'components/menu.html' %}
+
 <div class="uk-container uk-container-small dk-cont">
 
-  {% include "diary/extra/breadcrumbs.html" %}
+  {# {% include "diary/extra/breadcrumbs.html" %} #}
 
   <form class="" action="{% url 'diary:edit' date=date_str %}" method="post">
     {% csrf_token %}
     <div class="dk-entry">
-      <div class="dk-edit-mode">
+      <div class="dk-edit-mode uk-visible@s">
         Режим редактирования
       </div>
       <div class="dk-entry-date noselect">
@@ -43,5 +43,6 @@
       <a href="{% url 'diary:detail' date=date_str %}" class="uk-button uk-button-text dk-back">Назад</a>
     </div>
   </form>
+
 </div>
 {% endblock %}

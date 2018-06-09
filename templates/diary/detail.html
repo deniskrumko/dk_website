@@ -17,14 +17,14 @@
 {% include "components/background.html" with image='images/diary.jpg' %}
 
 {# Menu #}
-{% include 'components/menu.html' with sticky=True %}
-<br>
+{% include 'components/menu.html' %}
+
 <div class="uk-container uk-container-small">
 
-  {% include "diary/extra/breadcrumbs.html" %}
+  {# {% include "diary/extra/breadcrumbs.html" %} #}
 
   <div class="dk-entry">
-    <div class="dk-edit-link">
+    <div class="dk-edit-link uk-visible@s">
       <a href="{% url 'diary:edit' date=date_str %}" class="uk-icon-button uk-margin-small-right" uk-icon="icon: pencil; ratio: 1.3;"></a>
     </div>
     <div class="dk-entry-date">
@@ -41,6 +41,9 @@
         </div>
       {% endif %}
     </div>
+  </div>
+  <div class="uk-hidden@s">
+    <a href="{% url 'diary:edit' date=date_str %}" class="uk-button uk-button-default uk-width-1-1 uk-margin-top">Редактировать</a>
   </div>
   {% if entry %}
   <div class="dk-after">

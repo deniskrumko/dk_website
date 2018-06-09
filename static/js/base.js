@@ -1,6 +1,6 @@
 jQuery(document).ready(function( $ ) {
 
-  var scroll_navbar = 100;
+  var scroll_navbar = 80;
   var navbar_hidden = true;
 
   if ($(window).scrollTop() > scroll_navbar) {

@@ -12,7 +12,9 @@
   <script type="text/javascript">
     jQuery(document).ready(function($) {
       {% for track in tracks %}
+      {% if track.image %}
       $('#track-image-{{ forloop.counter }}').css('background-image', 'url({{ track.image.url}})');
+      {% endif %}
       {% endfor %}
     });
   </script>
@@ -23,16 +25,14 @@
 {# Background #}
 {% include "components/background.html" with image='images/music.jpg' %}
 
-{% include 'components/menu.html' with v=3 sticky=True %}
-
-<br>
+{% include 'components/menu.html' %}
 
   {% for track in tracks %}
     {% include 'components/track.html' with track=track %}
-    {% if forloop.counter == 2 %}
+    {% if forloop.counter == 3 %}
       {% include "components/music/section_dnd.html" %}
     {% endif %}
-    {% if forloop.counter == 3 %}
+    {% if forloop.counter == 6 %}
       {% include "components/music/section_help.html" %}
     {% endif %}
   {% endfor %}
@@ -41,7 +41,7 @@
     <div class="uk-container">
       <div class="dk-dno">
           <h1>Вы достигли дна!</h1>
-          <img src="{% static 'music/icons/fish.svg' %}" style="height: 80px;" alt="">
+          <img src="{% static 'images/icons/fish.svg' %}" style="height: 80px;" alt="">
           <h2 class="dk-track-list">Список всех треков</h2>
           {% for track in tracks %}
             <a>{{ track.name }}</a>
