@@ -17,7 +17,7 @@
 
 .dk-track-name {
   font-size: 60px;
-  color: white;
+  color: #ABB2C0;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
   font-family: 'Knewave', Arial;
 }
@@ -25,7 +25,6 @@
 .dk-track-year {
   font-size: 16px;
   margin: 0px;
-  color: black;
   text-shadow: none;
   text-align: center;
 }
@@ -41,12 +40,12 @@
 }
 
 .dk-description {
-  margin-top: 100px;
+  margin-top: 10px;
 }
 
 .dk-file {
   display: block;
-  color: #666;
+  color: #8c919c;
   padding: 5px 15px;
   margin: 15px auto;
   max-width: 480px;
@@ -64,9 +63,9 @@
 }
 
 .dk-file:hover {
-  background-color: #eee;
+  background-color: #292b36;
   text-decoration: none;
-  color: #666;
+  color: #8c919c;
 }
 
 .dk-file .name {
@@ -87,22 +86,24 @@
   left: 0;
   width: 100%;
   bottom: 0;
+  height: 0px;
+  background-color: #343743;
+  transition: all 0.3s ease;
 }
 
 .dk-player-timeline.active {
   height: 7px;
-  background-color: #ddd;
 }
 
 .dk-player-position {
   width: 0;
-  background-color: #aaa;
+  background-color: #8d391c;
   height: 7px;
   transition: all 0.3s ease;
 }
 
 .dk-player-position.active {
-  background-color: #ee0000;
+  background-color: #f35d28;
 }
 /* MEDIA STYLES =========================================================== */
 
@@ -130,8 +131,6 @@
 @media screen and (max-width: 639px) {
   .dk-track-name {
     font-size: 35px;
-    color: #222;
-    text-shadow: none;
     padding-top: 20px;
     margin-bottom: 10px;
     text-align: center;

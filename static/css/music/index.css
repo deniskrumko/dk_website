@@ -17,6 +17,11 @@
   text-align: center;
 }
 
+.dk-dno-section {
+  background-image: -webkit-linear-gradient(top, #1c1e25, #101012);
+  background-image: linear-gradient(top, #1c1e25, #101012);
+}
+
 .dk-dno h1 {
   font-weight: 600;
   font-size: 32px;
@@ -66,7 +71,7 @@
 
 .dk-track-year {
   font-size: 16px;
-  color: #999 !important;
+  color: #4a4e56 !important;
   margin-top: 0px;
   margin-bottom: 10px;
 }

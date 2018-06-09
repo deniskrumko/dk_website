@@ -29,7 +29,7 @@
   font-size: 15px;
   vertical-align: middle;
   text-align: center;
-  color: #999;
+  color: #6a6f79;
   display: inline-block;
   transition: all 0.3s ease;
 }
@@ -41,16 +41,16 @@
 .dk-week a.active {
   background-color: #00B5AD;
   border-radius: 32px;
-  color: #fff !important;
+  color: #1c1e25 !important;
 }
 
 .dk-week a.active:hover {
   background-color: #02a8a1;
-  color: #fff !important;
+  color: #1c1e25 !important;
 }
 
 .dk-week a.filled {
-  color: #333;
+  color: #ABB2C0;
 }
 
 .dk-week a:hover {
