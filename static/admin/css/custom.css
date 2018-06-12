@@ -1,4 +1,3 @@
-
 .small-preview {
   height: 30px;
   transition: all 0.1s ease;
@@ -17,4 +16,248 @@
 
 .large-preview:hover {
   transform: scale(1.1);
+}
+
+.dk-menu-br {
+  height: 80px;
+}
+
+body, html {
+  height: 100%;
+  background: #1c1e25;
+  color: #ABB2C0;
+  font-family: Ubuntu !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+#result_list thead {
+  border-bottom: 5px solid #1C1F25;
+}
+
+th a, td a {
+  color: #79aec9 !important;
+  font-family: Ubuntu !important;
+  font-weight: 400 !important;
+}
+
+th a:hover, td a:hover {
+  color: #437E9B !important;
+}
+
+div.breadcrumbs a {
+  color: #ABB2C0;
+}
+
+div.breadcrumbs {
+  color: #79AEC9 !important;
+}
+
+textarea, input, select {
+  background: #363a43;
+  border-color: #363a43 !important;
+  color: #ABB2C0 !important;
+}
+
+thead th {
+    background-color: #292C34 !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    margin-top: 10px !important;
+}
+
+thead th.sorted {
+    background: #1C1F25 !important;
+}
+
+#changelist table tbody tr.selected {
+    background-color: #E26B73 !important;
+    color: #1c1f26 !important;
+}
+
+tr.selected th a {
+    color: #1c1f26 !important;
+    transition: all 0.3s ease;
+}
+tr.selected th a:hover {
+    color: #ad5258 !important;
+}
+
+table thead th .text a:focus, table thead th .text a:hover {
+    background: #191b21 !important;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    font-size: 16px;
+    color: #ABB2C1;
+}
+
+.field-name input {
+  font-family: Knewave;
+  font-size: 32px;
+}
+
+label {
+  color: #ABB2C1 !important;
+}
+
+.form-row {
+    border-bottom: 1px solid #1C1F25 !important;
+}
+
+.submit-row {
+    background: #282C34 !important;
+    border: none !important;
+}
+
+.submit-row a.deletelink {
+  color: #282C34 !important;
+  background: #B94143 !important;
+  transition: all 0.3s ease;
+}
+
+.submit-row a.deletelink:hover {
+  color: #282C34 !important;
+  background: #ae3a3c !important;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+  color: #282C34 !important;
+  transition: all 0.3s ease;
+}
+
+ul.messagelist li {
+  border-radius: 50px;
+}
+
+.object-tools a:link, .object-tools a:visited {
+  background: #282C34 !important;
+  color: #ABB2C0 !important;
+  transition: all 0.3s ease;
+}
+
+.object-tools a:hover {
+  background: #30343d !important;
+}
+
+.object-tools a.addlink {
+    background-image: url(../img/tooltag-add.svg) !important;
+    background-repeat: no-repeat !important;
+    background-position: right 7px center !important;
+    padding-right: 26px !important;
+}
+
+#changelist #toolbar form input[type="submit"] {
+    border: 1px solid #ccc;
+    background: #79AEC9 !important;
+    color: #333;
+}
+
+
+h1 {
+  color: #52b5ea;
+}
+
+body::before {
+  content: '';
+  height: 200px;
+  background-color: #1c1e25;
+  background-image: -webkit-linear-gradient(top, #242630, #1c1e25);
+  background-image: linear-gradient(top, #242630, #1c1e25);
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+.uk-navbar-nav>li {
+  position: relative;
+  z-index: 1 !important;
+  list-style-type: none;
+}
+
+.uk-navbar-nav>li.active::after {
+  content: '';
+  width: calc(100% - 30px);
+  height: 2px;
+  position: absolute;
+  bottom: 20px;
+  transition: all 0.3s ease;
+  margin-left: 15px;
+  color: red;
+}
+
+.uk-navbar-nav>li>a {
+  color: #ABB2C0;
+}
+
+.uk-navbar-nav>li.active::after {
+  background-color: #79aec9;
+}
+
+.uk-navbar-nav>li.active>a {
+  color: #79aec9;
+}
+
+.uk-navbar-nav>li>a:hover {
+  color: #79aec9;
+}
+
+.dk-navbar-active {
+  color: #79aec9 !important;
+}
+
+.module h2, .module caption, .inline-group h2 {
+  background: #242630;
+}
+
+div.breadcrumbs {
+  background: transparent;
+  border-bottom: 3px solid #282C34;
+}
+
+#changelist #toolbar {
+    border-top: none !important;
+    border-bottom: none !important;
+    background: #282C34 !important;
+    color: #666;
+}
+
+#changelist .paginator {
+    background: #282C34 !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    color: #A6ADBB !important;
+}
+
+.required label, label.required {
+  color: #E26B73 !important;
+}
+
+#changelist .actions {
+      background: #282C34 !important;
+    color: #999;
+}
+
+.row1 {
+    background: #282C34;
+}
+.row2 {
+    background: #333741;
+}
+
+td, th {
+  border-bottom: 1px solid #242630;
+}
+
+#container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+#content-related, .module {
+  background: #282C34;
+
+}
+
+#content-related .module h2 {
+  color: #ABB2C0;
 }

@@ -35,7 +35,7 @@
 }
 .dk-week-bold span {
   font-weight: bold;
-  color: #333;
+  color: #067e79;
 }
 
 .dk-week a.active {
@@ -64,19 +64,19 @@
 
 .dk-calendar-info h2 {
   font-size: 14px;
-  color: #999;
+  color: #8c919c;
   margin: 0px 0px 20px 0px;
 }
 
 .dk-calendar-day {
   display: block;
-  color: #666;
+  color: #ABB2C0;
   transition: all 0.3s ease;
 }
 
 .dk-calendar-day:hover {
   text-decoration: none;
-  color: #666;
+  color: #ABB2C0;
   background-color: #292b36;
 }
 
@@ -86,5 +86,5 @@
 }
 
 .dk-muted-text {
-  color: #aaa;
+  color: #8c919c;
 }
