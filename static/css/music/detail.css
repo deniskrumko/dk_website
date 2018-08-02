@@ -150,3 +150,8 @@
     font-size: 38px;
   }
 }
+
+#back-button {
+  float: right;
+  margin-right: 3px;
+}

@@ -18,8 +18,8 @@
 }
 
 .dk-dno-section {
-  background-image: -webkit-linear-gradient(top, #1c1e25, #101012);
-  background-image: linear-gradient(top, #1c1e25, #101012);
+  background-image: -webkit-linear-gradient(top, #1c1e25, #000);
+  background-image: linear-gradient(top, #1c1e25, #000);
 }
 
 .dk-dno h1 {
@@ -42,7 +42,7 @@
 }
 
 .dk-dno button {
-  margin-top: 30px;
+  margin: 30px auto;
   font-size: 16px;
   color: #666 !important;
   border-color: #666 !important;
@@ -52,7 +52,7 @@
 .dk-dno button:hover {
   color: #999 !important;
   border-color: #999 !important;
-  transform: translateY(-5px);
+  padding: 0px 60px;
 }
 /* Track card */
 

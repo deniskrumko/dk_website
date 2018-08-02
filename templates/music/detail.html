@@ -56,6 +56,7 @@
             <span class="name">{{ track_file.file.name }}</span>
           </a>
         {% endfor %}
+        <a href="{% url 'music:index' %}#{{ track.slug }}" id="back-button" class="uk-visible@s uk-button uk-button-text">Назад</a>
       </div>
     </div>
     <div class="uk-width-2-3@l uk-width-2-3@m uk-width-3-5@s">

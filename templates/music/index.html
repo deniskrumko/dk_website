@@ -44,9 +44,9 @@
           <img src="{% static 'images/icons/fish.svg' %}" style="height: 80px;" alt="">
           <h2 class="dk-track-list">Список всех треков</h2>
           {% for track in tracks %}
-            <a>{{ track.name }}</a>
+            <a href="{% url 'music:detail' track.slug %}">{{ track.name }}</a>
           {% endfor %}
-          <button type="button" name="button" class="uk-button uk-button-default">Всплыть на верх!</button>
+          <button type="button" name="button" class="uk-button uk-button-default" uk-scroll>Всплыть на верх!</button>
       </div>
 
     </div>
