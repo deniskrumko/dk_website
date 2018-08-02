@@ -8,8 +8,8 @@ textarea {
   margin: 0px;
   -webkit-font-smoothing: antialiased;
   padding: 0px;
-  background-color: #292b36;
-  color: #8c919c;
+  background-color: #f7f7f7;
+  color: #666;
 }
 
 textarea::placeholder {
@@ -18,7 +18,7 @@ textarea::placeholder {
 
 .dk-edit-mode {
   float: right;
-  color: #292b36;
+  color: #f3f3f3;
   -webkit-font-smoothing: initial;
 
   background: #00B5AD;

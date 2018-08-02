@@ -29,28 +29,28 @@
   font-size: 15px;
   vertical-align: middle;
   text-align: center;
-  color: #6a6f79;
+  color: #bbb;
   display: inline-block;
   transition: all 0.3s ease;
 }
 .dk-week-bold span {
   font-weight: bold;
-  color: #067e79;
+  color: #00B5AD;
 }
 
 .dk-week a.active {
   background-color: #00B5AD;
   border-radius: 32px;
-  color: #1c1e25 !important;
+  color: #f7f7f7 !important;
 }
 
 .dk-week a.active:hover {
   background-color: #02a8a1;
-  color: #1c1e25 !important;
+  color: #f7f7f7 !important;
 }
 
 .dk-week a.filled {
-  color: #ABB2C0;
+  color: #666;
 }
 
 .dk-week a:hover {
@@ -70,14 +70,14 @@
 
 .dk-calendar-day {
   display: block;
-  color: #ABB2C0;
+  color: #666;
   transition: all 0.3s ease;
 }
 
 .dk-calendar-day:hover {
   text-decoration: none;
-  color: #ABB2C0;
-  background-color: #292b36;
+  color: #666;
+  background-color: #f3f3f3;
 }
 
 .dk-all-dates {

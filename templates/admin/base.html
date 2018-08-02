@@ -27,22 +27,21 @@
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
   data-admin-utc-offset="{% now "Z" %}">
 
-
     {# Desktop menu #}
     <div class="uk-container uk-container-small uk-position-top uk-visible@s">
       <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar>
           <div class="uk-navbar-left">
               <ul class="uk-navbar-nav">
                   <li class=""><a href="/">Главная</a></li>
-                  <li class=""><a href="/">Дневник</a></li>
-                  <li class=""><a href="/">Музыка</a></li>
-                  <li class="active"><a href="/">Админка</a></li>
+                  <li class=""><a href="/diary">Дневник</a></li>
+                  <li class=""><a href="/music">Музыка</a></li>
+                  <li class="active"><a href="/admin">Админка</a></li>
                   <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
               </ul>
           </div>
           <div class="uk-navbar-right">
               <ul class="uk-navbar-nav">
-                  <li><a href="#">Войти</a></li>
+                  <li><a href="/login">Войти</a></li>
               </ul>
           </div>
       </nav>

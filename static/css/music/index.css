@@ -109,14 +109,8 @@
 }
 
 .dk-play-button.active {
-  /* background-color: #f45c28; */
   border-color: #f45c28;
   color: #f45c28;
-}
-
-.dk-play-button.active:hover {
-  background-color: #1c1e25;
-  /* border-color: #ddd; */
 }
 
 .dk-player-timeline {
@@ -125,7 +119,7 @@
   height: 0px;
   bottom: 0;
   right: 0;
-  background-color: #343743;
+  background-color: #e9e9e9;
   transition: all 0.3s ease;
 }
 
@@ -135,7 +129,7 @@
 
 .dk-player-position {
   width: 0;
-  background-color: #8d391c;
+  background-color: #c19281;
   height: 7px;
   transition: all 0.3s ease;
   position: absolute;
@@ -144,7 +138,7 @@
 
 .dk-player-buffer {
   width: 0;
-  background-color: #3b3f4c;
+  background-color: #e0e0e0;
   height: 7px;
   transition: all 0.3s ease;
   position: absolute;

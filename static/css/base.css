@@ -8,36 +8,11 @@
 /* Main settings */
 body, html {
   height: 100%;
-  background: #1c1e25;
-}
-
-div, h1, h2 {
-  z-index: 1;
+  background: #fefefe;
 }
 
 h2 {
   position: relative;
-}
-
-body::before {
-  content: '';
-  height: 200px;
-  background-color: #1c1e25;
-  background-image: -webkit-linear-gradient(top, #242630, #1c1e25);
-  background-image: linear-gradient(top, #242630, #1c1e25);
-  position: absolute;
-  width: 100%;
-  z-index: 0;
-}
-
-.uk-padding {
-  box-shadow: 0px 0px 3px #15171a87;
-}
-
-.uk-navbar-container {
-  opacity: 0;
-  transition: 0.5s all ease;
-  z-index: 1 !important;
 }
 
 .dk-menu-br {

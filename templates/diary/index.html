@@ -15,7 +15,7 @@
 
 <div class="uk-container uk-container-small">
 
-  {% if not request.user.is_authenticated %}
+  {% if not request.user.is_superuser %}
     NO
   {% else %}
   <div class="uk-grid">
@@ -58,4 +58,5 @@
   </div>
   {% endif %}
 </div>
+<br>
 {% endblock %}

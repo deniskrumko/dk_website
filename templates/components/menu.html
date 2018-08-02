@@ -1,20 +1,34 @@
 
   {# Desktop menu #}
   <div class="uk-container uk-container-small uk-position-top uk-visible@s">
-    <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar uk-sticky="bottom: #offset">
+    <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
               {% for code, item in menu.items %}
+                {% if not item.auth or request.user.is_superuser %}
                 <li {% if code == active_menu %}class="active"{% endif %}>
                   <a href="{{ item.url }}">{{ item.name}}</a>
                 </li>
+                {% endif %}
               {% endfor %}
                 <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
             </ul>
         </div>
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-                <li><a href="#">Войти</a></li>
+              {% if request.user.is_authenticated %}
+              <button class="uk-button" type="button">Мой аккаунт</button>
+              <div uk-dropdown>
+                  <ul class="uk-nav uk-dropdown-nav">
+                      <li><a href="#">Настройки</a></li>
+                      <li><a href="#">Комментарии</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li><a href="/logout">Выйти</a></li>
+                  </ul>
+              </div>
+              {% else %}
+              <li><a href="/login">Войти в аккаунт</a></li>
+              {% endif %}
             </ul>
         </div>
     </nav>
@@ -22,7 +36,7 @@
 
   {# Mobile menu #}
   <div class="uk-container uk-position-top uk-hidden@s">
-    <nav class="uk-navbar-container uk-navbar-transparent" id="dk-mobile-navbar" uk-navbar uk-sticky="bottom: #offset">
+    <nav class="uk-navbar-container uk-navbar-transparent" id="dk-mobile-navbar" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
               <li><a class="dk-navbar-active" href="{{ menu|get_link:active_menu }}">{{ menu|get_name:active_menu }}</a></li>
@@ -40,16 +54,21 @@
         <div class="uk-modal-body">
           <br>
             {% for code, item in menu.items %}
+              {% if not item.auth or request.user.is_superuser %}
               <a href="{{ item.url}}" class="uk-button dk-menu-link uk-width-1-1 {% if code == active_menu %}active{% endif %}">
                 {{ item.name }}
               </a>
+              {% endif %}
             {% endfor %}
             <br><br>
+            <a href="/login" class="uk-button dk-menu-link uk-width-1-1">
+              Войти
+            </a>
         </div>
     </div>
 </div>
 
-  {# Search modal window #}
+{# Search modal window #}
 <div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
   <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
       <button class="uk-modal-close-full uk-close-large" type="button" id="dk-close" uk-close></button>

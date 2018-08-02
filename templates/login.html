@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <form class="" action="/login/?{{ request.META.QUERY_STRING }}" method="post" style="max-width: 350px; margin: auto; padding: 20px 30px; background: #282C34; border-radius: 6px; ">
+    {% csrf_token %}
+    <div class="ui form">
+      <div class="field">
+        <label>Имя пользователя</label>
+        <input type="text" name="username">
+      </div>
+      <div class="field">
+        <label>Пароль</label>
+        <input type="password" name="password">
+      </div>
+      <br>
+      <input type="submit" value="Войти" class="ui button teal fullwidth">
+    </div>
+  </form>
+{% endblock %}

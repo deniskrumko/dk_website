@@ -1,20 +1,3 @@
-.uk-navbar-nav>li.active::after {
-    background-color: #f35d28;
-}
-
-.uk-navbar-nav>li.active>a {
-    color: #f35d28;
-}
-.dk-navbar-active {
-    color: #f35d28 !important;
-}
-.uk-navbar-nav>li>a {
-  color: #ddd;
-}
-.uk-navbar-nav>li>a:hover {
-    color: #f35d28;
-}
-
 .dk-track-name {
   font-size: 60px;
   color: #ABB2C0;

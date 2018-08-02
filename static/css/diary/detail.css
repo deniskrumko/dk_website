@@ -3,7 +3,7 @@ p {
 }
 
 .dk-entry {
-  background-color: #292b36;
+  background-color: #f7f7f7;
   padding: 30px 20px;
   z-index: 1000;
   position: relative;
@@ -20,7 +20,7 @@ p {
   margin-top: 10px;
   margin-bottom: 100px !important;
   font-size: 12px;
-  color: #565a62;
+  color: #999;
 }
 
 .dk-edit-link {
@@ -38,6 +38,6 @@ p {
 }
 
 .uk-icon-button:hover {
-  background: #23252f;
-  color: #00B5AD;
+  background: #00B5AD;
+  color: #fff;
 }

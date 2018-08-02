@@ -22,7 +22,7 @@ class DiaryIndexView(BaseView):
 
         context = self.get_context_data()
 
-        if not request.user.is_authenticated:
+        if not request.user.is_superuser:
             return self.render_to_response(context)
 
         current = timezone.now()
