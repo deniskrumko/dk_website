@@ -42,7 +42,7 @@ h2 {
 .uk-navbar-nav>li.active::after {
   content: '';
   width: calc(100% - 30px);
-  height: 2px;
+  height: 4px;
   position: absolute;
   bottom: 20px;
   transition: all 0.3s ease;

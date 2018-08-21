@@ -19,16 +19,16 @@ def get_menu():
             color=MenuColor('#00B5AD', '#666'),
             auth=True,
         ),
+        'blog': MenuItem(
+            name='Блог',
+            url=reverse('blog:index'),
+            color=MenuColor('#1BAEC1', '#666'),
+            auth=False,
+        ),
         'music': MenuItem(
             name='Музыка',
             url=reverse('music:index'),
-            color=MenuColor('#f35d28', '#666'),
+            color=MenuColor('#f45c28', '#666'),
             auth=False,
-        ),
-        'admin': MenuItem(
-            name='Админка',
-            url=reverse('admin:index'),
-            color=MenuColor('#f35d28', '#666'),
-            auth=True,
         ),
     }

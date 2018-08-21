@@ -5,7 +5,7 @@
 <title>{% block title %}{% endblock %}</title>
 
 {# Google Fonts #}
-<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400|Knewave" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Ubuntu:300,400&amp;subset=cyrillic" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="{% static "uikit/css/uikit.css" %}">
 <script src="{% static 'uikit/js/uikit.min.js' %}"></script>
@@ -32,10 +32,8 @@
       <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar>
           <div class="uk-navbar-left">
               <ul class="uk-navbar-nav">
-                  <li class=""><a href="/">Главная</a></li>
-                  <li class=""><a href="/diary">Дневник</a></li>
-                  <li class=""><a href="/music">Музыка</a></li>
                   <li class="active"><a href="/admin">Админка</a></li>
+                  <li class=""><a href="/">На сайт</a></li>
                   <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
               </ul>
           </div>

@@ -18,25 +18,27 @@
 }
 
 .dk-dno-section {
-  background-image: -webkit-linear-gradient(top, #1c1e25, #000);
-  background-image: linear-gradient(top, #1c1e25, #000);
+  background-image: -webkit-linear-gradient(top, #fefefe, #777);
+  background-image: linear-gradient(top, #fefefe, #777);
 }
 
 .dk-dno h1 {
   font-weight: 600;
   font-size: 32px;
   margin-bottom: 40px;
+  color: #222 !important;
 }
 
 .dk-dno h2 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 20px;
+  color: #222 !important;
 }
 
 .dk-dno a {
   display: block;
-  color: #aaa !important;
+  color: #333 !important;
   font-size: 16px;
   margin: 5px 0px;
 }
@@ -44,15 +46,17 @@
 .dk-dno button {
   margin: 30px auto;
   font-size: 16px;
-  color: #666 !important;
-  border-color: #666 !important;
+  color: #fefefe !important;
+  background: #f45c28 !important;
+  border: none !important;
   transition: all 0.3s ease !important;
 }
 
 .dk-dno button:hover {
-  color: #999 !important;
-  border-color: #999 !important;
-  padding: 0px 60px;
+  color: #fefefe !important;
+  background: #fc6f3f !important;
+  border-color: none !important;
+  transform: translateY(-5px);
 }
 /* Track card */
 
@@ -65,7 +69,8 @@
 
 .dk-track-name {
   margin-bottom: 0px;
-  font-family: 'Knewave', Arial;
+  font-family: 'Open Sans Condensed', Arial;
+  font-weight: 700;
   font-size: 44px;
 }
 

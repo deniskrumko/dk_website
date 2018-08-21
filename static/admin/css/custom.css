@@ -94,7 +94,8 @@ table thead th .text a:focus, table thead th .text a:hover {
 }
 
 .field-name input {
-  font-family: Knewave;
+  font-family: "Open Sans Condensed";
+  font-weight: 700;
   font-size: 32px;
 }
 

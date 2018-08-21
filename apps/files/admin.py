@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import File, FileCategory
+from .models import File, FileCategory, VideoFile
 
 
 @admin.register(File)
@@ -25,5 +25,13 @@ class FileCategoryAdmin(admin.ModelAdmin):
         'name',
     )
     search_fields = (
+        'name',
+    )
+
+
+@admin.register(VideoFile)
+class VideoFileAdmin(admin.ModelAdmin):
+    """Admin class for ``VideoFile`` model."""
+    list_display = (
         'name',
     )

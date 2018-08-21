@@ -1,8 +1,7 @@
 .dk-track-name {
   font-size: 60px;
-  color: #ABB2C0;
-  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
-  font-family: 'Knewave', Arial;
+  font-family: 'Open Sans Condensed', Arial;
+  font-weight: 700;
 }
 
 .dk-track-year {

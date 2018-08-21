@@ -1,3 +1,37 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extrastyle %}
+<style media="screen">
+  .dk-blog-title {
+    font-family: 'Open Sans Condensed', Arial;
+    font-weight: 300;
+    font-size: 32px;
+    text-shadow: 0px 0px 3px #000;
+  }
+  .dk-blog-item {
+    transition: transform 0.3s ease;
+  }
+  .dk-blog-item:hover {
+    text-decoration: none !important;
+    transform: scale(1.02);
+  }
+</style>
+{% endblock %}
+
 {% block body %}
-  <a href="/blog/diary">DIARY</a>
+
+{# Menu #}
+{% include 'components/menu.html' %}
+
+<div class="uk-container uk-container-small">
+
+{% for item in items %}
+<a href="{% url 'blog:detail' item.slug %}" class="uk-height-small uk-background-cover uk-light uk-flex dk-blog-item" uk-parallax="bgy: -50" style="background-image: url('{{ item.image.url }}');">
+  <h3 class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical dk-blog-title">{{ item.title }}</h3>
+</a>
+<br>
+{% endfor %}
+</div>
+<br>
 {% endblock %}

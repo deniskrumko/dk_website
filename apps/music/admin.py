@@ -58,7 +58,7 @@ class TrackAdmin(DjangoObjectActions, SortableAdmin):
                 '_large_preview',
             )
         }),
-        (_('Created/Updated'), {
+        (_('Created/Modified'), {
             'fields': (
                 'created',
                 'modified',

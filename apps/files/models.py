@@ -76,3 +76,66 @@ class File(BaseModel):
     class Meta:
         verbose_name = _('File')
         verbose_name_plural = _('Files')
+
+
+class VideoFile(BaseModel):
+    VIDEO_FILE = 'file'
+    VIDEO_YOUTUBE = 'youtube'
+    VIDEO_GOOGLE_PHOTO = 'google_photo'
+    VIDEO_SOURCE_URL = 'source_url'
+
+    VIDEO_SOURCES = (
+        (VIDEO_FILE, _('File')),
+        (VIDEO_YOUTUBE, _('Youtube')),
+        (VIDEO_GOOGLE_PHOTO, _('Google Photo')),
+        (VIDEO_SOURCE_URL, _('Source URL')),
+    )
+
+    name = models.CharField(
+        null=True,
+        blank=False,
+        max_length=255,
+        verbose_name=_('Name')
+    )
+    data = models.FileField(
+        null=True,
+        blank=True,
+        upload_to=BaseModel.default_upload,
+        verbose_name=_('Data')
+    )
+    link_hd = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Link (HD)')
+    )
+    link = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Link')
+    )
+    youtube_link = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Youtube link')
+    )
+    source = models.CharField(
+        max_length=64,
+        choices=VIDEO_SOURCES,
+        default=VIDEO_FILE,
+        null=True,
+        blank=False,
+        verbose_name=_('Source'),
+    )
+    poster = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to=BaseModel.obfuscated_upload,
+        verbose_name=_('Poster image')
+    )
+
+    def __str__(self):
+        return f'{self.name} ({self.source})'
+
+    class Meta:
+        verbose_name = _('Video file')
+        verbose_name_plural = _('Video files')

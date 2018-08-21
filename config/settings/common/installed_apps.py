@@ -13,10 +13,11 @@ INSTALLED_APPS = [
 
 LOCAL_APPS = [
     'apps.blog',
-    'apps.main',
     'apps.diary',
     'apps.files',
+    'apps.main',
     'apps.music',
+    'apps.news',
     'apps.users',
 ]
 

@@ -11,14 +11,20 @@
                 </li>
                 {% endif %}
               {% endfor %}
+              {% comment %}
+
                 <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
+                {% endcomment %}
+                
             </ul>
         </div>
+        {% comment %}
+
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               {% if request.user.is_authenticated %}
               <button class="uk-button" type="button">Мой аккаунт</button>
-              <div uk-dropdown>
+              <div uk-dropdown="mode: click">
                   <ul class="uk-nav uk-dropdown-nav">
                       <li><a href="#">Настройки</a></li>
                       <li><a href="#">Комментарии</a></li>
@@ -31,6 +37,9 @@
               {% endif %}
             </ul>
         </div>
+
+        {% endcomment %}
+
     </nav>
   </div>
 
@@ -60,15 +69,19 @@
               </a>
               {% endif %}
             {% endfor %}
+            {% comment %}
             <br><br>
             <a href="/login" class="uk-button dk-menu-link uk-width-1-1">
               Войти
             </a>
+            {% endcomment %}
+
         </div>
     </div>
 </div>
 
 {# Search modal window #}
+
 <div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
   <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
       <button class="uk-modal-close-full uk-close-large" type="button" id="dk-close" uk-close></button>

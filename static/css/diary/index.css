@@ -74,6 +74,12 @@
   transition: all 0.3s ease;
 }
 
+.dk-calendar-day h1 {
+  font-family: 'Open Sans Condensed', Arial;
+  font-weight: 700;
+  padding-bottom: 5px;
+}
+
 .dk-calendar-day:hover {
   text-decoration: none;
   color: #666;

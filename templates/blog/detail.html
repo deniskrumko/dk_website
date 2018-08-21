@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="https://cdn.plyr.io/3.4.3/plyr.css">
+<style media="screen">
+  .dk-blog-detail-title {
+    font-family: 'Open Sans Condensed', Arial;
+    font-weight: 700;
+    font-size: 55px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+  }
+  .dk-blog-detail-subtitle {
+    margin-top: 0px;
+    color: #888;
+  }
+
+  @media screen and (max-width: 800px) {
+    .dk-blog-detail-title {
+      font-size: 35px;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static 'js/plyr.js' %}" charset="utf-8"></script>
+<script>const player = new Plyr('#player');</script>
+{% endblock %}
+
+{% block body %}
+
+{# Menu #}
+{% include 'components/menu.html' %}
+
+<div class="uk-container uk-container-small">
+
+{% if item.video %}
+<video id="player" {% if item.video.poster %}poster="{{ item.video.poster.url }}"{% endif %} controls>
+<source src="{{ item.video.link }}" type="video/mp4" size="720">
+<source src="{{ item.video.link_hd }}" type="video/mp4" size="1080">
+</video>
+{% endif %}
+<h1 class="dk-blog-detail-title">{{ item.title }}</h1>
+{% if item.subtitle %}
+<p class="dk-blog-detail-subtitle">{{ item.subtitle }}</p>
+{% endif %}
+
+</div>
+<br>
+{% endblock %}
