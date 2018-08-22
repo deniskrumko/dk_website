@@ -18,13 +18,12 @@
 }
 
 .dk-dno-section {
-  background-image: -webkit-linear-gradient(top, #fefefe, #777);
-  background-image: linear-gradient(top, #fefefe, #777);
+  background: #fefefe;
 }
 
 .dk-dno h1 {
   font-weight: 600;
-  font-size: 32px;
+  font-size: 28px;
   margin-bottom: 40px;
   color: #222 !important;
 }

@@ -34,8 +34,8 @@ h2 {
 
 .uk-card {
   z-index: 10;
-  box-shadow: 0px 0px 3px #15171a87;
 }
+
 .uk-padding {
   z-index: 10;
 }
@@ -60,7 +60,16 @@ h2 {
 }
 
 .dk-menu-link.active {
-  color: black;
+  color: #fff;
+  font-weight: bold;
+}
+.dk-menu-link, .dk-menu-link:active, .dk-menu-link:focus {
+  color: #eee;
+}
+.uk-modal-close-full {
+  color: #fff;
+  top: 10px;
+  right: 10px;
 }
 
 .noselect:focus {

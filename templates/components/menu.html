@@ -15,7 +15,7 @@
 
                 <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
                 {% endcomment %}
-                
+
             </ul>
         </div>
         {% comment %}
@@ -57,9 +57,9 @@
     </nav>
   </div>
 
-  <div id="modal-sections" class="uk-flex-top" uk-modal>
-    <div class="uk-modal-dialog uk-margin-auto-vertical">
-        <button class="uk-modal-close-default uk-close-large" type="button" uk-close></button>
+  <div id="modal-sections" class="uk-modal-full" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
         <div class="uk-modal-body">
           <br>
             {% for code, item in menu.items %}

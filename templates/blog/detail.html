@@ -47,6 +47,11 @@
 <p class="dk-blog-detail-subtitle">{{ item.subtitle }}</p>
 {% endif %}
 
+<div class="uk-hidden@s">
+  <br>
+  <a class="uk-button uk-button-default uk-width-1-1" href="{% url 'blog:index' %}">Назад</a>
+</div>
+
 </div>
 <br>
 {% endblock %}

@@ -15,8 +15,8 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = []
 
-# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Shell plus pre imports
 SHELL_PLUS_PRE_IMPORTS = [('{}.factories'.format(app), '*')

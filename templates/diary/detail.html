@@ -42,8 +42,9 @@
       {% endif %}
     </div>
   </div>
-  <div class="uk-hidden@s">
-    <a href="{% url 'diary:edit' date=date_str %}" class="uk-button uk-button-default uk-width-1-1 uk-margin-top">Редактировать</a>
+  <div class="uk-hidden@s uk-margin-top">
+    <a href="{% url 'diary:edit' date=date_str %}" class="uk-button uk-button-default dk-mobile-buttons">Изменить</a>
+    <a href="{% url 'diary:index' %}" class="uk-button uk-button-default dk-mobile-buttons">Назад</a>
   </div>
   {% if entry %}
   <div class="dk-after">

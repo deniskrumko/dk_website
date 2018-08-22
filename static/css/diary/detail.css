@@ -41,3 +41,7 @@ p {
   background: #00B5AD;
   color: #fff;
 }
+
+.dk-mobile-buttons {
+  width: calc(50% - 2px);
+}
