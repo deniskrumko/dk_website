@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
 from django.views.generic.base import RedirectView, TemplateView
+
 from core.views import BaseView
 
 

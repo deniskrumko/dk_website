@@ -13,21 +13,32 @@
   <div class="uk-container uk-container-small ">
     <h2>Новости</h2>
 
+    {% if news_items %}
+
     <div class="uk-child-width-1-2@s" uk-grid>
         {% for item in news_items %}
         <div>
             <div class="{% if forloop.counter == 1 %}uk-light uk-background-secondary{% else %}uk-dark uk-background-muted{% endif %} uk-padding">
-                <h3>{{ item.title }}</h3>
+                <h3 class="dk-card-title">{{ item.title }}</h3>
+                <p class="dk-card-date">{{ item.date }}</p>
                 {% autoescape off %}
                   {{ item.text }}
                 {% endautoescape %}
+                {% if item.link %}
                 <br>
                 <br>
                 <a class="uk-button uk-button-default" href="{{ item.link }}">Посмотреть</a>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
     </div>
+
+    {% else %}
+
+    <p>Новостей пока нет...</p>
+
+    {% endif %}
 
 
   </div>

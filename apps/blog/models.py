@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
 from libs.autoslug import AutoSlugField
+from adminsortable.models import SortableMixin
 
 from core.models import BaseModel
 
@@ -30,11 +32,12 @@ class BlogEntry(BaseModel):
         verbose_name=_('Description'),
         help_text=_('Short description of blog entry'),
     )
-    image = models.ImageField(
+    wide_image = models.ImageField(
         null=True,
-        blank=True,
+        blank=False,
         upload_to=BaseModel.obfuscated_upload,
-        verbose_name=_('Image')
+        verbose_name=_('Wide image'),
+        help_text=_('Image for index page'),
     )
     video = models.ForeignKey(
         'files.VideoFile',
@@ -50,6 +53,14 @@ class BlogEntry(BaseModel):
         verbose_name=_('Text'),
         help_text=_('Main blog text')
     )
+    date = models.DateTimeField(
+        blank=False,
+        verbose_name=_('date'),
+    )
+    show_gallery = models.BooleanField(
+        default=False,
+        verbose_name=_('show_gallery'),
+    )
 
     def __str__(self):
         return self.title or '-'
@@ -57,4 +68,42 @@ class BlogEntry(BaseModel):
     class Meta:
         verbose_name = _('Blog entry')
         verbose_name_plural = _('Blog entries')
-        ordering = ('created',)
+        ordering = ('-date',)
+
+
+class BlogImage(SortableMixin, BaseModel):
+    """Documentation"""
+    blog = models.ForeignKey(
+        'blog.BlogEntry',
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name='images',
+        verbose_name=_('blog'),
+    )
+    image = models.ImageField(
+        null=True,
+        blank=False,
+        upload_to=BaseModel.obfuscated_upload,
+        verbose_name=_('image')
+    )
+    description = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name=_('description'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True,
+        verbose_name=_('Order'),
+    )
+
+    def __str__(self):
+        return str(self.image) or '-'
+
+    class Meta:
+        verbose_name = _('BlogImage')
+        verbose_name_plural = _('BlogImages')
+        ordering = ('order',)

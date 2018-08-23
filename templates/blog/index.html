@@ -26,12 +26,16 @@
 
 <div class="uk-container uk-container-small">
 
+{% if items %}
 {% for item in items %}
-<a href="{% url 'blog:detail' item.slug %}" class="uk-height-small uk-background-cover uk-light uk-flex dk-blog-item" uk-parallax="bgy: -50" style="background-image: url('{{ item.image.url }}');">
+<a href="{% url 'blog:detail' item.slug %}" class="uk-height-small uk-background-cover uk-light uk-flex dk-blog-item" uk-parallax="bgy: -50" style="background-image: url('{{ item.wide_image.url }}');">
   <h3 class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical dk-blog-title">{{ item.title }}</h3>
 </a>
 <br>
 {% endfor %}
+{% else %}
+<p>В блоге пока пусто...</p>
+{% endif %}
 </div>
 <br>
 {% endblock %}

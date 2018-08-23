@@ -20,12 +20,6 @@ class News(BaseModel):
         blank=False,
         verbose_name=_('date'),
     )
-    image = models.ImageField(
-        null=True,
-        blank=False,
-        upload_to=BaseModel.obfuscated_upload,
-        verbose_name=_('image')
-    )
     link = models.CharField(
         max_length=255,
         null=True,

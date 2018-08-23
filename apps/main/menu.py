@@ -1,5 +1,6 @@
-from django.shortcuts import reverse
 from collections import namedtuple
+
+from django.shortcuts import reverse
 
 MenuItem = namedtuple('MenuItem', ['name', 'url', 'color', 'auth'])
 MenuColor = namedtuple('MenuColor', ['accent', 'base'])

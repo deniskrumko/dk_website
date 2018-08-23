@@ -1,10 +1,20 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from .models import BlogEntry
+
 from django_object_actions import (
     DjangoObjectActions,
     takes_instance_or_queryset,
 )
+
+from .models import BlogEntry, BlogImage
+
+
+class BlogImageInline(admin.StackedInline):
+    """Inline class for ``BlogImage`` model."""
+    fields = ('image', 'description', 'order')
+    readonly_fields = ('order',)
+    model = BlogImage
+    extra = 0
 
 
 @admin.register(BlogEntry)
@@ -17,9 +27,11 @@ class BlogEntryAdmin(DjangoObjectActions, admin.ModelAdmin):
                 'subtitle',
                 'slug',
                 'description',
-                'image',
+                'wide_image',
                 'video',
                 'text',
+                'date',
+                'show_gallery',
             )
         }),
         (_('Created/Modified'), {
@@ -48,6 +60,9 @@ class BlogEntryAdmin(DjangoObjectActions, admin.ModelAdmin):
     )
     changelist_actions = (
         'reset_slug',
+    )
+    inlines = (
+        BlogImageInline,
     )
 
     @takes_instance_or_queryset

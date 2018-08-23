@@ -1,4 +1,5 @@
 from core.views import BaseView
+
 from apps.news.models import News
 
 __all__ = ('IndexView',)

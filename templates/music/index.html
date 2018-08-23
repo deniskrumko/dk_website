@@ -27,6 +27,8 @@
 
 {% include 'components/menu.html' %}
 
+{% if tracks %}
+
   {% for track in tracks %}
     {% include 'components/track.html' with track=track %}
     {% if forloop.counter == 3 %}
@@ -51,5 +53,11 @@
 
     </div>
   </div>
+
+{% else %}
+<div class="uk-container uk-container-small">
+  <p>Музыки пока нет...</p>
+</div>
+{% endif %}
 
 {% endblock %}

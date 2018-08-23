@@ -1,11 +1,14 @@
+import calendar
 from datetime import date
 
 from django.http.response import HttpResponseRedirect
-from django.utils import timezone
-import calendar
-from dateutil.rrule import DAILY, rrule
-from core.views import BaseView
 from django.shortcuts import reverse
+from django.utils import timezone
+
+from dateutil.rrule import DAILY, rrule
+
+from core.views import BaseView
+
 from .models import DiaryEntry
 
 __all__ = ('DiaryIndexView', 'DiaryDetailView', 'DiaryEditView')

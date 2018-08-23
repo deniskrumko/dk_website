@@ -10,7 +10,15 @@ from django_object_actions import (
 
 from core.admin import image_preview
 
-from .models import Track, TrackFile
+from .models import Track, TrackFile, Artist
+
+
+@admin.register(Artist)
+class ArtistAdmin(admin.ModelAdmin):
+    """Admin class for ``Artist`` model."""
+    list_display = (
+        'name',
+    )
 
 
 class TrackFileInline(SortableTabularInline):

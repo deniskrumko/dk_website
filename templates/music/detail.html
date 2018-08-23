@@ -64,7 +64,9 @@
         <h1 class="dk-track-name">{{ track.name }}</h1>
       </div>
       <div class="dk-description">
-        {% lorem 5 p %}
+        {% autoescape off %}
+          {{ track.full_description }}
+        {% endautoescape %}
       </div>
     </div>
   </div>
