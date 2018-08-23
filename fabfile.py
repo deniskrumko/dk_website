@@ -71,7 +71,7 @@ def startapp(app_name):
 def push():
     """Push changes to all servers."""
     print_msg('1. Pushing to origin')
-    local('git push origin master')
+    local('git push origin master --tags')
 
     print_msg('2. Pushing to Heroku')
     local('git push heroku master')
