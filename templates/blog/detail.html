@@ -38,7 +38,14 @@
 
 {% block extrajs %}
 <script src="{% static 'js/plyr.js' %}" charset="utf-8"></script>
-<script>const player = new Plyr('#player');</script>
+<script>
+{% if item.video.source == 'youtube' %}
+const player = new Plyr('#player', {});
+window.player = player;
+{% else %}
+const player = new Plyr('#player');
+{% endif %}
+</script>
 {% endblock %}
 
 {% block body %}
@@ -49,20 +56,26 @@
 <div class="uk-container uk-container-small">
 
 {% if item.video %}
-<video id="player" {% if item.video.poster %}poster="{{ item.video.poster.url }}"{% endif %} controls>
-<source src="{{ item.video.link }}" type="video/mp4" size="720">
-<source src="{{ item.video.link_hd }}" type="video/mp4" size="1080">
-</video>
+  {% if item.video.source == 'youtube' %}
+    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="{{ item.video.youtube_link }}"></div>
+  {% else %}
+    <video id="player" {% if item.video.poster %}poster="{{ item.video.poster.url }}"{% endif %} controls>
+      <source src="{{ item.video.link }}" type="video/mp4" size="720">
+      <source src="{{ item.video.link_hd }}" type="video/mp4" size="1080">
+    </video>
+  {% endif %}
 {% endif %}
+
 <h1 class="dk-blog-detail-title">{{ item.title }}</h1>
+
 {% if item.subtitle %}
 <p class="dk-blog-detail-subtitle">{{ item.subtitle }}</p>
 {% endif %}
 
 {% if item.text %}
-{% autoescape off %}
-  {{ item.text }}
-{% endautoescape %}
+  {% autoescape off %}
+    {{ item.text }}
+  {% endautoescape %}
 {% endif %}
 
 {% if item.show_gallery %}
