@@ -7,6 +7,10 @@ class BlogIndexView(BaseView):
     template_name = 'blog/index.html'
     menu = 'blog'
     title = 'DK - Блог'
+    description = (
+        'Блог Дениса Крумко: видео о путешествиях за границу и '
+        'на различные музыкальные концерты. Много музыки и много видео :)'
+    )
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -24,12 +28,11 @@ class BlogDetailView(BaseView):
         title = kwargs.get('title')
         return f'DK - {title}'
 
-    def get(self, request, slug):
+    def get_description(self, **kwargs):
+        return kwargs.get('title')
 
+    def get(self, request, slug):
         item = BlogEntry.objects.filter(slug=slug).first()
         context = super().get_context_data(title=item.title)
-        context.update({
-            'item': item,
-        })
-
+        context.update({'item': item})
         return self.render_to_response(context)

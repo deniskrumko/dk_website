@@ -10,6 +10,7 @@ class IndexView(BaseView):
     template_name = 'index.html'
     menu = 'index'
     title = 'DK - Главная'
+    description = 'Сайт Дениса Крумко: видео, музыка и все такое'
 
     def get_context_data(self):
         context = super().get_context_data()

@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from libs.autoslug import AutoSlugField
 from adminsortable.models import SortableMixin
+
+from libs.autoslug import AutoSlugField
 
 from core.models import BaseModel
 

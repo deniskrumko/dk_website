@@ -7,6 +7,13 @@ class TrackIndexView(BaseView):
     template_name = 'music/index.html'
     menu = 'music'
     title = 'DK - Музыка'
+    description = (
+        'Dendy Not Dead — это музыкальный проект Дениса Крумко. Сам проект '
+        'является собранием инструментальной рок музыки, составленной '
+        'полностью в программе Guitar Pro, без записи живых инструментов. '
+        'Проект создан для удобного хранения собственных музыкальных идей и '
+        'не представляет из себя настоящую музыку.'
+    )
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -37,10 +44,16 @@ class TrackDetailView(BaseView):
         name = kwargs.get('track_name')
         return f'DK - {name}'
 
+    def get_description(self, **kwargs):
+        return kwargs.get('track_description')
+
     def get(self, request, slug):
 
         track = Track.objects.filter(slug=slug).first()
-        context = super().get_context_data(track_name=track.name)
+        context = super().get_context_data(
+            track_name=track.name,
+            track_description=track.short_description
+        )
         context.update({
             'track': track,
             'music_files': track.related_files.filter(

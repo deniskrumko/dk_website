@@ -10,7 +10,7 @@ from django_object_actions import (
 
 from core.admin import image_preview
 
-from .models import Track, TrackFile, Artist
+from .models import Artist, Track, TrackFile
 
 
 @admin.register(Artist)
