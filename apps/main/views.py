@@ -1,8 +1,11 @@
 from core.views import BaseView
 
 from apps.news.models import News
+from django.views import View
+from django.http.response import HttpResponseRedirect, Http404
+from .models import RedirectPage
 
-__all__ = ('IndexView',)
+__all__ = ('IndexView', 'RedirectView')
 
 
 class IndexView(BaseView):
@@ -18,3 +21,14 @@ class IndexView(BaseView):
             'news_items': News.objects.all(),
         })
         return context
+
+
+class RedirectView(View):
+
+    def get(self, request, page=None):
+        page = RedirectPage.objects.filter(source=page).first()
+
+        if not page:
+            raise Http404
+
+        return HttpResponseRedirect(page.destination)
