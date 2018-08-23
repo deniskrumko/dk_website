@@ -20,6 +20,7 @@ class DiaryIndexView(BaseView):
     template_name = 'diary/index.html'
     title = 'DK - Дневник'
     menu = 'diary'
+    description = 'Дневник'
 
     def get(self, request):
 
@@ -82,6 +83,7 @@ class DiaryCalendarView(BaseView):
     template_name = 'diary/calendar.html'
     menu = 'diary'
     title = 'DK - Календарь'
+    description = 'Дневник'
 
     def get(self, request):
         context = self.get_context_data()
@@ -99,6 +101,7 @@ class DiaryCalendarView(BaseView):
 class DiaryDetailView(BaseView):
     template_name = 'diary/detail.html'
     menu = 'diary'
+    description = 'Дневник'
 
     def get_title(self):
         return f'DK - {self.date_obj.strftime("%d.%m.%Y")}'
@@ -120,6 +123,7 @@ class DiaryDetailView(BaseView):
 class DiaryEditView(DiaryDetailView):
     template_name = 'diary/edit.html'
     menu = 'diary'
+    description = 'Дневник'
 
     def post(self, request, date):
         text = request.POST.get('text')
