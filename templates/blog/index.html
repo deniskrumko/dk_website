@@ -25,7 +25,6 @@
 {% include 'components/menu.html' %}
 
 <div class="uk-container uk-container-small">
-
 {% if items %}
 {% for item in items %}
 <a href="{% url 'blog:detail' item.slug %}" class="uk-height-small uk-background-cover uk-light uk-flex dk-blog-item" uk-parallax="bgy: -50" {% if item.wide_image %}style="background-image: url('{{ item.wide_image.url }}');"{% endif %}>
@@ -37,5 +36,11 @@
 <p>В блоге пока пусто...</p>
 {% endif %}
 </div>
+<br>
+<br>
+<div style="text-align: center;" >
+  <img src="{% static 'images/dk.jpg' %}" width="64" height="64" alt="" uk-img>
+</div>
+<br>
 <br>
 {% endblock %}
