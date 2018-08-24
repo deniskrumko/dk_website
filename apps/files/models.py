@@ -106,17 +106,22 @@ class VideoFile(BaseModel):
     link_hd = models.TextField(
         null=True,
         blank=True,
-        verbose_name=_('Link (HD)')
+        verbose_name=_('Link (1080p)')
     )
     link = models.TextField(
         null=True,
         blank=True,
-        verbose_name=_('Link')
+        verbose_name=_('Link (720p)')
+    )
+    link_low = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Link (360p)')
     )
     youtube_link = models.TextField(
         null=True,
         blank=True,
-        verbose_name=_('Youtube link')
+        verbose_name=_('Youtube code')
     )
     source = models.CharField(
         max_length=64,
