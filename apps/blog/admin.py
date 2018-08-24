@@ -6,7 +6,7 @@ from django_object_actions import (
     takes_instance_or_queryset,
 )
 
-from .models import BlogEntry, BlogImage
+from .models import BlogEntry, BlogImage, BlogRelation
 
 
 class BlogImageInline(admin.StackedInline):
@@ -14,6 +14,15 @@ class BlogImageInline(admin.StackedInline):
     fields = ('image', 'description', 'order')
     readonly_fields = ('order',)
     model = BlogImage
+    extra = 0
+
+
+class BlogRelationInline(admin.TabularInline):
+    """Inline class for ``BlogRelation`` model."""
+    model = BlogRelation
+    fields = ('related_blog', 'order')
+    fk_name = 'blog'
+    readonly_fields = ('order',)
     extra = 0
 
 
@@ -63,6 +72,7 @@ class BlogEntryAdmin(DjangoObjectActions, admin.ModelAdmin):
     )
     inlines = (
         BlogImageInline,
+        BlogRelationInline,
     )
 
     @takes_instance_or_queryset

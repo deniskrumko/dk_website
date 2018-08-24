@@ -28,7 +28,7 @@
 
 {% if items %}
 {% for item in items %}
-<a href="{% url 'blog:detail' item.slug %}" class="uk-height-small uk-background-cover uk-light uk-flex dk-blog-item" uk-parallax="bgy: -50" style="background-image: url('{{ item.wide_image.url }}');">
+<a href="{% url 'blog:detail' item.slug %}" class="uk-height-small uk-background-cover uk-light uk-flex dk-blog-item" uk-parallax="bgy: -50" {% if item.wide_image %}style="background-image: url('{{ item.wide_image.url }}');"{% endif %}>
   <h3 class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical dk-blog-title">{{ item.title }}</h3>
 </a>
 <br>

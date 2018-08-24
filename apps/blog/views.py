@@ -34,5 +34,8 @@ class BlogDetailView(BaseView):
     def get(self, request, slug):
         item = BlogEntry.objects.filter(slug=slug).first()
         context = super().get_context_data(title=item.title)
-        context.update({'item': item})
+        context.update({
+            'item': item,
+            'degrees': list(range(-15, 15)),
+        })
         return self.render_to_response(context)

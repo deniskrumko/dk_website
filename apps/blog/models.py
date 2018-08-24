@@ -35,7 +35,7 @@ class BlogEntry(BaseModel):
     )
     wide_image = models.ImageField(
         null=True,
-        blank=False,
+        blank=True,
         upload_to=BaseModel.obfuscated_upload,
         verbose_name=_('Wide image'),
         help_text=_('Image for index page'),
@@ -70,6 +70,36 @@ class BlogEntry(BaseModel):
         verbose_name = _('Blog entry')
         verbose_name_plural = _('Blog entries')
         ordering = ('-date',)
+
+
+class BlogRelation(SortableMixin, BaseModel):
+    blog = models.ForeignKey(
+        'blog.BlogEntry',
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name='relations',
+        verbose_name=_('Blog'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True,
+        verbose_name=_('Order'),
+    )
+    related_blog = models.ForeignKey(
+        'blog.BlogEntry',
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name='relations_2',
+        verbose_name=_('Related blog'),
+    )
+
+    class Meta:
+        verbose_name = _('Blog relation')
+        verbose_name_plural = _('Blog relations')
+        ordering = ('order',)
 
 
 class BlogImage(SortableMixin, BaseModel):
