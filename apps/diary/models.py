@@ -32,9 +32,10 @@ class DiaryEntry(BaseModel):
     @property
     def html(self):
         """Property to represent entry text as HTML."""
+        text = self.text.replace('\r\n', '\n')
         return ''.join([
             f'<p>{line}</p>' if line else '<p>&nbsp;<p>'
-            for line in self.text.split('\r\n')
+            for line in text.split('\n')
         ])
 
     @property
