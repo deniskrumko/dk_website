@@ -8,7 +8,7 @@ from imagekit.processors import ResizeToFill, ResizeToFit
 
 from libs.autoslug import AutoSlugField
 
-from core.models import BaseModel
+from core.models import BaseModel, LikedModel, register_liked_model
 
 
 class Artist(SortableMixin, BaseModel):
@@ -35,7 +35,8 @@ class Artist(SortableMixin, BaseModel):
         ordering = ('order',)
 
 
-class Track(SortableMixin, BaseModel):
+@register_liked_model(name='music_track')
+class Track(LikedModel, SortableMixin, BaseModel):
     """Model for storing track's information.
 
     Attributes:

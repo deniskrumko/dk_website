@@ -75,3 +75,27 @@ h2 {
 .noselect:focus {
    outline: none;
 }
+
+.dk-like {
+  font-size: 18px !important;
+  font-weight: 100;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding-right: 18px;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
+}
+.dk-like svg{
+  padding-left: 0px;
+  width: 17px;
+  padding-bottom: 3px;
+}
+.dk-like:hover {
+  color: #EE5270;
+  transform: scale(1.3);
+}

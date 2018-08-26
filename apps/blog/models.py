@@ -5,10 +5,11 @@ from adminsortable.models import SortableMixin
 
 from libs.autoslug import AutoSlugField
 
-from core.models import BaseModel
+from core.models import BaseModel, LikedModel, register_liked_model
 
 
-class BlogEntry(BaseModel):
+@register_liked_model(name='blog')
+class BlogEntry(LikedModel, BaseModel):
     """Documentation"""
     title = models.CharField(
         max_length=255,

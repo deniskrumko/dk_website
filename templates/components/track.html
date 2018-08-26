@@ -22,7 +22,8 @@
 
           {# Track year #}
           <p class="uk-card-title dk-track-year">
-            {{ track.year }}
+            <span class="dk-track-someinfo">{{ track.year }}  • </span>
+            {% include "components/like.html" with item=track %}
           </p>
 
           {# Track description #}

@@ -1,10 +1,11 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from core.models import BaseModel
+from core.models import BaseModel, LikedModel, register_liked_model
 
 
-class News(BaseModel):
+@register_liked_model(name='news')
+class News(LikedModel, BaseModel):
     title = models.CharField(
         max_length=255,
         null=True,

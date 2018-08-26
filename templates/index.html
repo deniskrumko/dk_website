@@ -5,6 +5,11 @@
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 
+{% block extrajs %}
+<script src="{% static 'js/likes.js' %}" charset="utf-8"></script>
+
+{% endblock %}
+
 {% block body %}
 
 {# Menu #}
@@ -27,7 +32,12 @@
                 {% if item.link %}
                 <br>
                 <br>
-                <a class="uk-button uk-button-default" href="{{ item.link }}">Посмотреть</a>
+                <a class="uk-button uk-button-default uk-margin-right" href="{{ item.link }}">Посмотреть</a>
+                {% include "components/like.html" with item=item %}
+                {% else %}
+                <div class="uk-margin-top">
+                  {% include "components/like.html" with item=item %}
+                </div>
                 {% endif %}
             </div>
         </div>

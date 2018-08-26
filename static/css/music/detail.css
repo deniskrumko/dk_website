@@ -137,3 +137,8 @@
   float: right;
   margin-right: 3px;
 }
+
+.dk-track-someinfo {
+  font-size: 18px !important;
+  font-weight: 100;
+}

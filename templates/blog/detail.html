@@ -17,6 +17,7 @@
   }
   .dk-blog-detail-subtitle {
     margin-top: 0px;
+    margin-bottom: 0px;
     color: #888;
   }
 
@@ -46,18 +47,22 @@
   .dk-gallery-image:hover{
     transform: scale(1.3) translateY(-15px);
   }
+  .dk-like {
+    float: right;
+  }
 </style>
 {% endblock %}
 
 {% block extrajs %}
+<script src="{% static 'js/likes.js' %}" charset="utf-8"></script>
 <script src="{% static 'js/plyr.js' %}" charset="utf-8"></script>
 <script>
-{% if item.video.source == 'youtube' %}
-const player = new Plyr('#player', {});
-window.player = player;
-{% else %}
-const player = new Plyr('#player');
-{% endif %}
+  {% if item.video.source == 'youtube' %}
+  const player = new Plyr('#player', {});
+  window.player = player;
+  {% else %}
+  const player = new Plyr('#player');
+  {% endif %}
 </script>
 {% endblock %}
 
@@ -88,18 +93,29 @@ const player = new Plyr('#player');
   {% endif %}
 {% endif %}
 
+{# Title #}
 <h1 class="dk-blog-detail-title">{{ item.title }}</h1>
 
+{# Subtitle #}
 {% if item.subtitle %}
 <p class="dk-blog-detail-subtitle">{{ item.subtitle }}</p>
 {% endif %}
 
+{# Like button #}
+{% include "components/like.html" with item=item %}
+
+{# Description #}
 {% if item.text %}
+<br>
+<hr>
+<h2 class="dk-blog-h2">Описание</h2>
   {% autoescape off %}
     {{ item.text }}
   {% endautoescape %}
+<br>
 {% endif %}
 
+{# Gallery #}
 {% if item.show_gallery %}
 <br>
 <hr>
@@ -115,9 +131,9 @@ const player = new Plyr('#player');
   {% endfor %}
 </div>
 <br>
-
 {% endif %}
 
+{# Blog relations #}
 {% if item.relations.exists %}
 <br>
 <hr>
