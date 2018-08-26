@@ -16,7 +16,10 @@
 <div class="uk-container uk-container-small">
 
   {% if not request.user.is_superuser %}
-    NO
+    <div style="text-align: center;">
+      <h2>И что вы здесь забыли? Вам сюда нельзя.</h2>
+      <a href="/" class="uk-button uk-button-default">Уже ухожу...</a>
+    </div>
   {% else %}
   <div class="uk-grid">
     <div class="uk-width-2-3@m dk-calendar-info">

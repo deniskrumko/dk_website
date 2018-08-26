@@ -1,8 +1,10 @@
+from django.http.response import Http404, HttpResponseRedirect
+from django.views import View
+
 from core.views import BaseView
 
 from apps.news.models import News
-from django.views import View
-from django.http.response import HttpResponseRedirect, Http404
+
 from .models import RedirectPage
 
 __all__ = ('IndexView', 'RedirectView')

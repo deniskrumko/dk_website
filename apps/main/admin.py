@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import RedirectPage
 from django.utils.translation import ugettext_lazy as _
+
+from .models import RedirectPage
 
 
 @admin.register(RedirectPage)

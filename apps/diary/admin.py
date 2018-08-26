@@ -1,7 +1,9 @@
 from django.contrib import admin
+
 from import_export.admin import ImportExportMixin
-from .models import DiaryEntry
+
 from .import_export.resources import DiaryEntryResource
+from .models import DiaryEntry
 
 
 @admin.register(DiaryEntry)

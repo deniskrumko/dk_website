@@ -1,6 +1,7 @@
 import calendar
 from datetime import date
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
 from django.utils import timezone
@@ -79,7 +80,7 @@ class DiaryIndexView(BaseView):
         return self.render_to_response(context)
 
 
-class DiaryCalendarView(BaseView):
+class DiaryCalendarView(LoginRequiredMixin, BaseView):
     template_name = 'diary/calendar.html'
     menu = 'diary'
     title = 'DK - Календарь'
@@ -98,7 +99,7 @@ class DiaryCalendarView(BaseView):
         return self.render_to_response(context)
 
 
-class DiaryDetailView(BaseView):
+class DiaryDetailView(LoginRequiredMixin, BaseView):
     template_name = 'diary/detail.html'
     menu = 'diary'
     description = 'Дневник'

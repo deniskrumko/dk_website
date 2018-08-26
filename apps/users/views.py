@@ -11,6 +11,7 @@ class LoginView(BaseView):
     template_name = 'login.html'
     menu = 'index'
     title = 'DK - Главная'
+    description = 'DK - Войти'
 
     def post(self, request):
         username = request.POST.get('username')
@@ -25,11 +26,12 @@ class LoginView(BaseView):
                 next_redirect if next_redirect else reverse('main:index')
             )
 
-        return HttpResponseRedirect(reverse('main:login'))
+        return HttpResponseRedirect(reverse('users:login'))
 
 
 class SignUpView(TemplateView):
     template_name = 'signup.html'
+    description = 'DK - Зарегистрироваться'
 
     def get_context_data(self, **kwargs):
         return {

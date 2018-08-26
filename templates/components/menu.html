@@ -18,27 +18,25 @@
 
             </ul>
         </div>
-        {% comment %}
 
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-              {% if request.user.is_authenticated %}
-              <button class="uk-button" type="button">Мой аккаунт</button>
+              <button class="uk-button" type="button"><span uk-icon="user"></span></button>
               <div uk-dropdown="mode: click">
+                  {% if request.user.is_authenticated %}
                   <ul class="uk-nav uk-dropdown-nav">
-                      <li><a href="#">Настройки</a></li>
-                      <li><a href="#">Комментарии</a></li>
+                      <li><a href="{% url 'admin:index' %}">Admin UI</a></li>
                       <li class="uk-nav-divider"></li>
-                      <li><a href="/logout">Выйти</a></li>
+                      <li><a href="{% url 'users:logout' %}">Выйти</a></li>
                   </ul>
+                  {% else %}
+                  <ul class="uk-nav uk-dropdown-nav">
+                      <li><a href="{% url 'users:login' %}">Войти</a></li>
+                  </ul>
+                  {% endif %}
               </div>
-              {% else %}
-              <li><a href="/login">Войти в аккаунт</a></li>
-              {% endif %}
             </ul>
         </div>
-
-        {% endcomment %}
 
     </nav>
   </div>
