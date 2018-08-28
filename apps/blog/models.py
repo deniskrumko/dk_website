@@ -6,6 +6,9 @@ from adminsortable.models import SortableMixin
 from libs.autoslug import AutoSlugField
 
 from core.models import BaseModel, LikedModel, register_liked_model
+from imagekit.models import ProcessedImageField
+
+from imagekit.processors import ResizeToFit
 
 
 @register_liked_model(name='blog')
@@ -118,6 +121,15 @@ class BlogImage(SortableMixin, BaseModel):
         blank=False,
         upload_to=BaseModel.obfuscated_upload,
         verbose_name=_('image')
+    )
+    image = ProcessedImageField(
+        null=True,
+        blank=False,
+        processors=[ResizeToFit(1500, 1500)],
+        format='JPEG',
+        options={'quality': 80},
+        upload_to=BaseModel.obfuscated_upload,
+        verbose_name=_('Image'),
     )
     description = models.CharField(
         max_length=255,
