@@ -1,10 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from django_object_actions import (
-    DjangoObjectActions,
-    takes_instance_or_queryset,
-)
+from core.admin import BaseModelAdmin
 
 from .models import BlogEntry, BlogImage, BlogRelation
 
@@ -27,8 +24,11 @@ class BlogRelationInline(admin.TabularInline):
 
 
 @admin.register(BlogEntry)
-class BlogEntryAdmin(DjangoObjectActions, admin.ModelAdmin):
+class BlogEntryAdmin(BaseModelAdmin):
     """Admin class for ``BlogEntry`` model."""
+    url_index = 'blog:index'
+    url_detail = 'blog:detail'
+
     fieldsets = (
         (_('Main'), {
             'fields': (
@@ -69,17 +69,13 @@ class BlogEntryAdmin(DjangoObjectActions, admin.ModelAdmin):
     )
     changelist_actions = (
         'reset_slug',
+        'on_site',
+    )
+    change_actions = (
+        'reset_slug',
+        'on_site',
     )
     inlines = (
         BlogImageInline,
         BlogRelationInline,
     )
-
-    @takes_instance_or_queryset
-    def reset_slug(self, request, qs):
-        """Action to reset `slug` field for ``Track`` objects."""
-        for obj in qs:
-            obj.slug = None
-            obj.save()
-
-    reset_slug.label = _('Reset slug')

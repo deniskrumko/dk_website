@@ -1,5 +1,6 @@
 from django.core.management import BaseCommand
 
+from apps.blog.factories import BlogEntryFactory
 from apps.files.factories import FileCategoryFactory, FileFactory
 from apps.music.factories import ArtistFactory, TrackFactory, TrackFileFactory
 
@@ -31,3 +32,8 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(
             '\nDatabase successfully populated!'
         ))
+
+        # Blog
+        # ====================================================================
+
+        BlogEntryFactory.create_batch(15)
