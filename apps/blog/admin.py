@@ -54,10 +54,12 @@ class BlogEntryAdmin(BaseModelAdmin):
     list_display = (
         'title',
         'slug',
-        'created',
-        'modified',
+        'video',
+        'date',
+        'is_active',
     )
-    list_filter = (
+    list_editable = (
+        'is_active',
     )
     search_fields = (
         'title',
