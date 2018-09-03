@@ -78,22 +78,36 @@
   <p>На данный момент этот блог недоступен.</p>
   <p>Скоро все починим!</p>
 {% else %}
+
   {% if item.video %}
     {% if item.video.source == 'youtube' %}
       <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="{{ item.video.youtube_link }}"></div>
-    {% elif item.video.source == 'file' %}
+    {% endif %}
+
+    {% if item.video.source == 'src' %}
       <video id="player" {% if item.video.poster %}poster="{{ item.video.poster.url }}"{% endif %} controls>
         {# HD - 720p #}
-        {% if item.video.data_720 %}
-          <source src="{{ item.video.data_720.url }}" type="video/mp4" size="720">
+        {% if item.video.source_720 %}
+          <source src="{{ item.video.source_720 }}" type="video/mp4" size="720">
         {% endif %}
 
         {# Full HD - 1080p #}
-        {% if item.video.data_1080 %}
-          <source src="{{ item.video.data_1080.url }}" type="video/mp4" size="1080">
+        {% if item.video.source_1080 %}
+          <source src="{{ item.video.source_1080 }}" type="video/mp4" size="1080">
+        {% endif %}
+
+        {# Low - 480p #}
+        {% if item.video.source_480 %}
+          <source src="{{ item.video.source_480 }}" type="video/mp4" size="480">
+        {% endif %}
+
+        {# Very low - 360p #}
+        {% if item.video.source_360 %}
+          <source src="{{ item.video.source_360 }}" type="video/mp4" size="360">
         {% endif %}
       </video>
     {% endif %}
+
   {% endif %}
 
   {# Title #}
