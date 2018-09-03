@@ -32,6 +32,7 @@ class BlogEntryAdmin(BaseModelAdmin):
     fieldsets = (
         (_('Main'), {
             'fields': (
+                'is_active',
                 'title',
                 'subtitle',
                 'slug',

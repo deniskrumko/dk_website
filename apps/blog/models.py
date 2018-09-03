@@ -14,6 +14,10 @@ from imagekit.processors import ResizeToFit
 @register_liked_model(name='blog')
 class BlogEntry(LikedModel, BaseModel):
     """Documentation"""
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=_('Is active'),
+    )
     title = models.CharField(
         max_length=255,
         null=True,

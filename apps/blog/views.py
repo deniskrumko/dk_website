@@ -15,7 +15,7 @@ class BlogIndexView(BaseView):
     def get_context_data(self):
         context = super().get_context_data()
         context.update({
-            'items': BlogEntry.objects.all(),
+            'items': BlogEntry.objects.filter(is_active=True),
         })
         return context
 
