@@ -33,11 +33,6 @@
                 <br>
                 <br>
                 <a class="uk-button uk-button-default uk-margin-right" href="{{ item.link }}">Посмотреть</a>
-                {% include "components/like.html" with item=item %}
-                {% else %}
-                <div class="uk-margin-top">
-                  {% include "components/like.html" with item=item %}
-                </div>
                 {% endif %}
             </div>
         </div>
