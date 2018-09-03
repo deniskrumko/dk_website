@@ -81,14 +81,10 @@ class File(BaseModel):
 class VideoFile(BaseModel):
     VIDEO_FILE = 'file'
     VIDEO_YOUTUBE = 'youtube'
-    VIDEO_GOOGLE_PHOTO = 'google_photo'
-    VIDEO_SOURCE_URL = 'source_url'
 
     VIDEO_SOURCES = (
         (VIDEO_FILE, _('File')),
         (VIDEO_YOUTUBE, _('Youtube')),
-        (VIDEO_GOOGLE_PHOTO, _('Google Photo')),
-        (VIDEO_SOURCE_URL, _('Source URL')),
     )
 
     name = models.CharField(
@@ -97,26 +93,17 @@ class VideoFile(BaseModel):
         max_length=255,
         verbose_name=_('Name')
     )
-    data = models.FileField(
+    data_1080 = models.FileField(
         null=True,
         blank=True,
         upload_to=BaseModel.default_upload,
-        verbose_name=_('Data')
+        verbose_name=_('File (1080p)')
     )
-    link_hd = models.TextField(
+    data_720 = models.FileField(
         null=True,
         blank=True,
-        verbose_name=_('Link (1080p)')
-    )
-    link = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name=_('Link (720p)')
-    )
-    link_low = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name=_('Link (360p)')
+        upload_to=BaseModel.default_upload,
+        verbose_name=_('File (720p)')
     )
     youtube_link = models.TextField(
         null=True,

@@ -81,18 +81,16 @@
   {% if item.video %}
     {% if item.video.source == 'youtube' %}
       <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="{{ item.video.youtube_link }}"></div>
-    {% else %}
+    {% elif item.video.source == 'file' %}
       <video id="player" {% if item.video.poster %}poster="{{ item.video.poster.url }}"{% endif %} controls>
-        {% if item.video.link %}
-          <source src="{{ item.video.link }}" type="video/mp4" size="720">
+        {# HD - 720p #}
+        {% if item.video.data_720 %}
+          <source src="{{ item.video.data_720.url }}" type="video/mp4" size="720">
         {% endif %}
 
-        {% if item.video.link_hd %}
-          <source src="{{ item.video.link_hd }}" type="video/mp4" size="1080">
-        {% endif %}
-
-        {% if item.video.link_low %}
-          <source src="{{ item.video.link_low }}" type="video/mp4" size="360">
+        {# Full HD - 1080p #}
+        {% if item.video.data_1080 %}
+          <source src="{{ item.video.data_1080.url }}" type="video/mp4" size="1080">
         {% endif %}
       </video>
     {% endif %}
