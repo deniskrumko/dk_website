@@ -34,4 +34,9 @@ class VideoFileAdmin(admin.ModelAdmin):
     """Admin class for ``VideoFile`` model."""
     list_display = (
         'name',
+        'source',
+        'source_1080',
+    )
+    search_fields = (
+        'name',
     )

@@ -18,6 +18,9 @@ class BlogRelationInline(admin.TabularInline):
     """Inline class for ``BlogRelation`` model."""
     model = BlogRelation
     fields = ('related_blog', 'order')
+    autocomplete_fields = (
+        'related_blog',
+    )
     fk_name = 'blog'
     readonly_fields = ('order',)
     extra = 0
@@ -35,13 +38,31 @@ class BlogEntryAdmin(BaseModelAdmin):
                 'is_active',
                 'title',
                 'subtitle',
+                'date',
                 'slug',
-                'description',
+            )
+        }),
+        (_('On list page'), {
+            'fields': (
                 'wide_image',
+            )
+        }),
+        (_('On details page'), {
+            'fields': (
                 'video',
                 'text',
-                'date',
                 'show_gallery',
+            )
+        }),
+        (_('Next/previous'), {
+            'fields': (
+                'next_part',
+                'prev_part',
+            )
+        }),
+        (_('SEO'), {
+            'fields': (
+                'description',
             )
         }),
         (_('Created/Modified'), {
@@ -50,6 +71,11 @@ class BlogEntryAdmin(BaseModelAdmin):
                 'modified',
             )
         }),
+    )
+    autocomplete_fields = (
+        'video',
+        'next_part',
+        'prev_part',
     )
     list_display = (
         'title',

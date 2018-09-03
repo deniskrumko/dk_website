@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="https://cdn.plyr.io/3.4.3/plyr.css">
+<style media="screen">
+  .dk-blog-detail-title {
+    font-family: 'Open Sans Condensed', Arial;
+    font-weight: 700;
+    font-size: 50px;
+    margin-bottom: 0px;
+  }
+  .dk-blog-h2 {
+    font-family: 'Open Sans Condensed', Arial;
+    text-align: center;
+  }
+  .dk-blog-detail-subtitle {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #888;
+  }
+
+  @media screen and (max-width: 800px) {
+    .dk-blog-detail-title {
+      font-size: 35px;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    .dk-slideshow {
+      transform: scale(0.7);
+      top: -100px;
+    }
+  }
+  .dk-date {
+    font-size: 12px;
+    font-weight: 100;
+    color: #aaa;
+  }
+  .dk-gallery-image {
+    box-shadow: 2px 2px 10px #acacac;
+    outline: 3px solid white;
+    transition: all 0.3s ease;
+    transform: scale(1.1);
+  }
+  .dk-gallery-image:hover{
+    transform: scale(1.3) translateY(-15px);
+  }
+  .dk-like {
+    float: right;
+  }
+  .uk-button-primary {
+    background-color: #1BAEC1;
+  }
+  .uk-button-primary:hover {
+    background-color: #149bac;
+  }
+</style>
+{% endblock %}
+
+{% block extrajs %}
+{% endblock %}
+
+{% block body %}
+
+{# Menu #}
+{% include 'components/menu.html' %}
+
+<div class="uk-container uk-container-small">
+
+{% if not item.is_active %}
+  <h1 class="dk-blog-detail-title">{{ item.title }}</h1>
+  <p>На данный момент этот блог нельзя скачать...</p>
+{% else %}
+
+<div class="uk-padding uk-background-muted" style="text-align: center;">
+
+
+  {# Title #}
+  <h1 class="dk-blog-detail-title">Скачать «{{ item.title }}»</h1>
+  <p>
+    Чтобы скачать видео, перейдите по одной из ссылок ниже и нажмите на видео <b>правой кнопкой</b>. Затем выберите пункт <b>Сохранить видео как</b>. По другому никак :(
+  </p>
+  <hr>
+
+  {% if not item.video %}
+  <p>Данный блог не содержит никаких данных для скачивания.</p>
+  {% endif %}
+
+  {% if item.video %}
+
+
+    {% if item.video.source == 'youtube' %}
+      <p>Данное видео размещено на YouTube:</p>
+      <a href="https://www.youtube.com/watch?v={{ item.video.youtube_link}}" class="uk-button uk-button-primary">
+        Перейти на Youtube
+      </a>
+    {% endif %}
+
+
+    {% if item.video.source == 'src' %}
+      <br>
+      {% if item.video.source_1080 %}
+      <a href="{{ item.video.source_1080 }}" class="uk-button uk-button-primary">
+        Скачать в высоком качестве (1080p)
+      </a>
+      {% endif %}
+
+      {% if item.video.source_720 %}
+      <br><br>
+      <a href="{{ item.video.source_720 }}" class="uk-button uk-button-default">
+        Скачать в хорошем качестве (720p)
+      </a>
+      {% endif %}
+
+      {% if item.video.source_480 %}
+      <br><br>
+      <a href="{{ item.video.source_480 }}" class="uk-button uk-button-default">
+        Скачать в среднем качестве (480p)
+      </a>
+      {% endif %}
+
+      {% if item.video.source_360 %}
+      <br><br>
+      <a href="{{ item.video.source_360 }}" class="uk-button uk-button-default">
+        Скачать в плохом качестве (360p)
+      </a>
+      {% endif %}
+
+    {% endif %}
+
+
+  {% endif %}
+
+  </div>
+
+  <div style="float: right;">
+    <br>
+    <a href="{% url 'blog:detail' item.slug %}" class="uk-button uk-button-default">
+      Назад к видео
+    </a>
+  </div>
+
+  <p class="dk-date">
+    Опубликовано: {{ item.date }}
+    {% if request.user.is_superuser %}
+      •  
+    <a href="{{ item.admin_changelink }}">Изменить</a>
+    {% endif %}
+  </p>
+
+  {% endif %}
+
+</div>
+<br>
+{% endblock %}

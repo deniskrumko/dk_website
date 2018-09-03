@@ -5,13 +5,12 @@ from adminsortable.models import SortableMixin
 
 from libs.autoslug import AutoSlugField
 
-from core.models import BaseModel, LikedModel, register_liked_model
+from core.models import BaseModel, LikedModel
 from imagekit.models import ProcessedImageField
 
 from imagekit.processors import ResizeToFit
 
 
-@register_liked_model(name='blog')
 class BlogEntry(LikedModel, BaseModel):
     """Documentation"""
     is_active = models.BooleanField(
@@ -64,11 +63,27 @@ class BlogEntry(LikedModel, BaseModel):
     )
     date = models.DateTimeField(
         blank=False,
-        verbose_name=_('date'),
+        verbose_name=_('Date'),
     )
     show_gallery = models.BooleanField(
         default=False,
-        verbose_name=_('show_gallery'),
+        verbose_name=_('Show gallery'),
+    )
+    prev_part = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('Previous part'),
+    )
+    next_part = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('Next part'),
     )
 
     def __str__(self):
@@ -105,8 +120,8 @@ class BlogRelation(SortableMixin, BaseModel):
     )
 
     class Meta:
-        verbose_name = _('Blog relation')
-        verbose_name_plural = _('Blog relations')
+        verbose_name = _('Relation')
+        verbose_name_plural = _('Relations')
         ordering = ('order',)
 
 
@@ -152,6 +167,6 @@ class BlogImage(SortableMixin, BaseModel):
         return str(self.image) or '-'
 
     class Meta:
-        verbose_name = _('BlogImage')
-        verbose_name_plural = _('BlogImages')
+        verbose_name = _('Image')
+        verbose_name_plural = _('Images')
         ordering = ('order',)

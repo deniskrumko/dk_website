@@ -29,13 +29,37 @@ class BlogDetailView(BaseView):
         return f'DK - {title}'
 
     def get_description(self, **kwargs):
-        return kwargs.get('title')
+        return kwargs.get('description')
 
     def get(self, request, slug):
         item = BlogEntry.objects.filter(slug=slug).first()
-        context = super().get_context_data(title=item.title)
+        context = self.get_context_data(
+            title=item.title,
+            description=item.description
+        )
         context.update({
             'item': item,
             'degrees': list(range(-15, 15)),
         })
+        return self.render_to_response(context)
+
+
+class BlogDownloadView(BaseView):
+    template_name = 'blog/download.html'
+    menu = 'blog'
+
+    def get_title(self, **kwargs):
+        title = kwargs.get('title')
+        return f'DK - {title} - Скачать'
+
+    def get_description(self, **kwargs):
+        return kwargs.get('description')
+
+    def get(self, request, slug):
+        item = BlogEntry.objects.filter(slug=slug).first()
+        context = self.get_context_data(
+            title=item.title,
+            description=item.description
+        )
+        context.update({'item': item})
         return self.render_to_response(context)

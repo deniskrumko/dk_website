@@ -50,11 +50,16 @@
   .dk-like {
     float: right;
   }
+  .uk-button-primary {
+    background-color: #1BAEC1;
+  }
+  .uk-button-primary:hover {
+    background-color: #149bac;
+  }
 </style>
 {% endblock %}
 
 {% block extrajs %}
-<script src="{% static 'js/likes.js' %}" charset="utf-8"></script>
 <script src="{% static 'js/plyr.js' %}" charset="utf-8"></script>
 <script>
   {% if item.video.source == 'youtube' %}
@@ -118,6 +123,28 @@
   <p class="dk-blog-detail-subtitle">{{ item.subtitle }}</p>
   {% endif %}
 
+  <div class="uk-visible@s">
+    <br>
+
+    {% if item.next_part %}
+    <a href="{% url 'blog:detail' item.next_part.slug %}" class="uk-button uk-button-primary uk-margin-right">
+      Следующая часть
+    </a>
+    {% endif %}
+
+    {% if item.prev_part %}
+    <a href="{% url 'blog:detail' item.prev_part.slug %}" class="uk-button uk-button-text uk-margin-right">
+      Предыдущая часть
+    </a>
+    {% endif %}
+
+    {% if item.video %}
+    <a href="{% url 'blog:download' item.slug %}" class="uk-button uk-button-text">
+      Скачать
+    </a>
+    {% endif %}
+  </div>
+
   {# Description #}
   {% if item.text %}
   <br>
@@ -177,7 +204,18 @@
   </p>
   <div class="uk-hidden@s">
     <br>
-    <a class="uk-button uk-button-default uk-width-1-1" href="{% url 'blog:index' %}">Назад</a>
+    {% if item.prev_part %}
+    <a href="{% url 'blog:detail' item.prev_part.slug %}" class="uk-button uk-button-default uk-width-1-1">
+      Предыдущая часть
+    </a>
+    {% endif %}
+
+    {% if item.next_part %}
+    <a href="{% url 'blog:detail' item.next_part.slug %}" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top">
+      Следующая часть
+    </a>
+    {% endif %}
+    <a class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" href="{% url 'blog:index' %}">Назад</a>
   </div>
   {% endif %}
 
