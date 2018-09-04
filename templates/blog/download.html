@@ -100,7 +100,14 @@
 
     {% if item.video.source == 'src' %}
       <br>
+      {% if item.video.source_original %}
+      <a href="{{ item.video.source_original }}" class="uk-button uk-button-primary">
+        Скачать оригинальное видео (1080p)
+      </a>
+      {% endif %}
+
       {% if item.video.source_1080 %}
+      <br><br>
       <a href="{{ item.video.source_1080 }}" class="uk-button uk-button-primary">
         Скачать в высоком качестве (1080p)
       </a>
