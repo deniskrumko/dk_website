@@ -3508,7 +3508,7 @@ typeof navigator === "object" && (function (global, factory) {
         // Quality default
         quality: {
             default: 576,
-            options: [4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240]
+            options: [100500, 4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240]
         },
 
         // Set loops
@@ -3603,12 +3603,13 @@ typeof navigator === "object" && (function (global, factory) {
             enabled: 'Enabled',
             advertisement: 'Ad',
             qualityBadge: {
+                100500: 'Идеально',
                 2160: '4K',
                 1440: 'HD',
-                1080: 'HD',
-                720: 'HD',
+                1080: 'Отлично',
+                720: 'Хорошо',
                 576: 'SD',
-                480: 'SD'
+                480: 'Средне'
             }
         },
 
@@ -5283,7 +5284,7 @@ typeof navigator === "object" && (function (global, factory) {
       } else if (/(^img!|\.(png|gif|jpg|svg)$)/.test(path)) {
         // image
         e = doc.createElement('img');
-        e.src = pathStripped;    
+        e.src = pathStripped;
       } else {
         // javascript
         e = doc.createElement('script');

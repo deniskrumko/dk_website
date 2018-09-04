@@ -96,6 +96,11 @@
           <source src="{{ item.video.source_720 }}" type="video/mp4" size="720">
         {% endif %}
 
+        {# Original #}
+        {% if item.video.source_original %}
+          <source src="{{ item.video.source_original }}" type="video/mp4" size="100500">
+        {% endif %}
+
         {# Full HD - 1080p #}
         {% if item.video.source_1080 %}
           <source src="{{ item.video.source_1080 }}" type="video/mp4" size="1080">

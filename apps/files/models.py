@@ -93,6 +93,11 @@ class VideoFile(BaseModel):
         max_length=255,
         verbose_name=_('Name')
     )
+    source_original = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Source uncompressed 100500p'),
+    )
     source_1080 = models.TextField(
         null=True,
         blank=True,

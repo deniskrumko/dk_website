@@ -44,6 +44,7 @@ class VideoFileAdmin(admin.ModelAdmin):
         }),
         (_('Sources'), {
             'fields': (
+                'source_original',
                 'source_1080',
                 'source_720',
                 'source_480',
