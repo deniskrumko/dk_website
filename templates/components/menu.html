@@ -67,12 +67,11 @@
               </a>
               {% endif %}
             {% endfor %}
-            {% comment %}
-            <br><br>
-            <a href="/login" class="uk-button dk-menu-link uk-width-1-1">
-              Войти
+            {% if request.user.is_superuser %}
+            <a href="/admin" class="uk-button dk-menu-link uk-width-1-1">
+              Админка
             </a>
-            {% endcomment %}
+            {% endif %}
 
         </div>
     </div>

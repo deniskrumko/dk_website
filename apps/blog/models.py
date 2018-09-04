@@ -2,13 +2,12 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from adminsortable.models import SortableMixin
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFit
 
 from libs.autoslug import AutoSlugField
 
 from core.models import BaseModel, LikedModel
-from imagekit.models import ProcessedImageField
-
-from imagekit.processors import ResizeToFit
 
 
 class BlogEntry(LikedModel, BaseModel):

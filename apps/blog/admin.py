@@ -6,10 +6,16 @@ from core.admin import BaseModelAdmin
 from .models import BlogEntry, BlogImage, BlogRelation
 
 
-class BlogImageInline(admin.StackedInline):
+class BlogImageInline(admin.TabularInline):
     """Inline class for ``BlogImage`` model."""
-    fields = ('image', 'description', 'order')
-    readonly_fields = ('order',)
+    fields = (
+        'image',
+        'description',
+        'order'
+    )
+    readonly_fields = (
+        'order',
+    )
     model = BlogImage
     extra = 0
 
@@ -17,13 +23,18 @@ class BlogImageInline(admin.StackedInline):
 class BlogRelationInline(admin.TabularInline):
     """Inline class for ``BlogRelation`` model."""
     model = BlogRelation
-    fields = ('related_blog', 'order')
+    fk_name = 'blog'
+    extra = 0
+    fields = (
+        'related_blog',
+        'order',
+    )
     autocomplete_fields = (
         'related_blog',
     )
-    fk_name = 'blog'
-    readonly_fields = ('order',)
-    extra = 0
+    readonly_fields = (
+        'order',
+    )
 
 
 @admin.register(BlogEntry)
@@ -54,7 +65,7 @@ class BlogEntryAdmin(BaseModelAdmin):
                 'show_gallery',
             )
         }),
-        (_('Next/previous'), {
+        (_('Next/previous parts'), {
             'fields': (
                 'next_part',
                 'prev_part',

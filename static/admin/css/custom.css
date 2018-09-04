@@ -52,8 +52,8 @@ div.breadcrumbs {
 }
 
 textarea, input, select {
-  background: #f9f9f9;
-  border-color: #f9f9f9 !important;
+  background: #fbfbfb;
+  border-color: #fbfbfb !important;
   color: #482475 !important;
 }
 
@@ -91,12 +91,6 @@ table thead th .text a:focus, table thead th .text a:hover {
 .module h2, .module caption, .inline-group h2 {
     font-size: 16px;
     color: #fefefe;
-}
-
-.field-name input {
-  font-family: "Open Sans Condensed";
-  font-weight: 700;
-  font-size: 32px;
 }
 
 label {
@@ -167,7 +161,7 @@ h1 {
 }
 
 .uk-navbar-nav>li>a {
-  color: #666;
+  color: #491f77 !important;
 }
 
 .uk-navbar-nav>li.active::after {
@@ -183,11 +177,25 @@ h1 {
 }
 
 .dk-navbar-active {
-  color: #79aec9 !important;
+  color: #491f77 !important;
+}
+
+a.section:link, a.section:visited {
+  color: #491f77 !important;
 }
 
 .module h2, .module caption, .inline-group h2 {
-  background: #491f77;
+  background: #f7f7f7;
+  color: #491f77 !important;
+}
+
+thead th {
+    background: #fafafa !important;
+}
+
+.inline-group .tabular tr.add-row td {
+    border-bottom: none !important;
+    background: #fefefe !important;
 }
 
 div.breadcrumbs {

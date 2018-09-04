@@ -1,0 +1,294 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-04 15:07+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "Main"
+msgstr "Основное"
+
+msgid "On list page"
+msgstr "На странице со списком"
+
+msgid "On details page"
+msgstr "На странице с подробностями"
+
+msgid "Next/previous parts"
+msgstr "Следующая/предыдущая части"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Created/Modified"
+msgstr "Создан/Изменен"
+
+msgid "Blog"
+msgstr "Блог"
+
+msgid "Is active"
+msgstr "Активен"
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "Subtitle"
+msgstr "Подзаголовок"
+
+msgid "Slug"
+msgstr "Слаг"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Short description of blog entry"
+msgstr "Короткое описание записи блога"
+
+msgid "Wide image"
+msgstr "Широкое изображение"
+
+msgid "Image for index page"
+msgstr "Изображение для главной"
+
+msgid "Video"
+msgstr "Видео"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Main blog text"
+msgstr "Основной текст блога"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Show gallery"
+msgstr "Показать галерею"
+
+msgid "Previous part"
+msgstr "Предыдущая часть"
+
+msgid "Next part"
+msgstr "Следующая часть"
+
+msgid "Blog entry"
+msgstr "Запись блога"
+
+msgid "Blog entries"
+msgstr "Записи блога"
+
+msgid "Order"
+msgstr "Порядок"
+
+msgid "Related blog"
+msgstr "Сопутствующий блог"
+
+msgid "Relation"
+msgstr "Отношение"
+
+msgid "Relations"
+msgstr "Отношения"
+
+msgid "blog"
+msgstr "Блог"
+
+msgid "image"
+msgstr "Изображение"
+
+msgid "Image"
+msgstr "Изображение"
+
+msgid "description"
+msgstr "Описание"
+
+msgid "Images"
+msgstr "Изображения"
+
+msgid "Diary"
+msgstr "Дневник"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Diary entry"
+msgstr "Запись дневника"
+
+msgid "Diary entries"
+msgstr "Записи дневника"
+
+msgid "Sources"
+msgstr "Источники"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "Files"
+msgstr "Файлы"
+
+msgid "Name"
+msgstr "Название"
+
+msgid "File category"
+msgstr "Категория файлов"
+
+msgid "File categories"
+msgstr "Категории файлов"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Category"
+msgstr "Категория"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Source"
+msgstr "Источник"
+
+msgid "Youtube"
+msgstr "YouTube"
+
+msgid "Source 1080p"
+msgstr "Источник 1080p"
+
+msgid "Source 720p"
+msgstr "Источник 720p"
+
+msgid "Source 480p"
+msgstr "Источник 480p"
+
+msgid "Source 360p"
+msgstr "Источник 360p"
+
+msgid "Youtube code"
+msgstr "Код видео с YouTube"
+
+msgid "Poster image"
+msgstr "Изображения для постера"
+
+msgid "Video file"
+msgstr "Видео файл"
+
+msgid "Video files"
+msgstr "Видео файлы"
+
+msgid "Result"
+msgstr "Результат"
+
+msgid "Destination"
+msgstr "Назначение"
+
+msgid "Redirect page"
+msgstr "Страница редиректа"
+
+msgid "Redirect pages"
+msgstr "Страницы редиректа"
+
+msgid "Reset slug"
+msgstr "Сбросить слаг"
+
+msgid "View on site"
+msgstr "Посмотреть на сайте"
+
+msgid "Sort objects"
+msgstr "Сортировать объекты"
+
+msgid "Image preview"
+msgstr "Превью"
+
+msgid "Music"
+msgstr "Музыка"
+
+msgid "Artist"
+msgstr "Исполнитель"
+
+msgid "Artists"
+msgstr "Исполнители"
+
+msgid "Year"
+msgstr "Год"
+
+msgid "Short description"
+msgstr "Короткое описание"
+
+msgid "Displayed on \"All tracks\" page"
+msgstr "Отображается на странице \"Все треки\""
+
+msgid "Full description"
+msgstr "Полное описание"
+
+msgid "Displayed on \"Single track\" page"
+msgstr "Отображается на странице \"Один трек\""
+
+msgid "Track"
+msgstr "Трек"
+
+msgid "Tracks"
+msgstr "Треки"
+
+msgid "Track file"
+msgstr "Файл трека"
+
+msgid "Track files"
+msgstr "Файлы треков"
+
+msgid "Optional"
+msgstr "Опционально"
+
+msgid "News"
+msgstr "Новости"
+
+msgid "title"
+msgstr "Заголовок"
+
+msgid "text"
+msgstr "Текст"
+
+msgid "date"
+msgstr "Дата"
+
+msgid "link"
+msgstr "Ссылка"
+
+msgid "News item"
+msgstr "Новость"
+
+msgid "News items"
+msgstr "Новости"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "email address"
+msgstr "Адрес эл.почты"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Denis Krumko"
+msgstr "Denis Krumko"
+
+msgid "DK"
+msgstr "DK"
+
+msgid "likes counter"
+msgstr "Счетчик лайгов"
+
+msgid "Home"
+msgstr "Домой"

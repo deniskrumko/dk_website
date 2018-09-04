@@ -24,6 +24,8 @@
 </head>
 {% load i18n %}
 
+{% block body %}
+
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
   data-admin-utc-offset="{% now "Z" %}">
 
@@ -34,7 +36,6 @@
               <ul class="uk-navbar-nav">
                   <li class="active"><a href="/admin">Админка</a></li>
                   <li class=""><a href="/">На сайт</a></li>
-                  <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
               </ul>
           </div>
           <div class="uk-navbar-right">
@@ -64,8 +65,14 @@
           <button class="uk-modal-close-default uk-close-large" type="button" uk-close></button>
           <div class="uk-modal-body">
             <br>
-                <a href="" class="uk-button dk-menu-link uk-width-1-1 active">
-                  123
+                <a href="/admin" class="uk-button dk-menu-link uk-width-1-1 active">
+                  Админка
+                </a>
+                <a href="/" class="uk-button dk-menu-link uk-width-1-1 active">
+                  На сайт
+                </a>
+                <a href="/logout" class="uk-button dk-menu-link uk-width-1-1 active">
+                  Выйти
                 </a>
               <br><br>
           </div>
@@ -126,4 +133,7 @@
 <!-- END Container -->
 
 </body>
+
+{% endblock %}
+
 </html>
