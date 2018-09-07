@@ -31,8 +31,8 @@ class Command(BaseCommand):
         # Blog
         # ====================================================================
 
-        BlogEntryFactory.create_batch(5)
-        self.stdout.write(self.style.SUCCESS('\nCreated 5 blog entries'))
+        BlogEntryFactory.create_batch(2, create_items=True, create_images=True)
+        self.stdout.write(self.style.SUCCESS('\nCreated blog entries'))
 
         self.stdout.write(self.style.SUCCESS(
             '\nDatabase successfully populated!'

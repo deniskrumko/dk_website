@@ -134,12 +134,6 @@ class BlogImage(SortableMixin, BaseModel):
         related_name='images',
         verbose_name=_('blog'),
     )
-    image = models.ImageField(
-        null=True,
-        blank=False,
-        upload_to=BaseModel.obfuscated_upload,
-        verbose_name=_('image')
-    )
     image = ProcessedImageField(
         null=True,
         blank=False,
