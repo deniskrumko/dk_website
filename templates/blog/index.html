@@ -5,16 +5,31 @@
 <style media="screen">
   .dk-blog-title {
     font-family: 'Open Sans Condensed', Arial;
-    font-weight: 300;
-    font-size: 32px;
-    text-shadow: 0px 0px 3px #000;
+    font-weight: 700;
+    font-size: 35px;
+    background: #131313;
+    width: auto !important;
+    padding: 15px 25px 10px 25px;
+    border-bottom: 5px solid #131313;
+    transition: all 0.3s ease;
+  }
+  @media screen and (max-width: 800px) {
+    .dk-blog-title {
+      font-size: 23px;
+    }
+    .uk-height-200 {
+      height: 140px;
+    }
   }
   .dk-blog-item {
     transition: transform 0.3s ease;
   }
   .dk-blog-item:hover {
     text-decoration: none !important;
-    transform: scale(1.02);
+    transform: scale(1.03);
+  }
+  .dk-blog-item:hover > .dk-blog-title {
+    border-bottom: 5px solid #29AEC0;
   }
 </style>
 {% endblock %}
@@ -27,8 +42,12 @@
 <div class="uk-container uk-container-small">
 {% if items %}
 {% for item in items %}
-<a href="{% url 'blog:detail' item.slug %}" class="uk-height-small uk-background-cover uk-light uk-flex dk-blog-item" uk-parallax="bgy: -50" {% if item.wide_image %}style="background-image: url('{{ item.wide_image.url }}');"{% endif %}>
-  <h3 class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical dk-blog-title">{{ item.title }}</h3>
+<a href="{% url 'blog:detail' item.slug %}"
+   class="uk-height-200 uk-background-cover uk-light uk-flex dk-blog-item"
+   {% if item.wide_image %}style="background-image: url('{{ item.wide_image.url }}');"{% endif %}>
+  <h3 class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical dk-blog-title">
+    {{ item.title }}
+  </h3>
 </a>
 <br>
 {% endfor %}
