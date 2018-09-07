@@ -1,5 +1,6 @@
-from django.utils import timezone
 from datetime import timedelta
+
+from django.utils import timezone
 
 import factory
 
@@ -35,7 +36,7 @@ class BlogEntryFactory(factory.DjangoModelFactory):
     text = factory.Faker('text')
     title = factory.sequence(lambda x: f'Фильм {x}. Часть 2')
     video = factory.SubFactory(VideoFileFactory)
-    wide_image = factory.django.ImageField(color='#1b7682')
+    wide_image = factory.django.ImageField(color='#555')
 
     @factory.post_generation
     def create_images(self, create, extracted, **kwargs):

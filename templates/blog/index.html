@@ -14,23 +14,39 @@
     transition: all 0.3s ease;
     color: #f0f0f0 !important;
   }
+  .dk-blog-item {
+    transition: transform 0.3s ease;
+    margin-bottom: 15px;
+  }
   @media screen and (max-width: 800px) {
     .dk-blog-title {
-      font-size: 23px;
+      font-size: 20px;
+      padding: 15px 15px 10px 15px;
+      font-weight: 700;
     }
     .uk-height-200 {
       height: 140px;
     }
+    .dk-blog-item {
+      margin-bottom: 10px;
+    }
   }
-  .dk-blog-item {
-    transition: transform 0.3s ease;
-  }
+
   .dk-blog-item:hover {
     text-decoration: none !important;
     transform: scale(1.03);
   }
+  .dk-blog-item:active {
+    text-decoration: none !important;
+    transform: scale(1.02);
+  }
   .dk-blog-item:hover > .dk-blog-title {
     border-bottom: 5px solid #29AEC0;
+  }
+  .dk-blog-item:active > .dk-blog-title {
+    color: #06dbf7 !important;
+
+    border-bottom: 5px solid #06dbf7;
   }
 </style>
 {% endblock %}
@@ -50,7 +66,6 @@
     {{ item.title }}
   </h3>
 </a>
-<br>
 {% endfor %}
 {% else %}
 <p>В блоге пока пусто...</p>

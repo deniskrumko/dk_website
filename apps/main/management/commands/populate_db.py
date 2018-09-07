@@ -3,6 +3,7 @@ from django.core.management import BaseCommand
 from apps.blog.factories import BlogEntryFactory
 from apps.files.factories import FileCategoryFactory, FileFactory
 from apps.music.factories import ArtistFactory, TrackFactory, TrackFileFactory
+from apps.news.factories import NewsFactory
 
 
 class Command(BaseCommand):
@@ -25,7 +26,7 @@ class Command(BaseCommand):
         self.music_category = FileCategoryFactory(name='Музыка')
         self.gtp_category = FileCategoryFactory(name='GTP')
 
-        for i in range(3):
+        for i in range(10):
             self.create_track(artist=dendynotdead)
 
         # Blog
@@ -33,6 +34,12 @@ class Command(BaseCommand):
 
         BlogEntryFactory.create_batch(2, create_items=True, create_images=True)
         self.stdout.write(self.style.SUCCESS('\nCreated blog entries'))
+
+        # News
+        # ====================================================================
+
+        NewsFactory.create_batch(10)
+        self.stdout.write(self.style.SUCCESS('\nCreated news'))
 
         self.stdout.write(self.style.SUCCESS(
             '\nDatabase successfully populated!'

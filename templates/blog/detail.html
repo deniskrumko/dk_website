@@ -21,12 +21,27 @@
     color: #888;
   }
 
+  /* For mobile */
   @media screen and (max-width: 800px) {
     .dk-blog-detail-title {
       font-size: 26px;
     }
+    hr {
+      margin: 0px !important;
+    }
+    .dk-blog-h2 {
+      margin-top: 10px;
+    }
+    .dk-related-h3 {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .uk-grid + .uk-grid, .uk-grid > .uk-grid-margin, * + .uk-grid-margin {
+        margin-top: 15px;
+    }
   }
 
+  /* For desktop */
   @media screen and (min-width: 800px) {
     .dk-slideshow {
       transform: scale(0.7);
@@ -194,9 +209,9 @@
     {% for blog in item.relations.all %}
     <div class="">
       <div class="uk-padding uk-background-muted">
-        <h3 style="margin-bottom: 0px;">{{ blog.related_blog.title }}</h3>
+        <h3 style="margin-bottom: 0px;" class="dk-related-h3">{{ blog.related_blog.title }}</h3>
         {% if blog.related_blog.subtitle %}
-          <p style="margin-top: 0px;">{{ blog.related_blog.subtitle }}</p>
+          <p style="margin-top: 0px;" class="uk-visible@s">{{ blog.related_blog.subtitle }}</p>
         {% endif %}
         <a href="{% url 'blog:detail' blog.related_blog.slug %}" class="uk-button uk-button-text">Посмотреть</a>
       </div>
@@ -206,13 +221,6 @@
 
   {% endif %}
 
-  <p class="dk-date">
-    Опубликовано: {{ item.date }}
-    {% if request.user.is_superuser %}
-      •  
-    <a href="{{ item.admin_changelink }}">Изменить</a>
-    {% endif %}
-  </p>
   <div class="uk-hidden@s">
     <br>
     {% if item.prev_part %}
@@ -228,6 +236,15 @@
     {% endif %}
     <a class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" href="{% url 'blog:index' %}">Назад</a>
   </div>
+
+  <p class="dk-date">
+    Опубликовано: {{ item.date }}
+    {% if request.user.is_superuser %}
+      •  
+    <a href="{{ item.admin_changelink }}">Изменить</a>
+    {% endif %}
+  </p>
+
   {% endif %}
 
 </div>
