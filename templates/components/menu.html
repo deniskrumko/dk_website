@@ -5,27 +5,29 @@
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
               {% for code, item in menu.items %}
-                {% if not item.auth or request.user.is_superuser %}
                 <li {% if code == active_menu %}class="active"{% endif %}>
                   <a href="{{ item.url }}">{{ item.name}}</a>
                 </li>
-                {% endif %}
               {% endfor %}
               {% comment %}
-
                 <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
-                {% endcomment %}
-
+              {% endcomment %}
             </ul>
         </div>
 
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-              <button class="uk-button" type="button"><span uk-icon="user"></span></button>
+              <button class="uk-button" type="button">
+                <span uk-icon="user"></span>
+                {% if request.user.is_authenticated %}
+                <span style="margin-left: 10px;">{{ request.user.username }}</span>
+                {% endif %}
+              </button>
               <div uk-dropdown="mode: click">
                   {% if request.user.is_authenticated %}
                   <ul class="uk-nav uk-dropdown-nav">
-                      <li><a href="{% url 'admin:index' %}">Admin UI</a></li>
+                      <li><a href="{% url 'diary:index' %}">Дневник</a></li>
+                      <li><a href="{% url 'admin:index' %}">Админка</a></li>
                       <li class="uk-nav-divider"></li>
                       <li><a href="{% url 'users:logout' %}">Выйти</a></li>
                   </ul>
@@ -61,14 +63,15 @@
         <div class="uk-modal-body">
           <br>
             {% for code, item in menu.items %}
-              {% if not item.auth or request.user.is_superuser %}
               <a href="{{ item.url}}" class="uk-button dk-menu-link uk-width-1-1 {% if code == active_menu %}active{% endif %}">
                 {{ item.name }}
               </a>
-              {% endif %}
             {% endfor %}
             {% if request.user.is_superuser %}
-            <a href="/admin" class="uk-button dk-menu-link uk-width-1-1">
+            <a href="{% url 'diary:index' %}" class="uk-button dk-menu-link uk-width-1-1">
+              Дневник
+            </a>
+            <a href="{% url 'admin:index' %}" class="uk-button dk-menu-link uk-width-1-1">
               Админка
             </a>
             {% endif %}

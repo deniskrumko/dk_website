@@ -8,14 +8,17 @@ def get_item(dictionary, key):
 
 @register.filter
 def get_color(dictionary, key):
-    return dictionary.get(key).color
+    item = dictionary.get(key)
+    return item.color if item else None
 
 
 @register.filter
 def get_name(dictionary, key):
-    return dictionary.get(key).name
+    item = dictionary.get(key)
+    return item.name if item else None
 
 
 @register.filter
 def get_link(dictionary, key):
-    return dictionary.get(key).url
+    item = dictionary.get(key)
+    return item.url if item else None
