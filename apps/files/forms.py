@@ -11,6 +11,7 @@ class VideoFileForm(BaseModelForm):
         fields = '__all__'
         widgets = {
             'name': BaseModelForm.input_widget(),
+            'source_original': BaseModelForm.text_widget(),
             'source_1080': BaseModelForm.text_widget(),
             'source_720': BaseModelForm.text_widget(),
             'source_480': BaseModelForm.text_widget(),

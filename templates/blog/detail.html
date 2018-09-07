@@ -56,6 +56,17 @@
   .uk-button-primary:hover {
     background-color: #149bac;
   }
+  .plyr__control--overlaid {
+    background: #00c2cf;
+  }
+  .plyr--video .plyr__control.plyr__tab-focus, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
+    background: #2adde9;
+    color: #fff;
+  }
+
+  .plyr--full-ui input[type=range] {
+    color: #00c2cf;
+  }
 </style>
 {% endblock %}
 
@@ -94,11 +105,6 @@
         {# HD - 720p #}
         {% if item.video.source_720 %}
           <source src="{{ item.video.source_720 }}" type="video/mp4" size="720">
-        {% endif %}
-
-        {# Original #}
-        {% if item.video.source_original %}
-          <source src="{{ item.video.source_original }}" type="video/mp4" size="100500">
         {% endif %}
 
         {# Full HD - 1080p #}

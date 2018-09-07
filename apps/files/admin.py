@@ -60,8 +60,42 @@ class VideoFileAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'source',
-        'source_1080',
+        '_original',
+        '_1080',
+        '_720',
+        '_480',
+        '_360',
     )
     search_fields = (
         'name',
     )
+
+    def _original(self, obj):
+        return bool(obj.source_original)
+
+    _original.short_description = _('Original')
+    _original.boolean = True
+
+    def _1080(self, obj):
+        return bool(obj.source_1080)
+
+    _1080.short_description = _('1080p')
+    _1080.boolean = True
+
+    def _720(self, obj):
+        return bool(obj.source_720)
+
+    _720.short_description = _('720p')
+    _720.boolean = True
+
+    def _480(self, obj):
+        return bool(obj.source_480)
+
+    _480.short_description = _('480p')
+    _480.boolean = True
+
+    def _360(self, obj):
+        return bool(obj.source_360)
+
+    _360.short_description = _('360p')
+    _360.boolean = True

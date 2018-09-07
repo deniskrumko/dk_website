@@ -1,10 +1,11 @@
 import factory
 
-from .models import File, FileCategory
+from . import models
 
 __all__ = (
     'FileFactory',
-    'FileCategoryFactory'
+    'FileCategoryFactory',
+    'VideoFileFactory',
 )
 
 
@@ -14,7 +15,7 @@ class FileCategoryFactory(factory.DjangoModelFactory):
     order = factory.sequence(lambda x: x)
 
     class Meta:
-        model = FileCategory
+        model = models.FileCategory
 
 
 class FileFactory(factory.DjangoModelFactory):
@@ -24,4 +25,18 @@ class FileFactory(factory.DjangoModelFactory):
     data = factory.django.FileField()
 
     class Meta:
-        model = File
+        model = models.File
+
+
+class VideoFileFactory(factory.DjangoModelFactory):
+    """Factory for ``VideoFile`` model."""
+    name = factory.sequence(lambda x: f'Video {x}')
+    source_original = 'http://techslides.com/demos/sample-videos/small.mp4'
+    source_1080 = 'http://techslides.com/demos/sample-videos/small.mp4'
+    source_720 = 'http://techslides.com/demos/sample-videos/small.mp4'
+    source_480 = 'http://techslides.com/demos/sample-videos/small.mp4'
+    source_360 = 'http://techslides.com/demos/sample-videos/small.mp4'
+    poster = factory.django.ImageField(color='#1D252C')
+
+    class Meta:
+        model = models.VideoFile

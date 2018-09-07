@@ -17,23 +17,23 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f'{artist.name} - {track.name}'))
 
     def handle(self, *args, **options):
+        # Music
+        # ====================================================================
+
         dendynotdead = ArtistFactory(name='Dendy Not Dead')
-        deniskrumko = ArtistFactory(name='Denis Krumko')
 
         self.music_category = FileCategoryFactory(name='Музыка')
         self.gtp_category = FileCategoryFactory(name='GTP')
 
-        for i in range(10):
+        for i in range(3):
             self.create_track(artist=dendynotdead)
-
-        for i in range(10):
-            self.create_track(artist=deniskrumko)
-
-        self.stdout.write(self.style.SUCCESS(
-            '\nDatabase successfully populated!'
-        ))
 
         # Blog
         # ====================================================================
 
-        BlogEntryFactory.create_batch(15)
+        BlogEntryFactory.create_batch(5)
+        self.stdout.write(self.style.SUCCESS('\nCreated 5 blog entries'))
+
+        self.stdout.write(self.style.SUCCESS(
+            '\nDatabase successfully populated!'
+        ))

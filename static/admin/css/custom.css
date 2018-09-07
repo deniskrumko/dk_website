@@ -22,7 +22,7 @@
   height: 80px;
 }
 
-body, html {
+body {
   height: 100%;
   color: #666;
   background: #fefefe !important;
@@ -52,9 +52,9 @@ div.breadcrumbs {
 }
 
 textarea, input, select {
-  background: #fbfbfb;
-  border-color: #fbfbfb !important;
-  color: #482475 !important;
+  background: #f9f9f9;
+  border-color: #f9f9f9 !important;
+  color: #333 !important;
 }
 
 thead th {
@@ -107,7 +107,7 @@ label {
 
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
-  color: #fefefe !important;
+  color: #333 !important;
   transition: all 0.3s ease;
 }
 
@@ -185,7 +185,7 @@ a.section:link, a.section:visited {
 }
 
 .module h2, .module caption, .inline-group h2 {
-  background: #f7f7f7;
+  background: #f3f3f3;
   color: #491f77 !important;
 }
 
