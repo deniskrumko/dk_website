@@ -212,7 +212,7 @@
     {% for image in item.images.all %}
     <div>
         <a class="uk-inline" style="transform: rotate({{ degrees|random }}deg);" href="{{ image.image.url }}" {% if image.description %}data-caption="{{ image.description }}"{% endif %}>
-            <img src="{{ image.image_thumbnail.url }}" class="dk-gallery-image" alt="">
+            <img src="{{ image.image_thumbnail_url }}" class="dk-gallery-image" alt="">
         </a>
     </div>
     {% endfor %}

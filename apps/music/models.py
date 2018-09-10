@@ -138,6 +138,10 @@ class Track(LikedModel, SortableMixin, BaseModel):
     def is_new(self):
         return True
 
+    @property
+    def image_thumbnail_url(self):
+        return self.image_thumbnail.url if self.image else None
+
 
 class TrackFile(SortableMixin, models.Model):
     """Intermediate model for M2M related between ``Track`` and ``File``."""

@@ -169,3 +169,7 @@ class BlogImage(SortableMixin, BaseModel):
         verbose_name = _('Image')
         verbose_name_plural = _('Images')
         ordering = ('order',)
+
+    @property
+    def image_thumbnail_url(self):
+        return self.image_thumbnail.url if self.image else None

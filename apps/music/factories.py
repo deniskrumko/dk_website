@@ -28,7 +28,6 @@ class TrackFactory(factory.DjangoModelFactory):
     full_description = factory.Faker('text')
     file = factory.SubFactory(FileFactory)
     image = factory.django.ImageField(color='#777')
-    image_thumbnail = factory.django.ImageField(color='#777')
     year = 2018
 
     class Meta:
