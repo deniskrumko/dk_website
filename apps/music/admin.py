@@ -62,7 +62,6 @@ class TrackAdmin(DjangoObjectActions, SortableAdmin):
         (_('Image'), {
             'fields': (
                 'image',
-                'image_thumbnail',
                 '_large_preview',
             )
         }),

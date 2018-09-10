@@ -1,6 +1,6 @@
 from django.views.generic.base import TemplateView
 
-from apps.main.menu import get_menu, get_hidden_menu
+from apps.main.menu import get_hidden_menu, get_menu
 
 
 class BaseView(TemplateView):

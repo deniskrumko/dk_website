@@ -149,6 +149,26 @@
   <p class="dk-blog-detail-subtitle">{{ item.subtitle }}</p>
   {% endif %}
 
+  <div class="uk-hidden@s">
+    <br>
+
+    {% if item.next_part %}
+    <a href="{% url 'blog:detail' item.next_part.slug %}" class="uk-button uk-button-primary uk-width-1-1">
+      Следующая часть
+    </a>
+    {% endif %}
+
+    {% if item.prev_part %}
+    <a href="{% url 'blog:detail' item.prev_part.slug %}" class="uk-button uk-button-default uk-width-1-1  uk-margin-small-top">
+      Предыдущая часть
+    </a>
+    {% endif %}
+
+    <a class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" href="{% url 'blog:index' %}">
+      Назад
+    </a>
+  </div>
+
   <div class="uk-visible@s">
     <br>
 
@@ -192,7 +212,7 @@
     {% for image in item.images.all %}
     <div>
         <a class="uk-inline" style="transform: rotate({{ degrees|random }}deg);" href="{{ image.image.url }}" {% if image.description %}data-caption="{{ image.description }}"{% endif %}>
-            <img src="{{ image.image.url }}" class="dk-gallery-image" alt="">
+            <img src="{{ image.image_thumbnail.url }}" class="dk-gallery-image" alt="">
         </a>
     </div>
     {% endfor %}
@@ -221,22 +241,6 @@
 
   {% endif %}
 
-  <div class="uk-hidden@s">
-    <br>
-    {% if item.prev_part %}
-    <a href="{% url 'blog:detail' item.prev_part.slug %}" class="uk-button uk-button-default uk-width-1-1">
-      Предыдущая часть
-    </a>
-    {% endif %}
-
-    {% if item.next_part %}
-    <a href="{% url 'blog:detail' item.next_part.slug %}" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top">
-      Следующая часть
-    </a>
-    {% endif %}
-    <a class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" href="{% url 'blog:index' %}">Назад</a>
-  </div>
-
   <p class="dk-date">
     Опубликовано: {{ item.date }}
     {% if request.user.is_superuser %}
@@ -249,4 +253,5 @@
 
 </div>
 <br>
+{% include "components/logo.html" %}
 {% endblock %}

@@ -1,5 +1,5 @@
 import calendar
-from datetime import date
+from datetime import date, timedelta
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import HttpResponseRedirect
@@ -118,6 +118,8 @@ class DiaryDetailView(LoginRequiredMixin, BaseView):
         context['entry'] = self.entry
         context['date_str'] = date
         context['date_obj'] = self.date_obj
+        context['prev_date'] = self.date_obj - timedelta(days=1)
+        context['next_date'] = self.date_obj + timedelta(days=1)
         return self.render_to_response(context)
 
 

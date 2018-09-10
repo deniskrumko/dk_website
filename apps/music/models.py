@@ -3,8 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from adminsortable.fields import SortableForeignKey
 from adminsortable.models import SortableMixin
-from imagekit.models import ProcessedImageField
-from imagekit.processors import ResizeToFill, ResizeToFit
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFit
 
 from libs.autoslug import AutoSlugField
 
@@ -94,13 +94,11 @@ class Track(LikedModel, SortableMixin, BaseModel):
         upload_to=BaseModel.obfuscated_upload,
         verbose_name=_('Image'),
     )
-    image_thumbnail = ProcessedImageField(
-        null=True,
-        blank=True,
-        processors=[ResizeToFill(100, 100)],
+    image_thumbnail = ImageSpecField(
+        source='image',
+        processors=[ResizeToFit(400, 400)],
         format='JPEG',
-        options={'quality': 90},
-        upload_to=BaseModel.obfuscated_upload
+        options={'quality': 80}
     )
     short_description = models.TextField(
         max_length=255,

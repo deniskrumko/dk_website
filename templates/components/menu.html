@@ -1,4 +1,3 @@
-
   {# Desktop menu #}
   <div class="uk-container uk-container-small uk-position-top uk-visible@s">
     <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar>
@@ -50,7 +49,11 @@
     <nav class="uk-navbar-container uk-navbar-transparent" id="dk-mobile-navbar" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-              <li><a class="dk-navbar-active" href="{{ menu|get_link:active_menu }}">{{ menu|get_name:active_menu }}</a></li>
+              <li>
+                <a class="dk-navbar-active" href="{{ menu|get_link:active_menu }}">
+                  {{ menu|get_name:active_menu }}
+                </a>
+              </li>
             </ul>
         </div>
         <div class="uk-navbar-right">

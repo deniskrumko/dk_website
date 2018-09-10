@@ -45,3 +45,18 @@ p {
 .dk-mobile-buttons {
   width: calc(50% - 2px);
 }
+
+.dk-breadcrumbs {
+  position: relative;
+  top: -5px;
+  cursor: default;
+}
+.dk-breadcrumbs a {
+  font-size: 12px;
+  color: #999;
+}
+.dk-breadcrumbs a:hover {
+  text-decoration: none;
+  font-size: 12px;
+  color: #333;
+}

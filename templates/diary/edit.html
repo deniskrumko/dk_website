@@ -19,7 +19,7 @@
 
 <div class="uk-container uk-container-small dk-cont">
 
-  {# {% include "diary/extra/breadcrumbs.html" %} #}
+  {% include "diary/extra/breadcrumbs.html" %}
 
   <form class="" action="{% url 'diary:edit' date=date_str %}" method="post">
     {% csrf_token %}

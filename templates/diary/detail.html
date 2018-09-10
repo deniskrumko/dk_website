@@ -18,7 +18,7 @@
 
 <div class="uk-container uk-container-small">
 
-  {# {% include "diary/extra/breadcrumbs.html" %} #}
+  {% include "diary/extra/breadcrumbs.html" %}
 
   <div class="dk-entry">
     <div class="dk-edit-link uk-visible@s">
@@ -43,11 +43,10 @@
     <a href="{% url 'diary:edit' date=date_str %}" class="uk-button uk-button-default dk-mobile-buttons">Изменить</a>
     <a href="{% url 'diary:index' %}" class="uk-button uk-button-default dk-mobile-buttons">Назад</a>
   </div>
-  {% if entry %}
-  <div class="dk-after">
-    <p>Изменено {{ entry.modified }}</p>
+  <div class="dk-after uk-visible@s">
+    <a href="{% url 'diary:detail' date=prev_date|date:'Y-m-d' %}" class="uk-button uk-button-default dk-mobile-buttons">Предыдущий день</a>
+    <a href="{% url 'diary:detail' date=next_date|date:'Y-m-d' %}" class="uk-button uk-button-default dk-mobile-buttons">Следующий день</a>
   </div>
-  {% endif %}
 
 </div>
 {% endblock %}

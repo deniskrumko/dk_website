@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from adminsortable.models import SortableMixin
-from imagekit.models import ProcessedImageField
+from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFit
 
 from libs.autoslug import AutoSlugField
@@ -142,6 +142,12 @@ class BlogImage(SortableMixin, BaseModel):
         options={'quality': 80},
         upload_to=BaseModel.obfuscated_upload,
         verbose_name=_('Image'),
+    )
+    image_thumbnail = ImageSpecField(
+        source='image',
+        processors=[ResizeToFit(150, 150)],
+        format='JPEG',
+        options={'quality': 80}
     )
     description = models.CharField(
         max_length=255,
