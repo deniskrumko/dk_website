@@ -99,3 +99,19 @@ h2 {
   color: #EE5270;
   transform: scale(1.3);
 }
+
+#dk-submenu {
+  position: relative;
+  padding-right: 30px;
+  top: -15px;
+}
+#dk-submenu span {
+  float: right;
+}
+#dk-submenu span a {
+  margin-left: 20px;
+  color: #666 !important;
+}
+#dk-submenu span a::before {
+    border-bottom: 1px solid #666 !important;
+}

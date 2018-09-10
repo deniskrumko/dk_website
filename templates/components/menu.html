@@ -4,10 +4,13 @@
     <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
+              {# Main visible menu items #}
               {% for code, item in menu.items %}
+                {% if item.visible %}
                 <li {% if code == active_menu %}class="active"{% endif %}>
                   <a href="{{ item.url }}">{{ item.name}}</a>
                 </li>
+                {% endif %}
               {% endfor %}
               {% comment %}
                 <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
@@ -15,32 +18,31 @@
             </ul>
         </div>
 
+        {# Right part of menu #}
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-              <button class="uk-button" type="button">
+              <button class="uk-button" type="button" id="dk-toggle-submenu">
                 <span uk-icon="user"></span>
                 {% if request.user.is_authenticated %}
                 <span style="margin-left: 10px;">{{ request.user.username }}</span>
                 {% endif %}
               </button>
-              <div uk-dropdown="mode: click">
-                  {% if request.user.is_authenticated %}
-                  <ul class="uk-nav uk-dropdown-nav">
-                      <li><a href="{% url 'diary:index' %}">Дневник</a></li>
-                      <li><a href="{% url 'admin:index' %}">Админка</a></li>
-                      <li class="uk-nav-divider"></li>
-                      <li><a href="{% url 'users:logout' %}">Выйти</a></li>
-                  </ul>
-                  {% else %}
-                  <ul class="uk-nav uk-dropdown-nav">
-                      <li><a href="{% url 'users:login' %}">Войти</a></li>
-                  </ul>
-                  {% endif %}
-              </div>
             </ul>
         </div>
-
     </nav>
+
+    {# Submenu #}
+    <div class="" id="dk-submenu" style="display: none;">
+      <span>
+        {% if request.user.is_superuser %}
+          {% for item in hidden_menu %}
+          <a href="{{ item.url }}" class="uk-button uk-button-text">{{ item.name }}</a>
+          {% endfor %}
+        {% else %}
+          <a href="{% url 'users:login' %}" class="uk-button uk-button-text">Войти</a>
+        {% endif %}
+      </span>
+    </div>
   </div>
 
   {# Mobile menu #}
@@ -62,18 +64,22 @@
         <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
         <div class="uk-modal-body">
           <br>
+            {# Main visible menu items #}
             {% for code, item in menu.items %}
+              {% if item.visible %}
               <a href="{{ item.url}}" class="uk-button dk-menu-link uk-width-1-1 {% if code == active_menu %}active{% endif %}">
                 {{ item.name }}
               </a>
+              {% endif %}
             {% endfor %}
+
+            {# Hidden menu items #}
             {% if request.user.is_superuser %}
-            <a href="{% url 'diary:index' %}" class="uk-button dk-menu-link uk-width-1-1">
-              Дневник
-            </a>
-            <a href="{% url 'admin:index' %}" class="uk-button dk-menu-link uk-width-1-1">
-              Админка
-            </a>
+              {% for item in hidden_menu  %}
+              <a href="{{ item.url }}" class="uk-button dk-menu-link uk-width-1-1">
+                {{ item.name }}
+              </a>
+              {% endfor %}
             {% endif %}
 
         </div>

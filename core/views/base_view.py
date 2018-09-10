@@ -1,6 +1,6 @@
 from django.views.generic.base import TemplateView
 
-from apps.main.menu import get_menu
+from apps.main.menu import get_menu, get_hidden_menu
 
 
 class BaseView(TemplateView):
@@ -27,6 +27,7 @@ class BaseView(TemplateView):
         context_data['title'] = self.get_title(**kwargs)
         context_data['active_menu'] = self.get_active_menu(**kwargs)
         context_data['menu'] = get_menu()
+        context_data['hidden_menu'] = get_hidden_menu()
         context_data['website_description'] = self.get_description(**kwargs)
         return context_data
 

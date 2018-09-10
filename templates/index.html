@@ -47,9 +47,7 @@
   </div>
 <br>
 <br>
-<div style="text-align: center;" >
-  <img src="{% static 'images/dk.jpg' %}" width="64" height="64" alt="" uk-img>
-</div>
+{% include "components/logo.html" %}
 <a href="{% url 'users:login' %}" class="dk-hidden-login uk-hidden@s"></a>
 
 {% endblock %}
