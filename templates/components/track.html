@@ -2,7 +2,12 @@
   <div class="uk-child-width-1-1@s" uk-grid>
     <div class="uk-card uk-card-default uk-grid-collapse uk-margin uk-background-muted" uk-grid>
       <div class="uk-card-media-left uk-background-cover
-                  uk-width-2-5@l uk-width-1-4@m uk-width-1-3@s uk-width-1-3" id="track-image-{{ forloop.counter }}">
+                  uk-width-2-5@l uk-width-1-4@m uk-width-1-3@s uk-width-1-3"
+        {% if track.image %}
+        style="background-image: url({{ track.image_thumbnail.url }});">
+        {% else %}
+        style="background: #f0f0f0;">
+        {% endif %}
         <canvas width="300" height="300"></canvas>
       </div>
       <div class="uk-width-3-5@l uk-width-3-4@m uk-width-2-3@s uk-width-2-3">
@@ -39,7 +44,6 @@
 
       {# Player #}
       <div class="uk-width-3-5@l uk-width-3-4@m uk-width-2-3@s uk-width-2-3 dk-player-timeline">
-        <!--HTML5 audio-->
         <audio id="track-{{ forloop.counter }}"
           {% if not forloop.last %}
             data-next="track-{{ forloop.counter|add:'1' }}"
@@ -56,7 +60,6 @@
         <div class="dk-player-buffer"></div>
         <div class="dk-player-time"></div>
       </div>
-
     </div>
   </div>
 </div>

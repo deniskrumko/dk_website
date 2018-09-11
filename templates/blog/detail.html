@@ -86,7 +86,7 @@
 {% endblock %}
 
 {% block extrajs %}
-<script src="{% static 'js/plyr.js' %}" charset="utf-8"></script>
+<script src="{% static 'js/plyr/plyr.js' %}" charset="utf-8"></script>
 <script>
   {% if item.video.source == 'youtube' %}
   const player = new Plyr('#player', {});

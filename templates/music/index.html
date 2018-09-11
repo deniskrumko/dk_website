@@ -9,15 +9,6 @@
 
 {% block extrajs %}
   <script src="{% static 'js/music/index.js' %}" charset="utf-8"></script>
-  <script type="text/javascript">
-    jQuery(document).ready(function($) {
-      {% for track in tracks %}
-      {% if track.image %}
-      $('#track-image-{{ forloop.counter }}').css('background-image', 'url({{ track.image_thumbnail.url }})');
-      {% endif %}
-      {% endfor %}
-    });
-  </script>
 {% endblock %}
 
 {% block body %}
