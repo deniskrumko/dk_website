@@ -79,6 +79,7 @@ class File(BaseModel):
 
 
 class VideoFile(BaseModel):
+    """Model for storing video files."""
     VIDEO_SOURCE = 'src'
     VIDEO_YOUTUBE = 'youtube'
 

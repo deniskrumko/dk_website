@@ -20,11 +20,10 @@ DATE_FORMAT = '%Y-%m-%d'
 class DiaryIndexView(BaseView):
     template_name = 'diary/index.html'
     title = 'DK - Дневник'
-    menu = 'diary'
     description = 'Дневник'
+    menu = 'diary'
 
     def get(self, request):
-
         context = self.get_context_data()
 
         if not request.user.is_superuser:

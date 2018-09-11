@@ -5,20 +5,30 @@ from core.models import BaseModel
 
 
 class RedirectPage(BaseModel):
-    """Documentation"""
+    """Model to store redirect pages.
+
+    Redirect pages works as short URLs to site content.
+
+    Example:
+        source = "vnc"
+        destination = "/blog/17daysinvenice"
+
+    Will redirect from "dk.ru/go/vnc" to "dk.ru/blog/17daysinvenice".
+
+    """
     source = models.CharField(
         max_length=255,
         null=True,
         blank=False,
         db_index=True,
         unique=True,
-        verbose_name=_('Source'),
+        verbose_name=_('Short URL'),
     )
     destination = models.CharField(
         max_length=255,
         null=True,
         blank=False,
-        verbose_name=_('Destination'),
+        verbose_name=_('Full path'),
     )
 
     def __str__(self):

@@ -6,6 +6,7 @@ from . import forms, models
 
 @admin.register(models.File)
 class FileAdmin(admin.ModelAdmin):
+    """Admin class for ``File`` model."""
     list_display = (
         'name',
         'data',
@@ -22,6 +23,7 @@ class FileAdmin(admin.ModelAdmin):
 
 @admin.register(models.FileCategory)
 class FileCategoryAdmin(admin.ModelAdmin):
+    """Admin class for ``FileCategory`` model."""
     list_display = (
         'name',
     )
