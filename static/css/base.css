@@ -1,19 +1,25 @@
-/* Notifications */
-.uk-notification-message {
-  background-color: #222;
-  color: #f0f0f0;
-  font-size: 14px;
-}
-
-/* Main settings */
 body {
   height: 100%;
   background: #fefefe;
 }
 
-h2 {
-  position: relative;
+.dk-opensans {
+  font-family: 'Open Sans Condensed', Arial;
 }
+
+.dk-bold {
+  font-weight: bold;
+}
+
+.dk-center {
+  text-align: center;
+}
+
+#dk-close {
+  padding: 40px 60px;
+}
+
+/* Menu */
 
 .dk-menu-br {
   padding-bottom: 120px;
@@ -24,8 +30,6 @@ h2 {
     padding-bottom: 80px;
   }
 }
-
-/* Menu */
 
 .uk-navbar-nav>li {
   position: relative;
@@ -39,6 +43,7 @@ h2 {
 .uk-padding {
   z-index: 10;
 }
+
 .uk-navbar-nav>li.active::after {
   content: '';
   width: calc(100% - 30px);
@@ -63,9 +68,11 @@ h2 {
   color: #fff;
   font-weight: bold;
 }
+
 .dk-menu-link, .dk-menu-link:active, .dk-menu-link:focus {
   color: #eee;
 }
+
 .uk-modal-close-full {
   color: #fff;
   top: 10px;
@@ -76,29 +83,7 @@ h2 {
    outline: none;
 }
 
-.dk-like {
-  font-size: 18px !important;
-  font-weight: 100;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  padding-right: 18px;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-     -moz-user-select: none; /* Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-          user-select: none; /* Non-prefixed version, currently
-                                supported by Chrome and Opera */
-}
-.dk-like svg{
-  padding-left: 0px;
-  width: 17px;
-  padding-bottom: 3px;
-}
-.dk-like:hover {
-  color: #EE5270;
-  transform: scale(1.3);
-}
+/* Submenu */
 
 #dk-submenu {
   position: relative;

@@ -1,17 +1,9 @@
-/* Search */
-
-#dk-close {
-  padding: 40px 60px;
-}
-
-.dk-card-title {
-  margin-bottom: 0px;
-}
 .dk-card-date {
   font-size: 12px;
   font-weight: 100 !important;
   margin: 0px 0px 10px 0px;
 }
+
 .dk-hidden-login {
   width: 100%;
   padding: 20px 0px;

@@ -14,7 +14,7 @@
 {% include 'components/menu.html' %}
 
   <div class="uk-container uk-container-small ">
-    <h2>Новости</h2>
+    <h2 class="dk-opensans dk-bold">Новости</h2>
 
     {% if news_items %}
 
@@ -22,7 +22,7 @@
         {% for item in news_items %}
         <div>
             <div class="{% if forloop.counter == 1 %}uk-light uk-background-secondary{% else %}uk-dark uk-background-muted{% endif %} uk-padding">
-                <h3 class="dk-card-title">{{ item.title }}</h3>
+                <h3 class="dk-opensans dk-bold uk-margin-remove-bottom">{{ item.title }}</h3>
                 <p class="dk-card-date">{{ item.date }}</p>
                 {% autoescape off %}
                   {{ item.text }}
