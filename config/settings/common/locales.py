@@ -1,4 +1,5 @@
 import os
+
 from .paths import BASE_DIR
 
 LANGUAGE_CODE = 'ru-RU'

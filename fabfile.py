@@ -141,7 +141,7 @@ def resetdb():
 def isort():
     """Fix imports formatting."""
     print_msg('Running imports fix')
-    local('isort apps core -y -rc')
+    local('isort apps core config -y -rc')
 
 
 @task

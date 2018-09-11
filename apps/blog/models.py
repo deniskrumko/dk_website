@@ -93,6 +93,9 @@ class BlogEntry(LikedModel, BaseModel):
         verbose_name_plural = _('Blog entries')
         ordering = ('-date',)
 
+    def get_absolute_url(self):
+        return f'/blog/{self.slug}'
+
 
 class BlogRelation(SortableMixin, BaseModel):
     blog = models.ForeignKey(

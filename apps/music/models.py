@@ -134,6 +134,9 @@ class Track(LikedModel, SortableMixin, BaseModel):
 
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return f'/music/{self.slug}'
+
     @property
     def image_thumbnail_url(self):
         return self.image_thumbnail.url if self.image else None

@@ -1,7 +1,6 @@
-from .common import *  # noqa
-
 import dj_database_url
 
+from .common import *  # noqa
 
 SECRET_KEY = 'example'
 
