@@ -135,12 +135,16 @@ class Track(LikedModel, SortableMixin, BaseModel):
         super().save(*args, **kwargs)
 
     @property
-    def is_new(self):
-        return True
-
-    @property
     def image_thumbnail_url(self):
         return self.image_thumbnail.url if self.image else None
+
+    @property
+    def music_files(self):
+        return self.related_files.filter(file__category__name='Музыка')
+
+    @property
+    def other_files(self):
+        return self.related_files.exclude(file__category__name='Музыка')
 
 
 class TrackFile(SortableMixin, models.Model):

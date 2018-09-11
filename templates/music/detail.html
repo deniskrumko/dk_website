@@ -27,7 +27,7 @@
         <span class="dk-track-someinfo">{{ track.year }}</span>
       </div>
       <div class="dk-files">
-        {% for track_file in music_files %}
+        {% for track_file in track.music_files %}
           <div class="uk-padding uk-background-muted dk-file dk-music-file" data-track="track-{{ forloop.counter }}">
             <span id="play-track-{{ forloop.counter }}" uk-icon="icon: play; ratio: 1.4"></span>
             <span id="pause-track-{{ forloop.counter }}" uk-icon="icon: pause; ratio: 1.4" style="display: none;"></span>
@@ -49,7 +49,7 @@
             </div>
           </div>
         {% endfor %}
-        {% for track_file in other_files %}
+        {% for track_file in track.other_files %}
           <a class="uk-padding uk-background-muted dk-file" href="{{ track_file.file.data.url }}">
             <span uk-icon="icon: download; ratio: 1.4"></span>
             <span class="name">{{ track_file.file.name }}</span>

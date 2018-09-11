@@ -1,9 +1,12 @@
+from django.shortcuts import get_object_or_404
+
 from core.views import BaseView
 
 from .models import Track
 
 
 class TrackIndexView(BaseView):
+    """View to get index tracks page."""
     template_name = 'music/index.html'
     menu = 'music'
     title = 'DK - Музыка'
@@ -30,38 +33,27 @@ class TrackIndexView(BaseView):
                 '0000000000000000000',
                 '0011001000011011000',
                 '0010101100101010100',
-                '00111001101110111000'
+                '0011100110111011100'
             ]
         })
         return context
 
 
 class TrackDetailView(BaseView):
+    """View to get detail info about track."""
     template_name = 'music/detail.html'
     menu = 'music'
 
     def get_title(self, **kwargs):
-        name = kwargs.get('track_name')
-        return f'DK - {name}'
+        item = kwargs.get('item')
+        return f'DK - {item.name}' if item else ''
 
     def get_description(self, **kwargs):
-        return kwargs.get('track_description')
+        item = kwargs.get('item')
+        return item.short_description if item else ''
 
     def get(self, request, slug):
-
-        track = Track.objects.filter(slug=slug).first()
-        context = super().get_context_data(
-            track_name=track.name,
-            track_description=track.short_description
-        )
-        context.update({
-            'track': track,
-            'music_files': track.related_files.filter(
-                file__category__name='Музыка'
-            ),
-            'other_files': track.related_files.exclude(
-                file__category__name='Музыка'
-            )
-        })
-
+        item = get_object_or_404(Track, slug=slug)
+        context = super().get_context_data(item=item)
+        context.update({'track': item})
         return self.render_to_response(context)
