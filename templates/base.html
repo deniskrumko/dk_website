@@ -5,6 +5,7 @@
   <head>
 
     {# Google Analytics #}
+    {% if use_analytics %}
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125651837-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -13,6 +14,7 @@
 
       gtag('config', 'UA-125651837-1');
     </script>
+    {% endif %}
 
     {# META #}
     <meta charset="utf-8">

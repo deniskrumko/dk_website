@@ -8,6 +8,7 @@ class BaseView(TemplateView):
     menu = None
     title = None
     description = None
+    use_analytics = False
 
     def get_active_menu(self, **kwargs):
         assert self.menu, 'Add `menu` to {}'.format(self.__class__)
@@ -29,6 +30,7 @@ class BaseView(TemplateView):
         context_data['menu'] = get_menu()
         context_data['hidden_menu'] = get_hidden_menu()
         context_data['website_description'] = self.get_description(**kwargs)
+        context_data['use_analytics'] = self.use_analytics
         return context_data
 
     def get_query_param(self, request, parameter, default=None):

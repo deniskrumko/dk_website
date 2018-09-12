@@ -20,6 +20,7 @@ class IndexView(BaseView):
         'Сайт Дениса Крумко: видеоблоги о путешествиях, инструментальная '
         'музыка, ну и все. Смотрите, слушайте, узнавайте.'
     )
+    use_analytics = True
 
     def get_context_data(self):
         context = super().get_context_data()

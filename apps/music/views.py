@@ -17,6 +17,7 @@ class TrackIndexView(BaseView):
         'Проект создан для удобного хранения собственных музыкальных идей и '
         'не представляет из себя настоящую музыку.'
     )
+    use_analytics = True
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -43,6 +44,7 @@ class TrackDetailView(BaseView):
     """View to get detail info about track."""
     template_name = 'music/detail.html'
     menu = 'music'
+    use_analytics = True
 
     def get_title(self, **kwargs):
         item = kwargs.get('item')

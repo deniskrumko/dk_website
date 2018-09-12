@@ -14,6 +14,7 @@ class BlogIndexView(BaseView):
         'Блог Дениса Крумко: видео о путешествиях за границу и '
         'на различные музыкальные концерты. Много музыки и много видео :)'
     )
+    use_analytics = True
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -27,6 +28,7 @@ class BlogDetailView(BaseView):
     """View to get details about blog entry."""
     template_name = 'blog/detail.html'
     menu = 'blog'
+    use_analytics = True
 
     def get_title(self, **kwargs):
         item = kwargs.get('item')
@@ -50,6 +52,7 @@ class BlogDownloadView(BaseView):
     """View to get download blog entry video."""
     template_name = 'blog/download.html'
     menu = 'blog'
+    use_analytics = True
 
     def get_title(self, **kwargs):
         item = kwargs.get('item')
