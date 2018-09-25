@@ -11,7 +11,7 @@ from core.models import BaseModel, LikedModel
 
 
 class BlogEntry(LikedModel, BaseModel):
-    """Documentation"""
+    """Model to store one blog entry."""
     is_active = models.BooleanField(
         default=True,
         verbose_name=_('Is active'),
@@ -98,6 +98,12 @@ class BlogEntry(LikedModel, BaseModel):
 
 
 class BlogRelation(SortableMixin, BaseModel):
+    """Model to store blog relations.
+
+    Each blog can be related to another one or multiple blogs. All of relations
+    are displayed on each blog page in the bottom.
+
+    """
     blog = models.ForeignKey(
         'blog.BlogEntry',
         null=True,
@@ -128,7 +134,11 @@ class BlogRelation(SortableMixin, BaseModel):
 
 
 class BlogImage(SortableMixin, BaseModel):
-    """Documentation"""
+    """Model to store one image for blog.
+
+    Each blog can have related imaged (more often - trip photos).
+
+    """
     blog = models.ForeignKey(
         'blog.BlogEntry',
         null=True,
@@ -172,7 +182,3 @@ class BlogImage(SortableMixin, BaseModel):
         verbose_name = _('Image')
         verbose_name_plural = _('Images')
         ordering = ('order',)
-
-    @property
-    def image_thumbnail_url(self):
-        return self.image_thumbnail.url if self.image else None

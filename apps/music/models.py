@@ -135,18 +135,21 @@ class Track(LikedModel, SortableMixin, BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
+        """Method to get URL to specific track.
+
+        Used by sitemap engine.
+
+        """
         return f'/music/{self.slug}'
 
     @property
-    def image_thumbnail_url(self):
-        return self.image_thumbnail.url if self.image else None
-
-    @property
     def music_files(self):
+        """Property to get list of music files."""
         return self.related_files.filter(file__category__name='Музыка')
 
     @property
     def other_files(self):
+        """Property to get list of other (not music) files."""
         return self.related_files.exclude(file__category__name='Музыка')
 
 

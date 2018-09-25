@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-04 17:13+0300\n"
+"POT-Creation-Date: 2018-09-14 15:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,9 +107,6 @@ msgstr "Отношения"
 msgid "blog"
 msgstr "Блог"
 
-msgid "image"
-msgstr "Изображение"
-
 msgid "Image"
 msgstr "Изображение"
 
@@ -136,6 +133,21 @@ msgstr "Источники"
 
 msgid "YouTube"
 msgstr "YouTube"
+
+msgid "Original"
+msgstr "Оригинал"
+
+msgid "1080p"
+msgstr ""
+
+msgid "720p"
+msgstr ""
+
+msgid "480p"
+msgstr ""
+
+msgid "360p"
+msgstr ""
 
 msgid "Files"
 msgstr "Файлы"
@@ -194,8 +206,11 @@ msgstr "Видео файлы"
 msgid "Result"
 msgstr "Результат"
 
-msgid "Destination"
-msgstr "Назначение"
+msgid "Short URL"
+msgstr "Короткая ссылка (/go/<...>)"
+
+msgid "Full path"
+msgstr "Полный путь"
 
 msgid "Redirect page"
 msgstr "Страница редиректа"
