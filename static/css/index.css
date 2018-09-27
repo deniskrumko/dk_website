@@ -22,3 +22,11 @@
   padding: 5px 10px;
   text-transform: uppercase;
 }
+
+.dk-news-card {
+  transition: all 0.3s ease;
+}
+
+.dk-news-card:hover {
+  transform: translateY(-5px);
+}

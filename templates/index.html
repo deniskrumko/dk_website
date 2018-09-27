@@ -21,7 +21,7 @@
     <div class="uk-child-width-1-2@s" uk-grid>
         {% for item in news_items %}
         <div>
-            <div class="{% if forloop.counter == 1 %}uk-light uk-background-secondary{% else %}uk-dark uk-background-muted{% endif %} uk-padding">
+            <div class="{% if forloop.counter == 1 %}uk-light uk-background-secondary{% else %}uk-dark uk-background-muted{% endif %} uk-padding dk-news-card">
                 <h3 class="dk-opensans dk-bold uk-margin-remove-bottom">{{ item.title }}</h3>
                 <p class="dk-card-date">{{ item.date }}</p>
                 {% autoescape off %}
