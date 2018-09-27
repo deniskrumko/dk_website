@@ -16,6 +16,7 @@ urlpatterns = [
     path('blog/', include('apps.blog.urls', namespace='blog')),
     path('music/', include('apps.music.urls', namespace='music')),
     path('diary/', include('apps.diary.urls', namespace='diary')),
+    path('news/', include('apps.news.urls', namespace='news')),
 
     # Admin UI
     path('admin/', admin.site.urls),

@@ -20,7 +20,15 @@ class NewsAdmin(admin.ModelAdmin):
                 'link',
             )
         }),
+        (_('Tags'), {
+            'fields': (
+                'tags',
+            )
+        }),
     )
     list_display = (
         'title',
+    )
+    filter_horizontal = (
+        'tags',
     )

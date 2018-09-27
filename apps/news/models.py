@@ -1,10 +1,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from core.models import BaseModel, LikedModel, register_liked_model
+from core.models import BaseModel, LikedModel
 
 
-@register_liked_model(name='news')
 class News(LikedModel, BaseModel):
     title = models.CharField(
         max_length=255,
@@ -26,6 +25,12 @@ class News(LikedModel, BaseModel):
         null=True,
         blank=True,
         verbose_name=_('link'),
+    )
+    tags = models.ManyToManyField(
+        'main.Tag',
+        blank=True,
+        related_name='news',
+        verbose_name=_('tags'),
     )
 
     def __str__(self):

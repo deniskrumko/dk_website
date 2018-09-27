@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import TrackListView
+from .views import NewsView
 
-app_name = 'apps.music'
+app_name = 'apps.news'
 
 urlpatterns = [
-    path('', TrackListView.as_view(), name='list'),
+    path('', NewsView.as_view(), name='index'),
 ]

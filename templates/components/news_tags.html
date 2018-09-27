@@ -1,0 +1,9 @@
+{% if item.tags.exists %}
+<{{ htmltag }} {% if margin %}style="margin-top: 10px;"{% endif %}>
+  {% for tag in item.tags.all %}
+  <span class="dk-tag" style="background-color: {{ tag.background }}; color: {{ tag.color }};">
+    {{ tag.name }}
+  </span>
+  {% endfor %}
+</{{ htmltag }}>
+{% endif %}

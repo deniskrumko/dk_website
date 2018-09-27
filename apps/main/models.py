@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from libs.autoslug import AutoSlugField
 
 from core.models import BaseModel
 
@@ -37,3 +38,41 @@ class RedirectPage(BaseModel):
     class Meta:
         verbose_name = _('Redirect page')
         verbose_name_plural = _('Redirect pages')
+
+
+class Tag(BaseModel):
+    """Model for tags."""
+    name = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        unique=True,
+        verbose_name=_('Name')
+    )
+    slug = AutoSlugField(
+        populate_from='name',
+        unique_with=('name',),
+        verbose_name=_('Slug'),
+    )
+    color = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_('color'),
+        help_text=_('Text color: #FFF')
+    )
+    background = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_('background'),
+        help_text=_('Background color: #FFF')
+    )
+
+    def __str__(self):
+        return self.name or '-'
+
+    class Meta:
+        verbose_name = _('Tag')
+        verbose_name_plural = _('Tags')
+        ordering = ('name',)

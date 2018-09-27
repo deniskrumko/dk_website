@@ -24,7 +24,10 @@ class IndexView(BaseView):
 
     def get_context_data(self):
         context = super().get_context_data()
-        context.update({'news_items': News.objects.all()})
+        context.update({
+            'news_items': News.objects.all()[:4],
+            'total_news_count': News.objects.count()
+        })
         return context
 
 

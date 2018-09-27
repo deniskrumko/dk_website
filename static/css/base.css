@@ -12,7 +12,7 @@ body {
 }
 
 .dk-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 #dk-close {

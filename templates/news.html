@@ -14,14 +14,14 @@
 {% include 'components/menu.html' %}
 
   <div class="uk-container uk-container-small ">
-    <h2 class="dk-opensans dk-bold">Новости</h2>
+    <h2 class="dk-opensans dk-bold">Все новости</h2>
 
-    {% if news_items %}
+    {% if items %}
 
     <div class="uk-child-width-1-2@s" uk-grid>
-        {% for item in news_items %}
+        {% for item in items %}
         <div>
-            <div class="{% if forloop.counter == 1 %}uk-light uk-background-secondary{% else %}uk-dark uk-background-muted{% endif %} uk-padding">
+            <div class="uk-dark uk-background-muted uk-padding">
                 <h3 class="dk-opensans dk-bold uk-margin-remove-bottom">{{ item.title }}</h3>
                 <p class="dk-card-date">{{ item.date }}</p>
                 {% autoescape off %}
@@ -39,12 +39,10 @@
         {% endfor %}
     </div>
 
-    {# SHOW ALL NEWS #}
-    {% if total_news_count > 4 %}
+    {# Back to main page #}
     <div class="uk-margin-medium-top dk-center">
-      <a href="{% url 'news:index' %}" class="uk-button uk-button-default">Показать все новости</a>
+      <a href="{% url 'main:index' %}" class="uk-button uk-button-default">На главную</a>
     </div>
-    {% endif %}
 
     {% else %}
     <p>Новостей пока нет...</p>
