@@ -27,18 +27,13 @@
                 {% autoescape off %}
                   {{ item.text }}
                 {% endautoescape %}
+                {% include "components/news_tags.html" with htmltag="div" item=item margin=True%}
                 {% if item.link %}
                   <div class="uk-margin-top">
-                    <a class="uk-button uk-button-default uk-margin-right uk-visible@s" href="{{ item.link }}">
-                      Посмотреть
-                    </a>
-                    {% include "components/news_tags.html" with htmltag="span" item=item%}
-                    <a class="uk-button uk-button-default uk-margin-top uk-width-1-1 uk-hidden@s" href="{{ item.link }}">
+                    <a class="uk-button uk-button-default uk-width-1-1@s uk-width-auto@m uk-width-auto@l uk-width-auto@xl" href="{{ item.link }}">
                       Посмотреть
                     </a>
                   </div>
-                {% else %}
-                  {% include "components/news_tags.html" with htmltag="div" item=item margin=True %}
                 {% endif %}
             </div>
         </div>

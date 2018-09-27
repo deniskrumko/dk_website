@@ -15,10 +15,10 @@
 }
 
 .dk-tag {
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: default;
-  font-size: 10px;
-  margin-right: 4px;
+  font-size: 9px;
+  margin-right: 6px;
   padding: 5px 10px;
   text-transform: uppercase;
 }
