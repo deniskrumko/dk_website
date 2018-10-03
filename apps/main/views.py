@@ -78,13 +78,15 @@ class SearchView(BaseView):
 
         results = {}
 
+        MAX = 10
+
         if search_query:
             tracks = self.find_music_tracks(search_query)
 
             if tracks:
                 category = 'Музыка'
-                if tracks.count() > 10:
-                    category += f' (Показано 10 из {tracks.count()})'
+                if tracks.count() > MAX:
+                    category += f' (Показано {MAX} из {tracks.count()})'
 
                 results[category] = [
                     {
@@ -92,15 +94,15 @@ class SearchView(BaseView):
                         'preview': track.short_description[:100],
                         'url': f'/music/{track.slug}'
                     }
-                    for track in tracks[:10]
+                    for track in tracks[:MAX]
                 ]
 
             blogs = self.find_blog_entries(search_query)
 
             if blogs:
                 category = 'Блоги'
-                if blogs.count() > 10:
-                    category += f' (Показано 10 из {blogs.count()})'
+                if blogs.count() > MAX:
+                    category += f' (Показано {MAX} из {blogs.count()})'
 
                 results[category] = [
                     {
@@ -108,7 +110,7 @@ class SearchView(BaseView):
                         'preview': blog.subtitle,
                         'url': f'/blog/{blog.slug}'
                     }
-                    for blog in blogs[:10]
+                    for blog in blogs[:MAX]
                 ]
 
             if request.user.is_superuser:
@@ -116,16 +118,16 @@ class SearchView(BaseView):
 
                 if diaries:
                     category = 'Дневник'
-                    if diaries.count() > 10:
-                        category += f' (Показано 10 из {diaries.count()})'
+                    if diaries.count() > MAX:
+                        category += f' (Показано {MAX} из {diaries.count()})'
 
                     results[category] = [
                         {
                             'title': diary.date,
-                            'preview': diary.text[:100],
+                            'preview': diary.text[:200] + '...',
                             'url': f'/diary/{diary.date}'
                         }
-                        for diary in diaries[:10]
+                        for diary in diaries[:MAX]
                     ]
 
         context['search_query'] = search_query

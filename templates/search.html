@@ -28,17 +28,19 @@
 
     {% for category, items in categories.items %}
     <h2 class="dk-opensans dk-bold">{{ category }}</h2>
+      <div uk-grid>
       {% for item in items %}
-      <div class="uk-child-width-1-1@s" uk-grid>
-        <div>
+        <div class="uk-width-1-2@s">
           <div class="uk-dark uk-background-muted uk-padding dk-news-card">
             <h3 class="uk-card-title">{{ item.title }}</h3>
             <p>{{ item.preview }}</p>
-            <a href="{{ item.url }}" class="uk-button uk-button-default">Перейти</a>
+            <a href="{{ item.url }}" target="_blank" class="uk-button uk-button-default">
+              Перейти
+            </a>
           </div>
         </div>
-      </div>
       {% endfor %}
+      </div>
     {% endfor %}
   {% else %}
     {% if search_query %}
