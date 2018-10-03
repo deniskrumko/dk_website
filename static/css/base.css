@@ -17,6 +17,23 @@ body {
 
 #dk-close {
   padding: 40px 60px;
+  background: #fefefe;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+#dk-close:hover {
+  transform: scale(1.5);
+}
+
+@media screen and (max-width: 640px) {
+  #dk-close {
+    padding: 20px 20px;
+  }
+  .uk-search-input {
+    font-size: 16px !important;
+  }
+
 }
 
 /* Menu */
@@ -99,4 +116,12 @@ body {
 }
 #dk-submenu span a::before {
     border-bottom: 1px solid #666 !important;
+}
+
+.dk-search-mobile {
+  top: 10px;
+  left: 10px;
+  position: absolute;
+  color: #fff;
+  padding: 16px;
 }

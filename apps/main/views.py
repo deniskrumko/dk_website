@@ -3,9 +3,11 @@ from django.shortcuts import get_object_or_404
 from django.views import View
 
 from core.views import BaseView
-
+from django.db.models import Q
 from apps.news.models import News
-
+from apps.music.models import Track
+from apps.blog.models import BlogEntry
+from apps.diary.models import DiaryEntry
 from .models import RedirectPage
 
 __all__ = ('IndexView', 'RedirectView')
@@ -37,3 +39,96 @@ class RedirectView(View):
     def get(self, request, page=None):
         page = get_object_or_404(RedirectPage, source=page)
         return HttpResponseRedirect(page.destination)
+
+
+class SearchView(BaseView):
+    """View to search page."""
+    template_name = 'search.html'
+    title = 'DK - Поиск'
+    description = 'Поиск данных на сайте deniskrumko.ru'
+    menu = 'index'
+
+    def find_music_tracks(self, search_query):
+        return Track.objects.filter(
+            Q(name__icontains=search_query) |
+            Q(short_description__icontains=search_query) |
+            Q(full_description__icontains=search_query)
+        ).distinct()
+
+    def find_blog_entries(self, search_query):
+        return BlogEntry.objects.filter(
+            Q(title__icontains=search_query) |
+            Q(subtitle__icontains=search_query) |
+            Q(description__icontains=search_query) |
+            Q(text__icontains=search_query)
+        ).distinct()
+
+    def find_diary_entries(self, search_query):
+        return DiaryEntry.objects.filter(
+            text__icontains=search_query
+        ).distinct()
+
+    def get(self, request, search_query=None):
+        form_search_query = request.GET.get('search_query')
+
+        if not search_query and form_search_query:
+            return HttpResponseRedirect(f'/search/{form_search_query}')
+
+        context = self.get_context_data()
+
+        results = {}
+
+        if search_query:
+            tracks = self.find_music_tracks(search_query)
+
+            if tracks:
+                category = 'Музыка'
+                if tracks.count() > 10:
+                    category += f' (Показано 10 из {tracks.count()})'
+
+                results[category] = [
+                    {
+                        'title': track.name,
+                        'preview': track.short_description[:100],
+                        'url': f'/music/{track.slug}'
+                    }
+                    for track in tracks[:10]
+                ]
+
+            blogs = self.find_blog_entries(search_query)
+
+            if blogs:
+                category = 'Блоги'
+                if blogs.count() > 10:
+                    category += f' (Показано 10 из {blogs.count()})'
+
+                results[category] = [
+                    {
+                        'title': blog.title,
+                        'preview': blog.subtitle,
+                        'url': f'/blog/{blog.slug}'
+                    }
+                    for blog in blogs[:10]
+                ]
+
+            if request.user.is_superuser:
+                diaries = self.find_diary_entries(search_query)
+
+                if diaries:
+                    category = 'Дневник'
+                    if diaries.count() > 10:
+                        category += f' (Показано 10 из {diaries.count()})'
+
+                    results[category] = [
+                        {
+                            'title': diary.date,
+                            'preview': diary.text[:100],
+                            'url': f'/diary/{diary.date}'
+                        }
+                        for diary in diaries[:10]
+                    ]
+
+        context['search_query'] = search_query
+        context['categories'] = results
+
+        return self.render_to_response(context)
