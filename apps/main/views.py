@@ -140,4 +140,5 @@ class WakeMyDyno(View):
     """Simple empty response."""
 
     def get(self, request, page=None):
-        return HttpResponse()
+        content = "I'm worse at what I do best "
+        return HttpResponse(content, content_type='text/plain')
