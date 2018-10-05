@@ -1,4 +1,4 @@
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
 
@@ -10,7 +10,7 @@ from apps.blog.models import BlogEntry
 from apps.diary.models import DiaryEntry
 from .models import RedirectPage
 
-__all__ = ('IndexView', 'RedirectView')
+__all__ = ('IndexView', 'RedirectView', 'SearchView', 'WakeMyDyno')
 
 
 class IndexView(BaseView):
@@ -134,3 +134,10 @@ class SearchView(BaseView):
         context['categories'] = results
 
         return self.render_to_response(context)
+
+
+class WakeMyDyno(View):
+    """Simple empty response."""
+
+    def get(self, request, page=None):
+        return HttpResponse()
