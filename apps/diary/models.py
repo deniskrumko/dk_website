@@ -23,6 +23,16 @@ class DiaryEntry(BaseModel):
         blank=False,
         verbose_name=_('Text'),
     )
+    done = models.BooleanField(
+        default=False,
+        verbose_name=_('done'),
+    )
+    files = models.ManyToManyField(
+        'files.File',
+        blank=True,
+        related_name='diary_entries',
+        verbose_name=_('files'),
+    )
 
     class Meta:
         verbose_name = _('Diary entry')

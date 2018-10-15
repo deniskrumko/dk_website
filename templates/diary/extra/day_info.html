@@ -3,11 +3,26 @@
 <a class="uk-padding uk-background-muted dk-calendar-day" href="{% url 'diary:detail' date=entry_date %}">
 
   <h1>{{ info.day|date:'l' }}</h1>
-  <h2>{{ info.day|date:'d F' }}</h2>
+  <span>
+    <h2 style="display: inline-block;">{{ info.day|date:'d F' }}</h2>
+
+    {% if info.entry.done %}
+      <span uk-icon="icon: check; ratio: 0.7" style="color: #75B53C;"></span>
+    {% else %}
+      <span uk-icon="icon: close; ratio: 0.7" style="color: red;"></span>
+    {% endif %}
+
+    {% if info.entry.files.exists %}
+      <span uk-icon="icon: upload; ratio: 0.7"></span>
+    {% endif %}
+  </span>
+
   {% if info.entry %}
-    {% autoescape off %}
-      {{ info.entry.preview }}
-    {% endautoescape %}
+    <div class="">
+      {% autoescape off %}
+        {{ info.entry.preview }}
+      {% endautoescape %}
+    </div>
     <br>
   {% else %}
     <p class="dk-muted-text">Не заполнено</p>

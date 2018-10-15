@@ -28,6 +28,10 @@ textarea::placeholder {
   margin-top: 2px;
 }
 
+.dk-edit-mode, .dk-edit-mode label, .dk-edit-mode input {
+  cursor: pointer;
+}
+
 .dk-back {
   margin-left: 20px;
 }

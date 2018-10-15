@@ -37,7 +37,8 @@ class DiaryIndexView(BaseView):
             entry.date: True if entry.date else False
             for entry in DiaryEntry.objects.filter(
                 author=request.user,
-            ).exclude(text="")
+                done=True
+            )
         }
 
         days = []
@@ -129,12 +130,14 @@ class DiaryEditView(DiaryDetailView):
 
     def post(self, request, date):
         text = request.POST.get('text')
+        done = bool(request.POST.get('done'))
 
         DiaryEntry.objects.update_or_create(
             author=request.user,
             date=date,
             defaults={
-                'text': text
+                'text': text,
+                'done': done
             }
         )
 

@@ -76,6 +76,7 @@ class File(BaseModel):
     class Meta:
         verbose_name = _('File')
         verbose_name_plural = _('Files')
+        ordering = ('name',)
 
 
 class VideoFile(BaseModel):

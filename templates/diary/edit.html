@@ -25,7 +25,8 @@
     {% csrf_token %}
     <div class="dk-entry">
       <div class="dk-edit-mode uk-visible@s">
-        Режим редактирования
+        <label for="done-check">Запись закончена</label>
+        <input type="checkbox" name="done" id="done-check" {% if entry.done %}checked{% endif %}>
       </div>
       <div class="dk-entry-date noselect">
         {{ date_obj|date:'F d, Y (l)' }}

@@ -1,5 +1,6 @@
-from .models import News
 from core.views import BaseView
+
+from .models import News
 
 
 class NewsView(BaseView):

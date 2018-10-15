@@ -1,13 +1,15 @@
-from django.http.response import HttpResponseRedirect, HttpResponse
+from django.db.models import Q
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views import View
 
 from core.views import BaseView
-from django.db.models import Q
-from apps.news.models import News
-from apps.music.models import Track
+
 from apps.blog.models import BlogEntry
 from apps.diary.models import DiaryEntry
+from apps.music.models import Track
+from apps.news.models import News
+
 from .models import RedirectPage
 
 __all__ = ('IndexView', 'RedirectView', 'SearchView', 'WakeMyDyno')
@@ -137,7 +139,11 @@ class SearchView(BaseView):
 
 
 class WakeMyDyno(View):
-    """Simple empty response."""
+    """Text file response for staying always awake.
+
+    Source: http://wakemydyno.com/
+
+    """
 
     def get(self, request, page=None):
         content = "I'm worse at what I do best "
