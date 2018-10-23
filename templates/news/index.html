@@ -3,6 +3,14 @@
 
 {% block extrastyle %}
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <style media="screen">
+  {% with menu|get_color:active_menu as color %}
+  .dk-news-h2:hover {
+    text-decoration: none;
+    color: {{ color.accent }};
+  }
+  {% endwith %}
+  </style>
 {% endblock %}
 
 {% block extrajs %}
@@ -13,7 +21,7 @@
 {# Menu #}
 {% include 'components/menu.html' %}
 
-  <div class="uk-container uk-container-small ">
+  <div class="uk-container uk-container-small">
     <h2 class="dk-opensans dk-bold">Все новости</h2>
 
     {% if items %}
@@ -21,20 +29,24 @@
     <div class="uk-child-width-1-2@s" uk-grid>
         {% for item in items %}
         <div>
-            <div class="uk-dark uk-background-muted uk-padding dk-news-card">
-                <h3 class="dk-opensans dk-bold uk-margin-remove-bottom">{{ item.title }}</h3>
+            <div class="uk-dark dk-bg-light uk-padding dk-shadow dk-news-card">
+                <h3 class="dk-opensans dk-bold uk-margin-remove-bottom">
+                  <a class="dk-news-h2" href="{% url 'news:detail' item.slug %}">
+                  {{ item.title }}
+                  </a>
+                </h3>
                 <p class="dk-card-date">{{ item.date }}</p>
                 {% autoescape off %}
+                  {% if item.preview %}
+                  {{ item.preview }}
+                  {% else %}
                   {{ item.text }}
+                  {% endif %}
                 {% endautoescape %}
                 {% include "components/news_tags.html" with htmltag="div" item=item margin=True%}
-                {% if item.link %}
-                  <div class="uk-margin-top">
-                    <a class="uk-button uk-button-default uk-width-1-1@s uk-width-auto@m uk-width-auto@l uk-width-auto@xl" href="{{ item.link }}">
-                      Посмотреть
-                    </a>
-                  </div>
-                {% endif %}
+                <div class="uk-margin-small-top">
+                  <a href="{% url 'news:detail' item.slug %}" class="dk-a">Посмотреть</a>
+                </div>
             </div>
         </div>
         {% endfor %}

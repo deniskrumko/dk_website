@@ -3,6 +3,16 @@
 
 {% block extrastyle %}
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+  <style media="screen">
+  {% with menu|get_color:active_menu as color %}
+  .dk-news-h2:hover {
+    text-decoration: none;
+    color: {{ color.accent }};
+  }
+  {% endwith %}
+  </style>
+
 {% endblock %}
 
 {% block extrajs %}
@@ -13,7 +23,7 @@
 {# Menu #}
 {% include 'components/menu.html' %}
 
-  <div class="uk-container">
+  <div class="uk-container uk-container-small">
     <h2 class="dk-bold">Новости</h2>
 
     <div class="uk-grid" uk-grid>
@@ -23,14 +33,20 @@
             <li>
               <div uk-grid>
                 <div class="uk-width-2-5@xl uk-width-2-5@l uk-width-2-5@m uk-width-1-1@s">
+                  <a href="{% url 'news:detail' item.slug %}">
                   {% if item.image %}
                   <img src="{{ item.image.url }}" alt="">
                   {% else %}
                   <img src="{% static 'images/placeholder.jpg' %}" alt="">
                   {% endif %}
+                  </a>
                 </div>
                 <div class="uk-width-3-5@xl uk-width-3-5@l uk-width-3-5@m uk-width-1-1@s">
-                  <h2 class="uk-margin-small-bottom">{{ item.title }}</h2>
+                  <h2 class="uk-margin-small-bottom">
+                    <a class="dk-news-h2" href="{% url 'news:detail' item.slug %}">
+                      {{ item.title }}
+                    </a>
+                  </h2>
                   {% autoescape off %}
                     {% if item.preview %}
                       {{ item.preview }}
@@ -41,9 +57,10 @@
 
                   {% if item.link %}
                   <div class="uk-margin-small-top">
-                    <a href="{{ item.link }}">Посмотреть</a>
+                    <a class="dk-a" href="{{ item.link }}">Посмотреть</a>
                   </div>
                   {% endif %}
+
                 </div>
               </div>
             </li>
@@ -59,7 +76,7 @@
               {% endfor %}
           </ul>
         </div>
-        <a href="{% url 'news:index' %}" class="uk-visible@s">
+        <a href="{% url 'news:index' %}" class="dk-a uk-visible@s">
           Посмотреть все
         </a>
         <a href="{% url 'news:index' %}" class="uk-hidden@s uk-button uk-button-default uk-width-1-1">Посмотреть все новости</a>

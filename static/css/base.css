@@ -1,4 +1,4 @@
-body {
+html, body {
   height: 100%;
   background: #f9f9fb;
 }
@@ -7,12 +7,37 @@ body {
   background: #f7f7fa;
 }
 
+#dk-toggle-submenu {
+  background: #f9f9fb;
+}
+
+.dk-news-h2 {
+  color: #333;
+  transition: all 0.3s ease;
+}
+
 .dk-bold {
   font-weight: bold;
 }
 
 .dk-center {
   text-align: center !important;
+}
+
+.dk-bg-light {
+  background: #fdfdfd;
+}
+
+.dk-shadow {
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.dk-news-card {
+  transition: all 0.3s ease;
+}
+
+.dk-news-card:hover {
+  transform: translateY(-5px);
 }
 
 #dk-close {

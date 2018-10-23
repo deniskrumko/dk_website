@@ -1,5 +1,5 @@
   {# Desktop menu #}
-  <div class="uk-container uk-position-top uk-visible@s">
+  <div class="uk-container uk-container-small uk-position-top uk-visible@s">
     <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
@@ -11,9 +11,14 @@
                 </li>
                 {% endif %}
               {% endfor %}
-              <li>
-                <a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a>
-              </li>
+              <div>
+                <a class="uk-navbar-toggle" uk-search-icon href="#"></a>
+                <div class="uk-drop" uk-drop="mode: click; pos: right-center; offset: 0">
+                  <form class="uk-search uk-search-navbar uk-width-1-1" action="/search/" method="get" autocomplete="off">
+                      <input class="uk-search-input" type="search" placeholder="Что искать будем?" name="search_query" autofocus>
+                  </form>
+                </div>
+              </div>
             </ul>
         </div>
 
@@ -66,7 +71,7 @@
   <div id="modal-sections" class="uk-modal-full" uk-modal>
     <div class="uk-modal-dialog">
         <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
-        <a class="dk-search-mobile" uk-icon="icon: search; ratio: 1.2" href="#modal-full" uk-toggle></a>
+        <a class="dk-search-mobile" uk-icon="icon: search; ratio: 1.2" href="{% url 'main:search_index' %}"></a>
         <div class="uk-modal-body">
           <br>
             {# Main visible menu items #}

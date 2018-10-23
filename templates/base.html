@@ -42,7 +42,6 @@
     <link rel="icon" type="image/png" href="{% static 'favicon/favicon-128.png' %}" sizes="128x128" />
 
     {# CSS #}
-    <link rel="stylesheet" href="{% static 'fonts/Geometria/stylesheet.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/AvenirNextCyr/stylesheet.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/uikit/uikit.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
@@ -56,11 +55,10 @@
     .uk-navbar-nav>li>a:hover {color: {{ color.accent }};}
     .uk-modal-body, .uk-modal-close-full  {background: {{ color.accent }};}
     .dk-navbar-active {color: {{ color.accent }} !important;}
+    .dk-a {color: {{ color.accent }} !important;}
+    .dk-a:hover {color: {{ color.darker }} !important;}
     {% endwith %}
     </style>
-
-    {# Google Fonts #}
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Ubuntu:300,400&amp;subset=cyrillic" rel="stylesheet">
 
     {# EXTRA CSS #}
     {% block extrastyle %}{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from libs.autoslug import AutoSlugField
 
 from core.models import BaseModel, LikedModel
 from imagekit.models import ProcessedImageField
@@ -20,7 +21,13 @@ class News(LikedModel, BaseModel):
         max_length=255,
         null=True,
         blank=False,
+        unique=True,
         verbose_name=_('title'),
+    )
+    slug = AutoSlugField(
+        populate_from='title',
+        unique_with=('title',),
+        verbose_name=_('Slug'),
     )
     tab_title = models.CharField(
         max_length=48,
