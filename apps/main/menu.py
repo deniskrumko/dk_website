@@ -19,7 +19,7 @@ def get_menu():
         'blog': MenuItem(
             name='Блог',
             url=reverse('blog:index'),
-            color=MenuColor('#1BAEC1', '#666'),
+            color=MenuColor('#1BBC9C', '#666'),
             visible=True,
         ),
         'music': MenuItem(

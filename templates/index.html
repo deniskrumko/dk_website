@@ -13,44 +13,60 @@
 {# Menu #}
 {% include 'components/menu.html' %}
 
-  <div class="uk-container uk-container-small ">
-    <h2 class="dk-opensans dk-bold">Новости</h2>
+  <div class="uk-container">
+    <h2 class="dk-bold">Новости</h2>
 
-    {% if news_items %}
+    <div class="uk-grid" uk-grid>
+      <div class="uk-width-expand@xl uk-width-expand@l uk-width-expand@m uk-width-1-1@s">
+        <ul id="component-tab-right" class="uk-switcher">
+          {% for item in news_items %}
+            <li>
+              <div uk-grid>
+                <div class="uk-width-2-5@xl uk-width-2-5@l uk-width-2-5@m uk-width-1-1@s">
+                  {% if item.image %}
+                  <img src="{{ item.image.url }}" alt="">
+                  {% else %}
+                  <img src="{% static 'images/placeholder.jpg' %}" alt="">
+                  {% endif %}
+                </div>
+                <div class="uk-width-3-5@xl uk-width-3-5@l uk-width-3-5@m uk-width-1-1@s">
+                  <h2 class="uk-margin-small-bottom">{{ item.title }}</h2>
+                  {% autoescape off %}
+                    {% if item.preview %}
+                      {{ item.preview }}
+                    {% else %}
+                      {{ item.text }}
+                    {% endif %}
+                  {% endautoescape %}
 
-    <div class="uk-child-width-1-2@s" uk-grid>
-        {% for item in news_items %}
-        <div>
-            <div class="{% if forloop.counter == 1 %}uk-light uk-background-secondary{% else %}uk-dark uk-background-muted{% endif %} uk-padding dk-news-card">
-                <h3 class="dk-opensans dk-bold uk-margin-remove-bottom">{{ item.title }}</h3>
-                <p class="dk-card-date">{{ item.date }}</p>
-                {% autoescape off %}
-                  {{ item.text }}
-                {% endautoescape %}
-                {% include "components/news_tags.html" with htmltag="div" item=item margin=True%}
-                {% if item.link %}
-                  <div class="uk-margin-top">
-                    <a class="uk-button uk-button-default uk-width-1-1@s uk-width-auto@m uk-width-auto@l uk-width-auto@xl" href="{{ item.link }}">
-                      Посмотреть
-                    </a>
+                  {% if item.link %}
+                  <div class="uk-margin-small-top">
+                    <a href="{{ item.link }}">Посмотреть</a>
                   </div>
-                {% endif %}
-            </div>
+                  {% endif %}
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="uk-width-auto@xl uk-width-auto@l uk-width-auto@m uk-width-1-1@s">
+        <div class="uk-visible@s">
+          <p>Последние новости</p>
+          <ul class="uk-tab-right" uk-tab="connect: #component-tab-right; animation: uk-animation-fade">
+              {% for item in news_items %}
+              <li><a href="#">{{ item.tab_title }}</a></li>
+              {% endfor %}
+          </ul>
         </div>
-        {% endfor %}
+        <a href="{% url 'news:index' %}" class="uk-visible@s">
+          Посмотреть все
+        </a>
+        <a href="{% url 'news:index' %}" class="uk-hidden@s uk-button uk-button-default uk-width-1-1">Посмотреть все новости</a>
+      </div>
     </div>
 
-    {# SHOW ALL NEWS #}
-    {% if total_news_count > 4 %}
-    <div class="uk-margin-medium-top dk-center">
-      <a href="{% url 'news:index' %}" class="uk-button uk-button-default">Показать все новости</a>
-    </div>
-    {% endif %}
-
-    {% else %}
-    <p>Новостей пока нет...</p>
-    {% endif %}
-
+    <h2 class="dk-opensans dk-bold">Музыка</h2>
   </div>
 <br>
 <br>

@@ -25,6 +25,7 @@
 
 .dk-news-card {
   transition: all 0.3s ease;
+  background: #fefefe;
 }
 
 .dk-news-card:hover {

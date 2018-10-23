@@ -10,9 +10,16 @@ class NewsAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('Main'), {
             'fields': (
+                'image',
                 'title',
                 'text',
                 'date',
+            )
+        }),
+        (_('Index page'), {
+            'fields': (
+                'tab_title',
+                'preview',
             )
         }),
         (_('Optional'), {

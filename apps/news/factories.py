@@ -7,8 +7,11 @@ from . import models
 
 class NewsFactory(factory.DjangoModelFactory):
     """Factory for ``News`` model."""
-    title = factory.sequence(lambda x: f'Title {x}')
+    title = factory.Faker('word')
+    tab_title = factory.sequence(lambda x: f'Tab title is small {x}')
+    image = factory.django.ImageField(color='#777')
     text = factory.Faker('text')
+    preview = factory.Faker('text')
     date = timezone.now()
 
     class Meta:

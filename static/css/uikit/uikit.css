@@ -10,7 +10,7 @@
  */
 html {
   /* 1 */
-  font-family: "Ubuntu", Arial, sans-serif;
+  font-family: "Avenir Next Cyr", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
   font-weight: normal;
@@ -220,7 +220,7 @@ h5,
 h6,
 .uk-h6 {
   margin: 0 0 20px 0;
-  font-family: "Ubuntu", Arial, sans-serif;
+  font-family: "Avenir Next Cyr", Arial, sans-serif;
   font-weight: normal;
   color: #333;
   text-transform: none;
@@ -3837,7 +3837,7 @@ ul.uk-nav-sub {
   padding: 0 15px;
   /* 3 */
   font-size: 0.875rem;
-  font-family: "Ubuntu", Arial, sans-serif;
+  font-family: "Avenir Next Cyr", Arial, sans-serif;
   /* 4 */
   text-decoration: none;
 }
@@ -7803,7 +7803,7 @@ iframe.uk-cover {
  */
 .uk-logo {
   font-size: 1.5rem;
-  font-family: "Ubuntu", Arial, sans-serif;
+  font-family: "Avenir Next Cyr", Arial, sans-serif;
   color: #666;
   /* 1 */
   text-decoration: none;

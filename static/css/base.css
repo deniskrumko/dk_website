@@ -1,10 +1,10 @@
 body {
   height: 100%;
-  background: #fefefe;
+  background: #f9f9fb;
 }
 
-.dk-opensans {
-  font-family: 'Open Sans Condensed', Arial;
+.uk-modal-dialog {
+  background: #f7f7fa;
 }
 
 .dk-bold {
@@ -59,6 +59,10 @@ body {
 
 .uk-padding {
   z-index: 10;
+}
+
+.uk-navbar-nav>li.active {
+  font-weight: bold;
 }
 
 .uk-navbar-nav>li.active::after {
