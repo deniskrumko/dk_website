@@ -1,6 +1,13 @@
 html, body {
   height: 100%;
   background: #f9f9fb;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 .uk-modal-dialog {
@@ -153,4 +160,42 @@ html, body {
   position: absolute;
   color: #fff;
   padding: 16px;
+}
+
+.dk-footer img {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+.dk-footer {
+  border-top: 1px solid #EAECEF;
+  padding-top: 25px;
+  margin-bottom: 20px;
+}
+
+.dk-footer-part {
+  padding-top: 18px;
+}
+
+#footer-dk {
+  text-align: left;
+  font-size: 14px;
+}
+
+#footer-social {
+  text-align: right;
+}
+
+#footer-social a {
+  margin-left: 10px;
+}
+
+/* On small screen */
+@media screen and (max-width: 640px) {
+  #footer-dk {
+    font-size: 10px;
+  }
+  #footer-social a {
+    margin-left: 2px;
+  }
 }
