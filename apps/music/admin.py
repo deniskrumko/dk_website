@@ -63,6 +63,7 @@ class TrackAdmin(DjangoObjectActions, SortableAdmin):
             'fields': (
                 'image',
                 '_large_preview',
+                'color',
             )
         }),
         (_('Created/Modified'), {

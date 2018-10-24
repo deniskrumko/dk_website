@@ -67,6 +67,13 @@ class Track(LikedModel, SortableMixin, BaseModel):
         max_length=255,
         verbose_name=_('Name')
     )
+    color = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name=_('color'),
+        help_text=_('Accent color for index page')
+    )
     year = models.IntegerField(
         null=True,
         blank=True,
@@ -97,6 +104,12 @@ class Track(LikedModel, SortableMixin, BaseModel):
     image_thumbnail = ImageSpecField(
         source='image',
         processors=[ResizeToFit(400, 400)],
+        format='JPEG',
+        options={'quality': 80}
+    )
+    image_mini = ImageSpecField(
+        source='image',
+        processors=[ResizeToFit(150, 150)],
         format='JPEG',
         options={'quality': 80}
     )

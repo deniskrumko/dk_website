@@ -10,6 +10,9 @@
     text-decoration: none;
     color: {{ color.accent }};
   }
+  .dk-music-name:hover {
+    color: {{ color.accent }};
+  }
   {% endwith %}
   </style>
 
@@ -83,7 +86,42 @@
       </div>
     </div>
 
-    <h2 class="dk-opensans dk-bold">Музыка</h2>
+    <h2 class="dk-bold">Музыка</h2>
+
+    <div class="dk-music-index">
+      <div uk-grid class="uk-child-width-1-6@xl uk-child-width-1-6@l uk-child-width-1-6@m uk-child-width-1-3@s uk-visible@s">
+        {% for item in music_items %}
+          <div class="dk-music-track">
+            <a href="{% url 'music:index' %}#{{ item.slug }}" class="dk-music-bg" style="background-image: url({{ item.image_mini.url }}); background-color: {% if item.color %}{{ item.color }}{% else %}#666{% endif %};">
+              <img class="dk-music-img" src="{{ item.image_mini.url }}">
+              <img src="{% static 'images/play2.svg' %}" class="dk-music-play" alt="play">
+            </a>
+            <div class="uk-margin-small-top">
+              <a class="dk-music-name" href="{% url 'music:index' %}#{{ item.slug }}">{{ item.name }}</a>
+              <div class="dk-music-year">{{ item.year }}</div>
+            </div>
+          </div>
+
+        {% endfor %}
+      </div>
+
+      <div class="uk-hidden@s">
+        <dl class="uk-description-list uk-description-list-divider">
+          {% for item in music_items %}
+          <dt>
+            <a href="{% url 'music:index' %}#{{ item.slug }}">
+              <img class="dt-img" src="{{ item.image_mini.url }}" alt="">
+              {{ item.name }}
+            </a>
+          </dt>
+          <dd>{{ item.year }}</dd>
+          {% endfor %}
+        </dl>
+      </div>
+      <div class="uk-margin-top">
+        <a class="dk-a" href="{% url 'music:index' %}">Посмотреть все</a>
+      </div>
+    </div>
   </div>
 <br>
 <br>

@@ -22,3 +22,75 @@
   padding: 5px 10px;
   text-transform: uppercase;
 }
+
+.dk-music-bg {
+  width: 150px;
+  height: 150px;
+  background-blend-mode: soft-light;
+  display: block;
+  margin: auto;
+  position: relative;
+}
+
+.dk-music-img {
+  top: 0;
+  left: 0;
+  margin: 25px;
+  width: 100px;
+  height: 100px;
+  transition: all 0.3s ease;
+}
+
+.dk-music-play {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 60px;
+  color: #f0f0f0;
+  height: 30px;
+  width: 30px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.dk-music-track:hover .dk-music-play {
+  opacity: 1;
+}
+
+.dk-music-track:hover .dk-music-img {
+  margin: 20px;
+  width: 110px;
+  height: 110px;
+}
+
+.dk-music-name {
+  font-size: 13px;
+  width: 150px;
+  margin: auto;
+  text-align: center;
+  display: block;
+  color: #666666;
+}
+
+.dk-music-year {
+  font-size: 10px;
+  width: 150px;
+  margin: auto;
+  text-align: center;
+  color: #b5b1b1;
+}
+
+.dt-img {
+  height: 40px;
+  width: 40px;
+  float: left;
+  margin-right: 10px;
+}
+
+dd {
+  font-size: 12px;
+}
+
+dt a {
+  color: #333;
+}

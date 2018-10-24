@@ -20,6 +20,9 @@
           {# Track year #}
           <p class="uk-card-title dk-track-year">
             <span class="dk-track-someinfo">{{ track.year }}</span>
+            {% if request.user.is_superuser %}
+            <a href="{{ track.admin_changelink }}" target="_blank" class="uk-icon-link" uk-icon="icon: pencil; ratio: 0.9" style="position: relative; top: -1px;"></a>
+            {% endif %}
           </p>
 
           {# Track description #}
