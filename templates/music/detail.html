@@ -26,35 +26,7 @@
         <h1 class="dk-track-name">{{ track.name }}</h1>
         <span class="dk-track-someinfo">{{ track.year }}</span>
       </div>
-      <div class="dk-files">
-        {% for track_file in track.music_files %}
-          <div class="uk-padding uk-background-muted dk-file dk-music-file" data-track="track-{{ forloop.counter }}">
-            <span id="play-track-{{ forloop.counter }}" uk-icon="icon: play; ratio: 1.4"></span>
-            <span id="pause-track-{{ forloop.counter }}" uk-icon="icon: pause; ratio: 1.4" style="display: none;"></span>
-            <span class="name">{{ track_file.file.name }}</span>
-            <div class="dk-player-timeline">
-              <!--HTML5 audio-->
-              <audio id="track-{{ forloop.counter }}"
-                {% if not forloop.last %}
-                  data-next="track-{{ forloop.counter|add:'1' }}"
-                {% endif %}
-                {% if not forloop.first %}
-                  data-prev="track-{{ forloop.counter|add:'-1' }}"
-                {% endif %}
-                  data-name="{{ track_file.file.name }}"
-                preload="true">
-                <source src="{{ track.file.data.url }}">
-              </audio>
-              <div class="dk-player-position"></div>
-            </div>
-          </div>
-        {% endfor %}
-        {% for track_file in track.other_files %}
-          <a class="uk-padding uk-background-muted dk-file" href="{{ track_file.file.data.url }}">
-            <span uk-icon="icon: download; ratio: 1.4"></span>
-            <span class="name">{{ track_file.file.name }}</span>
-          </a>
-        {% endfor %}
+      <div class="uk-margin-top">
         <a href="{% url 'music:index' %}#{{ track.slug }}" id="back-button" class="uk-visible@s uk-button uk-button-text">Назад</a>
       </div>
     </div>
@@ -79,6 +51,35 @@
         {% autoescape off %}
           {{ track.full_description }}
         {% endautoescape %}
+      </div>
+
+      <div class="uk-margin-top uk-margin-bottom">
+        <h3 style="margin-bottom: 10px;">Файлы</h3>
+        <ul class="uk-nav uk-nav-default uk-margin-left">
+          <li class="uk-nav-header">Музыка</li>
+
+          {% for track_file in track.music_files %}
+          <li>
+            <span uk-icon="icon: play; ratio: 0.8" style="position: relative; top: -2px;"></span>
+            <a href="{{ track_file.file.data.url }}" style="display: inline-block;">
+              {{ track_file.file.name }}
+            </a>
+          </li>
+          {% endfor %}
+
+          <li class="uk-nav-divider"></li>
+
+          <li class="uk-nav-header">Остальное</li>
+
+          {% for track_file in track.other_files %}
+          <li>
+            <span uk-icon="icon: download; ratio: 0.8" style="position: relative; top: -2px;"></span>
+            <a href="{{ track_file.file.data.url }}" style="display: inline-block;">
+              {{ track_file.file.name }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
     </article>
 

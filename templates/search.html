@@ -31,7 +31,7 @@
       <div uk-grid>
       {% for item in items %}
         <div class="uk-width-1-2@s">
-          <div class="uk-dark uk-background-muted uk-padding dk-news-card">
+          <div class="uk-dark dk-bg-light uk-padding dk-news-card">
             <h3 class="uk-card-title">{{ item.title }}</h3>
             <p>{{ item.preview }}</p>
             <a href="{{ item.url }}" target="_blank" class="uk-button uk-button-default">
@@ -52,7 +52,8 @@
     <p>Это, конечно, не Google, но работает</p>
     {% endif %}
   {% endif %}
-
+  <br>
+  <br>
 </div>
 
 {% endblock %}

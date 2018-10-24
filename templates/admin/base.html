@@ -5,8 +5,7 @@
 <title>{% block title %}{% endblock %}</title>
 
 {# Google Fonts #}
-<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Ubuntu:300,400&amp;subset=cyrillic" rel="stylesheet">
-
+<link rel="stylesheet" href="{% static 'fonts/AvenirNextCyr/stylesheet.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static "css/uikit/uikit.min.css" %}">
 <script src="{% static 'js/uikit/uikit.min.js' %}"></script>
 <script src="{% static 'js/uikit/uikit-icons.js' %}"></script>
@@ -30,11 +29,11 @@
   data-admin-utc-offset="{% now "Z" %}">
 
     {# Desktop menu #}
-    <div class="uk-container  uk-position-top uk-visible@s">
+    <div class="uk-container uk-container-small uk-position-top uk-visible@s" style="margin-top: 10px;">
       <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar>
           <div class="uk-navbar-left">
               <ul class="uk-navbar-nav">
-                  <li class="active"><a href="/admin">Админка</a></li>
+                  <li class="active"><a href="/admin"><b>Админка</b></a></li>
                   <li class=""><a href="/">На сайт</a></li>
               </ul>
           </div>
@@ -62,31 +61,23 @@
 
     <div id="modal-sections" class="uk-flex-top" uk-modal>
       <div class="uk-modal-dialog uk-margin-auto-vertical">
-          <button class="uk-modal-close-default uk-close-large" type="button" uk-close></button>
-          <div class="uk-modal-body">
-            <br>
-                <a href="/admin" class="uk-button dk-menu-link uk-width-1-1 active">
-                  Админка
-                </a>
-                <a href="/" class="uk-button dk-menu-link uk-width-1-1 active">
-                  На сайт
-                </a>
-                <a href="/logout" class="uk-button dk-menu-link uk-width-1-1 active">
-                  Выйти
-                </a>
-              <br><br>
-          </div>
+        <button class="uk-modal-close-default uk-close-large" type="button" uk-close>
+        </button>
+        <div class="uk-modal-body">
+          <br>
+          <a href="/admin" class="uk-button dk-menu-link uk-width-1-1 active">
+            Админка
+          </a>
+          <a href="/" class="uk-button dk-menu-link uk-width-1-1 active">
+            На сайт
+          </a>
+          <a href="/logout" class="uk-button dk-menu-link uk-width-1-1 active">
+            Выйти
+          </a>
+          <br>
+          <br>
+        </div>
       </div>
-  </div>
-
-    {# Search modal window #}
-  <div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
-    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
-        <button class="uk-modal-close-full uk-close-large" type="button" id="dk-close" uk-close></button>
-        <form class="uk-search uk-search-large">
-            <input class="uk-search-input uk-text-center" type="search" placeholder="Что искать будем?" autofocus>
-        </form>
-    </div>
   </div>
 
   <div class="dk-menu-br"></div>

@@ -25,8 +25,8 @@
 body {
   height: 100%;
   color: #666;
-  background: #fefefe !important;
-  font-family: Ubuntu !important;
+  background: #f6f6f9;
+  font-family: 'Avenir Next Cyr' !important;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -170,6 +170,7 @@ h1 {
 
 .uk-navbar-nav>li.active::after {
   background-color: #491f77;
+  height: 4px;
 }
 
 .uk-navbar-nav>li.active>a {
@@ -189,8 +190,12 @@ a.section:link, a.section:visited {
 }
 
 .module h2, .module caption, .inline-group h2 {
-  background: #f3f3f3;
+  background: #f3f3f6;
   color: #491f77 !important;
+}
+
+.submit-row {
+  background: #F6F6F9 !important;
 }
 
 thead th {

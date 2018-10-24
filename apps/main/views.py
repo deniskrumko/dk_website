@@ -83,6 +83,9 @@ class SearchView(BaseView):
 
         MAX = 10
 
+        if search_query == 'ad':
+            return HttpResponseRedirect('/admin')
+
         if search_query:
             tracks = self.find_music_tracks(search_query)
 

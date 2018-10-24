@@ -33,9 +33,6 @@
   text-decoration: none !important;
   transform: scale(1.02);
 }
-.dk-blog-item:hover > .dk-blog-title {
-  border-bottom: 5px solid #29AEC0;
-}
 
 .dk-blog-header {
   font-size: 2rem;
