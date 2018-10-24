@@ -1,15 +1,20 @@
+.dk-entry-text {
+  font-size: 16px;
+  font-weight: 400;
+}
+
 textarea {
   width: 100%;
-  font-family: 'Ubuntu';
   font-size: 16px;
+  font-weight: 400 !important;
   resize: none;
   line-height: 24px;
   border: none;
   margin: 0px;
-  -webkit-font-smoothing: antialiased;
   padding: 0px;
-  background-color: #f7f7f7;
-  color: #666;
+  font-family: "Avenir Next Cyr",Arial,sans-serif !important;
+  background-color: #fefefe;
+  color: #777;
 }
 
 textarea::placeholder {

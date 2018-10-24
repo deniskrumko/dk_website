@@ -58,17 +58,30 @@
         <a href="{% url 'music:index' %}#{{ track.slug }}" id="back-button" class="uk-visible@s uk-button uk-button-text">Назад</a>
       </div>
     </div>
-    <div class="uk-width-2-3@l uk-width-2-3@m uk-width-3-5@s">
+
+    {# Right part #}
+    <article class="uk-width-2-3@l uk-width-2-3@m uk-width-3-5@s">
       <div class="uk-visible@s">
-        <h1 class="dk-track-name">{{ track.name }}</h1>
-        <span class="dk-track-someinfo">{{ track.year }}</span>
+        <h1 class="uk-article-title dk-bold">{{ track.name }}</h1>
+        <p class="uk-article-meta">
+          {{ track.year }}
+          {% if request.user.is_superuser %}
+          <a href="{{ track.admin_changelink }}" target="_blank" class="uk-icon-link" uk-icon="icon: pencil; ratio: 0.8" style="position: relative; top: -3px;"></a>
+          {% endif %}
+        </p>
       </div>
+      {% if track.lead %}
+      <p class="uk-text-lead">
+        <i>{% autoescape off %}{{ track.lead }}{% endautoescape %}</i>
+      </p>
+      {% endif %}
       <div class="dk-description">
         {% autoescape off %}
           {{ track.full_description }}
         {% endautoescape %}
       </div>
-    </div>
+    </article>
+
   </div>
 </div>
 

@@ -120,6 +120,12 @@ class Track(LikedModel, SortableMixin, BaseModel):
         verbose_name=_('Short description'),
         help_text=_('Displayed on "All tracks" page')
     )
+    lead = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Lead description'),
+        help_text=_('Displayed before full description')
+    )
     full_description = models.TextField(
         null=True,
         blank=True,

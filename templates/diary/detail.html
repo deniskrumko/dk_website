@@ -40,7 +40,9 @@
         {% endautoescape %}
       {% else %}
         <div class="dk-center-btn">
-          <a href="{% url 'diary:edit' date=date_str %}" class="uk-button uk-button-default ">Запись не найдена. Заполнить?</a>
+          <a href="{% url 'diary:edit' date=date_str %}" class="dk-a">
+            Запись не добавлена
+          </a>
         </div>
       {% endif %}
     </div>

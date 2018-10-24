@@ -17,6 +17,11 @@
 
 {% if tracks %}
 
+  <div class="uk-container uk-container-small">
+    <h2 class="dk-bold">Треки</h2>
+    <br>
+  </div>
+
   {% for track in tracks %}
     {% include 'components/track.html' with track=track %}
     {% if forloop.counter == 3 %}

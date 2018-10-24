@@ -3,11 +3,16 @@ p {
 }
 
 .dk-entry {
-  background-color: #f7f7f7;
+  background-color: #fefefe;
   padding: 30px 20px;
   z-index: 1000;
   position: relative;
   font-size: 16px;
+}
+
+.dk-entry-text {
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .dk-entry-date {

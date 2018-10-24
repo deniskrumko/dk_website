@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  background: #f9f9fb;
+  background: #f6f6f9;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -12,10 +12,6 @@ main {
 
 .uk-modal-dialog {
   background: #f7f7fa;
-}
-
-#dk-toggle-submenu {
-  background: #f9f9fb;
 }
 
 .dk-news-h2 {

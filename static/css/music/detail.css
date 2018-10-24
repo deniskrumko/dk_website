@@ -1,6 +1,4 @@
 .dk-track-name {
-  font-size: 60px;
-  font-family: 'Open Sans Condensed', Arial;
   font-weight: 700;
 }
 
@@ -129,7 +127,7 @@
 
 @media screen and (max-width: 450px) {
   .dk-track-name {
-    font-size: 38px;
+    font-size: 30px;
   }
 }
 

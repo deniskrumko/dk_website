@@ -56,6 +56,7 @@ class TrackAdmin(DjangoObjectActions, SortableAdmin):
         (_('Description'), {
             'fields': (
                 'short_description',
+                'lead',
                 'full_description',
             )
         }),

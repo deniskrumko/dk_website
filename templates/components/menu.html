@@ -1,5 +1,5 @@
   {# Desktop menu #}
-  <div class="uk-container uk-container-small uk-position-top uk-visible@s">
+  <div class="uk-container uk-container-small uk-position-top uk-visible@s" style="padding-top: 10px;">
     <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
@@ -70,16 +70,6 @@
               </a>
               {% endif %}
             {% endfor %}
-
-            {# Hidden menu items #}
-            {% if request.user.is_superuser %}
-              {% for item in hidden_menu  %}
-              <a href="{{ item.url }}" class="uk-button dk-menu-link uk-width-1-1">
-                {{ item.name }}
-              </a>
-              {% endfor %}
-            {% endif %}
-
         </div>
     </div>
 </div>

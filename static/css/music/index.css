@@ -68,9 +68,8 @@
 
 .dk-track-name {
   margin-bottom: 0px;
-  font-family: 'Open Sans Condensed', Arial;
   font-weight: 700;
-  font-size: 44px;
+  font-size: 40px;
 }
 
 .dk-track-year {
@@ -214,7 +213,7 @@
     font-size: 13px;
   }
   .dk-track-name {
-    font-size: 30px;
+    font-size: 28px;
     margin-bottom: 10px;
   }
 }
@@ -264,7 +263,7 @@
     display: none;
   }
   .dk-track-name {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 10px;
   }
   .dk-player-time {

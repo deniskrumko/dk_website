@@ -1,6 +1,6 @@
 {% with info.day|date:'Y-m-d' as entry_date %}
 
-<a class="uk-padding uk-background-muted dk-calendar-day" href="{% url 'diary:detail' date=entry_date %}">
+<a class="uk-padding dk-bg-light dk-calendar-day" href="{% url 'diary:detail' date=entry_date %}">
 
   <h1>{{ info.day|date:'l' }}</h1>
   <span>

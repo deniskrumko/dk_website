@@ -21,7 +21,7 @@ class DiaryIndexView(BaseView):
     template_name = 'diary/index.html'
     title = 'DK - Дневник'
     description = 'Дневник'
-    menu = 'diary'
+    menu = 'blog'
 
     def get(self, request):
         context = self.get_context_data()
@@ -82,7 +82,7 @@ class DiaryIndexView(BaseView):
 
 class DiaryCalendarView(LoginRequiredMixin, BaseView):
     template_name = 'diary/calendar.html'
-    menu = 'diary'
+    menu = 'blog'
     title = 'DK - Календарь'
     description = 'Дневник'
 
@@ -101,7 +101,7 @@ class DiaryCalendarView(LoginRequiredMixin, BaseView):
 
 class DiaryDetailView(LoginRequiredMixin, BaseView):
     template_name = 'diary/detail.html'
-    menu = 'diary'
+    menu = 'blog'
     description = 'Дневник'
 
     def get_title(self):
@@ -125,7 +125,7 @@ class DiaryDetailView(LoginRequiredMixin, BaseView):
 
 class DiaryEditView(DiaryDetailView):
     template_name = 'diary/edit.html'
-    menu = 'diary'
+    menu = 'blog'
     description = 'Дневник'
 
     def post(self, request, date):
