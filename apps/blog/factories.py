@@ -11,6 +11,7 @@ from . import models
 
 class BlogRelationFactory(factory.DjangoModelFactory):
     """Factory for ``BlogRelation`` model."""
+
     order = factory.sequence(lambda x: x)
 
     class Meta:
@@ -19,6 +20,7 @@ class BlogRelationFactory(factory.DjangoModelFactory):
 
 class BlogImageFactory(factory.DjangoModelFactory):
     """Factory for ``BlogImage`` model."""
+
     description = factory.sequence(lambda x: f'Title {x}')
     image = factory.django.ImageField(color='#333')
     order = factory.sequence(lambda x: x)
@@ -29,6 +31,7 @@ class BlogImageFactory(factory.DjangoModelFactory):
 
 class BlogEntryFactory(factory.DjangoModelFactory):
     """Factory for ``BlogEntry`` model."""
+
     date = factory.sequence(lambda x: timezone.now() + timedelta(days=x))
     description = factory.sequence(lambda x: f'SEO description {x}')
     show_gallery = True
@@ -40,6 +43,7 @@ class BlogEntryFactory(factory.DjangoModelFactory):
 
     @factory.post_generation
     def create_images(self, create, extracted, **kwargs):
+        """Create images for blog."""
         if not create:
             # Simple build, do nothing.
             return
@@ -50,6 +54,7 @@ class BlogEntryFactory(factory.DjangoModelFactory):
 
     @factory.post_generation
     def create_items(self, create, extracted, **kwargs):
+        """Create extra blogs for blog."""
         if not create:
             # Simple build, do nothing.
             return

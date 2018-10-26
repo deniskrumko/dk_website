@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import NewsView, NewsDetailView
+from .views import NewsDetailView, NewsView
 
 app_name = 'apps.news'
 

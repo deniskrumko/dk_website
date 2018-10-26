@@ -7,6 +7,6 @@ My own website for vlogs and music sharing.
 # About
 
 * Python 3.6.6
-* Django 2.0.5
+* Django 2.1.2
 * Amazon S3 as storage
 * Hosted by [Heroku](https://www.heroku.com/)

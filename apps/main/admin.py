@@ -7,6 +7,7 @@ from .models import RedirectPage, Tag
 @admin.register(RedirectPage)
 class RedirectPageAdmin(admin.ModelAdmin):
     """Admin class for ``RedirectPage`` model."""
+
     list_display = (
         'source',
         'destination',
@@ -25,6 +26,7 @@ class RedirectPageAdmin(admin.ModelAdmin):
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     """Admin class for ``Tag`` model."""
+
     fieldsets = (
         (_('Main'), {
             'fields': (

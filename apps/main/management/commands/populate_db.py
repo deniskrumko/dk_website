@@ -10,6 +10,7 @@ class Command(BaseCommand):
     """Command to populate database with test data."""
 
     def create_track(self, artist):
+        """Create ``Track``."""
         music_file = FileFactory(category=self.music_category)
         gtp_file = FileFactory(category=self.gtp_category)
         track = TrackFactory(artist=artist, file=music_file)
@@ -18,6 +19,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f'{artist.name} - {track.name}'))
 
     def handle(self, *args, **options):
+        """Execute command."""
         # Music
         # ====================================================================
 

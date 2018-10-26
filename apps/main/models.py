@@ -18,6 +18,7 @@ class RedirectPage(BaseModel):
     Will redirect from "dk.ru/go/vnc" to "dk.ru/blog/17daysinvenice".
 
     """
+
     source = models.CharField(
         max_length=255,
         null=True,
@@ -43,6 +44,7 @@ class RedirectPage(BaseModel):
 
 class Tag(BaseModel):
     """Model for tags."""
+
     name = models.CharField(
         max_length=255,
         null=True,

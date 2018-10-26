@@ -155,16 +155,9 @@ def pep8(path='apps core'):
 # ============================================================================
 
 @task
-def install_reqs():
+def requirements():
     """Install requirements."""
     print_msg('Installing requirements')
-    local('pip install -r requirements-local.txt')
-
-
-@task
-def install_base_reqs():
-    """Install base requirements."""
-    print_msg('Installing base requirements')
     local('pip install -r requirements.txt')
 
 

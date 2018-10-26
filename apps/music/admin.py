@@ -16,6 +16,7 @@ from .models import Artist, Track, TrackFile
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
     """Admin class for ``Artist`` model."""
+
     list_display = (
         'name',
     )
@@ -23,6 +24,7 @@ class ArtistAdmin(admin.ModelAdmin):
 
 class TrackFileInline(SortableTabularInline):
     """Inline class for ``TrackFile`` model."""
+
     model = TrackFile
     fields = (
         'file',
@@ -39,6 +41,7 @@ class TrackFileInline(SortableTabularInline):
 @admin.register(Track)
 class TrackAdmin(DjangoObjectActions, SortableAdmin):
     """Admin class for ``Track`` model."""
+
     sortable_change_list_with_sort_link_template = (
         'django_object_actions/change_list.html'
     )
@@ -113,7 +116,7 @@ class TrackAdmin(DjangoObjectActions, SortableAdmin):
 
     @takes_instance_or_queryset
     def reset_slug(self, request, qs):
-        """Action to reset `slug` field for ``Track`` objects."""
+        """Reset `slug` field for ``Track`` objects."""
         for obj in qs:
             obj.slug = None
             obj.save()
@@ -122,7 +125,7 @@ class TrackAdmin(DjangoObjectActions, SortableAdmin):
 
     @takes_instance_or_queryset
     def on_site(self, request, qs=None):
-        """Method to view tracks or one track on site."""
+        """View tracks or one track on site."""
         if qs.count() > 1:
             return HttpResponseRedirect('/music/')
 
@@ -132,7 +135,7 @@ class TrackAdmin(DjangoObjectActions, SortableAdmin):
     on_site.label = _('View on site')
 
     def sort_objects(self, request, queryset):
-        """Action to redirect to sorting page.
+        """Redirect to sorting page.
 
         This fix is needed to make ``DjangoObjectActions`` and
         ``SortableAdmin`` classes to work together with template from first
@@ -144,11 +147,13 @@ class TrackAdmin(DjangoObjectActions, SortableAdmin):
     sort_objects.label = _('Sort objects')
 
     def _small_preview(self, obj):
+        """Get small image preview."""
         return image_preview(obj, size='small', field='image_thumbnail')
 
     _small_preview.short_description = _('Image preview')
 
     def _large_preview(self, obj):
+        """Get large image preview."""
         return image_preview(obj, size='large', field='image_thumbnail')
 
     _large_preview.short_description = _('Image preview')

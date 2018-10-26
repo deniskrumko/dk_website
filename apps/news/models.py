@@ -1,13 +1,17 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from libs.autoslug import AutoSlugField
 
-from core.models import BaseModel, LikedModel
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 
+from libs.autoslug import AutoSlugField
+
+from core.models import BaseModel, LikedModel
+
 
 class News(LikedModel, BaseModel):
+    """Model for single News entry."""
+
     image = ProcessedImageField(
         null=True,
         blank=True,

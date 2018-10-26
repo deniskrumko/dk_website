@@ -8,12 +8,15 @@ from core.views import BaseView
 
 
 class LoginView(BaseView):
+    """View for users to log in."""
+
     template_name = 'login.html'
     menu = 'index'
     title = 'DK - Главная'
     description = 'DK - Войти'
 
     def post(self, request):
+        """Get username and password to authenticate user."""
         username = request.POST.get('username')
         password = request.POST.get('password')
 
@@ -30,15 +33,23 @@ class LoginView(BaseView):
 
 
 class SignUpView(TemplateView):
+    """View for user to sign up.
+
+    Currently this view is not used.
+
+    """
+
     template_name = 'signup.html'
     description = 'DK - Зарегистрироваться'
 
     def get_context_data(self, **kwargs):
+        """Get context data."""
         return {
             'title': 'Django Diary - Регистрация'
         }
 
     def post(self, request):
+        """Get all user params to create user."""
         username = request.POST.get('username')
         email = request.POST.get('email')
 
@@ -66,8 +77,11 @@ class SignUpView(TemplateView):
 
 
 class LogoutView(RedirectView):
+    """View for users to log out."""
+
     url = '/'
 
     def get(self, request):
+        """Log out current user."""
         logout(request)
         return super().get(request)

@@ -13,6 +13,7 @@ __all__ = (
 
 class ArtistFactory(factory.DjangoModelFactory):
     """Factory for ``Artist`` model."""
+
     name = factory.Faker('name')
     order = factory.sequence(lambda x: x)
 
@@ -22,6 +23,7 @@ class ArtistFactory(factory.DjangoModelFactory):
 
 class TrackFactory(factory.DjangoModelFactory):
     """Factory for ``Track`` model."""
+
     artist = factory.SubFactory(ArtistFactory)
     name = factory.Faker('name')
     short_description = factory.Faker('text')
@@ -36,6 +38,7 @@ class TrackFactory(factory.DjangoModelFactory):
 
 class TrackFileFactory(factory.DjangoModelFactory):
     """Factory for ``TrackFile`` model."""
+
     file = factory.SubFactory(FileFactory)
     track = factory.SubFactory(TrackFactory)
     order = factory.sequence(lambda x: x)

@@ -12,6 +12,7 @@ from core.models import BaseModel, LikedModel
 
 class BlogEntry(LikedModel, BaseModel):
     """Model to store one blog entry."""
+
     is_active = models.BooleanField(
         default=True,
         verbose_name=_('Is active'),
@@ -94,6 +95,7 @@ class BlogEntry(LikedModel, BaseModel):
         ordering = ('-date',)
 
     def get_absolute_url(self):
+        """Get absolute URL for sitemap."""
         return f'/blog/{self.slug}'
 
 
@@ -104,6 +106,7 @@ class BlogRelation(SortableMixin, BaseModel):
     are displayed on each blog page in the bottom.
 
     """
+
     blog = models.ForeignKey(
         'blog.BlogEntry',
         null=True,
@@ -139,6 +142,7 @@ class BlogImage(SortableMixin, BaseModel):
     Each blog can have related imaged (more often - trip photos).
 
     """
+
     blog = models.ForeignKey(
         'blog.BlogEntry',
         null=True,

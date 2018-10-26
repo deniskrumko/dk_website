@@ -1,1 +1,1 @@
-IMAGEKIT_DEFAULT_CACHEFILE_STRATEGY = 'core.imagekit.FixJustInTime'
+IMAGEKIT_DEFAULT_CACHEFILE_STRATEGY = 'core.imagekit.ImageKitCacheFile'

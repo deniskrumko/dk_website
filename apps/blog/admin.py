@@ -8,6 +8,7 @@ from .models import BlogEntry, BlogImage, BlogRelation
 
 class BlogImageInline(admin.TabularInline):
     """Inline class for ``BlogImage`` model."""
+
     fields = (
         'image',
         'description',
@@ -22,6 +23,7 @@ class BlogImageInline(admin.TabularInline):
 
 class BlogRelationInline(admin.TabularInline):
     """Inline class for ``BlogRelation`` model."""
+
     model = BlogRelation
     fk_name = 'blog'
     extra = 0
@@ -40,6 +42,7 @@ class BlogRelationInline(admin.TabularInline):
 @admin.register(BlogEntry)
 class BlogEntryAdmin(BaseModelAdmin):
     """Admin class for ``BlogEntry`` model."""
+
     url_index = 'blog:index'
     url_detail = 'blog:detail'
 

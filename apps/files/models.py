@@ -13,6 +13,7 @@ __all__ = (
 
 class FileCategory(SortableMixin, BaseModel):
     """Model for file category."""
+
     name = models.CharField(
         max_length=64,
         null=True,
@@ -44,6 +45,7 @@ class File(BaseModel):
         category (str): category of file.
 
     """
+
     name = models.CharField(
         null=True,
         blank=False,
@@ -67,7 +69,7 @@ class File(BaseModel):
 
     @property
     def url(self):
-        """Shortcut to get file URL."""
+        """Get file URL."""
         return self.data.url if self.data else None
 
     def __str__(self):
@@ -81,6 +83,7 @@ class File(BaseModel):
 
 class VideoFile(BaseModel):
     """Model for storing video files."""
+
     VIDEO_SOURCE = 'src'
     VIDEO_YOUTUBE = 'youtube'
 

@@ -13,6 +13,7 @@ from core.models import BaseModel, LikedModel, register_liked_model
 
 class Artist(SortableMixin, BaseModel):
     """Model for artist information."""
+
     name = models.CharField(
         max_length=64,
         null=True,
@@ -49,6 +50,7 @@ class Track(LikedModel, SortableMixin, BaseModel):
         description (str): track description.
 
     """
+
     is_active = models.BooleanField(
         default=True,
         verbose_name=_('Is active'),
@@ -148,13 +150,14 @@ class Track(LikedModel, SortableMixin, BaseModel):
         ordering = ('-order',)
 
     def save(self, *args, **kwargs):
+        """Save model instance."""
         if not self.id:
             self.order = 0
 
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        """Method to get URL to specific track.
+        """Get URL to specific track.
 
         Used by sitemap engine.
 
@@ -163,17 +166,18 @@ class Track(LikedModel, SortableMixin, BaseModel):
 
     @property
     def music_files(self):
-        """Property to get list of music files."""
+        """Get list of music files."""
         return self.related_files.filter(file__category__name='Музыка')
 
     @property
     def other_files(self):
-        """Property to get list of other (not music) files."""
+        """Get list of other (not music) files."""
         return self.related_files.exclude(file__category__name='Музыка')
 
 
 class TrackFile(SortableMixin, models.Model):
     """Intermediate model for M2M related between ``Track`` and ``File``."""
+
     track = models.ForeignKey(
         Track,
         null=True,

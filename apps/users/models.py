@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class User(AbstractUser):
+    """Model for app user."""
+
     email = models.EmailField(
         _('email address'),
         blank=False,
@@ -20,4 +22,5 @@ class User(AbstractUser):
 
     @property
     def full_name(self):
+        """Get full name of user."""
         return f'{self.first_name} {self.last_name}'

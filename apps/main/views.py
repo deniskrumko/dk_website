@@ -17,6 +17,7 @@ __all__ = ('IndexView', 'RedirectView', 'SearchView', 'WakeMyDyno')
 
 class IndexView(BaseView):
     """View for index page."""
+
     template_name = 'index.html'
     menu = 'index'
     title = 'Denis Krumko'
@@ -27,6 +28,7 @@ class IndexView(BaseView):
     use_analytics = True
 
     def get_context_data(self):
+        """Get context data."""
         context = super().get_context_data()
         context.update({
             'news_items': News.objects.all()[:3],
@@ -40,18 +42,21 @@ class RedirectView(View):
     """View to redirect pages."""
 
     def get(self, request, page=None):
+        """Make redirect to provided page."""
         page = get_object_or_404(RedirectPage, source=page)
         return HttpResponseRedirect(page.destination)
 
 
 class SearchView(BaseView):
     """View to search page."""
+
     template_name = 'search.html'
     title = 'DK - Поиск'
     description = 'Поиск данных на сайте deniskrumko.ru'
     menu = 'index'
 
     def find_music_tracks(self, search_query):
+        """Find music tracks."""
         return Track.objects.filter(
             Q(name__icontains=search_query) |
             Q(short_description__icontains=search_query) |
@@ -59,6 +64,7 @@ class SearchView(BaseView):
         ).distinct()
 
     def find_blog_entries(self, search_query):
+        """Find blog entries."""
         return BlogEntry.objects.filter(
             Q(title__icontains=search_query) |
             Q(subtitle__icontains=search_query) |
@@ -67,11 +73,13 @@ class SearchView(BaseView):
         ).distinct()
 
     def find_diary_entries(self, search_query):
+        """Find diary entries."""
         return DiaryEntry.objects.filter(
             text__icontains=search_query
         ).distinct()
 
     def get(self, request, search_query=None):
+        """Find object using search query."""
         form_search_query = request.GET.get('search_query')
 
         if not search_query and form_search_query:
@@ -150,5 +158,6 @@ class WakeMyDyno(View):
     """
 
     def get(self, request, page=None):
+        """Send simple text to wake Heroku dyno."""
         content = "I'm worse at what I do best "
         return HttpResponse(content, content_type='text/plain')

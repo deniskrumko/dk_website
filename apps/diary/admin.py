@@ -19,6 +19,7 @@ class DiaryEntryAdmin(
     admin.ModelAdmin
 ):
     """Admin class for ``DiaryEntry`` model."""
+
     resource_class = DiaryEntryResource
     fields = (
         'author',
@@ -48,7 +49,7 @@ class DiaryEntryAdmin(
 
     @takes_instance_or_queryset
     def on_site(self, request, qs=None):
-        """Method to view tracks or one track on site."""
+        """View tracks or one track on site."""
         if qs.count() > 1:
             return HttpResponseRedirect('/diary/')
 

@@ -7,6 +7,7 @@ from .models import Track
 
 class TrackIndexView(BaseView):
     """View to get index tracks page."""
+
     template_name = 'music/index.html'
     menu = 'music'
     title = 'DK - Музыка'
@@ -20,6 +21,7 @@ class TrackIndexView(BaseView):
     use_analytics = True
 
     def get_context_data(self):
+        """Get context data."""
         context = super().get_context_data()
         context.update({
             'tracks': Track.objects.all(),
@@ -42,19 +44,23 @@ class TrackIndexView(BaseView):
 
 class TrackDetailView(BaseView):
     """View to get detail info about track."""
+
     template_name = 'music/detail.html'
     menu = 'music'
     use_analytics = True
 
     def get_title(self, **kwargs):
+        """Get `title` field value."""
         item = kwargs.get('item')
         return f'DK - {item.name}' if item else ''
 
     def get_description(self, **kwargs):
+        """Get `description` field value."""
         item = kwargs.get('item')
         return item.short_description if item else ''
 
     def get(self, request, slug):
+        """Get details for single track."""
         item = get_object_or_404(Track, slug=slug)
         context = super().get_context_data(item=item)
         context.update({'track': item})

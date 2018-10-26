@@ -5,6 +5,8 @@ from core.models import BaseModel
 
 
 class DiaryEntry(BaseModel):
+    """Model for single diary entry."""
+
     author = models.ForeignKey(
         'users.User',
         null=True,
@@ -41,7 +43,7 @@ class DiaryEntry(BaseModel):
 
     @property
     def html(self):
-        """Property to represent entry text as HTML."""
+        """Represent entry text as HTML."""
         text = self.text.replace('\r\n', '\n')
         return ''.join([
             f'<p>{line}</p>' if line else '<p>&nbsp;<p>'
@@ -50,7 +52,7 @@ class DiaryEntry(BaseModel):
 
     @property
     def preview(self):
-        """Property to represent entry text as HTML (only preview)."""
+        """Represent entry text as HTML (only preview)."""
         preview = ''
         for part in self.text.split('.'):
             if len(preview) > 120:

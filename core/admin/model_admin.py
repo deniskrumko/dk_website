@@ -10,10 +10,14 @@ from django_object_actions import (
 
 
 class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
+    """Base model admin class."""
+
+    url_index = None
+    url_detail = None
 
     @takes_instance_or_queryset
     def on_site(self, request, qs=None):
-        """Method to view tracks or one track on site."""
+        """View item on site."""
         if qs.count() > 1:
             return HttpResponseRedirect(reverse(self.url_index))
 
@@ -24,7 +28,7 @@ class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
 
     @takes_instance_or_queryset
     def reset_slug(self, request, qs):
-        """Action to reset `slug` field for ``Track`` objects."""
+        """Reset `slug` field for object or queryset."""
         for obj in qs:
             obj.slug = None
             obj.save()

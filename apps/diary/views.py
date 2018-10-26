@@ -18,12 +18,15 @@ DATE_FORMAT = '%Y-%m-%d'
 
 
 class DiaryIndexView(BaseView):
+    """View to get index diary page."""
+
     template_name = 'diary/index.html'
     title = 'DK - Дневник'
     description = 'Дневник'
     menu = 'blog'
 
     def get(self, request):
+        """Get index page."""
         context = self.get_context_data()
 
         if not request.user.is_superuser:
@@ -81,12 +84,15 @@ class DiaryIndexView(BaseView):
 
 
 class DiaryCalendarView(LoginRequiredMixin, BaseView):
+    """View for calendar page on diary."""
+
     template_name = 'diary/calendar.html'
     menu = 'blog'
     title = 'DK - Календарь'
     description = 'Дневник'
 
     def get(self, request):
+        """Get calendar page."""
         context = self.get_context_data()
         current = timezone.now()
         context['months'] = [
@@ -100,17 +106,22 @@ class DiaryCalendarView(LoginRequiredMixin, BaseView):
 
 
 class DiaryDetailView(LoginRequiredMixin, BaseView):
+    """Detail view for diary entries."""
+
     template_name = 'diary/detail.html'
     menu = 'blog'
     description = 'Дневник'
 
     def get_title(self):
+        """Get `title` field value."""
         return f'DK - {self.date_obj.strftime("%d.%m.%Y")}'
 
     def get_entry(self, date, author):
+        """Get `entry` field value."""
         return DiaryEntry.objects.filter(author=author, date=date).first()
 
     def get(self, request, date):
+        """Get single entry."""
         self.date_obj = timezone.datetime.strptime(date, DATE_FORMAT)
         self.entry = self.get_entry(date=date, author=request.user)
 
@@ -124,11 +135,14 @@ class DiaryDetailView(LoginRequiredMixin, BaseView):
 
 
 class DiaryEditView(DiaryDetailView):
+    """View to edit single diary entry."""
+
     template_name = 'diary/edit.html'
     menu = 'blog'
     description = 'Дневник'
 
     def post(self, request, date):
+        """Get updated entry."""
         text = request.POST.get('text')
         done = bool(request.POST.get('done'))
 

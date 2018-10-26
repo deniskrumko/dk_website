@@ -2,6 +2,7 @@ from django.utils.safestring import mark_safe
 
 
 def image_preview(obj, size, field='image',):
+    """Get image preview."""
     assert size in ('small', 'large')
 
     image_field = getattr(obj, field)

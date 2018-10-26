@@ -13,7 +13,7 @@ class BaseModel(TimeStampedModel):
 
     @classmethod
     def default_upload(cls, instance, filename):
-        """Default file upload handler.
+        """Get default file upload handler.
 
         Saves file with original name and extension.
 

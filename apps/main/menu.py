@@ -8,7 +8,7 @@ MenuColor = namedtuple('MenuColor', ['accent', 'darker', 'base'])
 
 
 def get_menu():
-    """Method to get dictionary with menu items."""
+    """Get dictionary with menu items."""
     return {
         'index': MenuItem(
             name='Главная',
@@ -44,7 +44,7 @@ def get_menu():
 
 
 def get_hidden_menu():
-    """Method to get tuple of hidden menu items (for superuser only)."""
+    """Get tuple of hidden menu items (for superuser only)."""
     return (
         HiddenMenuItem(
             name='Дневник',

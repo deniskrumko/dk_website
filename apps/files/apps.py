@@ -4,5 +4,6 @@ from django.utils.translation import ugettext_lazy as _
 
 class FilesConfig(AppConfig):
     """Configuration for ``Files`` app."""
+
     name = 'apps.files'
     verbose_name = _('Files')

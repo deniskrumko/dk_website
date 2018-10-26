@@ -1,17 +1,19 @@
 from django.contrib import admin
 from django.http.response import HttpResponseRedirect
-
 from django.utils.translation import ugettext_lazy as _
+
 from django_object_actions import (
     DjangoObjectActions,
     takes_instance_or_queryset,
 )
+
 from .models import News
 
 
 @admin.register(News)
 class NewsAdmin(DjangoObjectActions, admin.ModelAdmin):
     """Admin class for ``News`` model."""
+
     fieldsets = (
         (_('Main'), {
             'fields': (
@@ -62,7 +64,7 @@ class NewsAdmin(DjangoObjectActions, admin.ModelAdmin):
 
     @takes_instance_or_queryset
     def reset_slug(self, request, qs):
-        """Action to reset `slug` field for ``Track`` objects."""
+        """Reset `slug` field for ``Track`` objects."""
         for obj in qs:
             obj.slug = None
             obj.save()
@@ -71,7 +73,7 @@ class NewsAdmin(DjangoObjectActions, admin.ModelAdmin):
 
     @takes_instance_or_queryset
     def on_site(self, request, qs=None):
-        """Method to view tracks or one track on site."""
+        """View tracks or one track on site."""
         if qs.count() > 1:
             return HttpResponseRedirect('/news/')
 
