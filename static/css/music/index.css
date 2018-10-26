@@ -158,7 +158,7 @@
 }
 
 .dk-player-time {
-  font-family: 'Ubuntu';
+  font-family: 'Avenir Next Cyr' !important;
   transition: all 0.5s ease;
   -webkit-font-smoothing: initial;
   font-weight: 400;
