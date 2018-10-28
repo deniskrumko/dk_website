@@ -1,25 +1,17 @@
 from django.contrib import admin
-from django.http.response import HttpResponseRedirect
-from django.utils.translation import ugettext_lazy as _
 
-from django_object_actions import (
-    DjangoObjectActions,
-    takes_instance_or_queryset,
-)
 from import_export.admin import ImportExportMixin
-
 from .import_export.resources import DiaryEntryResource
 from .models import DiaryEntry
+from core.admin import BaseModelAdmin
 
 
 @admin.register(DiaryEntry)
-class DiaryEntryAdmin(
-    DjangoObjectActions,
-    ImportExportMixin,
-    admin.ModelAdmin
-):
+class DiaryEntryAdmin(ImportExportMixin, BaseModelAdmin):
     """Admin class for ``DiaryEntry`` model."""
-
+    # change_list_template = 'admin/import_export/change_list_import_export.html'
+    # change_list_template = 'django_object_actions/change_list.html'
+    change_list_template = 'admin/import_export_and_actions.html'
     resource_class = DiaryEntryResource
     fields = (
         'author',
@@ -46,14 +38,3 @@ class DiaryEntryAdmin(
     changelist_actions = (
         'on_site',
     )
-
-    @takes_instance_or_queryset
-    def on_site(self, request, qs=None):
-        """View tracks or one track on site."""
-        if qs.count() > 1:
-            return HttpResponseRedirect('/diary/')
-
-        entry = qs.first()
-        return HttpResponseRedirect(f'/diary/{entry.date}/')
-
-    on_site.label = _('View on site')

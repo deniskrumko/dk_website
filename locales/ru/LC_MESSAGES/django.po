@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-14 15:47+0300\n"
+"POT-Creation-Date: 2018-10-26 14:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,11 +116,20 @@ msgstr "Описание"
 msgid "Images"
 msgstr "Изображения"
 
+msgid "View on site"
+msgstr "Посмотреть на сайте"
+
 msgid "Diary"
 msgstr "Дневник"
 
 msgid "Author"
 msgstr "Автор"
+
+msgid "done"
+msgstr ""
+
+msgid "files"
+msgstr "Файлы"
 
 msgid "Diary entry"
 msgstr "Запись дневника"
@@ -218,11 +227,23 @@ msgstr "Страница редиректа"
 msgid "Redirect pages"
 msgstr "Страницы редиректа"
 
-msgid "Reset slug"
-msgstr "Сбросить слаг"
+msgid "color"
+msgstr "Цвет"
 
-msgid "View on site"
-msgstr "Посмотреть на сайте"
+msgid "Text color: #FFF"
+msgstr "Цвет текста: #FFF"
+
+msgid "background"
+msgstr "Фон"
+
+msgid "Background color: #FFF"
+msgstr "Цвет фона: #FFF"
+
+msgid "Tag"
+msgstr "Тэг"
+
+msgid "Tags"
+msgstr "Тэги"
 
 msgid "Sort objects"
 msgstr "Сортировать объекты"
@@ -239,6 +260,9 @@ msgstr "Исполнитель"
 msgid "Artists"
 msgstr "Исполнители"
 
+msgid "Accent color for index page"
+msgstr "Основной цвет на главной странице"
+
 msgid "Year"
 msgstr "Год"
 
@@ -247,6 +271,12 @@ msgstr "Короткое описание"
 
 msgid "Displayed on \"All tracks\" page"
 msgstr "Отображается на странице \"Все треки\""
+
+msgid "Lead description"
+msgstr "Предописание"
+
+msgid "Displayed before full description"
+msgstr "Отображается перед полный описанием"
 
 msgid "Full description"
 msgstr "Полное описание"
@@ -266,6 +296,9 @@ msgstr "Файл трека"
 msgid "Track files"
 msgstr "Файлы треков"
 
+msgid "Index page"
+msgstr "Главная страница"
+
 msgid "Optional"
 msgstr "Опционально"
 
@@ -275,6 +308,18 @@ msgstr "Новости"
 msgid "title"
 msgstr "Заголовок"
 
+msgid "tab title"
+msgstr "Заголовок вкладки"
+
+msgid "Tab title is displayed on index page"
+msgstr "Заголовок вкладки отображается на главной странице"
+
+msgid "preview"
+msgstr "Превью"
+
+msgid "Preview is displayed on index page"
+msgstr "Превью отображается на главной"
+
 msgid "text"
 msgstr "Текст"
 
@@ -283,6 +328,9 @@ msgstr "Дата"
 
 msgid "link"
 msgstr "Ссылка"
+
+msgid "tags"
+msgstr "Тэги"
 
 msgid "News item"
 msgstr "Новость"
@@ -304,6 +352,9 @@ msgstr "Denis Krumko"
 
 msgid "DK"
 msgstr "DK"
+
+msgid "Reset slug"
+msgstr "Сбросить слаг"
 
 msgid "likes counter"
 msgstr "Счетчик лайгов"

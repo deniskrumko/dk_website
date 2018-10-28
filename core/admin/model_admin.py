@@ -19,10 +19,10 @@ class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
     def on_site(self, request, qs=None):
         """View item on site."""
         if qs.count() > 1:
-            return HttpResponseRedirect(reverse(self.url_index))
+            return self.redirect(reverse(self.url_index))
 
         obj = qs.first()
-        return HttpResponseRedirect(reverse(self.url_detail, args=(obj.slug,)))
+        return self.redirect(reverse(self.url_detail, args=(obj.slug,)))
 
     on_site.label = _('View on site')
 
@@ -34,3 +34,6 @@ class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
             obj.save()
 
     reset_slug.label = _('Reset slug')
+
+    def redirect(self, url):
+        return HttpResponseRedirect(url)

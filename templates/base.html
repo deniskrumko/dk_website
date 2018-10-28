@@ -58,6 +58,13 @@
     .dk-a {color: {{ color.accent }} !important;}
     .dk-a:hover {color: {{ color.darker }} !important;}
     {% endwith %}
+    /* Halloween */
+    html {
+      background-image: url("{% static 'images/halloween.jpg' %}");
+      background-size: 150px;
+      background-repeat: repeat;
+      z-index: 100;
+    }
     </style>
 
     {# EXTRA CSS #}
@@ -68,7 +75,11 @@
   <body>
     <main>
       {% block body %}{% endblock %}
+      <img src="{% static 'images/bottom.png' %}" id="hb">
     </main>
+    {% comment %}
+
+
     <footer>
       <div class="uk-container uk-container-small dk-footer">
         <div uk-grid>
@@ -76,7 +87,9 @@
             © 2018 Денис Крумко
           </div>
           <div class="uk-width-1-3 dk-center">
-            <img src="{% static 'images/logo.png' %}" alt="">
+            {# Halloween #}
+            {# <img src="{% static 'images/logo.png' %}" alt=""> #}
+            <img src="{% static 'images/logo_halloween.png' %}" alt="">
           </div>
           <div class="uk-width-1-3 dk-footer-part" id="footer-social">
             <a href="https://www.instagram.com/deniskrumko/" class="uk-icon-link" uk-icon="instagram" target="_blank"></a>
@@ -86,6 +99,8 @@
         </div>
       </div>
     </footer>
+
+    {% endcomment %}
   </body>
 
   {# JS #}

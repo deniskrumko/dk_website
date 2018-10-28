@@ -56,7 +56,9 @@
       <div class="uk-margin-top uk-margin-bottom">
         <h3 style="margin-bottom: 10px;">Файлы</h3>
         <ul class="uk-nav uk-nav-default uk-margin-left">
+          {% if track.music_files.exists %}
           <li class="uk-nav-header">Музыка</li>
+          {% endif %}
 
           {% for track_file in track.music_files %}
           <li>
@@ -67,9 +69,10 @@
           </li>
           {% endfor %}
 
+          {% if track.other_files.exists %}
           <li class="uk-nav-divider"></li>
-
           <li class="uk-nav-header">Остальное</li>
+          {% endif %}
 
           {% for track_file in track.other_files %}
           <li>

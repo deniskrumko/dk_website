@@ -3,12 +3,8 @@ from django.http.response import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 
 from adminsortable.admin import SortableAdmin, SortableTabularInline
-from django_object_actions import (
-    DjangoObjectActions,
-    takes_instance_or_queryset,
-)
 
-from core.admin import image_preview
+from core.admin import BaseModelAdmin, image_preview
 
 from .models import Artist, Track, TrackFile
 
@@ -39,8 +35,11 @@ class TrackFileInline(SortableTabularInline):
 
 
 @admin.register(Track)
-class TrackAdmin(DjangoObjectActions, SortableAdmin):
+class TrackAdmin(BaseModelAdmin, SortableAdmin):
     """Admin class for ``Track`` model."""
+
+    url_index = 'music:index'
+    url_detail = 'music:detail'
 
     sortable_change_list_with_sort_link_template = (
         'django_object_actions/change_list.html'
@@ -113,26 +112,6 @@ class TrackAdmin(DjangoObjectActions, SortableAdmin):
         'artist',
         '-order',
     )
-
-    @takes_instance_or_queryset
-    def reset_slug(self, request, qs):
-        """Reset `slug` field for ``Track`` objects."""
-        for obj in qs:
-            obj.slug = None
-            obj.save()
-
-    reset_slug.label = _('Reset slug')
-
-    @takes_instance_or_queryset
-    def on_site(self, request, qs=None):
-        """View tracks or one track on site."""
-        if qs.count() > 1:
-            return HttpResponseRedirect('/music/')
-
-        track = qs.first()
-        return HttpResponseRedirect(f'/music/{track.slug}/')
-
-    on_site.label = _('View on site')
 
     def sort_objects(self, request, queryset):
         """Redirect to sorting page.

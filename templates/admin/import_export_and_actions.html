@@ -1,0 +1,27 @@
+{% extends "admin/import_export/change_list.html" %}
+{% load add_preserved_filters from admin_urls %}
+
+{% comment %}
+
+  Template for ``DjangoObjectActions`` and ``ImportExportAdmin`` to work
+  together!
+
+{% endcomment %}
+
+{% block object-tools-items %}
+  {% include "admin/import_export/change_list_import_item.html" %}
+  {% include "admin/import_export/change_list_export_item.html" %}
+  {% for tool in objectactions %}
+    <li class="objectaction-item" data-tool-name="{{ tool.name }}">
+      {% url tools_view_name pk=object_id tool=tool.name as action_url %}
+      <a href="{% add_preserved_filters action_url %}" title="{{ tool.standard_attrs.title }}"
+         {% for k, v in tool.custom_attrs.items %}
+           {{ k }}="{{ v }}"
+         {% endfor %}
+         class="{{ tool.standard_attrs.class }}">
+      {{ tool.label|capfirst }}
+      </a>
+    </li>
+  {% endfor %}
+  {{ block.super }}
+{% endblock %}
