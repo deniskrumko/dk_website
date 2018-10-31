@@ -50,6 +50,9 @@
                       {{ item.title }}
                     </a>
                   </h2>
+                  <div class="uk-article-meta uk-margin-small-bottom">
+                    {{ item.date|date:'d E Y' }}
+                  </div>
                   {% autoescape off %}
                     {% if item.preview %}
                       {{ item.preview }}
