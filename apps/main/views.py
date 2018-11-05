@@ -91,8 +91,13 @@ class SearchView(BaseView):
 
         MAX = 10
 
-        if search_query == 'ad':
+        # Fast way to go to admin page
+        if search_query in ('ad', 'admin'):
             return HttpResponseRedirect('/admin')
+
+        # Fast way to login/logout
+        if search_query in ('login', 'logout'):
+            return HttpResponseRedirect('/' + search_query)
 
         if search_query:
             tracks = self.find_music_tracks(search_query)

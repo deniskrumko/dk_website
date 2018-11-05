@@ -48,16 +48,18 @@
 
     {# Menu colors #}
     <style media="screen">
-    {% with menu|get_color:active_menu as color %}
-    .uk-navbar-nav>li>a {color: {{ color.base }};}
-    .uk-navbar-nav>li.active::after {background-color: {{ color.accent }};}
-    .uk-navbar-nav>li.active>a {color: {{ color.accent }};}
-    .uk-navbar-nav>li>a:hover {color: {{ color.accent }};}
-    .uk-modal-body, .uk-modal-close-full  {background: {{ color.accent }};}
-    .dk-navbar-active {color: {{ color.accent }} !important;}
-    .dk-a {color: {{ color.accent }} !important;}
-    .dk-a:hover {color: {{ color.darker }} !important;}
-    {% endwith %}
+    {% if active_menu %}
+      {% with menu|get_color:active_menu as color %}
+      .uk-navbar-nav>li>a {color: {{ color.base }};}
+      .uk-navbar-nav>li.active::after {background-color: {{ color.accent }};}
+      .uk-navbar-nav>li.active>a {color: {{ color.accent }};}
+      .uk-navbar-nav>li>a:hover {color: {{ color.accent }};}
+      .uk-modal-body, .uk-modal-close-full  {background: {{ color.accent }};}
+      .dk-navbar-active {color: {{ color.accent }} !important;}
+      .dk-a {color: {{ color.accent }} !important;}
+      .dk-a:hover {color: {{ color.darker }} !important;}
+      {% endwith %}
+    {% endif %}
     /* Halloween */
     html {
       background-image: url("{% static 'images/halloween.jpg' %}");

@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 
 {% block body %}
+
+{% block menu %}
 {% include 'components/menu.html' %}
+{% endblock %}
+
 <div class="uk-container uk-container-small">
-  <form class="uk-padding uk-background-muted " action="/login/?{{ request.META.QUERY_STRING }}" method="post">
+  <form class="uk-padding" action="/login/?{{ request.META.QUERY_STRING }}" method="post">
     {% csrf_token %}
     <div class="" style="text-align: center;">
       <h3>Войти в аккаунт</h3>

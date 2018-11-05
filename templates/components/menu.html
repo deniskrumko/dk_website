@@ -43,9 +43,11 @@
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
               <li>
+                {% if active_menu %}
                 <a class="dk-navbar-active" href="{{ menu|get_link:active_menu }}">
                   {{ menu|get_name:active_menu }}
                 </a>
+                {% endif %}
               </li>
             </ul>
         </div>

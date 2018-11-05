@@ -36,4 +36,5 @@ class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
     reset_slug.label = _('Reset slug')
 
     def redirect(self, url):
+        """Redirect user to provided URL."""
         return HttpResponseRedirect(url)

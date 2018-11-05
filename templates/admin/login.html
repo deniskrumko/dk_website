@@ -1,40 +1,11 @@
-{% extends "admin/login.html" %}
+{% extends "login.html" %}
 
-{% load static %}
-
-
-{% block extrastyle %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/uikit/uikit.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/admin/login.css' %}">
-{% endblock %}
-
-{% block body %}
+{% block menu %}
+<br>
+<br>
 <div class="uk-container uk-container-small">
-  <div style="text-align: center; margin-top: 40px;" >
-    <img src="{% static 'images/dk.jpg' %}" width="128" height="128" alt="" uk-img>
-  </div>
-  <form class="" action="/login/?{{ request.META.QUERY_STRING }}" method="post">
-    {% csrf_token %}
-    <div class="" style="text-align: center;">
-
-      <div class="uk-margin-top">
-        <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <input class="uk-input uk-form-width-medium" type="text" name="username" placeholder="Имя пользователя">
-        </div>
-      </div>
-      <div class="uk-margin">
-        <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: lock"></span>
-            <input class="uk-input uk-form-width-medium" type="password" name="password" placeholder="Пароль">
-        </div>
-      </div>
-      <input type="submit" value="Enter" class="dk-login-button">
-    </div>
-  </form>
+  <h1>
+    <b>/admin</b>
+  </h1>
 </div>
-
-{% endblock %}
-
-{% block bottom_logo %}
 {% endblock %}
