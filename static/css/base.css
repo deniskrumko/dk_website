@@ -1,11 +1,10 @@
 html, body {
-  /* height: 100%; */
-  /* Halloween */
-  /* background: #f6f6f9; */
-  /* display: flex; */
-  /* min-height: 100vh; */
-  /* min-height: 100vh; */
-  /* flex-direction: column; */
+  height: 100%;
+  background: #f6f6f9;
+  display: flex;
+  min-height: 100vh;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 #hb {
@@ -19,13 +18,10 @@ html, body {
   #hb {
     margin-top: 0px;
   }
-
-
 }
 
-
 main {
-  /* flex: 1; */
+  flex: 1;
 }
 
 .uk-modal-dialog {
@@ -182,9 +178,7 @@ main {
 }
 
 .dk-footer {
-  /* Halloween */
-  /* border-top: 1px solid #EAECEF; */
-  border-top: 1px solid #c7cbd2;
+  border-top: 1px solid #EAECEF;
   padding-top: 25px;
   margin-bottom: 20px;
 }

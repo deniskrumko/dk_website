@@ -5,7 +5,14 @@ from import_export.admin import ImportExportMixin
 from core.admin import BaseModelAdmin
 
 from .import_export.resources import DiaryEntryResource
-from .models import DiaryEntry
+from .models import DiaryEntry, DiaryTag, DiaryTagValue
+
+
+class DiaryTagValueInline(admin.TabularInline):
+    """Inline class for ``DiaryTagValue`` model."""
+
+    model = DiaryTagValue
+    extra = 0
 
 
 @admin.register(DiaryEntry)
@@ -40,3 +47,20 @@ class DiaryEntryAdmin(ImportExportMixin, BaseModelAdmin):
     changelist_actions = (
         'on_site',
     )
+    inlines = (
+        DiaryTagValueInline,
+    )
+
+
+@admin.register(DiaryTag)
+class DiaryTagAdmin(admin.ModelAdmin):
+    """Admin class for ``DiaryTag`` model."""
+
+    pass
+
+
+@admin.register(DiaryTagValue)
+class DiaryTagValueAdmin(admin.ModelAdmin):
+    """Admin class for ``DiaryTagValue`` model."""
+
+    pass

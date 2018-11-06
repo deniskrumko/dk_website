@@ -10,9 +10,14 @@ from dateutil.rrule import DAILY, rrule
 
 from core.views import BaseView
 
-from .models import DiaryEntry
+from ..models import DiaryEntry, DiaryTag
 
-__all__ = ('DiaryIndexView', 'DiaryDetailView', 'DiaryEditView')
+__all__ = (
+    'DiaryIndexView',
+    'DiaryDetailView',
+    'DiaryCalendarView',
+    'DiaryEditView',
+)
 
 DATE_FORMAT = '%Y-%m-%d'
 
@@ -131,6 +136,7 @@ class DiaryDetailView(LoginRequiredMixin, BaseView):
         context['date_obj'] = self.date_obj
         context['prev_date'] = self.date_obj - timedelta(days=1)
         context['next_date'] = self.date_obj + timedelta(days=1)
+        context['available_tags'] = DiaryTag.objects.all()
         return self.render_to_response(context)
 
 

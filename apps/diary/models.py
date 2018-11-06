@@ -44,9 +44,21 @@ class DiaryEntry(BaseModel):
     @property
     def html(self):
         """Represent entry text as HTML."""
+        def add_link(line):
+            first_word = line.split()[0]
+
+            if first_word.startswith('#'):
+                link = (
+                    f'<a href="/diary/tags/{first_word[1:]}" '
+                    f'class="dk-a">{first_word}</a>'
+                )
+                line = line.replace(first_word, link)
+
+            return line
+
         text = self.text.replace('\r\n', '\n')
         return ''.join([
-            f'<p>{line}</p>' if line else '<p>&nbsp;<p>'
+            f'<p>{add_link(line)}</p>' if line else '<p>&nbsp;<p>'
             for line in text.split('\n')
         ])
 
@@ -61,3 +73,84 @@ class DiaryEntry(BaseModel):
                 preview += f'{part}.'
 
         return self.text
+
+    def populate_tags(self, delete_tags=True):
+        """Add tags for current instance."""
+        if delete_tags:
+            self.tags.all().delete()
+
+        for line in self.text.split('\n'):
+            line = line.strip()
+
+            if line.startswith('#'):
+
+                tag_name, *other = line.split()
+
+                tag, created = DiaryTag.objects.get_or_create(
+                    name=tag_name[1:]
+                )
+
+                DiaryTagValue.objects.create(
+                    tag=tag,
+                    entry=self,
+                    value=' '.join(other) if other else None
+                )
+
+
+class DiaryTag(BaseModel):
+    """Model for tags in diary entries."""
+
+    name = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_('name'),
+    )
+    entries = models.ManyToManyField(
+        'diary.DiaryEntry',
+        through='diary.DiaryTagValue',
+        blank=True,
+        verbose_name=_('entries'),
+    )
+
+    def __str__(self):
+        return self.name or '-'
+
+    class Meta:
+        verbose_name = _('DiaryTag')
+        verbose_name_plural = _('DiaryTags')
+        ordering = ('name',)
+
+
+class DiaryTagValue(BaseModel):
+    """Documentation"""
+    tag = models.ForeignKey(
+        'diary.DiaryTag',
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='values',
+        verbose_name=_('tag'),
+    )
+    entry = models.ForeignKey(
+        'diary.DiaryEntry',
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='tags',
+        verbose_name=_('entry'),
+    )
+    value = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name=_('value'),
+    )
+
+    def __str__(self):
+        return f'{self.tag}: {self.value}'
+
+    class Meta:
+        verbose_name = _('Diary tag value')
+        verbose_name_plural = _('Diary tag values')
+        ordering = ('tag__name', 'value')

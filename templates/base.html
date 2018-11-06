@@ -60,13 +60,7 @@
       .dk-a:hover {color: {{ color.darker }} !important;}
       {% endwith %}
     {% endif %}
-    /* Halloween */
-    html {
-      background-image: url("{% static 'images/halloween.jpg' %}");
-      background-size: 150px;
-      background-repeat: repeat;
-      z-index: 100;
-    }
+
     </style>
 
     {# EXTRA CSS #}
@@ -85,9 +79,7 @@
             © 2018 Денис Крумко
           </div>
           <div class="uk-width-1-3 dk-center">
-            {# Halloween #}
-            {# <img src="{% static 'images/logo.png' %}" alt=""> #}
-            <img src="{% static 'images/logo_halloween.png' %}" alt="">
+            <img src="{% static 'images/logo.png' %}" alt="">
           </div>
           <div class="uk-width-1-3 dk-footer-part" id="footer-social">
             <a href="https://www.instagram.com/deniskrumko/" class="uk-icon-link" uk-icon="instagram" target="_blank"></a>

@@ -39,6 +39,16 @@
     <div class="dk-after">
       <input type="submit" name="_save" class="uk-button uk-button-primary dk-mobile-buttons" style="background-color: #00b5ad;" id="save" value="Сохранить">
       <a href="{% url 'diary:detail' date=date_str %}" class="uk-button uk-button-default dk-mobile-buttons">Назад</a>
+      <div class="uk-margin-top uk-visible@s">
+        <span>
+          <b>Доступные тэги:</b>
+          {% for tag in available_tags %}
+            <a href="/diary/tags/{{ tag.name }}" class="dk-a" target="_blank">
+              {{ tag.name }}
+            </a>
+          {% endfor %}
+        </span>
+      </div>
     </div>
   </form>
 

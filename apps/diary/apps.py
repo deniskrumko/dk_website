@@ -7,3 +7,7 @@ class DiaryConfig(AppConfig):
 
     name = 'apps.diary'
     verbose_name = _('Diary')
+
+    def ready(self):
+        """Ready app."""
+        from . import signals  # noqa
