@@ -121,6 +121,11 @@ class DiaryTag(BaseModel):
         verbose_name_plural = _('DiaryTags')
         ordering = ('name',)
 
+    @property
+    def ordered_entries(self):
+        """Get queryset of ordered by date tag values."""
+        return self.values.order_by('-entry__date')
+
 
 class DiaryTagValue(BaseModel):
     """Documentation"""

@@ -21,22 +21,19 @@
 {% include 'components/menu.html' %}
 
 <div class="uk-container uk-container-small">
-  <div class="uk-margin-bottom">
-    <a class="dk-bold dk-blog-header active" href="{% url 'diary:index' %}">Дневник</a>
-    {% if request.user.is_superuser %}
-    <a class="dk-bold dk-blog-header" href="{% url 'blog:index' %}" style="display: inline-block;">Истории</a>
-    {% endif %}
-  </div>
+  <h1>
+    <b>Тэги</b>
+  </h1>
 
   {% if available_tags %}
 
   {% for tag in available_tags %}
-    <a href="/diary/tags/{{ tag.name }}" class="dk-a uk-margin-right" style="font-size: 30px; font-weight: bold;">{{ tag.name }}</a>
+    <a href="/diary/tags/{{ tag.name }}" class="dk-a uk-margin-right" style="font-size: 30px; font-weight: bold;">#{{ tag.name }}</a>
   {% endfor %}
 
   <div class="">
     <br>
-    <a href="/diary/" class="dk-a">Назад</a>
+    <a href="/diary/" class="uk-button uk-button-text">Назад</a>
   </div>
 
   {% else %}
