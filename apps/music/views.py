@@ -62,6 +62,6 @@ class TrackDetailView(BaseView):
     def get(self, request, slug):
         """Get details for single track."""
         item = get_object_or_404(Track, slug=slug)
-        context = super().get_context_data(item=item)
+        context = self.get_context_data(item=item)
         context.update({'track': item})
         return self.render_to_response(context)

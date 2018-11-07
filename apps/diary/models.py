@@ -117,8 +117,8 @@ class DiaryTag(BaseModel):
         return self.name or '-'
 
     class Meta:
-        verbose_name = _('DiaryTag')
-        verbose_name_plural = _('DiaryTags')
+        verbose_name = _('Diary tag')
+        verbose_name_plural = _('Diary tags')
         ordering = ('name',)
 
     @property
@@ -128,7 +128,8 @@ class DiaryTag(BaseModel):
 
 
 class DiaryTagValue(BaseModel):
-    """Documentation"""
+    """Model for value of tag for specific entry."""
+
     tag = models.ForeignKey(
         'diary.DiaryTag',
         null=True,

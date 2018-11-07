@@ -1,6 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
 
 from apps.main.menu import get_hidden_menu, get_menu
+
+__all__ = ('BaseView', 'LoginRequiredMixin')
 
 
 class BaseView(TemplateView):

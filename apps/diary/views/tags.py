@@ -1,42 +1,44 @@
-import calendar
-from datetime import date, timedelta
 from django.shortcuts import get_object_or_404
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import reverse
-from django.utils import timezone
+from core.views import BaseView, LoginRequiredMixin
 
-from dateutil.rrule import DAILY, rrule
-
-from core.views import BaseView
-
-from ..models import DiaryEntry, DiaryTag
+from ..models import DiaryTag
 
 
 class DiaryTagsView(LoginRequiredMixin, BaseView):
-    """View to get index diary page."""
+    """View to get index page for diary tags."""
 
     template_name = 'diary/tags/index.html'
-    title = 'DK - Дневник'
-    description = 'Дневник'
+    title = 'DK - Тэги'
+    description = 'Тэги дневника'
     menu = 'blog'
 
     def get_context_data(self):
+        """Get context data."""
         context = super().get_context_data()
         context['available_tags'] = DiaryTag.objects.all()
         return context
 
 
 class DiaryTagView(LoginRequiredMixin, BaseView):
-    """View to get index diary page."""
+    """View to get single tag info."""
 
     template_name = 'diary/tags/detail.html'
-    title = 'DK - Дневник'
-    description = 'Дневник'
     menu = 'blog'
 
+    def get_title(self, **kwargs):
+        """Get `title` field value."""
+        item = kwargs.get('item')
+        return f'DK - #{item.name}' if item else ''
+
+    def get_description(self, **kwargs):
+        """Get `description` field value."""
+        item = kwargs.get('item')
+        return item.name if item else ''
+
     def get(self, request, tag):
-        context = self.get_context_data()
-        context['tag'] = get_object_or_404(DiaryTag, name=tag)
+        """Get tag details."""
+        item = get_object_or_404(DiaryTag, name=tag)
+        context = self.get_context_data(item=item)
+        context['tag'] = item
         return self.render_to_response(context)

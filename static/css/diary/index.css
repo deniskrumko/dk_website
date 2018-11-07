@@ -35,17 +35,14 @@
 }
 .dk-week-bold span {
   font-weight: bold;
-  color: #00B5AD;
 }
 
 .dk-week a.active {
-  background-color: #00B5AD;
   border-radius: 32px;
   color: #f7f7f7 !important;
 }
 
 .dk-week a.active:hover {
-  background-color: #02a8a1;
   color: #f7f7f7 !important;
 }
 

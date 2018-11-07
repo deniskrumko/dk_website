@@ -36,19 +36,3 @@
 .scrollmenu-outer {
   position: relative;
 }
-
-#shadow-left {
-  position: absolute;
-  background: linear-gradient(90deg, #fff, transparent);
-  width: 20px;
-  height: 100%;
-  left: 0;
-}
-
-#shadow-right {
-  position: absolute;
-  background: linear-gradient(-90deg, #fff, transparent);
-  width: 20px;
-  height: 100%;
-  right: 0;
-}

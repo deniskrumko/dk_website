@@ -10,6 +10,15 @@
   color: {{ color.accent }};
   text-decoration: none;
 }
+.dk-week a.active {
+  background-color: {{ color.accent }};
+}
+.dk-week a.active:hover {
+  background-color: {{ color.darker }};
+}
+.dk-week-bold span {
+  color: {{ color.accent }};
+}
 {% endwith %}
 </style>
 
@@ -22,13 +31,6 @@
 
 <div class="uk-container uk-container-small">
 
-  <div class="uk-margin-bottom">
-    <a class="dk-bold dk-blog-header active">Дневник</a>
-    {% if request.user.is_superuser %}
-    <a class="dk-bold dk-blog-header" href="{% url 'blog:index' %}" style="display: inline-block;">Истории</a>
-    {% endif %}
-  </div>
-
   {% if not request.user.is_superuser %}
     <div style="text-align: center;">
       <h2>И что вы здесь забыли? Вам сюда нельзя.</h2>
@@ -37,6 +39,12 @@
   {% else %}
   <div class="uk-grid">
     <div class="uk-width-2-3@m dk-calendar-info">
+      <div class="uk-margin-bottom">
+        <a class="dk-bold dk-blog-header active">Дневник</a>
+        {% if request.user.is_superuser %}
+        <a class="dk-bold dk-blog-header" href="{% url 'blog:index' %}" style="display: inline-block;">Истории</a>
+        {% endif %}
+      </div>
       {% include "diary/extra/day_info.html" with info=last_days.0 %}
       {% include "diary/extra/day_info.html" with info=last_days.1 %}
       {% include "diary/extra/day_info.html" with info=last_days.2 %}
@@ -66,9 +74,20 @@
             {% endif %}
           {% endfor %}
         </div>
-        <a href="{% url 'diary:calendar' %}" class="uk-button uk-button-text dk-all-dates">Посмотреть все даты</a>
-        <br><br>
-        <a href="{% url 'diary:tags' %}" class="uk-button uk-button-text dk-all-dates">Посмотреть все теги</a>
+        <div class="uk-margin-small-top">
+          <a href="{% url 'diary:calendar' %}" class="uk-button uk-button-text dk-all-dates">
+            Открыть календарь
+          </a>
+        </div>
+        <hr>
+        {% for tag in available_tags %}
+        <a href="/diary/tags/{{tag.name}}" class="dk-a">#{{tag.name}}</a>
+        {% endfor %}
+        <div class="uk-margin-small-top">
+          <a href="{% url 'diary:tags' %}" class="uk-button uk-button-text dk-all-dates">
+            Все теги
+          </a>
+        </div>
         <br>
         <br>
         <br>

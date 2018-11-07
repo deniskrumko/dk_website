@@ -1,14 +1,13 @@
 import calendar
 from datetime import date, timedelta
 
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
 from django.utils import timezone
 
 from dateutil.rrule import DAILY, rrule
 
-from core.views import BaseView
+from core.views import BaseView, LoginRequiredMixin
 
 from ..models import DiaryEntry, DiaryTag
 
@@ -63,7 +62,7 @@ class DiaryIndexView(BaseView):
                 (dt.date(), existing_entries.get(dt.date(), False))
             )
 
-        for i in range(7 - dt.weekday()):
+        for i in range(6 - dt.weekday()):
             days.append('-')
 
         last_days = [
@@ -84,6 +83,7 @@ class DiaryIndexView(BaseView):
             'days': days,
             'current': current,
             'last_days': last_days,
+            'available_tags': DiaryTag.objects.all()
         })
         return self.render_to_response(context)
 
@@ -101,12 +101,11 @@ class DiaryCalendarView(LoginRequiredMixin, BaseView):
         context = self.get_context_data()
         current = timezone.now()
         context['months'] = [
-            timezone.datetime(year=1993, month=i, day=1) for i in range(1, 13)
+            timezone.datetime(year=1993, month=i, day=1)
+            for i in range(1, 13)
         ]
-        context['years'] = [
-            current.year - i
-            for i in range(0, 20)
-        ]
+        context['years'] = [i for i in range(current.year, 2017, -1)]
+        context['entries'] = DiaryEntry.objects.all()[:10]
         return self.render_to_response(context)
 
 
