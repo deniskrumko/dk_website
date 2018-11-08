@@ -13,12 +13,12 @@ p {
 .dk-entry-text {
   font-size: 16px;
   font-weight: 400;
+  margin-top: 10px;
 }
 
 .dk-entry-date {
   font-weight: bold;
   font-size: 20px;
-  margin-bottom: 30px;
 }
 
 .dk-after {
@@ -28,6 +28,8 @@ p {
 
 .dk-edit-link {
   float: right;
+  top: -4px;
+  position: relative;
 }
 
 .dk-center-btn {

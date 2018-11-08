@@ -1,6 +1,5 @@
 <span class="dk-breadcrumbs">
   <a uk-icon="calendar" href="{% url 'diary:index' %}"></a>  ·  
-  <a href="#">2018</a>  ·  
-  <a href="#">Июнь</a>  ·  
-  <a href="#">10</a>
+  <a href="/diary/calendar/?month={{ date_obj|date:"m" }}&year={{ date_obj.year }}">{{ date_obj.year }}</a>  ·  
+  <a href="/diary/calendar/?month={{ date_obj|date:"m" }}&year={{ date_obj.year }}">{{ date_obj|date:"F" }}</a> 
 </span>

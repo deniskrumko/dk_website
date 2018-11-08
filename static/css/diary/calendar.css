@@ -1,38 +1,8 @@
-.scrollmenu {
-    overflow: auto;
-    white-space: nowrap;
-    padding: 10px 20px;
+.dk-entry-faded {
+  background: transparent !important;
+  border: 1px dotted #777;
 }
 
-.scrollmenu button {
-    display: inline-block;
-    text-align: center;
-    padding: 5px 14px;
-    margin: 0px 3px;
-    text-decoration: none;
-    width: 100px;
-}
-
-.dk-year {
-    display: inline-block;
-    text-align: center;
-    padding: 5px 14px;
-    margin: 0px 3px;
-    text-decoration: none;
-    width: 70px !important;
-}
-
-/* Less than 640px */
-
-@media screen and (max-width: 640px) {
-  .scrollmenu button {
-    padding: 5px 14px;
-    margin: 0px;
-    width: 80px;
-    font-size: 12px;
-  }
-}
-
-.scrollmenu-outer {
-  position: relative;
+.dk-entry-date a {
+  color: #666;
 }

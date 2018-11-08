@@ -98,15 +98,60 @@ class DiaryCalendarView(LoginRequiredMixin, BaseView):
 
     def get(self, request):
         """Get calendar page."""
-        context = self.get_context_data()
         current = timezone.now()
+
+        year = int(request.GET.get('year', 0))
+        month = int(request.GET.get('month', 0))
+
+        if not year or not month:
+            return HttpResponseRedirect(
+                f'/diary/calendar/?month={current.month}&year={current.year}'
+            )
+
+        context = self.get_context_data()
+
         context['months'] = [
-            timezone.datetime(year=1993, month=i, day=1)
-            for i in range(1, 13)
+            'Январь',
+            'Февраль',
+            'Март',
+            'Апрель',
+            'Май',
+            'Июнь',
+            'Июль',
+            'Август',
+            'Сентябрь',
+            'Октябрь',
+            'Ноябрь',
+            'Декабрь',
         ]
-        context['years'] = [i for i in range(current.year, 2017, -1)]
-        context['entries'] = DiaryEntry.objects.all()[:10]
+        context['years'] = [i for i in range(current.year, 2016, -1)]
+        context['current_month'] = month
+        context['current_year'] = year
+
+        last_day_of_month = calendar.monthrange(year, month)[1]
+
+        qs = DiaryEntry.objects.filter(author=request.user)
+
+        days = []
+        for dt in rrule(
+            DAILY,
+            dtstart=date(year, month, 1),
+            until=date(year, month, last_day_of_month)
+        ):
+            cur_date = dt.date()
+            days.append(
+                (cur_date, qs.filter(date=cur_date).first())
+            )
+
+        context['entries'] = days
         return self.render_to_response(context)
+
+    def post(self, request):
+        month = request.POST.get('month')
+        year = request.POST.get('year')
+        return HttpResponseRedirect(
+            f'/diary/calendar/?month={month}&year={year}'
+        )
 
 
 class DiaryDetailView(LoginRequiredMixin, BaseView):
