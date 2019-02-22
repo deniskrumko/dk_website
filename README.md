@@ -2,7 +2,7 @@
 
 My own website for vlogs and music sharing.
 
-**[deniskrumko.ru](deniskrumko.ru)**
+**[www.deniskrumko.ru](www.deniskrumko.ru)**
 
 # About
 
