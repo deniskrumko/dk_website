@@ -16,7 +16,9 @@ class DiaryTagsView(LoginRequiredMixin, BaseView):
     def get_context_data(self):
         """Get context data."""
         context = super().get_context_data()
-        context['available_tags'] = DiaryTag.objects.all()
+        context['available_tags'] = DiaryTag.objects.filter(
+            author=self.request.user
+        )
         return context
 
 
@@ -38,7 +40,7 @@ class DiaryTagView(LoginRequiredMixin, BaseView):
 
     def get(self, request, tag):
         """Get tag details."""
-        item = get_object_or_404(DiaryTag, name=tag)
+        item = get_object_or_404(DiaryTag, name=tag, author=request.user)
         context = self.get_context_data(item=item)
         context['tag'] = item
         return self.render_to_response(context)

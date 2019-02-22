@@ -26,7 +26,7 @@
     {# Submenu #}
     <div class="" id="dk-submenu" style="display: none;">
       <span>
-        {% if request.user.is_superuser %}
+        {% if request.user.is_staff %}
           {% for item in hidden_menu %}
           <a href="{{ item.url }}" class="uk-button uk-button-text">{{ item.name }}</a>
           {% endfor %}

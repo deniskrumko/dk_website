@@ -39,6 +39,12 @@
           </div>
           <div class="uk-navbar-right">
               <ul class="uk-navbar-nav">
+                  <li><a>Привет, {{ request.user.username }}</a></li>
+              </ul>
+              <ul class="uk-navbar-nav">
+                  <li><a href="/admin/password_change/">Сменить пароль</a></li>
+              </ul>
+              <ul class="uk-navbar-nav">
                   <li><a href="/logout">Выйти</a></li>
               </ul>
           </div>

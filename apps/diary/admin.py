@@ -8,6 +8,14 @@ from .import_export.resources import DiaryEntryResource
 from .models import DiaryEntry, DiaryTag, DiaryTagValue
 
 
+class PrivateQuerySet(object):
+    """Allow to view only own diary entries."""
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(author=request.user)
+
+
 class DiaryTagValueInline(admin.TabularInline):
     """Inline class for ``DiaryTagValue`` model."""
 
@@ -16,11 +24,13 @@ class DiaryTagValueInline(admin.TabularInline):
 
 
 @admin.register(DiaryEntry)
-class DiaryEntryAdmin(ImportExportMixin, BaseModelAdmin):
+class DiaryEntryAdmin(ImportExportMixin, PrivateQuerySet, BaseModelAdmin):
     """Admin class for ``DiaryEntry`` model."""
 
     change_list_template = 'admin/import_export_and_actions.html'
     resource_class = DiaryEntryResource
+    url_index = 'diary:index'
+    url_detail = 'diary:detail'
     sortable_by = 'date'
     fields = (
         'author',
@@ -51,16 +61,45 @@ class DiaryEntryAdmin(ImportExportMixin, BaseModelAdmin):
         DiaryTagValueInline,
     )
 
+    def get_export_queryset(self, request):
+        qs = super().get_export_queryset(request)
+        return qs.filter(author=request.user)
+
+    def get_urls(self):
+        """Prepend `get_urls` with our own patterns."""
+        urls1 = super(ImportExportMixin, self).get_urls()
+        urls2 = super(BaseModelAdmin, self).get_urls()
+        return urls1 + urls2
+
+    def reverse_url_detail_args(self, obj):
+        return (obj.date,)
+
 
 @admin.register(DiaryTag)
-class DiaryTagAdmin(admin.ModelAdmin):
+class DiaryTagAdmin(PrivateQuerySet, admin.ModelAdmin):
     """Admin class for ``DiaryTag`` model."""
 
-    pass
+    list_display = (
+        'name',
+        'author',
+    )
+    search_fields = (
+        'name',
+    )
 
 
 @admin.register(DiaryTagValue)
-class DiaryTagValueAdmin(admin.ModelAdmin):
+class DiaryTagValueAdmin(PrivateQuerySet, admin.ModelAdmin):
     """Admin class for ``DiaryTagValue`` model."""
 
-    pass
+    list_display = (
+        'tag',
+        'author',
+        'entry',
+        'value',
+    )
+    autocomplete_fields = (
+        'author',
+        'entry',
+        'tag',
+    )

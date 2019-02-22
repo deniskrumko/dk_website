@@ -15,6 +15,9 @@ class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
     url_index = None
     url_detail = None
 
+    def reverse_url_detail_args(self, obj):
+        return (obj.slug,)
+
     @takes_instance_or_queryset
     def on_site(self, request, qs=None):
         """View item on site."""
@@ -22,7 +25,9 @@ class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
             return self.redirect(reverse(self.url_index))
 
         obj = qs.first()
-        return self.redirect(reverse(self.url_detail, args=(obj.slug,)))
+        return self.redirect(reverse(
+            self.url_detail, args=self.reverse_url_detail_args(obj)
+        ))
 
     on_site.label = _('View on site')
 

@@ -33,7 +33,7 @@ class DiaryIndexView(BaseView):
         """Get index page."""
         context = self.get_context_data()
 
-        if not request.user.is_superuser:
+        if not request.user.is_staff:
             return self.render_to_response(context)
 
         current = timezone.now()
@@ -74,7 +74,7 @@ class DiaryIndexView(BaseView):
             last_days[index] = {
                 'day': d,
                 'entry': DiaryEntry.objects.filter(
-                    date=d, author=self.request.user
+                    date=d, author=request.user
                 ).first()
             }
 
@@ -83,7 +83,7 @@ class DiaryIndexView(BaseView):
             'days': days,
             'current': current,
             'last_days': last_days,
-            'available_tags': DiaryTag.objects.all()
+            'available_tags': DiaryTag.objects.filter(author=request.user)
         })
         return self.render_to_response(context)
 
@@ -180,7 +180,9 @@ class DiaryDetailView(LoginRequiredMixin, BaseView):
         context['date_obj'] = self.date_obj
         context['prev_date'] = self.date_obj - timedelta(days=1)
         context['next_date'] = self.date_obj + timedelta(days=1)
-        context['available_tags'] = DiaryTag.objects.all()
+        context['available_tags'] = DiaryTag.objects.filter(
+            author=request.user
+        )
         return self.render_to_response(context)
 
 

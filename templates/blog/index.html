@@ -26,7 +26,7 @@
 <div class="uk-container uk-container-small">
   <div class="uk-margin-bottom">
     <a class="dk-bold dk-blog-header active">Истории</a>
-    {% if request.user.is_superuser %}
+    {% if request.user.is_staff %}
     <a class="dk-bold dk-blog-header" href="{% url 'diary:index' %}" style="display: inline-block;">Дневник</a>
     {% endif %}
   </div>

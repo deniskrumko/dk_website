@@ -41,6 +41,9 @@ class DiaryEntry(BaseModel):
         verbose_name_plural = _('Diary entries')
         ordering = ('-date',)
 
+    def __str__(self):
+        return f'{self.date} ({self.author.username})'
+
     @property
     def html(self):
         """Represent entry text as HTML."""
@@ -106,6 +109,14 @@ class DiaryTag(BaseModel):
         blank=False,
         verbose_name=_('name'),
     )
+    author = models.ForeignKey(
+        'users.User',
+        null=True,
+        blank=False,
+        related_name='diary_tags',
+        on_delete=models.SET_NULL,
+        verbose_name=_('Author'),
+    )
     entries = models.ManyToManyField(
         'diary.DiaryEntry',
         through='diary.DiaryTagValue',
@@ -137,6 +148,14 @@ class DiaryTagValue(BaseModel):
         on_delete=models.SET_NULL,
         related_name='values',
         verbose_name=_('tag'),
+    )
+    author = models.ForeignKey(
+        'users.User',
+        null=True,
+        blank=False,
+        related_name='diary_tag_values',
+        on_delete=models.SET_NULL,
+        verbose_name=_('Author'),
     )
     entry = models.ForeignKey(
         'diary.DiaryEntry',

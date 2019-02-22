@@ -132,7 +132,7 @@ class SearchView(BaseView):
                     for blog in blogs[:MAX]
                 ]
 
-            if request.user.is_superuser:
+            if request.user.is_staff:
                 diaries = self.find_diary_entries(search_query)
 
                 if diaries:

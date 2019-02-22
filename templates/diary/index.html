@@ -31,7 +31,7 @@
 
 <div class="uk-container uk-container-small">
 
-  {% if not request.user.is_superuser %}
+  {% if not request.user.is_staff %}
     <div style="text-align: center;">
       <h2>И что вы здесь забыли? Вам сюда нельзя.</h2>
       <a href="/" class="uk-button uk-button-default">Уже ухожу...</a>
@@ -40,10 +40,7 @@
   <div class="uk-grid">
     <div class="uk-width-2-3@m dk-calendar-info">
       <div class="uk-margin-bottom">
-        <a class="dk-bold dk-blog-header active">Дневник</a>
-        {% if request.user.is_superuser %}
-        <a class="dk-bold dk-blog-header" href="{% url 'blog:index' %}" style="display: inline-block;">Истории</a>
-        {% endif %}
+        <a class="dk-bold dk-blog-header active">Личный дневник {{ request.user.username }}</a>
       </div>
       {% include "diary/extra/day_info.html" with info=last_days.0 %}
       {% include "diary/extra/day_info.html" with info=last_days.1 %}
