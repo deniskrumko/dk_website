@@ -79,8 +79,11 @@ class DiaryEntry(BaseModel):
 
     def populate_tags(self, delete_tags=True):
         """Add tags for current instance."""
+        if not self.author:
+            return
+
         if delete_tags:
-            self.tags.all().delete()
+            self.tags.filter(author=self.author).delete()
 
         for line in self.text.split('\n'):
             line = line.strip()
@@ -90,11 +93,13 @@ class DiaryEntry(BaseModel):
                 tag_name, *other = line.split()
 
                 tag, created = DiaryTag.objects.get_or_create(
-                    name=tag_name[1:]
+                    name=tag_name[1:],
+                    author=self.author,
                 )
 
                 DiaryTagValue.objects.create(
                     tag=tag,
+                    author=self.author,
                     entry=self,
                     value=' '.join(other) if other else None
                 )
