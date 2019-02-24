@@ -1,5 +1,9 @@
 <span class="dk-breadcrumbs">
-  <a uk-icon="calendar" href="{% url 'diary:index' %}"></a>  ·  
+  <a uk-icon="icon:calendar;ratio: 0.7" href="{% url 'diary:index' %}" style="top: -1px; position: relative;"></a>  ·  
   <a href="/diary/calendar/?month={{ date_obj|date:"m" }}&year={{ date_obj.year }}">{{ date_obj.year }}</a>  ·  
-  <a href="/diary/calendar/?month={{ date_obj|date:"m" }}&year={{ date_obj.year }}">{{ date_obj|date:"F" }}</a> 
+  <a href="/diary/calendar/?month={{ date_obj|date:"m" }}&year={{ date_obj.year }}">{{ date_obj|date:"F" }}</a>
+
+  <a href="/diary/" style="float: right;">
+    <span uk-icon="icon: triangle-left;ratio: 0.8" style="top: -1px; position: relative;"></span>
+    Вернуться на главную</a>
 </span>

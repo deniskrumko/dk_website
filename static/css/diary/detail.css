@@ -65,3 +65,27 @@ p {
   font-size: 12px;
   color: #333;
 }
+
+.dk-entry-daybutton {
+  position: absolute;
+  height: 100%;
+  top: 0px;
+  vertical-align: middle;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: #666;
+  transition: 0.3s all ease;
+}
+.dk-entry-daybutton:hover {
+  background: #ececf0;
+  color: #19BC9C;
+}
+.dk-entry-daybutton span {
+  padding-top: 35px;
+}
+.dk-entry-prev-day {
+  left: -80px;
+}
+.dk-entry-next-day {
+  right: -80px;
+}

@@ -24,8 +24,8 @@
   <form class="" action="{% url 'diary:edit' date=date_str %}" method="post">
     {% csrf_token %}
     <div class="dk-entry">
-      <div class="dk-edit-mode uk-visible@s">
-        <label for="done-check">Запись закончена</label>
+      <div class="dk-edit-mode">
+        <label for="done-check" class="uk-visible@s">Запись закончена</label>
         <input type="checkbox" name="done" id="done-check" {% if entry.done %}checked{% endif %}>
       </div>
       <div class="dk-entry-date noselect">

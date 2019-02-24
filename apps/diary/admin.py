@@ -6,6 +6,7 @@ from core.admin import BaseModelAdmin
 
 from .import_export.resources import DiaryEntryResource
 from .models import DiaryEntry, DiaryTag, DiaryTagValue
+from django.utils.translation import ugettext_lazy as _
 
 
 class PrivateQuerySet(object):
@@ -21,6 +22,17 @@ class DiaryTagValueInline(admin.TabularInline):
 
     model = DiaryTagValue
     extra = 0
+    readonly_fields = (
+        'author',
+        'tag',
+        'value',
+    )
+
+    def has_delete_permission(self, *args, **kwargs):
+        return False
+
+    def has_add_permission(self, *args, **kwargs):
+        return False
 
 
 @admin.register(DiaryEntry)
@@ -41,9 +53,14 @@ class DiaryEntryAdmin(ImportExportMixin, PrivateQuerySet, BaseModelAdmin):
     )
     list_display = (
         'date',
+        '_preview',
+        'done',
+    )
+    list_filter = (
+        'done',
+    )
+    readonly_fields = (
         'author',
-        'created',
-        'modified',
     )
     search_fields = (
         'text',
@@ -74,6 +91,11 @@ class DiaryEntryAdmin(ImportExportMixin, PrivateQuerySet, BaseModelAdmin):
     def reverse_url_detail_args(self, obj):
         return (obj.date,)
 
+    def _preview(self, obj):
+        return (obj.text[:50] + '...') if obj.text else '-'
+
+    _preview.short_description = _('Предосмотр')
+
 
 @admin.register(DiaryTag)
 class DiaryTagAdmin(PrivateQuerySet, admin.ModelAdmin):
@@ -89,17 +111,38 @@ class DiaryTagAdmin(PrivateQuerySet, admin.ModelAdmin):
 
 
 @admin.register(DiaryTagValue)
-class DiaryTagValueAdmin(PrivateQuerySet, admin.ModelAdmin):
+class DiaryTagValueAdmin(PrivateQuerySet, BaseModelAdmin):
     """Admin class for ``DiaryTagValue`` model."""
 
     list_display = (
         'tag',
-        'author',
-        'entry',
         'value',
+        'entry',
     )
-    autocomplete_fields = (
+    list_filter = (
+        'tag',
+    )
+    readonly_fields = (
+        'value',
         'author',
         'entry',
         'tag',
     )
+    change_actions = (
+        'redirect_to_entry',
+    )
+
+    def has_delete_permission(self, *args, **kwargs):
+        return False
+
+    def has_add_permission(self, *args, **kwargs):
+        return False
+
+    def has_change_permission(self, *args, **kwargs):
+        return False
+
+    def redirect_to_entry(self, request, obj):
+        return self.redirect(obj.entry.admin_changelink)
+
+    redirect_to_entry.label = _('Go to entry')
+    redirect_to_entry.short_description = _('Go to entry')

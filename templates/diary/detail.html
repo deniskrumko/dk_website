@@ -21,6 +21,12 @@
   {% include "diary/extra/breadcrumbs.html" %}
 
   <div class="dk-entry">
+    <a class="dk-entry-daybutton dk-entry-prev-day uk-visible@s" href="{% url 'diary:detail' date=prev_date|date:'Y-m-d' %}">
+      <span uk-icon="icon: chevron-left"></span>
+    </a>
+    <a class="dk-entry-daybutton dk-entry-next-day uk-visible@s" href="{% url 'diary:detail' date=next_date|date:'Y-m-d' %}">
+      <span uk-icon="icon: chevron-right"></span>
+    </a>
     <div class="dk-edit-link uk-visible@s">
       <a href="{% url 'diary:edit' date=date_str %}" class="uk-icon-button uk-margin-small-right" uk-icon="icon: pencil; ratio: 1.3;"></a>
       <a href="{{ entry.admin_changelink }}" class="uk-icon-button uk-margin-small-right" uk-icon="icon: cog; ratio: 1.3;" target="_blank"></a>
@@ -60,10 +66,13 @@
   <div class="uk-hidden@s uk-margin-top uk-margin-large-bottom">
     <a href="{% url 'diary:edit' date=date_str %}" class="uk-button uk-button-default dk-mobile-buttons">Изменить</a>
     <a href="{% url 'diary:index' %}" class="uk-button uk-button-default dk-mobile-buttons">Назад</a>
+    <br><br>
+    <a href="{% url 'diary:detail' date=prev_date|date:'Y-m-d' %}" class="uk-button uk-button-default dk-mobile-buttons">Вчера</a>
+    <a href="{% url 'diary:detail' date=next_date|date:'Y-m-d' %}" class="uk-button uk-button-default dk-mobile-buttons">Завтра</a>
   </div>
-  <div class="dk-after uk-visible@s">
-    <a href="{% url 'diary:detail' date=prev_date|date:'Y-m-d' %}" class="uk-button uk-button-default dk-mobile-buttons">Предыдущий день</a>
-    <a href="{% url 'diary:detail' date=next_date|date:'Y-m-d' %}" class="uk-button uk-button-default dk-mobile-buttons">Следующий день</a>
+
+  <div class="uk-visible@s" style="text-align: center;">
+    <br><br>
   </div>
 
 </div>
