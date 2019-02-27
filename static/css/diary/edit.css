@@ -43,7 +43,8 @@ textarea::placeholder {
 
 .dk-insert-tag {
   padding: 5px 10px;
-  margin-right: 5px;
+  margin-right: 8px;
+  margin-bottom: 8px;
   font-size: 12px;
   font-weight: 600;
   border-radius: 30px;
@@ -52,6 +53,7 @@ textarea::placeholder {
   cursor: pointer;
   background: #e9e8ea;
   transition: all 0.2s ease;
+  display: inline-block;
 }
 .dk-insert-tag:hover {
   background: #d7d4db;

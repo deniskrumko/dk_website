@@ -40,9 +40,13 @@
       <input type="submit" name="_save" class="uk-button uk-button-primary dk-mobile-buttons" style="background-color: #00b5ad;" id="save" value="Сохранить">
       <a href="{% url 'diary:detail' date=date_str %}" class="uk-button uk-button-default dk-mobile-buttons">Назад</a>
       <div class="uk-margin-top uk-visible@s noselect">
-          {% for tag in available_tags %}
-            <span type="button" class="dk-insert-tag">{{ tag.name }}</span>
-          {% endfor %}
+        <span type="button" class="dk-insert-tag">#</span>
+        {% if not available_tags %}
+        ← Нажмите для добавления тэга
+        {% endif %}
+        {% for tag in available_tags %}
+          <span type="button" class="dk-insert-tag">{{ tag.name }}</span>
+        {% endfor %}
       </div>
     </div>
   </form>

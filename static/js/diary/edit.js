@@ -17,8 +17,13 @@ jQuery(document).ready(function($) {
     was_changed = true;
 
     current_value = $('textarea').val();
-    append_value = '\n#' + $(this).text() + ' ';
-    $('textarea').val(current_value + append_value);
+    button_value = $(this).text();
+    append_value = '';
+    prefix = '#';
+
+    if (current_value) { prefix = '\n#'; }
+    if (button_value != '#') { append_value = $(this).text() + ' '; }
+    $('textarea').val(current_value + prefix + append_value);
 
     var ta = document.querySelector('textarea');
     var evt = document.createEvent('Event');
