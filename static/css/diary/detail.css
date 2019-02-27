@@ -89,3 +89,20 @@ p {
 .dk-entry-next-day {
   right: -80px;
 }
+
+.dk-start-edit {
+  background: #00B5AD;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dk-start-edit:hover {
+  background: #06a49d;
+  color: white;
+  text-decoration: none;
+}

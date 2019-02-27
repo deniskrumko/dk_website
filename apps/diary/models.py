@@ -104,6 +104,11 @@ class DiaryEntry(BaseModel):
                     value=' '.join(other) if other else None
                 )
 
+        # Remove unused tags
+        for tag in DiaryTag.objects.filter(author=self.author):
+            if not tag.values.exists():
+                tag.delete()
+
 
 class DiaryTag(BaseModel):
     """Model for tags in diary entries."""

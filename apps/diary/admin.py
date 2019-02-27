@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import ugettext_lazy as _
 
 from import_export.admin import ImportExportMixin
 
@@ -6,7 +7,6 @@ from core.admin import BaseModelAdmin
 
 from .import_export.resources import DiaryEntryResource
 from .models import DiaryEntry, DiaryTag, DiaryTagValue
-from django.utils.translation import ugettext_lazy as _
 
 
 class PrivateQuerySet(object):

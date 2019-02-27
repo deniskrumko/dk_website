@@ -21,25 +21,37 @@
     <strong>Календарь</strong>
   </h2>
 
-  <form class="uk-grid-small uk-margin-large-bottom" uk-grid action="/diary/calendar/" method="post">
+  <form class="uk-grid-small uk-margin-medium-bottom" uk-grid action="/diary/calendar/" method="post">
     {% csrf_token %}
 
-      <div class="uk-width-2-5@xl uk-width-2-5@l uk-width-2-5@m uk-width-1-2@s">
+      <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-4@m uk-width-1-1@s">
         <select class="uk-select" name="month">
           {% for month in months %}
             <option value="{{ forloop.counter }}" {% if forloop.counter == current_month %}selected{% endif %}>{{ month }}</option>
           {% endfor %}
+          <option value="13" {% if current_month == 13 %}selected{% endif %}>==== Весь год ====</option>
         </select>
       </div>
-      <div class="uk-width-2-5@xl uk-width-2-5@l uk-width-2-5@m uk-width-1-2@s">
+      <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-4@m uk-width-1-1@s">
         <select class="uk-select" name="year">
           {% for year in years %}
             <option {% if year == current_year %}selected{% endif %}>{{ year }}</option>
           {% endfor %}
         </select>
       </div>
-      <div class="uk-width-1-5@xl uk-width-1-5@l uk-width-1-5@m uk-width-1-1@s">
-        <input type="submit" name="" value="Перейти" class="uk-button uk-button-primary uk-width-1-1">
+      <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-4@m uk-width-1-1@s">
+        <select class="uk-select" name="entry_type">
+            <option {% if entry_type == 1 %}selected{% endif %} value="1">Все записи</option>
+            <option {% if entry_type == 2 %}selected{% endif %} value="2">Только законченные</option>
+            <option {% if entry_type == 3 %}selected{% endif %} value="3">Только незаконченные</option>
+        </select>
+      </div>
+      <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-4@m uk-width-1-1@s">
+        <input type="submit" name="" value="Показать" class="uk-button uk-button-primary uk-width-1-1">
+      </div>
+
+      <div class="">
+        <a href="/diary/" class="uk-button uk-button-text">Назад</a>
       </div>
   </form>
 

@@ -102,6 +102,7 @@ class DiaryCalendarView(LoginRequiredMixin, BaseView):
 
         year = int(request.GET.get('year', 0))
         month = int(request.GET.get('month', 0))
+        entry_type = int(request.GET.get('type', 1))
 
         if not year or not month:
             return HttpResponseRedirect(
@@ -127,21 +128,31 @@ class DiaryCalendarView(LoginRequiredMixin, BaseView):
         context['years'] = [i for i in range(current.year, 2016, -1)]
         context['current_month'] = month
         context['current_year'] = year
+        context['entry_type'] = entry_type
 
-        last_day_of_month = calendar.monthrange(year, month)[1]
+        start_month = month if month != 13 else 1
+        end_month = month if month != 13 else 12
+
+        last_day_of_month = calendar.monthrange(year, end_month)[1]
 
         qs = DiaryEntry.objects.filter(author=request.user)
 
         days = []
         for dt in rrule(
             DAILY,
-            dtstart=date(year, month, 1),
-            until=date(year, month, last_day_of_month)
+            dtstart=date(year, start_month, 1),
+            until=date(year, end_month, last_day_of_month)
         ):
             cur_date = dt.date()
-            days.append(
-                (cur_date, qs.filter(date=cur_date).first())
-            )
+            cur_entry = qs.filter(date=cur_date).first()
+            is_done = bool(cur_entry and cur_entry.done)
+
+            if (
+                entry_type == 1
+                or (entry_type == 2 and is_done)
+                or (entry_type == 3 and not is_done)
+            ):
+                days.append((cur_date, cur_entry))
 
         context['entries'] = days
         return self.render_to_response(context)
@@ -149,8 +160,9 @@ class DiaryCalendarView(LoginRequiredMixin, BaseView):
     def post(self, request):
         month = request.POST.get('month')
         year = request.POST.get('year')
+        entry_type = request.POST.get('entry_type')
         return HttpResponseRedirect(
-            f'/diary/calendar/?month={month}&year={year}'
+            f'/diary/calendar/?month={month}&year={year}&type={entry_type}'
         )
 
 

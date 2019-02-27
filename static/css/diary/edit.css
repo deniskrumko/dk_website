@@ -40,3 +40,19 @@ textarea::placeholder {
 .dk-back {
   margin-left: 20px;
 }
+
+.dk-insert-tag {
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  background: #e9e8ea;
+  transition: all 0.2s ease;
+}
+.dk-insert-tag:hover {
+  background: #d7d4db;
+}
