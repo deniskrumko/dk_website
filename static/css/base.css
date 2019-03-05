@@ -1,213 +1,75 @@
-html, body {
-  height: 100%;
-  background: #f6f6f9;
-  display: flex;
-  min-height: 100vh;
-  min-height: 100vh;
-  flex-direction: column;
+/* Main and grid */
+
+html {
+  font-family: 'Avenir Next Cyr';
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+}
+.pure-g [class*=pure-u] {
+  font-family: 'Avenir Next Cyr';
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 900px;
+}
+.center {
+  text-align: center;
 }
 
-#hb {
-  width: 100%;
-  position: relative;
-  bottom: 0px;
-  margin-top: -350px;
-}
+/* Buttons */
 
-@media screen and (max-width: 640px) {
-  #hb {
-    margin-top: 0px;
-  }
-}
-
-main {
-  flex: 1;
-}
-
-.uk-modal-dialog {
-  background: #f7f7fa;
-}
-
-.dk-news-h2 {
-  color: #333;
-  transition: all 0.3s ease;
-}
-
-.dk-bold {
-  font-weight: bold;
-}
-
-.dk-center {
-  text-align: center !important;
-}
-
-.dk-bg-light {
-  background: #fdfdfd;
-}
-
-.dk-shadow {
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05) !important;
-}
-
-.dk-news-card {
-  transition: all 0.3s ease;
-}
-
-.dk-news-card:hover {
-  transform: translateY(-5px);
-}
-
-#dk-close {
-  padding: 40px 60px;
-  background: #fefefe;
-  color: #333;
-  transition: all 0.3s ease;
-}
-
-#dk-close:hover {
-  transform: scale(1.5);
-}
-
-@media screen and (max-width: 640px) {
-  #dk-close {
-    padding: 20px 20px;
-  }
-  .uk-search-input {
-    font-size: 16px !important;
-  }
-
-}
-
-/* Menu */
-
-.dk-menu-br {
-  padding-bottom: 120px;
-}
-
-@media screen and (max-width: 640px) {
-  .dk-menu-br {
-    padding-bottom: 80px;
-  }
-}
-
-.uk-navbar-nav>li {
-  position: relative;
-  z-index: 1 !important;
-}
-
-.uk-card {
-  z-index: 10;
-}
-
-.uk-padding {
-  z-index: 10;
-}
-
-.uk-navbar-nav>li.active {
-  font-weight: bold;
-}
-
-.uk-navbar-nav>li.active::after {
-  content: '';
-  width: calc(100% - 30px);
-  height: 4px;
-  position: absolute;
-  bottom: 20px;
-  transition: all 0.3s ease;
-  margin-left: 15px;
-}
-
-.dk-navbar-active {
-  font-size: 16px !important;
-}
-
-.dk-menu-link {
-  font-size: 18px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.dk-menu-link.active {
-  color: #fff;
-  font-weight: bold;
-}
-
-.dk-menu-link, .dk-menu-link:active, .dk-menu-link:focus {
-  color: #eee;
-}
-
-.uk-modal-close-full {
-  color: #fff;
-  top: 10px;
-  right: 10px;
-}
-.noselect {
-  cursor: default;
-}
-.noselect:focus {
-   outline: none;
-}
-
-/* Submenu */
-
-#dk-submenu {
-  position: relative;
-  padding-right: 30px;
-  top: -15px;
-}
-#dk-submenu span {
-  float: right;
-}
-#dk-submenu span a {
-  margin-left: 20px;
-  color: #666 !important;
-}
-#dk-submenu span a::before {
-    border-bottom: 1px solid #666 !important;
-}
-
-.dk-search-mobile {
-  top: 10px;
-  left: 10px;
-  position: absolute;
-  color: #fff;
-  padding: 16px;
-}
-
-.dk-footer img {
-  max-width: 64px;
-  max-height: 64px;
-}
-
-.dk-footer {
-  border-top: 1px solid #EAECEF;
-  padding-top: 25px;
-  margin-bottom: 20px;
-}
-
-.dk-footer-part {
-  padding-top: 18px;
-}
-
-#footer-dk {
-  text-align: left;
+.dk-button {
+  padding: 7px 22px;
+  border-radius: 22px;
+  border: none;
+  margin: 5px 5px;
+  text-decoration: none;
   font-size: 14px;
+  display: inline-block;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+.dk-fw-button {
+  width: auto;
+  display: block;
+}
+.dk-button:focus {
+  outline: none;
 }
 
-#footer-social {
-  text-align: right;
+/* Inputs */
+
+.dk-text-input {
+  padding: 6px 18px;
+  border: none;
+  margin: 5px;
+  border-radius: 20px;
+  transition: box-shadow 0.2s ease;
+}
+.dk-text-input:focus {
+  outline: none;
+}
+.dk-fullwidth {
+  width: calc(100% - 44px);
 }
 
-#footer-social a {
-  margin-left: 10px;
+/* Mobile */
+
+.mobile-hidden{
+  display: inline-block !important;
+}
+.mobile-visible{
+  display: none !important;
 }
 
-/* On small screen */
-@media screen and (max-width: 640px) {
-  #footer-dk {
-    font-size: 10px;
-  }
-  #footer-social a {
-    margin-left: 2px;
-  }
+@media only screen and (max-width: 567px) {
+   .mobile-hidden{
+     display: none !important;
+   }
+   .mobile-visible{
+     display: inline-block !important;
+   }
 }

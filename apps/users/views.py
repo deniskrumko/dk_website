@@ -10,8 +10,9 @@ from core.views import BaseView
 class LoginView(BaseView):
     """View for users to log in."""
 
+    menu = 'login'
+    colors = ('#4A72B7', '#375d9e', '#fefefe')
     template_name = 'login.html'
-    menu = 'index'
     title = 'DK - Главная'
     description = 'DK - Войти'
 

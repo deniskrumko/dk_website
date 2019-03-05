@@ -9,6 +9,7 @@ class BlogIndexView(BaseView):
     """View to get index blogs page."""
 
     template_name = 'blog/index.html'
+    colors = ('#1BBC9C', '#159c81', '#fefefe')
     menu = 'blog'
     title = 'DK - Блог'
     description = (

@@ -25,9 +25,10 @@ class DiaryIndexView(BaseView):
     """View to get index diary page."""
 
     template_name = 'diary/index.html'
+    colors = ('#00B5AD', '#00B5AD', '#666')
     title = 'DK - Дневник'
     description = 'Дневник'
-    menu = 'blog'
+    menu = 'diary'
 
     def get(self, request):
         """Get index page."""
@@ -92,7 +93,8 @@ class DiaryCalendarView(LoginRequiredMixin, BaseView):
     """View for calendar page on diary."""
 
     template_name = 'diary/calendar.html'
-    menu = 'blog'
+    menu = 'diary'
+    colors = ('#00B5AD', '#00B5AD', '#666')
     title = 'DK - Календарь'
     description = 'Дневник'
 

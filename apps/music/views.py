@@ -11,6 +11,7 @@ class TrackIndexView(BaseView):
     template_name = 'music/index.html'
     menu = 'music'
     title = 'DK - Музыка'
+    colors = ('#f45c28', '#f45c28', '#fefefe')
     description = (
         'Dendy Not Dead — это музыкальный проект Дениса Крумко. Сам проект '
         'является собранием инструментальной рок музыки, составленной '

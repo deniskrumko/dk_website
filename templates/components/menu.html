@@ -1,79 +1,98 @@
-  {# Desktop menu #}
-  <div class="uk-container uk-container-small uk-position-top uk-visible@s" style="padding-top: 10px;">
-    <nav class="uk-navbar-container uk-navbar-transparent" id="dk-desktop-navbar" uk-navbar>
-        <div class="uk-navbar-left">
-            <ul class="uk-navbar-nav">
-              {# Main visible menu items #}
-              {% for code, item in menu.items %}
-                {% if item.visible %}
-                <li {% if code == active_menu %}class="active"{% endif %}>
-                  <a href="{{ item.url }}">{{ item.name}}</a>
-                </li>
-                {% endif %}
-              {% endfor %}
-              <div>
-                <a class="uk-navbar-toggle" uk-search-icon href="#"></a>
-                <div class="uk-drop" uk-drop="mode: click; pos: right-center; offset: 0">
-                  <form class="uk-search uk-search-navbar uk-width-1-1" action="/search/" method="get" autocomplete="off">
-                      <input class="uk-search-input" type="search" placeholder="Что искать будем?" name="search_query" autofocus>
-                  </form>
-                </div>
-              </div>
-            </ul>
-        </div>
-    </nav>
+{% load static %}
 
-    {# Submenu #}
-    <div class="" id="dk-submenu" style="display: none;">
-      <span>
+{% block css %}
+  <style media="screen">
+    .dk-active {
+      color: {{ colors.main }};
+    }
+  </style>
+{% endblock %}
+
+<div class="dk-menu container pure-g">
+  <div class="pure-u-6-24 pure-u-sm-3-24">
+    <a href="{% url 'main:index' %}">
+      <img src="{% static 'images/logo.png' %}" alt="DK" id="dk-menu-logo">
+    </a>
+  </div>
+  <div class="pure-u-18-24 pure-u-sm-15-24">
+    <div id="dk-menu-left-gradient"></div>
+    <div id="dk-menu-right-gradient"></div>
+    <div id="dk-menu-items" class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+          <a href="{% url 'main:index' %}"
+          class="pure-menu-link {% if active_menu == 'index' %}dk-active{% endif %}">
+            ГЛАВНАЯ
+          </a>
+        </li>
+        <li class="pure-menu-item">
+          <a href="{% url 'blog:index' %}"
+          class="pure-menu-link {% if active_menu == 'blog' %}dk-active{% endif %}">
+            БЛОГ
+          </a>
+        </li>
         {% if request.user.is_staff %}
-          {% for item in hidden_menu %}
-          <a href="{{ item.url }}" class="uk-button uk-button-text">{{ item.name }}</a>
-          {% endfor %}
-        {% else %}
-          <a href="{% url 'users:login' %}" class="uk-button uk-button-text">Войти</a>
+        <li class="pure-menu-item">
+          <a href="{% url 'diary:index' %}"
+          class="pure-menu-link {% if active_menu == 'diary' %}dk-active{% endif %}">
+            ДНЕВНИК
+          </a>
+        </li>
         {% endif %}
-      </span>
+        <li class="pure-menu-item">
+          <a href="{% url 'news:index' %}"
+          class="pure-menu-link {% if active_menu == 'news' %}dk-active{% endif %}">
+            НОВОСТИ
+          </a>
+        </li>
+        <li class="pure-menu-item">
+          <a href="{% url 'music:index' %}"
+          class="pure-menu-link {% if active_menu == 'music' %}dk-active{% endif %}">
+            МУЗЫКА
+          </a>
+        </li>
+        <li class="pure-menu-item mobile-visible">
+          <a href="{% url 'main:search_index' %}"
+          class="pure-menu-link {% if active_menu == 'search' %}dk-active{% endif %}">
+            ПОИСК
+          </a>
+        </li>
+        <li class="pure-menu-item mobile-hidden">
+          <a href="{% url 'main:search_index' %}"
+          id="dk-menu-search" title="Поиск" class="pure-menu-link">
+            {% if active_menu == 'search' %}
+            <img src="{% static 'images/search_active.svg' %}" alt="">
+            {% else %}
+            <img src="{% static 'images/search.svg' %}" alt="">
+            {% endif %}
+          </a>
+        </li>
+        <li class="pure-menu-item mobile-visible">
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'users:logout' %}"
+          class="pure-menu-link {% if active_menu == 'login' %}dk-active{% endif %}">
+          @{{ request.user.username.upper }}
+          </a>
+          {% else %}
+          <a href="{% url 'users:login' %}"
+          class="pure-menu-link {% if active_menu == 'login' %}dk-active{% endif %}">
+            ВОЙТИ В АККАУНТ
+          </a>
+          {% endif %}
+        </li>
+      </ul>
     </div>
   </div>
-
-  {# Mobile menu #}
-  <div class="uk-container uk-position-top uk-hidden@s">
-    <nav class="uk-navbar-container uk-navbar-transparent" id="dk-mobile-navbar" uk-navbar>
-        <div class="uk-navbar-left">
-            <ul class="uk-navbar-nav">
-              <li>
-                {% if active_menu %}
-                <a class="dk-navbar-active" href="{{ menu|get_link:active_menu }}">
-                  {{ menu|get_name:active_menu }}
-                </a>
-                {% endif %}
-              </li>
-            </ul>
-        </div>
-        <div class="uk-navbar-right">
-          <a class="uk-navbar-toggle dk-navbar-active" uk-navbar-toggle-icon href="#modal-sections" uk-toggle></a>
-        </div>
-    </nav>
+  <div id="dk-auth-buttons" class="pure-u-sm-6-24 mobile-hidden">
+    {% if request.user.is_authenticated %}
+    <a class="dk-button" id="dk-login-button" href="{% url 'users:logout' %}">
+      {{ request.user.username }}
+    </a>
+    {% elif active_menu != 'login' %}
+    <a class="dk-button dk-main-button"
+    id="dk-login-button" href="{% url 'users:login' %}">
+      Войти
+    </a>
+    {% endif %}
   </div>
-
-  {# Mobile menu - opened #}
-  <div id="modal-sections" class="uk-modal-full" uk-modal>
-    <div class="uk-modal-dialog">
-        <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
-        <a class="dk-search-mobile" uk-icon="icon: search; ratio: 1.2" href="{% url 'main:search_index' %}"></a>
-        <div class="uk-modal-body">
-          <br>
-            {# Main visible menu items #}
-            {% for code, item in menu.items %}
-              {% if item.visible %}
-              <a href="{{ item.url}}" class="uk-button dk-menu-link uk-width-1-1 {% if code == active_menu %}active{% endif %}">
-                {{ item.name }}
-              </a>
-              {% endif %}
-            {% endfor %}
-        </div>
-    </div>
 </div>
-
-<div class="dk-menu-br"></div>

@@ -1,0 +1,26 @@
+html, body {
+  background: #f6f6f9;
+  color: #666;
+}
+.pure-menu-link:hover {
+  background: #eaeaf1;
+}
+.dk-button {
+  background: #e0e0eb;
+  color: #666;
+}
+.dk-button:hover {
+  background: #d6d6e3;
+}
+.dk-button:active {
+  background: #cdcddd;
+}
+#dk-menu-right-gradient {
+  background-image: linear-gradient(to right, rgba(246,246,249,0), rgba(246,246,249,1));
+}
+#dk-menu-left-gradient {
+  background-image: linear-gradient(to left, rgba(246,246,249,0), rgba(246,246,249,1));
+}
+.dk-text-input::placeholder {
+  color: #bbb;
+}

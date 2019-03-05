@@ -25,6 +25,7 @@ class IndexView(BaseView):
         'Сайт Дениса Крумко: видеоблоги о путешествиях, инструментальная '
         'музыка, ну и все. Смотрите, слушайте, узнавайте.'
     )
+    colors = ('#4A72B7', '#375d9e', '#fefefe')
     use_analytics = True
 
     def get_context_data(self):
@@ -51,9 +52,10 @@ class SearchView(BaseView):
     """View to search page."""
 
     template_name = 'search.html'
+    colors = ('#aa35e8', '#9d2fd7', '#fefefe')
     title = 'DK - Поиск'
     description = 'Поиск данных на сайте deniskrumko.ru'
-    menu = 'index'
+    menu = 'search'
 
     def find_music_tracks(self, search_query):
         """Find music tracks."""

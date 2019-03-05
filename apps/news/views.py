@@ -12,6 +12,7 @@ class NewsView(BaseView):
     menu = 'news'
     title = 'DK - Новости'
     description = 'Новости сайта'
+    colors = ('#efb900', '#ddac04', '#fefefe')
     use_analytics = True
 
     def get_context_data(self):

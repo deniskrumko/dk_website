@@ -1,0 +1,77 @@
+/* ID */
+
+#dk-menu-logo {
+  width: 66px;
+  display: inline-block;
+}
+#dk-menu-search {
+  width: 24px;
+  height: 18px;
+}
+#dk-menu-search img {
+  position: absolute;
+  top: 5px;
+}
+#dk-login-button {
+  float: right;
+}
+#dk-menu-right-gradient, #dk-menu-left-gradient {
+  display: none;
+  width: 10px;
+  height: 70px;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+#dk-menu-right-gradient {
+  right: -1px;
+}
+#dk-menu-left-gradient {
+  left: 0;
+}
+#dk-menu-items {
+  padding: 15px 0px !important;
+}
+#dk-auth-buttons {
+  padding: 10px 0px !important;
+}
+
+/* CLASSES */
+
+.dk-menu {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 14px;
+}
+.dk-menu div {
+  position: relative;
+}
+.pure-menu-link {
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+.dk-active {
+  font-weight: 600;
+}
+
+/* MEDIA */
+@media only screen and (max-width: 700px) {
+  .dk-menu {
+    padding-top: 10px;
+  }
+  #dk-menu-items {
+    padding: 10px 0px !important;
+  }
+  #dk-auth-buttons {
+    padding: 4px 0px !important;
+  }
+  #dk-menu-logo{
+    width: 55px;
+  }
+  .pure-menu-link {
+    padding: 7px 8px;
+  }
+  #dk-menu-right-gradient, #dk-menu-left-gradient {
+    display: block;
+  }
+}
