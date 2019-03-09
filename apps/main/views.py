@@ -34,7 +34,8 @@ class IndexView(BaseView):
         context.update({
             'news_items': News.objects.all()[:3],
             'music_items': Track.objects.all()[:6],
-            'total_news_count': News.objects.count()
+            'total_news_count': News.objects.count(),
+            'range': list(range(10)),
         })
         return context
 

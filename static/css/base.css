@@ -1,9 +1,10 @@
 /* Main and grid */
 
-html {
+html, body {
   font-family: 'Avenir Next Cyr';
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
+  height: 100%;
 }
 .pure-g [class*=pure-u] {
   font-family: 'Avenir Next Cyr';

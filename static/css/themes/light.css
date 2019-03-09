@@ -1,6 +1,9 @@
 html, body {
   background: #f6f6f9;
-  color: #666;
+  color: #333;
+}
+.pure-menu-link {
+  color: #555;
 }
 .pure-menu-link:hover {
   background: #eaeaf1;
@@ -16,11 +19,36 @@ html, body {
   background: #cdcddd;
 }
 #dk-menu-right-gradient {
-  background-image: linear-gradient(to right, rgba(246,246,249,0), rgba(246,246,249,1));
+  background-image: linear-gradient(
+    to right, rgba(246,246,249,0), rgba(246,246,249,1)
+  );
 }
 #dk-menu-left-gradient {
-  background-image: linear-gradient(to left, rgba(246,246,249,0), rgba(246,246,249,1));
+  background-image: linear-gradient(
+    to left, rgba(246,246,249,0), rgba(246,246,249,1)
+  );
 }
 .dk-text-input::placeholder {
   color: #bbb;
+}
+.dk-right-bar::after {
+  box-shadow: -20px 0 20px -20px rgba(0,0,0,.15);
+}
+.dk-left-bar::before {
+  box-shadow: 20px 0 20px -20px rgba(0,0,0,.15);
+}
+.dk-card-title {
+  color: #333;
+}
+.dk-card-text {
+  color: #777;
+}
+.dk-show-more {
+  color: #aaa;
+}
+.dk-show-more:hover {
+  color: #777;
+}
+.dk-music-card-title {
+  color: #333;
 }

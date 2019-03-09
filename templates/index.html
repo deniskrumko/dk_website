@@ -1,9 +1,239 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
+{% block js %}
+  <script type="text/javascript">
+  function hide_scroll_shadow(e) {
+    if (document.documentElement.clientWidth > 950) {
+      var max_width = e.scrollWidth - e.offsetWidth;
+      var parent = e.parentElement;
+      if (e.scrollLeft == 0) {
+        parent.classList.remove('dk-left-bar');
+      } else if (e.scrollLeft == max_width) {
+        parent.classList.remove('dk-right-bar');
+      } else {
+        parent.classList.add('dk-right-bar');
+        parent.classList.add('dk-left-bar');
+      }
+    }
+  }
+  </script>
+{% endblock %}
+{% block css %}
+<style media="screen">
+.slider-container {
+  /* margin-bottom: 40px; */
+}
+.dk-card-slider {
+  position: relative;
+}
+.dk-card-slider::after {
+  content: "";
+  height: 310px;
+  position: absolute;
+  right: -60px;
+  top: -15px;
+  width: 60px;
+  transition: box-shadow 0.5s ease;
+}
+.dk-card-slider::before {
+  content: "";
+  height: 310px;
+  position: absolute;
+  left: -60px;
+  top: -15px;
+  width: 60px;
+  transition: box-shadow 0.5s ease;
+}
+.dk-music-card-slider::after {
+  height: 265px;
+}
+.dk-music-card-slider::before {
+  height: 265px;
+}
+.dk-card-slider-scroll::-webkit-scrollbar {
+  display: none;
+}
+.dk-card-slider-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  position: relative;
+}
+.dk-card-img {
+  height: 180px;
+  width: 320px;
+  background-size: 320px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background 0.3s, font-size 0.3s ease;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.dk-music-card-img {
+  height: 180px;
+  width: 180px;
+  background-size: 180px;
+}
+.dk-card {
+  margin-right: 20px;
+  margin-bottom: 5px;
+  display: block;
+  text-decoration: none;
+}
+.dk-card-outer:last-child .dk-card {
+  margin-right: 0px;
+}
+.dk-card-outer {
+  flex: 0 0 auto;
+  z-index: 10;
+}
+.dk-card-title {
+  font-weight: 400;
+  font-size: 22px;
+  margin-bottom: 5px;
+  max-width: 320px;
+}
+.dk-music-card-title {
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 5px;
+  max-width: 180px;
+  text-align: center;
+}
+.dk-card-text {
+  font-weight: 400;
+  font-size: 14px;
+}
+.dk-card-bottom {
+  padding: 15px;
+}
+.dk-card:hover .dk-card-img {
+  background-size: 340px;
+  font-size: 17px;
+}
+.dk-music-card:hover .dk-music-card-img {
+  background-size: 200px;
+  font-size: 17px;
+}
+.dk-show-more {
+  font-size: 14px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: block;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.dk-show-more:hover {
+  color: #777;
+}
+
+
+@media only screen and (max-width: 950px) {
+  .dk-card {
+    max-width: 250px;
+  }
+  .dk-card-img {
+    width: 250px;
+    height: 150px;
+  }
+  .dk-music-card {
+    max-width: 150px;
+  }
+  .dk-music-card-img {
+    width: 150px;
+    height: 150px;
+  }
+  .dk-card-title {
+    font-size: 18px;
+  }
+  .slider-container {
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .dk-right-bar::after {
+    box-shadow: none;
+    display: none;
+  }
+  .dk-left-bar::before {
+    box-shadow: none;
+    display: none;
+  }
+  .dk-card-outer:first-child .dk-card {
+    margin-left: 15px;
+  }
+  .dk-card-outer:last-child .dk-card {
+    margin-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  .dk-card {
+    max-width: 180px;
+  }
+  .dk-card-img {
+    height: 140px;
+    width: 180px;
+  }
+  .dk-music-card {
+    max-width: 120px;
+  }
+  .dk-music-card-img {
+    height: 120px;
+    width: 120px;
+  }
+  .dk-card-title {
+    font-size: 16px;
+  }
+  .dk-music-card-title {
+    font-size: 14px;
+  }
+  .dk-card-text {
+    font-size: 12px;
+  }
+}
+</style>
+{% endblock %}
+
 {% block body %}
 <div class="container">
-
+  <h1>Блоги</h1>
+</div>
+<div class="container slider-container">
+  <div class="dk-card-slider dk-right-bar">
+    <div class="dk-card-slider-scroll" onscroll="hide_scroll_shadow(this)">
+      {% for i in range %}
+      <div class="dk-card-outer">
+        <a class="dk-card" href="#">
+          <div class="dk-card-img" style="background-image: url({% static 'images/nophoto.png' %})"></div>
+          <div class="dk-card-title">17 дней в Италии. Флоренция 1231231</div>
+          <div class="dk-card-text">Часть 5</div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="container">
+  <a class="dk-show-more" href="#">Посмотреть все блоги</a>
+  <h1>Музыка</h1>
+</div>
+<div class="container slider-container">
+  <div class="dk-card-slider dk-music-card-slider dk-right-bar">
+    <div class="dk-card-slider-scroll" onscroll="hide_scroll_shadow(this)">
+      {% for i in range %}
+      <div class="dk-card-outer">
+        <a class="dk-card dk-music-card" href="#">
+          <div class="dk-card-img dk-music-card-img" style="background-image: url({% static 'images/nophoto.png' %})"></div>
+          <div class="dk-music-card-title">Darkness Imprisoning Me</div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="container">
+  <a class="dk-show-more" href="#">Посмотреть все треки</a>
 </div>
 
 {% endblock %}
