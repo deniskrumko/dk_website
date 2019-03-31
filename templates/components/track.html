@@ -46,7 +46,7 @@
       </div>
 
       {# Player #}
-      <div class="uk-width-3-5@l uk-width-3-4@m uk-width-2-3@s uk-width-2-3 dk-player-timeline">
+      <div class="uk-width-2-3@l uk-width-3-4@m uk-width-2-3@s uk-width-2-3 dk-player-timeline">
         <audio id="track-{{ forloop.counter }}"
           {% if not forloop.last %}
             data-next="track-{{ forloop.counter|add:'1' }}"

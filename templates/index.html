@@ -35,7 +35,7 @@
           {% for item in news_items %}
             <li>
               <div uk-grid>
-                <div class="uk-width-2-5@xl uk-width-2-5@l uk-width-2-5@m uk-width-1-1@s">
+                <div class="uk-width-2-5@xl uk-width-2-5@l uk-width-2-5@m uk-width-2-5@s">
                   <a href="{% url 'news:detail' item.slug %}">
                   {% if item.image %}
                   <img src="{{ item.image.url }}" alt="">
@@ -44,7 +44,7 @@
                   {% endif %}
                   </a>
                 </div>
-                <div class="uk-width-3-5@xl uk-width-3-5@l uk-width-3-5@m uk-width-1-1@s">
+                <div class="uk-width-3-5@xl uk-width-3-5@l uk-width-3-5@m uk-width-3-5@s">
                   <h2 class="uk-margin-small-bottom">
                     <a class="dk-news-h2" href="{% url 'news:detail' item.slug %}">
                       {{ item.title }}
