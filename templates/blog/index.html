@@ -1,50 +1,143 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block extrastyle %}
+{% block css %}
 <link rel="stylesheet" href="{% static 'css/blog/index.css' %}">
-
 <style media="screen">
-{% with menu|get_color:active_menu as color %}
-.dk-blog-header:hover {
-  color: {{ color.accent }};
-  text-decoration: none;
-}
-.dk-blog-item:hover > .dk-blog-title {
-  border-bottom: 5px solid {{ color.accent }};
-}
-{% endwith %}
-</style>
+  .blog-item {
+    margin-bottom: 30px;
+  }
+  .blog-item:last-child {
+    margin-bottom: 0px;
+  }
+  .blog-item-image img {
+    width: 100%;
+  }
+  .blog-item-subtitle {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  .blog-item-info {
+    padding: 20px;
+  }
+  .blog-item-date {
+    font-size: 12px;
+  }
+  .pagination {
+    padding: 35px 0px 10px 0px;
+    text-align: center;
+  }
+  .pagination-inner {
+    display: inline-block;
+    background: #f0f0f4;
+    padding: 5px 15px 10px 15px;
+    border-radius: 20px;
+  }
+  .page-link{
+    padding: 10px;
+    font-size: 14px;
+    transition: color 0.2s ease;
+  }
+  .page-link.active {
+    font-weight: bold;
+    color: {{ colors.main }};
+  }
+  .page-nav {
+    display: inline-block;
+    position: relative;
+    padding: 0px 10px;
+    top: 5px;
+    transition: transform 0.3s ease;
+  }
+  .page-nav.inactive img {
+    opacity: 0.15;
+  }
 
+  @media only screen and (min-width: 567px) {
+    .page-nav:hover {
+      transform: scale(1.3);
+    }
+    .page-link:hover{
+      color: {{ colors.main }};
+    }
+  }
+  @media only screen and (max-width: 567px) {
+    .blog-item-info {
+      padding: 10px 0px;
+    }
+    .pagination {
+      text-align: center;
+      padding: 15px 0px 5px 0px;
+    }
+    .page-nav {
+      padding: 0px 5px;
+    }
+  }
+</style>
 {% endblock %}
 
 {% block body %}
 
-{# Menu #}
-{% include 'components/menu.html' %}
-
-<div class="uk-container uk-container-small">
-  <div class="uk-margin-bottom">
-    <a class="dk-bold dk-blog-header active">Истории</a>
-    {% if request.user.is_staff %}
-    <a class="dk-bold dk-blog-header" href="{% url 'diary:index' %}" style="display: inline-block;">Дневник</a>
-    {% endif %}
+{# Sections links #}
+<div class="container slider-container">
+  <div class="scrollable-h1">
+    <a href="{% url 'blog:index' %}" class="active">Истории</a>
+    <a href="{% url 'blog:about' %}">О проекте</a>
   </div>
-
-{% if items %}
-{% for item in items %}
-<a href="{% url 'blog:detail' item.slug %}"
-   class="uk-height-200 uk-background-cover uk-light uk-flex dk-blog-item"
-   {% if item.wide_image %}style="background-image: url('{{ item.wide_image.url }}');"{% endif %}>
-  <h3 class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical dk-blog-title dk-opensans dk-bold">
-    {{ item.title }}
-  </h3>
-</a>
-{% endfor %}
-{% else %}
-<p>В блоге пока пусто...</p>
-{% endif %}
 </div>
-<br>
-<br>
+
+<div class="container">
+  {% if items %}
+  <div class="blog-items">
+  {% for item in items %}
+    <div class="blog-item pure-g" id="blog-{{ item.slug }}">
+      <div class="blog-item-image pure-u-1-1 pure-u-md-2-5">
+        <a href="{% url 'blog:detail' item.slug %}?page={{current_page}}">
+          {% if item.image %}
+          <img src="{{ item.image.url }}" alt="">
+          {% else %}
+          <img src="{% static 'images/nophoto_wide.jpg' %}" alt="">
+          {% endif %}
+        </a>
+      </div>
+      <div class="pure-u-1-1 pure-u-md-3-5">
+        <div class="blog-item-info">
+          <a href="{% url 'blog:detail' item.slug %}"?page={{current_page}} class="dk-h2">{{ item.title }}</a>
+          <div class="blog-item-date graytext">
+            {{ item.date|date:"j E Y"}}
+          </div>
+          <div class="blog-item-subtitle">{{ item.subtitle }}</div>
+          <a href="{% url 'blog:detail' item.slug %}?page={{current_page}}"
+             class="btn primary">
+             Посмотреть
+           </a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+  {% if paginator.num_pages > 1 %}
+  <div class="pagination">
+    <div class="pagination-inner">
+      <a {% if prev_page %}href="?page={{ prev_page}}{% endif %}"
+         class="page-nav {% if not prev_page %}inactive{% endif %}">
+        <img src="{% static 'images/arrows/left.svg' %}">
+      </a>
+      {% for i in paginator.page_range %}
+        <a href="?page={{ i }}"
+           class="page-link {% if i == current_page %}active{% endif %}">
+           {{ i }}
+         </a>
+      {% endfor %}
+      <a {% if next_page %}href="?page={{ next_page}}{% endif %}"
+         class="page-nav {% if not next_page %}inactive{% endif %}">
+        <img src="{% static 'images/arrows/right.svg' %}">
+      </a>
+    </div>
+  </div>
+  {% endif %}
+  {% else %}
+  <h1>В блоге пока пусто...</h1>
+  {% endif %}
+</div>
 {% endblock %}

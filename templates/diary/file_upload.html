@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/diary.css' %}">
+{% endblock %}
+
+{% block body %}
+
+{# Main container #}
+<div class="container slider-container">
+  <div class="scrollable-h1">
+    <a href="{% url 'diary:index' %}" class="active">Дневник</a>
+    <a href="{% url 'diary:calendar' %}">Календарь</a>
+    <a href="{% url 'diary:tags' %}">Тэги</a>
+  </div>
+</div>
+<div class="container">
+  {% if errors %}
+  <div class="form-errors">
+    {% for error in errors %}
+    <div class="form-error">
+      {{ error }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <form class="" action="{{ form_url }}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="pure-g form-row">
+      <div class="pure-u-1-1 pure-u-md-4-24">
+        <p class="form-label">Название файла</p>
+      </div>
+      <div class="pure-u-1-1 pure-u-md-20-24">
+        <input type="text" name="name" value="" class="text-input" placeholder="Введите название">
+      </div>
+    </div>
+
+    <div class="pure-g form-row">
+      <div class="pure-u-1-1 pure-u-md-4-24">
+        <p class="form-label">Категория</p>
+      </div>
+      <div class="pure-u-1-1 pure-u-md-20-24">
+        <select class="select-input" name="category">
+          {% for file_category in file_categories %}
+            <option value="{{ file_category.id }}">{{ file_category }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="pure-g form-row">
+      <div class="pure-u-1-1 pure-u-md-4-24">
+        <p class="form-label">Файл</p>
+      </div>
+      <div class="pure-u-1-1 pure-u-md-20-24">
+        <input type="file" name="file" value="upload" class="file-input">
+      </div>
+    </div>
+
+    <div class="">
+      <br>
+      <input type="submit" name="" value="Сохранить" class="btn primary">
+      <a href="{{ back_url }}" class="btn">Назад</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

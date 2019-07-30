@@ -1,55 +1,52 @@
-{% extends "base.html" %}
+{% extends "diary/detail.html" %}
 {% load static i18n %}
 
-
-{% block extrastyle %}
-  <link rel="stylesheet" href="{% static 'css/diary/detail.css' %}">
-  <link rel="stylesheet" href="{% static 'css/diary/edit.css' %}">
+{% block js %}
+{{ block.super }}
+<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+<script src="{% static 'js/diary/edit.js' %}" charset="utf-8"></script>
 {% endblock %}
 
-{% block extrajs %}
-  <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
-  <script src="{% static 'js/diary/edit.js' %}" charset="utf-8"></script>
-{% endblock %}
-
-{% block body %}
-
-{# Menu #}
-{% include 'components/menu.html' %}
-
-<div class="uk-container uk-container-small dk-cont">
-
-  {% include "diary/extra/breadcrumbs.html" %}
-
-  <form class="" action="{% url 'diary:edit' date=date_str %}" method="post">
-    {% csrf_token %}
-    <div class="dk-entry">
-      <div class="dk-edit-mode">
-        <label for="done-check" class="uk-visible@s">Запись закончена</label>
-        <input type="checkbox" name="done" id="done-check" {% if entry.done %}checked{% endif %}>
-      </div>
-      <div class="dk-entry-date noselect">
-        {{ date_obj|date:'F d, Y (l)' }}
-      </div>
-
-      <div class="dk-entry-text">
-        <textarea class="noselect" placeholder="Введите текст" name="text">{{ entry.text }}</textarea>
-      </div>
-    </div>
-    <div class="dk-after">
-      <input type="submit" name="_save" class="uk-button uk-button-primary dk-mobile-buttons" style="background-color: #00b5ad;" id="save" value="Сохранить">
-      <a href="{% url 'diary:detail' date=date_str %}" class="uk-button uk-button-default dk-mobile-buttons">Назад</a>
-      <div class="uk-margin-top uk-visible@s noselect">
-        <span type="button" class="dk-insert-tag">#</span>
-        {% if not available_tags %}
-        ← Нажмите для добавления тэга
-        {% endif %}
-        {% for tag in available_tags %}
-          <span type="button" class="dk-insert-tag">{{ tag.name }}</span>
-        {% endfor %}
-      </div>
-    </div>
-  </form>
-
+{% block entry-date %}
+<div class="entry-date">
+  {{ dt|date:'F d, Y (l)' }}
 </div>
+{% endblock %}
+
+{% block entry %}
+<div class="entry">
+  <div class="entry-buttons">
+    <input type="submit" name="" value="Сохранить" class="btn primary" id="save">
+    <input type="hidden" name="done" id="done" value="{% if entry.done %}on{% endif %}">
+    <button type="button" name="button" class="btn {% if entry.done %}primary{% endif %}" id="is_ready">
+      <img src="{% static 'images/signs/done_white.svg' %}" alt="">
+    </button>
+  </div>
+  <div class="entry-text">
+    <textarea id="text" placeholder="Введите текст" name="text">{{ entry.text }}</textarea>
+  </div>
+</div>
+{% endblock %}
+
+{% block diary-top-buttons %}
+<a class="btn" onclick="scrollToTop()">
+  Наверх
+</a>
+{% endblock %}
+
+{% block right-menu %}
+<div id="diary-tags">
+  <div>
+    <h2>Тэги</h2>
+    <p>Нажми на тэг, чтобы добавить его</p>
+  </div>
+  {% for tag in tags %}
+    <button type="button" name="button" class="btn tag">{{ tag }}</button>
+  {% endfor %}
+  <button type="button" name="button" class="btn tag">+ фото</button>
+</div>
+{% endblock %}
+
+{% block file_upload %}
+<br>
 {% endblock %}

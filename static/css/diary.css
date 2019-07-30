@@ -1,0 +1,239 @@
+#page {
+  padding: 5px 25px 5px 25px;
+  background-color: #fefefe;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 10px;
+}
+.diary-image, .diary-image-1-1 {
+  max-width: 100%;
+  padding: 10px 0px;
+}
+.diary-image-1-2 {
+  max-width: calc(50% - 10px);
+  padding: 10px 5px;
+  display: inline-block;
+}
+.diary-image-1-3 {
+  max-width: calc(33% - 10px);
+  padding: 10px 5px;
+  display: inline-block;
+}
+.done-sign {
+  position: relative;
+  top: 4px;
+  padding-left: 5px;
+  margin-top: -2px;
+}
+.file-link {
+}
+#text {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400 !important;
+  resize: none;
+  line-height: 24px;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Avenir Next Cyr",Arial,sans-serif !important;
+  background-color: #fefefe;
+  color: #777;
+}
+#text::placeholder {
+  color: #999;
+}
+#text:focus {
+  outline: none;
+}
+.entry-date {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 20px 0px;
+  position: relative;
+}
+#after-preview {
+  height: 4px;
+}
+.start-edit {
+  padding: 5px 0px 20px 0px;
+}
+.calendar {
+  margin-left: 20px;
+  width: 243px;
+  position: relative;
+}
+.day, .weekdays span {
+  width: 25px;
+  display: inline-block;
+  text-align: center;
+  padding: 5px 3px;
+  font-size: 14px;
+}
+.day.primary {
+  border-radius: 20px;
+}
+.day.critical {
+  color: red !important;
+}
+.weekdays span {
+  font-weight: bold;
+}
+.day.empty {
+  visibility: hidden;
+}
+.month-name {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 5px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+.days {
+  padding-bottom: 10px;
+}
+.entry p {
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 400 !important;
+  line-height: 24px;
+  padding: 0px;
+  font-family: "Avenir Next Cyr",Arial,sans-serif !important;
+  color: #777;
+}
+.entry {
+  position: relative;
+}
+.entry-text {
+  padding-bottom: 20px;
+}
+.entry-buttons {
+  position: absolute;
+  right: -10px;
+  top: -52px;
+}
+#is_ready {
+  padding: 7px 8px 3px 8px;
+  top: 5px;
+  position: relative;
+  margin: -1px 0px 0px 0px;
+}
+
+@media only screen and (max-width: 900px) {
+  .calendar {
+    width: 200px;
+  }
+  .day, .weekdays span {
+    width: 25px;
+    font-size: 12px;
+    padding: 5px 0px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .entry-buttons {
+    position: static;
+    display: block;
+    padding-bottom: 10px;
+  }
+  .entry-date {
+    padding-bottom: 10px !important;
+  }
+  .calendar {
+    width: 270px;
+    margin: auto !important;
+  }
+  .day, .weekdays span {
+    width: 25px;
+    font-size: 14px;
+    padding: 8px 5px;
+  }
+  #diary-tags {
+    padding-left: 0px !important;
+  }
+  #diary-tags div {
+    padding: 0px !important;
+  }
+}
+
+#diary-top {
+  position: fixed;
+  background: #fefefe;
+  width: 100%;
+  top: -280px;
+  z-index: 100;
+  transition: all 0.3s ease;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+}
+#diary-top-buttons {
+  padding: 11px 0px;
+}
+#diary-top-buttons a {
+  float: right;
+}
+#diary-tags {
+  padding-left: 10px;
+}
+#diary-tags div {
+  padding: 0px 10px;
+}
+#diary-tags h2 {
+  margin: 0px;
+}
+#diary-tags p {
+  font-size: 12px;
+  margin-top: 0px;
+}
+.calendar-title {
+  text-align: center;
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: italic;
+}
+.calendar-subtitle {
+  text-align: center;
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+.calendar-entry {
+  padding-top: 10px;
+}
+.calendar-item {
+  padding-bottom: 20px;
+}
+.large-tag {
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  background: #e9e8ea;
+  display: inline-block;
+  padding: 5px 15px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+}
+.large-tag-count {
+  font-size: 24px;
+  padding-right: 10px;
+}
+.tag-entry {
+  padding: 10px 0px;
+}
+
+@media only screen and (max-width: 769px) {
+  .large-tags {
+    text-align: center;
+  }
+  .large-tag {
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+  }
+  .large-tag-count {
+    font-size: 16px;
+  }
+}

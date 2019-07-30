@@ -6,10 +6,6 @@ app_name = 'apps.blog'
 
 urlpatterns = [
     path('', views.BlogIndexView.as_view(), name='index'),
+    path('about/', views.AboutProjectView.as_view(), name='about'),
     path('<slug>/', views.BlogDetailView.as_view(), name='detail'),
-    path(
-        '<slug>/download/',
-        views.BlogDownloadView.as_view(),
-        name='download'
-    ),
 ]

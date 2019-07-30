@@ -8,7 +8,6 @@ from core.views import BaseView
 from apps.blog.models import BlogEntry
 from apps.diary.models import DiaryEntry
 from apps.music.models import Track
-from apps.news.models import News
 
 from .models import RedirectPage
 
@@ -32,9 +31,8 @@ class IndexView(BaseView):
         """Get context data."""
         context = super().get_context_data()
         context.update({
-            'news_items': News.objects.all()[:3],
+            'blog_items': list(BlogEntry.objects.filter(is_active=True)) * 3,
             'music_items': Track.objects.all()[:6],
-            'total_news_count': News.objects.count(),
             'range': list(range(10)),
         })
         return context
@@ -135,7 +133,7 @@ class SearchView(BaseView):
                     for blog in blogs[:MAX]
                 ]
 
-            if request.user.is_staff:
+            if self.user.is_staff:
                 diaries = self.find_diary_entries(search_query)
 
                 if diaries:

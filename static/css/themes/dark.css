@@ -8,28 +8,28 @@ html, body {
 .pure-menu-link {
   color: #ABB2BF;
 }
-.dk-button {
+.btn {
   background: #1c1d25;
   color: #666;
 }
-.dk-button:hover {
+.btn:hover {
   background: #17181f;
 }
-.dk-button:active {
+.btn:active {
   background: #13141b;
 }
-#dk-menu-right-gradient {
+#menu-right-gradient {
   background-image: linear-gradient(to right, rgba(31,33,41,0), #1F2129);
 }
-#dk-menu-left-gradient {
+#menu-left-gradient {
   background-image: linear-gradient(to left, rgba(31,33,41,0), #1F2129);
 }
-#dk-menu-logo {
+#menu-logo {
   filter: invert(90%);
 }
-.dk-text-input {
+.text-input {
   background: #17181f;
 }
-.dk-text-input::placeholder {
+.text-input::placeholder {
   color: #555;
 }

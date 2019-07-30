@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block extrastyle %}
+{% block css %}
+<style media="screen">
+  #search_query {
+    width: calc(100% - 145px) !important;
+  }
+</style>
 {% endblock %}
 
 {% block extrajs %}
@@ -17,9 +22,8 @@
   <form action="/search/" method="get" autocomplete="off">
     <div class="">
       <div class="">
-        <input type="text" name="search_query" value="{% if search_query %}{{ search_query }}{% endif %}" class="dk-text-input" placeholder="Что искать будем?">
-        <input type="submit" value="Найти" class="dk-button dk-main-button">
-        <a href="/" class="dk-button">Назад</a>
+        <input type="text" name="search_query" value="{% if search_query %}{{ search_query }}{% endif %}" class="text-input" placeholder="Что искать будем?" id="search_query">
+        <input type="submit" value="Найти" class="btn primary">
       </div>
     </div>
   </form>

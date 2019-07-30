@@ -40,12 +40,20 @@ class BlogEntry(LikedModel, BaseModel):
         verbose_name=_('Description'),
         help_text=_('Short description of blog entry'),
     )
-    wide_image = models.ImageField(
+    image = ProcessedImageField(
         null=True,
         blank=True,
+        processors=[ResizeToFit(960, 540)],
+        format='JPEG',
+        options={'quality': 100},
         upload_to=BaseModel.obfuscated_upload,
-        verbose_name=_('Wide image'),
-        help_text=_('Image for index page'),
+        verbose_name=_('Image'),
+    )
+    thumbnail = ImageSpecField(
+        source='image',
+        processors=[ResizeToFit(400, 400)],
+        format='JPEG',
+        options={'quality': 100}
     )
     video = models.ForeignKey(
         'files.VideoFile',
@@ -69,22 +77,6 @@ class BlogEntry(LikedModel, BaseModel):
         default=False,
         verbose_name=_('Show gallery'),
     )
-    prev_part = models.ForeignKey(
-        'self',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        verbose_name=_('Previous part'),
-    )
-    next_part = models.ForeignKey(
-        'self',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        verbose_name=_('Next part'),
-    )
 
     def __str__(self):
         return self.title or '-'
@@ -98,22 +90,58 @@ class BlogEntry(LikedModel, BaseModel):
         """Get absolute URL for sitemap."""
         return f'/blog/{self.slug}'
 
+    # Blog series navigation
+    # ========================================================================
 
-class BlogRelation(SortableMixin, BaseModel):
-    """Model to store blog relations.
+    @property
+    def is_series(self):
+        return self.series_item.exists()
 
-    Each blog can be related to another one or multiple blogs. All of relations
-    are displayed on each blog page in the bottom.
+    @property
+    def series(self):
+        return self.series_item.first().series
 
-    """
+    @property
+    def next(self):
+        return self._get_part(index=1)
 
-    blog = models.ForeignKey(
-        'blog.BlogEntry',
+    @property
+    def prev(self):
+        return self._get_part(index=-1)
+
+    def _get_part(self, index):
+        order = self.series_item.first().order + index
+        return self.series.items.filter(order=order).first()
+
+
+class BlogSeries(BaseModel):
+    """Model for blog series."""
+
+    name = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_('Name')
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Blog series')
+        verbose_name_plural = _('Blog series')
+
+
+class BlogSeriesItem(SortableMixin, BaseModel):
+    """Model for item in blog series."""
+
+    series = models.ForeignKey(
+        BlogSeries,
         null=True,
         blank=False,
         on_delete=models.CASCADE,
-        related_name='relations',
-        verbose_name=_('Blog'),
+        related_name='items',
+        verbose_name=_('Series'),
     )
     order = models.PositiveIntegerField(
         default=0,
@@ -121,18 +149,28 @@ class BlogRelation(SortableMixin, BaseModel):
         db_index=True,
         verbose_name=_('Order'),
     )
-    related_blog = models.ForeignKey(
-        'blog.BlogEntry',
+    title = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name=_('Custom title')
+    )
+    entry = models.ForeignKey(
+        BlogEntry,
         null=True,
         blank=False,
-        on_delete=models.CASCADE,
-        related_name='relations_2',
-        verbose_name=_('Related blog'),
+        on_delete=models.SET_NULL,
+        related_name='series_item',
+        verbose_name=_('blog'),
     )
 
+    def __str__(self):
+        title = self.title or self.entry.title
+        return f'{self.order}. {title}'
+
     class Meta:
-        verbose_name = _('Relation')
-        verbose_name_plural = _('Relations')
+        verbose_name = _('Blog entry')
+        verbose_name_plural = _('Blog entries')
         ordering = ('order',)
 
 

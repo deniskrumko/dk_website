@@ -1,46 +1,27 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block extrastyle %}
-<link rel="stylesheet" href="{% static 'css/diary/index.css' %}">
-
-<style media="screen">
-{% with menu|get_color:active_menu as color %}
-.dk-blog-header:hover {
-  color: {{ color.accent }};
-  text-decoration: none;
-}
-{% endwith %}
-</style>
-
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/diary.css' %}">
 {% endblock %}
 
 {% block body %}
 
-{# Menu #}
-{% include 'components/menu.html' %}
-
-<div class="uk-container uk-container-small">
-  <h1>
-    <b>Тэги</b>
-  </h1>
-
-  {% if available_tags %}
-
-  {% for tag in available_tags %}
-    <a href="/diary/tags/{{ tag.name }}" class="dk-a uk-margin-right" style="font-size: 30px; font-weight: bold;">#{{ tag.name }}</a>
-  {% endfor %}
-
-  <div class="">
-    <br>
-    <a href="/diary/" class="uk-button uk-button-text">Назад</a>
+{# Sections links #}
+<div class="container slider-container">
+  <div class="scrollable-h1">
+    <a href="{% url 'diary:index' %}">Дневник</a>
+    <a href="{% url 'diary:calendar' %}">Календарь</a>
+    <a href="{% url 'diary:tags' %}" class="active">Тэги</a>
   </div>
-
-  {% else %}
-
-  <h3>Тэгов пока нет... <a href="/diary/" class="dk-a">Вернуться?</a></h3>
-
-  {% endif %}
 </div>
-<br>
+
+{# Main #}
+<div class="container">
+  <div class="large-tags">
+    {% for tag in tags %}
+      <a href="{% url 'diary:tag' tag=tag %}" class="large-tag">#{{ tag }}</a>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

@@ -1,61 +1,51 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block extrastyle %}
-<link rel="stylesheet" href="{% static 'css/diary/index.css' %}">
-
-<style media="screen">
-{% with menu|get_color:active_menu as color %}
-.dk-blog-header:hover {
-  color: {{ color.accent }};
-  text-decoration: none;
-}
-{% endwith %}
-</style>
-
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/diary.css' %}">
 {% endblock %}
 
 {% block body %}
 
-{# Menu #}
-{% include 'components/menu.html' %}
-
-<div class="uk-container uk-container-small">
-  <h1>
-    <b>#{{ tag.name }}</b>
-  </h1>
-
-  <table class="uk-table uk-table-divider">
-    <thead>
-        <tr>
-            <th>Дата</th>
-            <th>Значение</th>
-        </tr>
-    </thead>
-    <tbody>
-      {% for entry in tag.ordered_entries %}
-        <tr>
-            <td>
-              <a href="{% url 'diary:detail' date=entry.entry.date %}" class="dk-a">
-                {{ entry.entry.date }}
-              </a>
-            </td>
-            <td>
-              {% if entry.value %}
-              {{ entry.value }}
-              {% else %}
-              -
-              {% endif %}
-            </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-</table>
-
-  <div class="">
-    <br>
-    <a href="/diary/tags" class="uk-button uk-button-text">Назад</a>
+{# Sections links #}
+<div class="container slider-container">
+  <div class="scrollable-h1">
+    <a href="{% url 'diary:index' %}">Дневник</a>
+    <a href="{% url 'diary:calendar' %}">Календарь</a>
+    <a href="{% url 'diary:tags' %}" class="active">Тэги</a>
   </div>
 </div>
-<br>
+
+{# Main #}
+<div class="container">
+  <a class="large-tag" href="{% url 'diary:tags' %}">
+    #{{ tag }}
+  </a>
+  <span class="large-tag-count">
+  — {{ tag.entries_count }}
+  </span>
+  <div class="">
+    {% for entry in tag.ordered_entries %}
+    <div class="pure-g tag-entry">
+      <div class="pure-u-11-24" style="text-align: right;">
+        <a href="{% url 'diary:detail' date=entry.entry.date %}" class="dk-a">{{ entry.entry.date }}</a>
+      </div>
+      <div class="pure-u-2-24" style="text-align: center;">
+        ·
+      </div>
+      <div class="pure-u-11-24" style="text-align: left;">
+        {% if entry.value %}
+        {{ entry.value }}
+        {% else %}
+        ×
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <br>
+  <a href="{% url 'diary:tags' %}" class="btn primary">
+     Назад
+   </a>
+</div>
 {% endblock %}

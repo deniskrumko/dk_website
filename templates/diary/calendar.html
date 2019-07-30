@@ -1,92 +1,94 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-
-{% block extrastyle %}
-  <link rel="stylesheet" href="{% static 'css/diary/calendar.css' %}">
-  <link rel="stylesheet" href="{% static 'css/diary/detail.css' %}">
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/diary.css' %}">
 {% endblock %}
 
-{% block extrajs %}
+{% block js %}
+<script src="{% static 'js/diary/diary.js' %}" charset="utf-8"></script>
 {% endblock %}
 
 {% block body %}
 
-{# Menu #}
-{% include 'components/menu.html'%}
+{# Top auto-hide panel #}
+<div id="diary-top">
+  <div class="container pure-g">
+    <div class="entry-date inlineblock pure-u-16-24">
+      {% if selected_month != 13 %}
+        {{ selected_month_name }} {{ selected_year }}
+      {% else %}
+        Весь {{ selected_year }} год
+      {% endif %}
+    </div>
+    <div id="diary-top-buttons" class="pure-u-8-24">
+      {% block diary-top-buttons %}
+      <a class="btn" onclick="scrollToTop()">Наверх</a>
+      {% endblock %}
+    </div>
+  </div>
+</div>
 
-<div class="uk-container uk-container-small">
+{# Sections links #}
+<div class="container slider-container">
+  <div class="scrollable-h1">
+    <a href="{% url 'diary:index' %}">Дневник</a>
+    <a href="{% url 'diary:calendar' %}" class="active">Календарь</a>
+    <a href="{% url 'diary:tags' %}">Тэги</a>
+  </div>
+</div>
 
-  <h2>
-    <strong>Календарь</strong>
-  </h2>
-
-  <form class="uk-grid-small uk-margin-medium-bottom" uk-grid action="/diary/calendar/" method="post">
+{# Main #}
+<div class="container">
+  <form class="center" action="{% url 'diary:calendar' %}" method="post">
     {% csrf_token %}
+    <select class="select-input" name="month">
+      {% for month in months %}
+        <option value="{{ forloop.counter }}"
+        {% if forloop.counter == selected_month %}selected{% endif %}>
+        {{ month }}
+      </option>
+      {% endfor %}
+      <option value="13" {% if selected_month == 13 %}selected{% endif %}>Весь год</option>
+    </select>
 
-      <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-4@m uk-width-1-1@s">
-        <select class="uk-select" name="month">
-          {% for month in months %}
-            <option value="{{ forloop.counter }}" {% if forloop.counter == current_month %}selected{% endif %}>{{ month }}</option>
-          {% endfor %}
-          <option value="13" {% if current_month == 13 %}selected{% endif %}>==== Весь год ====</option>
-        </select>
-      </div>
-      <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-4@m uk-width-1-1@s">
-        <select class="uk-select" name="year">
-          {% for year in years %}
-            <option {% if year == current_year %}selected{% endif %}>{{ year }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-4@m uk-width-1-1@s">
-        <select class="uk-select" name="entry_type">
-            <option {% if entry_type == 1 %}selected{% endif %} value="1">Все записи</option>
-            <option {% if entry_type == 2 %}selected{% endif %} value="2">Только законченные</option>
-            <option {% if entry_type == 3 %}selected{% endif %} value="3">Только незаконченные</option>
-        </select>
-      </div>
-      <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-4@m uk-width-1-1@s">
-        <input type="submit" name="" value="Показать" class="uk-button uk-button-primary uk-width-1-1">
-      </div>
+    <select class="select-input" name="year">
+     {% for year in years %}
+       <option {% if year == selected_year %}selected{% endif %}>{{ year }}</option>
+     {% endfor %}
+    </select>
 
-      <div class="">
-        <a href="/diary/" class="uk-button uk-button-text">Назад</a>
-      </div>
+    <input type="submit" name="" value="Найти записи" class="btn primary">
+    <br><br>
   </form>
 
-  {% for date, entry in entries %}
-    <div class="dk-entry{% if not entry %} dk-entry-faded{% endif %} uk-margin-bottom">
-      <div class="dk-edit-link uk-visible@s">
-        <a href="{% url 'diary:edit' date=date %}" class="uk-icon-button uk-margin-small-right" uk-icon="icon: pencil; ratio: 1.3;" target="_blank"></a>
-        {% if entry %}
-        <a href="{{ entry.admin_changelink }}" class="uk-icon-button uk-margin-small-right" uk-icon="icon: cog; ratio: 1.3;" target="_blank"></a>
-        {% endif %}
-      </div>
-      <div class="dk-entry-date">
-        <a href="{% url 'diary:edit' date=date %}" target="_blank">
-        {{ date|date:'F d, Y (l)' }}
+  <div class="">
+    {% for entry in entries %}
+      <div class="calendar-item">
+        <a href="{% url 'diary:edit' date=entry.0 %}" class="calendar-title">
+          {{ entry.0|date:'F d, Y' }}
         </a>
-        {% if entry and entry.done %}
-          <span uk-icon="icon: check; ratio: 1" style="color: #75B53C; position: relative; top: -2px;"></span>
-        {% elif entry %}
-          <span uk-icon="icon: close; ratio: 1" style="color: red; position: relative; top: -2px;"></span>
-        {% endif %}
-      </div>
-
-      {% if entry and entry.text %}
-        <div class="dk-entry-text">
+        <div class="calendar-subtitle">{{ entry.0|date:'l' }}</div>
+        {% if entry.1 and entry.1.text %}
+        <div class="entry calendar-entry">
           {% autoescape off %}
-            {{ entry.html }}
+            {{ entry.1.html }}
           {% endautoescape %}
         </div>
-      {% endif %}
-
-    </div>
-  {% endfor %}
-
-  <div class="uk-margin-bottom">
-    <a href="/diary/" class="uk-button uk-button-text">Назад</a>
+        {% endif %}
+        {% if entry.1.files.exists %}
+        <div class="">
+          <span class="bold">Файлы: </span>
+          {% for file in entry.1.files.all  %}
+          <a href="{{ file.url }}" target="_blank" class="btn tag">{{ file.name }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if entry.1.text or entry.1.files.exists %}
+        <br>
+        {% endif %}
+      </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

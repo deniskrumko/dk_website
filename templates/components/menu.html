@@ -1,59 +1,57 @@
 {% load static %}
 
-{% block css %}
-  <style media="screen">
-    .dk-active {
-      color: {{ colors.main }};
-    }
-  </style>
-{% endblock %}
+<div class="menu container pure-g">
 
-<div class="dk-menu container pure-g">
+  {# Logo #}
+
   <div class="pure-u-6-24 pure-u-sm-3-24">
     <a href="{% url 'main:index' %}">
-      <img src="{% static 'images/logo.png' %}" alt="DK" id="dk-menu-logo">
+      <img src="{% static 'images/logo.png' %}" alt="DK" id="menu-logo">
     </a>
   </div>
+
+  {# Menu #}
+
   <div class="pure-u-18-24 pure-u-sm-15-24">
-    <div id="dk-menu-left-gradient"></div>
-    <div id="dk-menu-right-gradient"></div>
-    <div id="dk-menu-items" class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+    <div id="menu-left-gradient"></div>
+    <div id="menu-right-gradient"></div>
+    <div id="menu-items" class="pure-menu pure-menu-horizontal pure-menu-scrollable">
       <ul class="pure-menu-list">
         <li class="pure-menu-item">
           <a href="{% url 'main:index' %}"
-          class="pure-menu-link {% if active_menu == 'index' %}dk-active{% endif %}">
+          class="pure-menu-link {% if active_menu == 'index' %}colored bold{% endif %}">
             ГЛАВНАЯ
           </a>
         </li>
         <li class="pure-menu-item">
           <a href="{% url 'blog:index' %}"
-          class="pure-menu-link {% if active_menu == 'blog' %}dk-active{% endif %}">
+          class="pure-menu-link {% if active_menu == 'blog' %}colored bold{% endif %}">
             БЛОГ
           </a>
         </li>
         {% if request.user.is_staff %}
         <li class="pure-menu-item">
           <a href="{% url 'diary:index' %}"
-          class="pure-menu-link {% if active_menu == 'diary' %}dk-active{% endif %}">
+          class="pure-menu-link {% if active_menu == 'diary' %}colored bold{% endif %}">
             ДНЕВНИК
           </a>
         </li>
         {% endif %}
         <li class="pure-menu-item">
           <a href="{% url 'music:index' %}"
-          class="pure-menu-link {% if active_menu == 'music' %}dk-active{% endif %}">
+          class="pure-menu-link {% if active_menu == 'music' %}colored bold{% endif %}">
             МУЗЫКА
           </a>
         </li>
-        <li class="pure-menu-item mobile-visible">
+        <li class="pure-menu-item sm-visible">
           <a href="{% url 'main:search_index' %}"
-          class="pure-menu-link {% if active_menu == 'search' %}dk-active{% endif %}">
+          class="pure-menu-link {% if active_menu == 'search' %}colored bold{% endif %}">
             ПОИСК
           </a>
         </li>
-        <li class="pure-menu-item mobile-hidden">
+        <li class="pure-menu-item sm-hidden">
           <a href="{% url 'main:search_index' %}"
-          id="dk-menu-search" title="Поиск" class="pure-menu-link">
+          id="menu-search" title="Поиск" class="pure-menu-link">
             {% if active_menu == 'search' %}
             <img src="{% static 'images/search_active.svg' %}" alt="">
             {% else %}
@@ -61,15 +59,15 @@
             {% endif %}
           </a>
         </li>
-        <li class="pure-menu-item mobile-visible">
+        <li class="pure-menu-item sm-visible">
           {% if request.user.is_authenticated %}
-          <a href="{% url 'users:logout' %}"
-          class="pure-menu-link {% if active_menu == 'login' %}dk-active{% endif %}">
-          @{{ request.user.username.upper }}
+          <a href="{% url 'admin:index' %}"
+          class="pure-menu-link {% if active_menu == 'login' %}colored bold{% endif %}">
+          НАСТРОЙКИ
           </a>
           {% else %}
           <a href="{% url 'users:login' %}"
-          class="pure-menu-link {% if active_menu == 'login' %}dk-active{% endif %}">
+          class="pure-menu-link {% if active_menu == 'login' %}colored bold{% endif %}">
             ВОЙТИ В АККАУНТ
           </a>
           {% endif %}
@@ -77,14 +75,23 @@
       </ul>
     </div>
   </div>
-  <div id="dk-auth-buttons" class="pure-u-sm-6-24 mobile-hidden">
+
+  {# Right menu #}
+
+  <div id="auth-btn" class="pure-u-sm-6-24 sm-hidden">
     {% if request.user.is_authenticated %}
-    <a class="dk-button" id="dk-login-button" href="{% url 'users:logout' %}">
+      {% if request.user.image %}
+      <a href="{% url 'admin:index' %}">
+      <img src="{{ request.user.image_small.url }}" alt="image" id="user-image">
+      </a>
+      {% else %}
+      <a class="btn" id="login-btn" href="{% url 'admin:index' %}">
       {{ request.user.username }}
-    </a>
+      </a>
+      {% endif %}
     {% elif active_menu != 'login' %}
-    <a class="dk-button dk-main-button"
-    id="dk-login-button" href="{% url 'users:login' %}">
+    <a class="btn primary"
+    id="login-btn" href="{% url 'users:login' %}">
       Войти
     </a>
     {% endif %}

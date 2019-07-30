@@ -6,8 +6,21 @@ html, body {
   font-weight: 400;
   height: 100%;
 }
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
 .pure-g [class*=pure-u] {
   font-family: 'Avenir Next Cyr';
+}
+.dk-h1, .withhover, .scrollable-h1 a, .calendar-title {
+  transition: color 0.3s ease;
+}
+.large-tag {
+  transition: background 0.3s ease;
+}
+.inlineblock {
+  display: inline-block;
 }
 .container {
   margin-left: auto;
@@ -19,58 +32,207 @@ html, body {
 .center {
   text-align: center;
 }
+.f12 {
+  font-size: 12px;
+}
+.bold {
+  font-weight: bold;
+}
+.inline-block {
+  display: inline-block;
+}
+
+/* Headers */
+
+.dk-h1 {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: 700;
+  margin: .67em 0;
+}
+.scrollable-h1 a {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: 700;
+  margin: .67em 0;
+  margin-right: 5px;
+  color: #E0E0E4;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollable-h1 a.active {
+  color: #333;
+}
+.scrollable-h1 {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollable-h1::-webkit-scrollbar {
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+.dk-h2 {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+main {
+  /* box-shadow: 0px 2px 5px rgba(0,0,0,0.05); */
+  flex: 1 0 auto;
+  z-index: 1;
+  padding-bottom: 30px;
+}
+footer {
+  padding: 25px 0px 20px 0px;
+  flex-shrink: 0;
+}
+.social {
+  display: inline-block;
+  padding: 5px 10px 5px 0px;
+}
+.credentials {
+  font-size: 12px;
+  float: right;
+  line-height: 30px;
+  cursor: pointer;
+}
+.footer-links {
+  text-align: center;
+}
+.footer-links a {
+  font-size: 12px;
+  line-height: 30px;
+  padding: 0px 10px;
+}
 
 /* Buttons */
 
-.dk-button {
+.btn {
   padding: 7px 22px;
   border-radius: 22px;
   border: none;
   margin: 5px 5px;
-  text-decoration: none;
   font-size: 14px;
   display: inline-block;
   transition: background 0.3s ease;
   text-align: center;
 }
-.dk-fw-button {
-  width: auto;
-  display: block;
+.btn.tag, .btn.tag-p {
+  padding: 5px 10px;
+  margin-right: 2px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
 }
-.dk-button:focus {
+.btn.tag {
+  color: #666;
+  background: #e9e8ea;
+}
+.btn:focus, video:focus {
   outline: none;
 }
 
 /* Inputs */
 
-.dk-text-input {
-  padding: 6px 18px;
+.text-input {
+  padding: 7px 18px;
   border: none;
   margin: 5px;
   border-radius: 20px;
   transition: box-shadow 0.2s ease;
 }
-.dk-text-input:focus {
+.text-input::placeholder {
+  font-size: 16px;
+}
+.text-input:focus {
   outline: none;
 }
-.dk-fullwidth {
-  width: calc(100% - 44px);
+.select-input {
+  text-align-last:center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 7px 18px;
+  border: none;
+  margin: 5px;
+  border-radius: 20px;
+  transition: box-shadow 0.2s ease;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+.select-input:focus {
+  outline: none;
+}
+.file-input {
+  padding: 10px 5px;
 }
 
 /* Mobile */
 
-.mobile-hidden{
+.sm-hidden, .md-hidden{
   display: inline-block !important;
 }
-.mobile-visible{
+.sm-visible, .md-visible{
   display: none !important;
 }
 
 @media only screen and (max-width: 567px) {
-   .mobile-hidden{
+   .sm-hidden{
      display: none !important;
    }
-   .mobile-visible{
+   .sm-visible{
      display: inline-block !important;
    }
+}
+
+@media only screen and (max-width: 769px) {
+   .md-hidden{
+     display: none !important;
+   }
+   .md-visible{
+     display: inline-block !important;
+   }
+}
+
+@media only screen and (max-width: 950px) {
+  .slider-container {
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .scrollable-h1 {
+    padding-left: 15px;
+    padding-right: 10px;
+  }
+  .scrollable-h1 a {
+    margin: .67em 0 .4em 0;
+  }
+}
+
+.form-label {
+  margin: 12px 0px;
+}
+.form-row {
+  padding-bottom: 5px;
+}
+.form-errors {
+  margin-bottom: 10px;
+}
+.form-error {
+  border: 2px solid #D3394C;
+  color: #D3394C;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }

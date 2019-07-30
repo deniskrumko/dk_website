@@ -3,7 +3,6 @@ from django.core.management import BaseCommand
 from apps.blog.factories import BlogEntryFactory
 from apps.files.factories import FileCategoryFactory, FileFactory
 from apps.music.factories import ArtistFactory, TrackFactory, TrackFileFactory
-from apps.news.factories import NewsFactory
 
 
 class Command(BaseCommand):
@@ -34,14 +33,8 @@ class Command(BaseCommand):
         # Blog
         # ====================================================================
 
-        BlogEntryFactory.create_batch(2, create_items=True, create_images=True)
+        BlogEntryFactory.create_batch(2, create_images=True)
         self.stdout.write(self.style.SUCCESS('\nCreated blog entries'))
-
-        # News
-        # ====================================================================
-
-        NewsFactory.create_batch(10)
-        self.stdout.write(self.style.SUCCESS('\nCreated news'))
 
         self.stdout.write(self.style.SUCCESS(
             '\nDatabase successfully populated!'

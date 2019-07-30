@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
+from adminsortable.admin import SortableAdmin, SortableTabularInline
+
 from core.admin import BaseModelAdmin
 
-from .models import BlogEntry, BlogImage, BlogRelation
+from . import models
 
 
 class BlogImageInline(admin.TabularInline):
@@ -17,29 +19,11 @@ class BlogImageInline(admin.TabularInline):
     readonly_fields = (
         'order',
     )
-    model = BlogImage
+    model = models.BlogImage
     extra = 0
 
 
-class BlogRelationInline(admin.TabularInline):
-    """Inline class for ``BlogRelation`` model."""
-
-    model = BlogRelation
-    fk_name = 'blog'
-    extra = 0
-    fields = (
-        'related_blog',
-        'order',
-    )
-    autocomplete_fields = (
-        'related_blog',
-    )
-    readonly_fields = (
-        'order',
-    )
-
-
-@admin.register(BlogEntry)
+@admin.register(models.BlogEntry)
 class BlogEntryAdmin(BaseModelAdmin):
     """Admin class for ``BlogEntry`` model."""
 
@@ -56,22 +40,16 @@ class BlogEntryAdmin(BaseModelAdmin):
                 'slug',
             )
         }),
-        (_('On list page'), {
+        (_('Images'), {
             'fields': (
-                'wide_image',
+                'image',
             )
         }),
-        (_('On details page'), {
+        (_('Details'), {
             'fields': (
                 'video',
                 'text',
                 'show_gallery',
-            )
-        }),
-        (_('Next/previous parts'), {
-            'fields': (
-                'next_part',
-                'prev_part',
             )
         }),
         (_('SEO'), {
@@ -88,8 +66,6 @@ class BlogEntryAdmin(BaseModelAdmin):
     )
     autocomplete_fields = (
         'video',
-        'next_part',
-        'prev_part',
     )
     list_display = (
         'title',
@@ -120,5 +96,41 @@ class BlogEntryAdmin(BaseModelAdmin):
     )
     inlines = (
         BlogImageInline,
-        BlogRelationInline,
+    )
+
+
+class BlogSeriesItemInline(SortableTabularInline):
+    """Inline class for ``BlogSeriesItem`` model."""
+
+    model = models.BlogSeriesItem
+    extra = 0
+    fields = (
+        'entry',
+        'title',
+        'order',
+    )
+    readonly_fields = (
+        'order',
+    )
+    autocomplete_fields = (
+        'entry',
+    )
+
+
+@admin.register(models.BlogSeries)
+class BlogSeriesAdmin(SortableAdmin):
+    """Admin class for ``BlogSeries`` model."""
+
+    fieldsets = (
+        (_('Main'), {
+            'fields': (
+                'name',
+            )
+        }),
+    )
+    list_display = (
+        'name',
+    )
+    inlines = (
+        BlogSeriesItemInline,
     )

@@ -1,3 +1,5 @@
+import subprocess
+
 from fabric.api import task, local
 from fabric.operations import prompt
 
@@ -30,6 +32,16 @@ def manage(command):
 def run():
     """Run server."""
     return manage('runserver')
+
+
+@task
+def remote(host='192.168.1.13', port=8000):
+    """Run server."""
+    ifconfig = subprocess.check_output('ifconfig')
+    if host not in ifconfig.decode('utf-8'):
+        return print_msg(f'Host {host} not in "ifconfig"', error=True)
+
+    return manage(f'runserver {host}:{port}')
 
 
 @task

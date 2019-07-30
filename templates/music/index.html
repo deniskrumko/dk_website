@@ -1,55 +1,11 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block extrastyle %}
-  <link rel="stylesheet" href="{% static 'css/music/index.css' %}">
-  <link rel="stylesheet" href="{% static 'css/music/logo.css' %}">
-
+{% block css %}
 {% endblock %}
 
-{% block extrajs %}
-  <script src="{% static 'js/music/index.js' %}" charset="utf-8"></script>
+{% block js %}
 {% endblock %}
 
 {% block body %}
-
-{% include 'components/menu.html' %}
-
-{% if tracks %}
-
-  <div class="uk-container uk-container-small">
-    <h2 class="dk-bold">Треки</h2>
-    <br>
-  </div>
-
-  {% for track in tracks %}
-    {% include 'components/track.html' with track=track %}
-    {% if forloop.counter == 3 %}
-      {% include "components/music/section_dnd.html" %}
-    {% endif %}
-    {% if forloop.counter == 6 %}
-      {% include "components/music/section_help.html" %}
-    {% endif %}
-  {% endfor %}
-
-  <div class="uk-section uk-section-secondary dk-dno-section">
-    <div class="uk-container uk-container-small">
-      <div class="dk-dno">
-          <h1>Вы достигли дна!</h1>
-          <img src="{% static 'images/icons/fish.svg' %}" style="height: 80px;" alt="">
-          <h2 class="dk-track-list">Список всех треков</h2>
-          {% for track in tracks %}
-            <a href="{% url 'music:detail' track.slug %}">{{ track.name }}</a>
-          {% endfor %}
-          <button type="button" name="button" class="uk-button uk-button-default" uk-scroll>Всплыть на верх!</button>
-      </div>
-    </div>
-  </div>
-
-{% else %}
-<div class="uk-container uk-container-small">
-  <p>Музыки пока нет...</p>
-</div>
-{% endif %}
-
 {% endblock %}

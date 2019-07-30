@@ -12,7 +12,7 @@ class IndexPagesSitemap(Sitemap):
     changefreq = 'daily'
 
     def items(self):
-        return ['/', '/blog', '/music', '/news']
+        return ['/', '/blog', '/music']
 
     def location(self, item):
         return item

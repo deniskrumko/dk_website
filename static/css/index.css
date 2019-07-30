@@ -1,0 +1,156 @@
+.card-slider {
+  position: relative;
+}
+.card-slider::after {
+  content: "";
+  height: 310px;
+  position: absolute;
+  right: -60px;
+  top: -15px;
+  width: 60px;
+  transition: box-shadow 0.5s ease;
+}
+.card-slider::before {
+  content: "";
+  height: 310px;
+  position: absolute;
+  left: -60px;
+  top: -15px;
+  width: 60px;
+  transition: box-shadow 0.5s ease;
+}
+.card {
+  margin-right: 20px;
+  margin-bottom: 5px;
+  display: block;
+  transition: all 0.3s ease;
+}
+.card-outer {
+  flex: 0 0 auto;
+  z-index: 10;
+}
+.card-slider-scroll::-webkit-scrollbar {
+  display: none;
+}
+.card-slider-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  position: relative;
+}
+.card-images {
+  margin-bottom: 15px;
+  margin-top: 15px;
+  position: relative;
+}
+.card-image {
+  max-height: 180px;
+  max-width: 100%;
+  transition: filter 0.3s ease;
+}
+.card-play {
+  position: absolute;
+  height: 40px;
+  opacity: 0;
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.1s ease;
+  left: 50%;
+  top: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+.card-outer:last-child .card {
+  margin-right: 0px;
+}
+.card-title {
+  font-weight: 400;
+  font-size: 22px;
+  margin-bottom: 5px;
+  max-width: 320px;
+}
+.music.title {
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 5px;
+  max-width: 180px;
+  text-align: center;
+}
+.card-text {
+  font-weight: 400;
+  font-size: 14px;
+  max-width: 320px;
+}
+.show-more {
+  font-size: 14px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+@media only screen and (min-width: 600px) {
+  .card:hover .card-image {
+    filter: brightness(75%);
+  }
+  .card:hover .card-play{
+    opacity: 1;
+  }
+  .card:active .card-play{
+    transform: scale(0.9);
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .card {
+    max-width: 250px;
+  }
+  .card-images {
+    margin-bottom: 5px;
+    margin-top: 0px;
+    position: relative;
+  }
+  .music.card {
+    max-width: 150px;
+  }
+  .music.title {
+    font-size: 14px;
+  }
+  .card-title {
+    font-size: 18px;
+  }
+  .right-bar::after {
+    box-shadow: none;
+    display: none;
+  }
+  .left-bar::before {
+    box-shadow: none;
+    display: none;
+  }
+  .card-outer:first-child .card {
+    margin-left: 15px;
+  }
+  .card-outer:last-child .card {
+    margin-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  .card {
+    max-width: 200px;
+  }
+  .show-more {
+    margin-bottom: 10px;
+  }
+  .music.card {
+    max-width: 120px;
+  }
+  .music.title {
+    font-size: 12px;
+  }
+  .card-title {
+    font-size: 16px;
+  }
+  .card-text {
+    font-size: 12px;
+  }
+}

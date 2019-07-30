@@ -79,7 +79,7 @@ class DiaryEntry(BaseModel):
 
     def populate_tags(self, delete_tags=True):
         """Add tags for current instance."""
-        if not self.author:
+        if not self.author or not self.text:
             return
 
         if delete_tags:
@@ -146,6 +146,16 @@ class DiaryTag(BaseModel):
     def ordered_entries(self):
         """Get queryset of ordered by date tag values."""
         return self.values.order_by('-entry__date')
+
+    @property
+    def entries_count(self):
+        count = self.values.count()
+        word = 'записей'
+        if count == 1:
+            word = 'запись'
+        elif str(count)[-1] in ('2', '3', '4'):
+            word = 'записи'
+        return f'{count} {word}'
 
 
 class DiaryTagValue(BaseModel):

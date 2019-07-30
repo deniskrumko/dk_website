@@ -1,78 +1,92 @@
 /* ID */
 
-#dk-menu-logo {
+#menu-logo {
   width: 66px;
   display: inline-block;
 }
-#dk-menu-search {
+#menu-search {
   width: 24px;
   height: 18px;
 }
-#dk-menu-search img {
+#menu-search img {
   position: absolute;
   top: 5px;
 }
-#dk-login-button {
+#login-btn {
   float: right;
 }
-#dk-menu-right-gradient, #dk-menu-left-gradient {
+#user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  float: right;
+  transition: transform 0.3s ease;
+}
+#user-image:hover {
+  transform: scale(1.1);
+}
+
+#menu-right-gradient, #menu-left-gradient {
   display: none;
-  width: 10px;
+  width: 12px;
   height: 70px;
   position: absolute;
   top: 0;
   z-index: 10;
 }
-#dk-menu-right-gradient {
+#menu-right-gradient {
   right: -1px;
 }
-#dk-menu-left-gradient {
-  left: 0;
+#menu-left-gradient {
+  left: 0px;
 }
-#dk-menu-items {
+#menu-items {
   padding: 15px 0px !important;
 }
-#dk-auth-buttons {
+#auth-btn {
   padding: 10px 0px !important;
 }
 
 /* CLASSES */
 
-.dk-menu {
+.menu {
   padding-top: 30px;
   padding-bottom: 10px;
   font-size: 14px;
 }
-.dk-menu div {
+.menu div {
   position: relative;
 }
 .pure-menu-link {
   border-radius: 20px;
   transition: background 0.3s ease;
 }
-.dk-active {
-  font-weight: 600;
-}
 
 /* MEDIA */
 @media only screen and (max-width: 700px) {
-  .dk-menu {
+  .menu {
     padding-top: 10px;
     padding-bottom: 0px;
   }
-  #dk-menu-items {
+  #menu-items {
     padding: 10px 0px !important;
   }
-  #dk-auth-buttons {
+  #auth-btn {
     padding: 4px 0px !important;
   }
-  #dk-menu-logo{
+  #menu-logo{
     width: 55px;
   }
   .pure-menu-link {
-    padding: 7px 8px;
+    padding: 7px 4px;
   }
-  #dk-menu-right-gradient, #dk-menu-left-gradient {
+  .pure-menu-item:first-child {
+    padding-left: 5px;
+  }
+  .pure-menu-item:last-child {
+    padding-right: 5px;
+  }
+  #menu-right-gradient, #menu-left-gradient {
     display: block;
   }
 }

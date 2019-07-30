@@ -18,7 +18,6 @@ LOCAL_APPS = [
     'apps.files',
     'apps.main',
     'apps.music',
-    'apps.news',
     'apps.users',
 ]
 

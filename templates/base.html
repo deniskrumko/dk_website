@@ -34,15 +34,34 @@
     {# <link rel="stylesheet" href="{% static 'css/themes/dark.css' %}"> #}
     <link rel="stylesheet" href="{% static 'css/themes/light.css' %}">
 
+    <script type="text/javascript">
+    function scrollToTop(){
+      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(scrollToTop);
+        window.scrollTo (0,currentScroll - (currentScroll/5));
+      }
+    };
+    </script>
+
     <style media="screen">
-      .dk-main-button {
+      .primary {
         background: {{ colors.main }};
         color: {{ colors.text }};
       }
-      .dk-main-button:hover {
+      .primary:hover {
         background: {{ colors.darker }};
       }
-      .dk-text-input:focus {
+      .colored, .dk-a {
+        color: {{ colors.main }};
+      }
+      .dk-a:hover {
+        color: {{ colors.darker }};
+      }
+      a.dk-h1:hover, .withhover:hover, .scrollable-h1 a:hover, .calendar-title:hover {
+        color: {{ colors.main }};
+      }
+      .text-input:focus {
         box-shadow:inset 0px 0px 0px 1px {{ colors.main }};
       }
     </style>
@@ -59,6 +78,40 @@
       {% block body %}{% endblock %}
     </main>
     <footer>
+      <div class="container">
+        <div class="pure-g">
+          <div class="pure-u-1-2 pure-u-md-5-24">
+            <a href="https://www.instagram.com/deniskrumko/"
+               target="_blank"
+               class="social">
+              <img src="{% static 'images/social/insta.svg' %}" alt="">
+            </a>
+            <a href="https://twitter.com/deniskrumko"
+               target="_blank"
+               class="social">
+              <img src="{% static 'images/social/twi.svg' %}" alt="">
+            </a>
+            <a href="https://github.com/deniskrumko"
+               target="_blank"
+               class="social">
+              <img src="{% static 'images/social/github.svg' %}" alt="">
+            </a>
+          </div>
+          <div class="pure-u-md-14-24 md-hidden">
+            <div class="footer-links">
+              <a href="{% url 'main:index' %}">Главная</a>
+              <a href="{% url 'blog:index' %}">Блоги</a>
+              <a href="{% url 'music:index' %}">Музыка</a>
+              <a href="{% url 'blog:about' %}">О проекте</a>
+            </div>
+          </div>
+          <div class="pure-u-1-2 pure-u-md-5-24">
+            <div class="credentials" onclick="scrollToTop()" title="Вернуться наверх">
+              © 2019 Денис Крумко
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 

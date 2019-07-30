@@ -1,143 +1,226 @@
 import calendar
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
+from django.conf import settings
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
 from django.utils import timezone
 
+from cachetools import TTLCache, cached
 from dateutil.rrule import DAILY, rrule
 
 from core.views import BaseView, LoginRequiredMixin
+
+from apps.files.models import File, FileCategory
 
 from ..models import DiaryEntry, DiaryTag
 
 __all__ = (
     'DiaryIndexView',
     'DiaryDetailView',
-    'DiaryCalendarView',
     'DiaryEditView',
+    'DiaryCalendarView',
+    'DiaryFileUploadView',
 )
 
-DATE_FORMAT = '%Y-%m-%d'
+
+class BaseDiaryView(LoginRequiredMixin, BaseView):
+    """Base class for diary-related views."""
+
+    DATE_FORMAT = '%Y-%m-%d'
+    menu = 'diary'
+    description = 'Дневник'
+    colors = ('#00ACC1', '#0795a6', '#f9f9f9')
+
+    @property
+    @cached(cache=TTLCache(maxsize=128, ttl=60))
+    def now(self):
+        return timezone.now()
+
+    @property
+    def now_str(self):
+        return self.now.strftime(self.DATE_FORMAT)
+
+    def get_month_bounds(self, dt):
+        last_day = calendar.monthrange(dt.year, dt.month)[1]
+        return date(dt.year, dt.month, 1), date(dt.year, dt.month, last_day)
+
+    def get_month_links(self, dt):
+        first_day, last_day = self.get_month_bounds(dt)
+        prev_month = (first_day - timedelta(days=1)).replace(day=1)
+        next_month = (last_day + timedelta(days=1))
+
+        if (
+            prev_month.year == self.now.year
+            and prev_month.month == self.now.month
+        ):
+            prev_month = self.now.date()
+
+        if (
+            next_month.year == self.now.year
+            and next_month.month == self.now.month
+        ):
+            next_month = self.now.date()
+
+        return prev_month, next_month
 
 
-class DiaryIndexView(BaseView):
+class DiaryIndexView(BaseDiaryView):
     """View to get index diary page."""
 
-    template_name = 'diary/index.html'
-    colors = ('#00B5AD', '#00B5AD', '#666')
-    title = 'DK - Дневник'
-    description = 'Дневник'
-    menu = 'diary'
-
     def get(self, request):
-        """Get index page."""
-        context = self.get_context_data()
+        """Redirect to current date page."""
+        return self.redirect('diary:detail', args=(self.now_str,))
 
-        if not request.user.is_staff:
-            return self.render_to_response(context)
 
-        current = timezone.now()
+class DiaryDetailView(BaseDiaryView):
+    """Detail view for diary entries."""
 
-        last_day_of_month = calendar.monthrange(current.year, current.month)[1]
+    template_name = 'diary/detail.html'
 
-        existing_entries = {
-            entry.date: True if entry.date else False
-            for entry in DiaryEntry.objects.filter(
-                author=request.user,
-                done=True
-            )
-        }
-
-        days = []
-        for dt in rrule(
-            DAILY,
-            dtstart=date(current.year, current.month, 1),
-            until=date(current.year, current.month, last_day_of_month)
-        ):
-            if dt.day == 1:
-                for i in range(dt.weekday()):
-                    days.append('-')
-
-            days.append(
-                (dt.date(), existing_entries.get(dt.date(), False))
-            )
-
-        for i in range(6 - dt.weekday()):
-            days.append('-')
-
-        last_days = [
-            current - timezone.timedelta(days=i)
-            for i in range(0, 6)
-        ]
-
-        for index, d in enumerate(last_days):
-            last_days[index] = {
-                'day': d,
-                'entry': DiaryEntry.objects.filter(
-                    date=d, author=request.user
-                ).first()
-            }
-
+    def get(self, request, date):
+        """Get single entry."""
+        entry = DiaryEntry.objects.filter(author=self.user, date=date).first()
+        dt = datetime.strptime(date, self.DATE_FORMAT)
+        context = self.get_context_data(dt=dt)
         context.update({
-            'entries': DiaryEntry.objects.all(),
-            'days': days,
-            'current': current,
-            'last_days': last_days,
-            'available_tags': DiaryTag.objects.filter(author=request.user)
+            'dt': dt,
+            'entry': entry,
+            'tags': DiaryTag.objects.filter(author=self.user),
+            'month': self.get_month_data(dt),
+            'current': self.now,
+            'edit_link': reverse('diary:edit', args=(date,)),
+            'file_link': reverse('diary:file_upload', args=(date,)),
+            'month_links': self.get_month_links(dt),
         })
         return self.render_to_response(context)
 
+    def get_title(self, **kwargs):
+        """Get `title` field value."""
+        return f'DK - Дневник ({kwargs["dt"].strftime("%d.%m.%Y")})'
 
-class DiaryCalendarView(LoginRequiredMixin, BaseView):
-    """View for calendar page on diary."""
+    def get_month_data(self, dt):
+        first_day, last_day = self.get_month_bounds(dt)
+        done_dates = DiaryEntry.objects.filter(
+            author=self.user,
+            done=True,
+            date__gte=first_day,
+            date__lte=last_day,
+        ).values_list('date', flat=True)
+
+        month = []
+
+        for date_obj in rrule(DAILY, dtstart=first_day, until=last_day):
+            if date_obj.day == 1:
+                for i in range(date_obj.weekday()):
+                    month.append({'date': '-', 'classes': 'empty'})
+
+            classes = []
+
+            if date_obj.date() not in done_dates:
+                if date_obj.date() < self.now.date():
+                    classes.append('critical')
+
+            if date_obj.date() == dt.date():
+                classes.append('primary')
+
+            if date_obj.date() == self.now.date():
+                classes.append('bold')
+
+            month.append({
+                'date': date_obj.date(),
+                'classes': ' '.join(classes),
+            })
+
+        return month
+
+
+class DiaryEditView(DiaryDetailView):
+    """View to edit single diary entry."""
+
+    template_name = 'diary/edit.html'
+
+    def post(self, request, date):
+        """Get updated entry."""
+        text = request.POST.get('text')
+        done = bool(request.POST.get('done') == 'on')
+
+        DiaryEntry.objects.update_or_create(
+            author=self.user,
+            date=date,
+            defaults={
+                'text': text,
+                'done': done
+            }
+        )
+
+        return HttpResponseRedirect(reverse('diary:detail', args=(date,)))
+
+
+class DiaryFileUploadView(BaseDiaryView):
+    """View to upload file to diary entry."""
+
+    template_name = 'diary/file_upload.html'
+    title = 'DK - Загрузка файла'
+
+    def get(self, request, date, errors=None):
+        """Get single entry."""
+        context = self.get_context_data()
+        context.update({
+            'form_url': reverse('diary:file_upload', args=(date,)),
+            'back_url': reverse('diary:detail', args=(date,)),
+            'file_categories': FileCategory.objects.all(),
+            'errors': errors,
+        })
+        return self.render_to_response(context)
+
+    def post(self, request, date):
+        """Get updated entry."""
+        errors = []
+        name = request.POST.get('name')
+        if not name:
+            errors.append('Укажите название файла')
+
+        category = request.POST.get('category')
+
+        uploaded_file = request.FILES.get('file')
+        if not uploaded_file:
+            errors.append('Загрузите файл')
+
+        if errors:
+            return self.get(request, date, errors=errors)
+
+        entry, created = DiaryEntry.objects.get_or_create(
+            author=self.user,
+            date=date,
+            defaults={'text': ''}
+        )
+        new_file = File.objects.create(
+            name=name,
+            data=uploaded_file,
+            category_id=category,
+        )
+        entry.files.add(new_file)
+
+        return HttpResponseRedirect(reverse('diary:detail', args=(date,)))
+
+
+class DiaryCalendarView(BaseDiaryView):
 
     template_name = 'diary/calendar.html'
-    menu = 'diary'
-    colors = ('#00B5AD', '#00B5AD', '#666')
     title = 'DK - Календарь'
-    description = 'Дневник'
 
-    def get(self, request):
-        """Get calendar page."""
-        current = timezone.now()
-
-        year = int(request.GET.get('year', 0))
-        month = int(request.GET.get('month', 0))
-        entry_type = int(request.GET.get('type', 1))
-
-        if not year or not month:
-            return HttpResponseRedirect(
-                f'/diary/calendar/?month={current.month}&year={current.year}'
-            )
-
+    def get(self, request, month=None, year=None):
+        """Get single entry."""
         context = self.get_context_data()
 
-        context['months'] = [
-            'Январь',
-            'Февраль',
-            'Март',
-            'Апрель',
-            'Май',
-            'Июнь',
-            'Июль',
-            'Август',
-            'Сентябрь',
-            'Октябрь',
-            'Ноябрь',
-            'Декабрь',
-        ]
-        context['years'] = [i for i in range(current.year, 2016, -1)]
-        context['current_month'] = month
-        context['current_year'] = year
-        context['entry_type'] = entry_type
-
+        month = month or self.now.month
+        year = year or self.now.year
         start_month = month if month != 13 else 1
         end_month = month if month != 13 else 12
 
         last_day_of_month = calendar.monthrange(year, end_month)[1]
-
-        qs = DiaryEntry.objects.filter(author=request.user)
+        qs = DiaryEntry.objects.filter(author=self.user)
 
         days = []
         for dt in rrule(
@@ -147,78 +230,30 @@ class DiaryCalendarView(LoginRequiredMixin, BaseView):
         ):
             cur_date = dt.date()
             cur_entry = qs.filter(date=cur_date).first()
-            is_done = bool(cur_entry and cur_entry.done)
-
-            if (
-                entry_type == 1
-                or (entry_type == 2 and is_done)
-                or (entry_type == 3 and not is_done)
-            ):
-                days.append((cur_date, cur_entry))
+            days.append((cur_date, cur_entry))
 
         context['entries'] = days
+
+        context.update({
+            'months': settings.MONTH_LIST,
+            'years': self.years,
+            'selected_month': month,
+            'selected_month_name': (
+                settings.MONTH_LIST[month - 1] if month < 13 else ''
+            ),
+            'selected_year': year,
+            'entries': days,
+        })
         return self.render_to_response(context)
 
     def post(self, request):
-        month = request.POST.get('month')
-        year = request.POST.get('year')
-        entry_type = request.POST.get('entry_type')
-        return HttpResponseRedirect(
-            f'/diary/calendar/?month={month}&year={year}&type={entry_type}'
-        )
+        month = int(request.POST.get('month', 0))
+        year = int(request.POST.get('year', 0))
+        return self.get(request, month=month, year=year)
 
-
-class DiaryDetailView(LoginRequiredMixin, BaseView):
-    """Detail view for diary entries."""
-
-    template_name = 'diary/detail.html'
-    menu = 'blog'
-    description = 'Дневник'
-
-    def get_title(self):
-        """Get `title` field value."""
-        return f'DK - {self.date_obj.strftime("%d.%m.%Y")}'
-
-    def get_entry(self, date, author):
-        """Get `entry` field value."""
-        return DiaryEntry.objects.filter(author=author, date=date).first()
-
-    def get(self, request, date):
-        """Get single entry."""
-        self.date_obj = timezone.datetime.strptime(date, DATE_FORMAT)
-        self.entry = self.get_entry(date=date, author=request.user)
-
-        context = self.get_context_data()
-        context['entry'] = self.entry
-        context['date_str'] = date
-        context['date_obj'] = self.date_obj
-        context['prev_date'] = self.date_obj - timedelta(days=1)
-        context['next_date'] = self.date_obj + timedelta(days=1)
-        context['available_tags'] = DiaryTag.objects.filter(
-            author=request.user
-        )
-        return self.render_to_response(context)
-
-
-class DiaryEditView(DiaryDetailView):
-    """View to edit single diary entry."""
-
-    template_name = 'diary/edit.html'
-    menu = 'blog'
-    description = 'Дневник'
-
-    def post(self, request, date):
-        """Get updated entry."""
-        text = request.POST.get('text')
-        done = bool(request.POST.get('done'))
-
-        DiaryEntry.objects.update_or_create(
-            author=request.user,
-            date=date,
-            defaults={
-                'text': text,
-                'done': done
-            }
-        )
-
-        return HttpResponseRedirect(reverse('diary:detail', args=(date,)))
+    @property
+    def years(self):
+        year = self.now.year
+        while year != 2015:
+            yield year
+            year -= 1

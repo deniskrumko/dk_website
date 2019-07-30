@@ -79,6 +79,7 @@ class DiaryEntryAdmin(ImportExportMixin, PrivateQuerySet, BaseModelAdmin):
     )
 
     def get_export_queryset(self, request):
+        """Get queryset for items exporting."""
         qs = super().get_export_queryset(request)
         return qs.filter(author=request.user)
 
