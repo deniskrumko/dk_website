@@ -36,13 +36,13 @@
             ДНЕВНИК
           </a>
         </li>
-        {% endif %}
         <li class="pure-menu-item">
           <a href="{% url 'music:index' %}"
           class="pure-menu-link {% if active_menu == 'music' %}colored bold{% endif %}">
             МУЗЫКА
           </a>
         </li>
+        {% endif %}
         <li class="pure-menu-item sm-visible">
           <a href="{% url 'main:search_index' %}"
           class="pure-menu-link {% if active_menu == 'search' %}colored bold{% endif %}">

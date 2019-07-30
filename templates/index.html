@@ -56,6 +56,10 @@
   <a class="show-more graytext" href="{% url 'blog:index' %}">Посмотреть все блоги</a>
   <a href="{% url 'music:index' %}" class="dk-h1">Музыка</a>
 </div>
+<div class="container">
+  <p>Идет активная разработка раздела...</p>
+</div>
+{% comment %}
 <div class="container slider-container">
   <div class="card-slider right-bar">
     <div class="card-slider-scroll" onscroll="hide_scroll_shadow(this)">
@@ -76,5 +80,6 @@
 <div class="container">
   <a class="show-more graytext" href="{% url 'music:index' %}">Посмотреть все композиции</a>
 </div>
+{% endcomment %}
 
 {% endblock %}
