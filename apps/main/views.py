@@ -119,7 +119,7 @@ class SearchView(BaseView):
             blogs = self.find_blog_entries(search_query)
 
             if blogs:
-                category = 'Блоги'
+                category = 'Блог'
                 if blogs.count() > MAX:
                     category += f' (Показано {MAX} из {blogs.count()})'
 
