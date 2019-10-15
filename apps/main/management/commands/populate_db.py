@@ -37,10 +37,10 @@ class Command(BaseCommand):
         # Blog
         # ====================================================================
 
-        blogs = BlogEntryFactory.create_batch(10, create_images=True)
+        blogs = BlogEntryFactory.create_batch(12, create_images=True)
         self.stdout.write(self.style.SUCCESS('\nCreated blog entries'))
 
-        series = BlogSeriesFactory.create_batch(2)
+        series = BlogSeriesFactory.create_batch(3)
         for index, series_entry in enumerate(series):
             BlogSeriesItemFactory(
                 series=series_entry,
