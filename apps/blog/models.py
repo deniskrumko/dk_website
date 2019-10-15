@@ -165,8 +165,7 @@ class BlogSeriesItem(SortableMixin, BaseModel):
     )
 
     def __str__(self):
-        title = self.title or self.entry.title
-        return f'{self.order}. {title}'
+        return self.title or self.entry.title
 
     class Meta:
         verbose_name = _('Blog entry')

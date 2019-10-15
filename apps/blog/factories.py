@@ -28,7 +28,7 @@ class BlogEntryFactory(factory.DjangoModelFactory):
     show_gallery = True
     subtitle = factory.Faker('sentence')
     text = factory.Faker('text')
-    title = factory.sequence(lambda x: f'Фильм {x}. Часть 2')
+    title = factory.sequence(lambda x: f'Блог {x}')
     video = factory.SubFactory(VideoFileFactory)
 
     @factory.post_generation
@@ -44,3 +44,21 @@ class BlogEntryFactory(factory.DjangoModelFactory):
 
     class Meta:
         model = models.BlogEntry
+
+
+class BlogSeriesFactory(factory.DjangoModelFactory):
+    """Factory for ``BlogSeries`` model."""
+
+    name = factory.sequence(lambda x: f'Series {x}')
+
+    class Meta:
+        model = models.BlogSeries
+
+
+class BlogSeriesItemFactory(factory.DjangoModelFactory):
+    """Factory for ``BlogSeriesItem`` model."""
+
+    title = factory.sequence(lambda x: f'Title {x}')
+
+    class Meta:
+        model = models.BlogSeriesItem

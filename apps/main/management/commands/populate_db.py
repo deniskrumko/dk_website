@@ -1,6 +1,10 @@
 from django.core.management import BaseCommand
 
-from apps.blog.factories import BlogEntryFactory
+from apps.blog.factories import (
+    BlogEntryFactory,
+    BlogSeriesFactory,
+    BlogSeriesItemFactory,
+)
 from apps.files.factories import FileCategoryFactory, FileFactory
 from apps.music.factories import ArtistFactory, TrackFactory, TrackFileFactory
 
@@ -33,9 +37,22 @@ class Command(BaseCommand):
         # Blog
         # ====================================================================
 
-        BlogEntryFactory.create_batch(2, create_images=True)
+        blogs = BlogEntryFactory.create_batch(10, create_images=True)
         self.stdout.write(self.style.SUCCESS('\nCreated blog entries'))
 
-        self.stdout.write(self.style.SUCCESS(
-            '\nDatabase successfully populated!'
-        ))
+        series = BlogSeriesFactory.create_batch(2)
+        for index, series_entry in enumerate(series):
+            BlogSeriesItemFactory(
+                series=series_entry,
+                entry=blogs[index],
+            )
+            BlogSeriesItemFactory(
+                series=series_entry,
+                entry=blogs[index + 1],
+            )
+        self.stdout.write(self.style.SUCCESS('\nCreated blog series'))
+
+        # Final
+        # ====================================================================
+
+        self.stdout.write(self.style.SUCCESS('DB successfully populated!'))
