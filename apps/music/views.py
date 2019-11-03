@@ -67,5 +67,5 @@ class TracksView(BaseView):
     def get(self, request):
         """Get all tracks."""
         context = self.get_context_data()
-        context.update({'tracks': Track.objects.all()})
+        context.update({'tracks': Track.objects.order_by('name')})
         return self.render_to_response(context)
