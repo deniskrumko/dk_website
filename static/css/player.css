@@ -1,0 +1,25 @@
+.player {
+  background: #F0F0F4;
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 80px;
+}
+.player-line {
+  background: #ccc;
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  cursor: pointer;
+  top: 0px;
+}
+.player-line-played {
+  background: red;
+  height: 5px;
+  width: 30%;
+  position: absolute;
+  cursor: pointer;
+  top: 0px;
+  z-index: 1000;
+}

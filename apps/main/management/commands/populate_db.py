@@ -6,33 +6,34 @@ from apps.blog.factories import (
     BlogSeriesItemFactory,
 )
 from apps.files.factories import FileCategoryFactory, FileFactory
-from apps.music.factories import ArtistFactory, TrackFactory, TrackFileFactory
+from apps.music.factories import AlbumFactory, TrackFactory, TrackFileFactory
 
 
 class Command(BaseCommand):
     """Command to populate database with test data."""
 
-    def create_track(self, artist):
+    def create_track(self, album):
         """Create ``Track``."""
         music_file = FileFactory(category=self.music_category)
         gtp_file = FileFactory(category=self.gtp_category)
-        track = TrackFactory(artist=artist, file=music_file)
+        track = TrackFactory(album=album, file=music_file)
         TrackFileFactory(track=track, file=music_file)
         TrackFileFactory(track=track, file=gtp_file)
-        self.stdout.write(self.style.SUCCESS(f'{artist.name} - {track.name}'))
+        self.stdout.write(self.style.SUCCESS(f'{album.name} - {track.name}'))
 
     def handle(self, *args, **options):
         """Execute command."""
         # Music
         # ====================================================================
 
-        dendynotdead = ArtistFactory(name='Dendy Not Dead')
+        albums = AlbumFactory.create_batch(4)
 
         self.music_category = FileCategoryFactory(name='Музыка')
         self.gtp_category = FileCategoryFactory(name='GTP')
 
-        for i in range(10):
-            self.create_track(artist=dendynotdead)
+        for album in albums:
+            for i in range(5):
+                self.create_track(album=album)
 
         # Blog
         # ====================================================================

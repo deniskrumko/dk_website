@@ -6,16 +6,98 @@ from adminsortable.admin import SortableAdmin, SortableTabularInline
 
 from core.admin import BaseModelAdmin, image_preview
 
-from .models import Artist, Track, TrackFile
+from .forms import TrackForm
+from .models import Album, Track, TrackFile
 
 
-@admin.register(Artist)
-class ArtistAdmin(admin.ModelAdmin):
-    """Admin class for ``Artist`` model."""
+class TrackInline(admin.TabularInline):
+    """Inline class for ``Track`` model."""
 
+    model = Track
+    form = TrackForm
+    fields = (
+        'name',
+        'year',
+        'duration',
+        'order',
+        'is_active',
+    )
+    readonly_fields = (
+        'order',
+    )
+    extra = 0
+
+
+@admin.register(Album)
+class AlbumAdmin(admin.ModelAdmin):
+    """Admin class for ``Album`` model."""
+
+    fieldsets = (
+        (_('Main'), {
+            'fields': (
+                'name',
+                'slug',
+                'year',
+                'image',
+                '_large_preview',
+            )
+        }),
+        (_('About album'), {
+            'fields': (
+                'status',
+                '_duration',
+                '_tracks_count',
+                'order',
+            )
+        }),
+    )
     list_display = (
         'name',
+        'year',
+        '_small_preview',
+        '_tracks_count',
+        'order',
+        '_duration',
+        'status',
     )
+    readonly_fields = (
+        'order',
+        'slug',
+        '_tracks_count',
+        '_duration',
+        '_large_preview',
+    )
+    inlines = (
+        TrackInline,
+    )
+    search_fields = (
+        'name',
+        'slug',
+    )
+
+    def _small_preview(self, obj):
+        """Get small image preview."""
+        return image_preview(obj, size='small', field='image')
+
+    _small_preview.short_description = _('Image preview')
+
+    def _large_preview(self, obj):
+        """Get large image preview."""
+        return image_preview(obj, size='large', field='image')
+
+    _large_preview.short_description = _('Image preview')
+
+    def _duration(self, obj):
+        """Get duration of all tracks."""
+        return obj.displayed_duration
+
+    _duration.short_description = _('Duration')
+
+    def _tracks_count(self, obj):
+        """Get count of all tracks."""
+        return obj.tracks_count
+
+    _tracks_count.short_description = _('Tracks count')
 
 
 class TrackFileInline(SortableTabularInline):
@@ -41,6 +123,7 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
     url_index = 'music:index'
     url_detail = 'music:detail'
 
+    form = TrackForm
     sortable_change_list_with_sort_link_template = (
         'django_object_actions/change_list.html'
     )
@@ -48,25 +131,18 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
         (_('Main'), {
             'fields': (
                 'is_active',
-                'artist',
+                'album',
                 'name',
                 'slug',
                 'year',
+                'duration',
                 'file',
-            )
-        }),
-        (_('Description'), {
-            'fields': (
-                'short_description',
-                'lead',
-                'full_description',
             )
         }),
         (_('Image'), {
             'fields': (
                 'image',
                 '_large_preview',
-                'color',
             )
         }),
         (_('Created/Modified'), {
@@ -78,7 +154,7 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
     )
     list_display = (
         'name',
-        'artist',
+        'album',
         'year',
         '_small_preview',
         'slug',
@@ -95,7 +171,7 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
         'file',
     )
     search_fields = (
-        'artist__name',
+        'album__name',
         'name',
     )
     inlines = (TrackFileInline,)
@@ -109,7 +185,6 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
         'sort_objects',
     )
     ordering = (
-        'artist',
         '-order',
     )
 

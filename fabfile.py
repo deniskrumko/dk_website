@@ -2,21 +2,7 @@ import subprocess
 
 from fabric.api import task, local
 from fabric.operations import prompt
-
-
-def print_msg(msg, error=False):
-    """Print message in console."""
-
-    def green_msg(msg):
-        """Make message green color in console."""
-        return '\033[92m{0}\033[00m'.format(msg)
-
-    def red_msg(msg):
-        """Make message red color in console."""
-        return '\033[91m{0}\033[00m'.format(msg)
-
-    print_function = red_msg if error else green_msg
-    print(print_function('\n{}\n'.format(msg)))
+from core.display import print_msg
 
 
 # MAIN COMMANDS
@@ -29,14 +15,8 @@ def manage(command):
 
 
 @task
-def run():
-    """Run server."""
-    return manage('runserver')
-
-
-@task
 def remote(host='192.168.1.13', port=8000):
-    """Run server."""
+    """Run remove server."""
     ifconfig = subprocess.check_output('ifconfig')
     if host not in ifconfig.decode('utf-8'):
         return print_msg(f'Host {host} not in "ifconfig"', error=True)
@@ -45,8 +25,14 @@ def remote(host='192.168.1.13', port=8000):
 
 
 @task
+def run():
+    """Run server"""
+    return manage('runserver')
+
+
+@task
 def shell():
-    """Run server."""
+    """Run python shell."""
     return manage('shell_plus')
 
 
@@ -178,6 +164,7 @@ def requirements():
 
 @task
 def hlogs():
+    """Get Heroku logs."""
     local('heroku logs --source app --tail')
 
 

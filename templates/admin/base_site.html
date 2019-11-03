@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+
+{% comment %}
+
+  This is overridden `base_site.html` template that contains custom favicon
+  and links in footer.
+
+{% endcomment %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}

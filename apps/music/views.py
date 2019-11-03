@@ -2,10 +2,10 @@ from django.shortcuts import get_object_or_404
 
 from core.views import BaseView
 
-from .models import Track
+from .models import Album, Track
 
 
-class TrackIndexView(BaseView):
+class MusicIndexView(BaseView):
     """View to get index tracks page."""
 
     template_name = 'music/index.html'
@@ -24,45 +24,48 @@ class TrackIndexView(BaseView):
     def get_context_data(self):
         """Get context data."""
         context = super().get_context_data()
-        context.update({
-            'tracks': Track.objects.all(),
-            'logo': [
-                '1100100011001100101',
-                '1010110010101010111',
-                '1110011010101110010',
-                '0000000000000000000',
-                '0000110020200100000',
-                '0000101000001110000',
-                '0000101010100100000',
-                '0000000000000000000',
-                '0011001000011011000',
-                '0010101100101010100',
-                '0011100110111011100'
-            ]
-        })
+        context['albums'] = Album.objects.all()
         return context
 
 
-class TrackDetailView(BaseView):
-    """View to get detail info about track."""
+class AlbumDetailView(BaseView):
+    """View to get detail info about album."""
 
-    template_name = 'music/detail.html'
+    template_name = 'music/album.html'
     menu = 'music'
+    colors = ('#f45c28', '#f45c28', '#fefefe')
     use_analytics = True
 
     def get_title(self, **kwargs):
         """Get `title` field value."""
-        item = kwargs.get('item')
-        return f'DK - {item.name}' if item else ''
+        album = kwargs.get('album')
+        return f'DK - {album.name}' if album else ''
 
     def get_description(self, **kwargs):
         """Get `description` field value."""
-        item = kwargs.get('item')
-        return item.short_description if item else ''
+        album = kwargs.get('album')
+        return f'Альбом {album.name}'
 
     def get(self, request, slug):
-        """Get details for single track."""
-        item = get_object_or_404(Track, slug=slug)
-        context = self.get_context_data(item=item)
-        context.update({'track': item})
+        """Get details for single album."""
+        album = get_object_or_404(Album, slug=slug)
+        context = self.get_context_data(album=album)
+        context.update({'album': album})
+        return self.render_to_response(context)
+
+
+class TracksView(BaseView):
+    """View to get all available tracks."""
+
+    template_name = 'music/tracks.html'
+    menu = 'music'
+    title = 'DK - Музыка'
+    description = 'Все треки'
+    colors = ('#f45c28', '#f45c28', '#fefefe')
+    use_analytics = True
+
+    def get(self, request):
+        """Get all tracks."""
+        context = self.get_context_data()
+        context.update({'tracks': Track.objects.all()})
         return self.render_to_response(context)

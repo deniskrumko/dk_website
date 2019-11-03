@@ -13,7 +13,15 @@ from django.core.wsgi import get_wsgi_application
 
 from whitenoise.django import DjangoWhiteNoise
 
+from core.display import print_msg
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
+
+# Display admin and frontend URLs
+# ========================================================================
+
+print_msg('\nWEB:\thttp://127.0.0.1:8000/', wrap=False)
+print_msg('ADMIN:\thttp://127.0.0.1:8000/admin/\n', wrap=False)

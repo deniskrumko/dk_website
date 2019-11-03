@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/player.css' %}">
+<style media="screen">
+
+.tracks {
+  padding-top: 20px;
+}
+.track {
+  padding: 10px 5px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.track-header {
+  padding: 10px 5px;
+  border-bottom: 2px solid #555;
+  font-weight: bold;
+}
+.track:hover {
+  color: {{ colors.main }};
+}
+.track.active {
+  font-weight: bold;
+  color: {{ colors.main }};
+}
+.track.paused {
+  font-weight: bold;
+  color: #777;
+}
+.track:last-child {
+  border-bottom: none;
+}
+.tracks-help {
+  font-size: 14px;
+  padding-top: 20px;
+  color: #777;
+}
+</style>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/music/player.js' %}" charset="utf-8"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="container slider-container">
+  <div class="scrollable-h1">
+    <a href="{% url 'music:index' %}">Альбомы</a>
+    <a href="{% url 'music:tracks' %}" class="active">Треки</a>
+    {# <a href="#">FAQ</a> #}
+  </div>
+</div>
+
+<div class="container">
+  <div class="">
+    <div class="tracks">
+      <div class="track-header pure-g">
+        <div class="pure-u-2-24 track-number">
+          №
+        </div>
+        <div class="pure-u-10-24">
+          Трек
+        </div>
+        <div class="pure-u-9-24 md-hidden">
+          Альбом
+        </div>
+        <div class="pure-u-3-24" style="text-align: right;">
+          Время
+        </div>
+      </div>
+      {% for track in tracks %}
+        <div class="track pure-g" onclick="playTrack(this);" data-src="{{ track.file.url }}">
+          <div class="pure-u-2-24 track-number">
+            {{ forloop.counter }}
+          </div>
+          <div class="pure-u-10-24">
+            {{ track.name }}
+          </div>
+          <div class="pure-u-9-24 md-hidden">
+            {{ track.album.name }}
+          </div>
+          <div class="pure-u-3-24" style="text-align: right;">
+            {{ track.displayed_duration }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="tracks-help md-hidden">
+      Нажмите <b>Пробел</b>, чтобы воспроизвести/остановить трек.<br>
+      Нажмите стрелки <b>влево/вправо</b>, чтобы перемотать трек.
+    </div>
+  </div>
+</div>
+{% endblock %}

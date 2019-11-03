@@ -5,6 +5,7 @@ from . import views
 app_name = 'apps.music'
 
 urlpatterns = [
-    path('', views.TrackIndexView.as_view(), name='index'),
-    path('<slug>/', views.TrackDetailView.as_view(), name='detail'),
+    path('', views.MusicIndexView.as_view(), name='index'),
+    path('albums/<slug>/', views.AlbumDetailView.as_view(), name='detail'),
+    path('tracks/', views.TracksView.as_view(), name='tracks'),
 ]

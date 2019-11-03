@@ -5,7 +5,7 @@ from apps.blog.models import BlogEntry, BlogSeries
 from apps.diary.models import DiaryEntry, DiaryTag, DiaryTagValue
 from apps.files.models import File, FileCategory, VideoFile
 from apps.main.models import RedirectPage, Tag
-from apps.music.models import Artist, Track
+from apps.music.models import Album, Track
 from apps.users.models import User
 
 
@@ -34,7 +34,7 @@ def custom_admin(request):
             {
                 'title': 'Музыка',
                 'url': '/admin/music/',
-                'items': admin_items(Track, Artist),
+                'items': admin_items(Track, Album),
             },
             {
                 'title': 'Дневник',

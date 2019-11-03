@@ -2,13 +2,63 @@
 {% load static i18n %}
 
 {% block css %}
+<style media="screen">
+  .album {
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+  }
+  .album-image {
+    text-align: center;
+  }
+  .album-image img {
+    width: 80%;
+  }
+  .album-name {
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 5px;
+  }
+  .album-info {
+    font-size: 14px;
+    color: #333;
+  }
+</style>
 {% endblock %}
 
 {% block js %}
 {% endblock %}
 
 {% block body %}
+<div class="container slider-container">
+  <div class="scrollable-h1">
+    <a href="{% url 'music:index' %}" class="active">Альбомы</a>
+    <a href="{% url 'music:tracks' %}">Треки</a>
+    <a href="#">FAQ</a>
+  </div>
+</div>
+
 <div class="container">
-  <h2>Пока данный раздел находится в разработке</h2>
+  <div class="pure-g">
+    {% for album in albums  %}
+      <div class="album pure-u-1-1 pure-u-sm-1-3">
+        <div class="album-image">
+          <a href="{% url 'music:detail' album.slug %}">
+            {% if album.image %}
+            <img src="{{ album.image.url }}" alt="">
+            {% else %}
+            <img src="{% static 'images/nophoto_wide.jpg' %}" alt="">
+            {% endif %}
+          </a>
+        </div>
+        <div class="album-name">
+          <a href="{% url 'music:detail' album.slug %}">{{ album.name }}</a>
+        </div>
+        <div class="album-info">
+          <span>{{ album.tracks_count }} треков · {{ album.year }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}

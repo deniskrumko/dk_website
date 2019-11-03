@@ -2,35 +2,35 @@ import factory
 
 from apps.files.factories import FileFactory
 
-from .models import Artist, Track, TrackFile
+from .models import Album, Track, TrackFile
 
 __all__ = (
-    'ArtistFactory',
+    'AlbumFactory',
     'TrackFactory',
     'TrackFileFactory'
 )
 
 
-class ArtistFactory(factory.DjangoModelFactory):
-    """Factory for ``Artist`` model."""
+class AlbumFactory(factory.DjangoModelFactory):
+    """Factory for ``Album`` model."""
 
-    name = factory.Faker('name')
+    name = factory.sequence(lambda x: f'Album {x}')
+    image = factory.django.ImageField(color='#777')
     order = factory.sequence(lambda x: x)
+    year = 2019
 
     class Meta:
-        model = Artist
+        model = Album
 
 
 class TrackFactory(factory.DjangoModelFactory):
     """Factory for ``Track`` model."""
 
-    artist = factory.SubFactory(ArtistFactory)
+    album = factory.SubFactory(AlbumFactory)
     name = factory.Faker('name')
-    short_description = factory.Faker('text')
-    full_description = factory.Faker('text')
     file = factory.SubFactory(FileFactory)
     image = factory.django.ImageField(color='#777')
-    year = 2018
+    year = 2019
 
     class Meta:
         model = Track
