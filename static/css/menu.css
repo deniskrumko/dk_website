@@ -62,31 +62,26 @@
   transition: background 0.3s ease;
 }
 
+.mobile-menu {
+  text-align: right;
+}
+.mobile-menu a {
+  display: inline-block;
+  padding: 13px 5px;
+
+}
+.mobile-menu a img {
+  width: 28px;
+  height: 28px;
+}
+
 /* MEDIA */
 @media only screen and (max-width: 700px) {
   .menu {
     padding-top: 10px;
     padding-bottom: 0px;
   }
-  #menu-items {
-    padding: 10px 0px !important;
-  }
-  #auth-btn {
-    padding: 4px 0px !important;
-  }
   #menu-logo{
     width: 55px;
-  }
-  .pure-menu-link {
-    padding: 7px 4px;
-  }
-  .pure-menu-item:first-child {
-    padding-left: 5px;
-  }
-  .pure-menu-item:last-child {
-    padding-right: 5px;
-  }
-  #menu-right-gradient, #menu-left-gradient {
-    display: block;
   }
 }
