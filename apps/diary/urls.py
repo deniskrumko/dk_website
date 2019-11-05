@@ -13,7 +13,7 @@ urlpatterns = [
         views.DiaryFileUploadView.as_view(),
         name='file_upload',
     ),
-    path('calendar/', views.DiaryCalendarView.as_view(), name='calendar'),
+    path('search/', views.DiarySearchView.as_view(), name='search'),
     path('tags/', views.DiaryTagsIndexView.as_view(), name='tags'),
     path('tags/<tag>/', views.DiaryTagsDetailView.as_view(), name='tag'),
 ]

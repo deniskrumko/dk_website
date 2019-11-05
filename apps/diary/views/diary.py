@@ -16,11 +16,11 @@ from apps.files.models import File, FileCategory
 from ..models import DiaryEntry, DiaryTag
 
 __all__ = (
-    'DiaryIndexView',
     'DiaryDetailView',
     'DiaryEditView',
-    'DiaryCalendarView',
     'DiaryFileUploadView',
+    'DiaryIndexView',
+    'DiarySearchView',
 )
 
 
@@ -205,12 +205,12 @@ class DiaryFileUploadView(BaseDiaryView):
         return HttpResponseRedirect(reverse('diary:detail', args=(date,)))
 
 
-class DiaryCalendarView(BaseDiaryView):
+class DiarySearchView(BaseDiaryView):
 
-    template_name = 'diary/calendar.html'
-    title = 'DK - Календарь'
+    template_name = 'diary/search.html'
+    title = 'DK - Поиск в дневнике'
 
-    def get(self, request, month=None, year=None):
+    def get(self, request, month=None, year=None, query=''):
         """Get single entry."""
         context = self.get_context_data()
 
@@ -222,19 +222,26 @@ class DiaryCalendarView(BaseDiaryView):
         last_day_of_month = calendar.monthrange(year, end_month)[1]
         qs = DiaryEntry.objects.filter(author=self.user)
 
-        days = []
-        for dt in rrule(
-            DAILY,
-            dtstart=date(year, start_month, 1),
-            until=date(year, end_month, last_day_of_month)
-        ):
-            cur_date = dt.date()
-            cur_entry = qs.filter(date=cur_date).first()
-            days.append((cur_date, cur_entry))
-
-        context['entries'] = days
+        if query:
+            qs = qs.filter(text__icontains=query)
+            context['found_amount'] = qs.count()
+            days = [
+                (item.date, item) for item in qs
+            ]
+        else:
+            days = []
+            for dt in rrule(
+                DAILY,
+                dtstart=date(year, start_month, 1),
+                until=date(year, end_month, last_day_of_month)
+            ):
+                cur_date = dt.date()
+                cur_entry = qs.filter(date=cur_date).first()
+                days.append((cur_date, cur_entry))
 
         context.update({
+            'entries': days,
+            'query': query,
             'months': settings.MONTH_LIST,
             'years': self.years,
             'selected_month': month,
@@ -242,14 +249,14 @@ class DiaryCalendarView(BaseDiaryView):
                 settings.MONTH_LIST[month - 1] if month < 13 else ''
             ),
             'selected_year': year,
-            'entries': days,
         })
         return self.render_to_response(context)
 
     def post(self, request):
         month = int(request.POST.get('month', 0))
         year = int(request.POST.get('year', 0))
-        return self.get(request, month=month, year=year)
+        query = request.POST.get('query')
+        return self.get(request, month=month, year=year, query=query)
 
     @property
     def years(self):

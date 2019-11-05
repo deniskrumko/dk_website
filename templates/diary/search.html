@@ -33,15 +33,16 @@
 <div class="container slider-container">
   <div class="scrollable-h1">
     <a href="{% url 'diary:index' %}">Дневник</a>
-    <a href="{% url 'diary:calendar' %}" class="active">Календарь</a>
+    <a href="{% url 'diary:search' %}" class="active">Поиск</a>
     <a href="{% url 'diary:tags' %}">Тэги</a>
   </div>
 </div>
 
 {# Main #}
 <div class="container">
-  <form class="center" action="{% url 'diary:calendar' %}" method="post">
+  <form class="center" action="{% url 'diary:search' %}" method="post">
     {% csrf_token %}
+    <input type="text" name="query" class="text-input" value="{{ query }}" placeholder="Что искать будем?">
     <select class="select-input" name="month">
       {% for month in months %}
         <option value="{{ forloop.counter }}"
@@ -59,6 +60,10 @@
     </select>
 
     <input type="submit" name="" value="Найти записи" class="btn primary">
+    {% if query %}
+    <br>
+    <div class="btn">Найдено: {{ found_amount }}</div>
+    {% endif %}
     <br><br>
   </form>
 
