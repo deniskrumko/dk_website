@@ -9,6 +9,7 @@ __all__ = ('config',)
 class IndexPagesSitemap(Sitemap):
     """Sitemap for index pages."""
     priority = 1
+    protocol = 'https'
     changefreq = 'daily'
 
     def items(self):
