@@ -21,10 +21,34 @@
   <a class="large-tag" href="{% url 'diary:tags' %}">
     #{{ tag }}
   </a>
-  <span class="large-tag-count">
-  — {{ tag.entries_count }}
-  </span>
+  <div class="stats">
+    {% for stat in stats %}
+      <div class="pure-g tag-entry">
+        <div class="pure-u-11-24" style="text-align: right;">
+          {% if forloop.counter == 1 %}
+          <b>{{ stat.0 }}</b>
+          {% else %}
+          {{ stat.0 }}
+          {% endif %}
+        </div>
+        <div class="pure-u-2-24" style="text-align: center;">
+          ·
+        </div>
+        <div class="pure-u-11-24" style="text-align: left;">
+          {% if forloop.counter == 1 %}
+          <b>{{ stat.1 }}</b>
+          {% else %}
+          {{ stat.1 }}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+    <a href="{% url 'diary:tags' %}" class="btn primary">
+       Назад
+     </a>
+  </div>
   <div class="">
+    <h2>Записи</h2>
     {% for entry in tag.ordered_entries %}
     <div class="pure-g tag-entry">
       <div class="pure-u-11-24" style="text-align: right;">
@@ -44,8 +68,5 @@
     {% endfor %}
   </div>
   <br>
-  <a href="{% url 'diary:tags' %}" class="btn primary">
-     Назад
-   </a>
 </div>
 {% endblock %}

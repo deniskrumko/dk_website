@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.utils.translation import ugettext_lazy as _
 
 from ..models import DiaryTag
 from .diary import BaseDiaryView
@@ -41,6 +42,13 @@ class DiaryTagsDetailView(BaseDiaryView):
     def get(self, request, tag):
         """Get tag details."""
         item = get_object_or_404(DiaryTag, name=tag, author=self.user)
+        years = item.entries.values_list(
+            'date__year', flat=True
+        ).order_by('-date__year').distinct()
         context = self.get_context_data(item=item)
         context['tag'] = item
+        context['stats'] = [(_('Всего'), item.entries.count())] + [
+            (year, item.entries.filter(date__year=year).count())
+            for year in years
+        ]
         return self.render_to_response(context)
