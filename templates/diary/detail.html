@@ -67,7 +67,7 @@ document.addEventListener('keydown', function(e) {
   </div>
 </div>
 <div class="container">
-  <form class="pure-g" action="{{ edit_link }}" method="post">
+  <form class="pure-g" action="{{ edit_link }}" method="post" id="entry_form">
     {% csrf_token %}
     <div class="pure-u-1-1 pure-u-md-17-24">
       <div id="page">
