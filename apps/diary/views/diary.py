@@ -89,9 +89,16 @@ class DiaryDetailView(BaseDiaryView):
             'tags': DiaryTag.objects.filter(author=self.user),
             'month': self.get_month_data(dt),
             'current': self.now,
+            # TODO: Move to template later ---
+            'detail_link': reverse('diary:detail', args=(date,)),
             'edit_link': reverse('diary:edit', args=(date,)),
             'file_link': reverse('diary:file_upload', args=(date,)),
+            # --------------------------------
             'month_links': self.get_month_links(dt),
+            'next_day': (dt + timedelta(days=1)).date(),
+            'prev_day': (dt - timedelta(days=1)).date(),
+            'next_week': (dt + timedelta(days=7)).date(),
+            'prev_week': (dt - timedelta(days=7)).date(),
         })
         return self.render_to_response(context)
 

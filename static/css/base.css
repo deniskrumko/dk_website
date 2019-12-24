@@ -35,6 +35,9 @@ a {
 .f12 {
   font-size: 12px;
 }
+.w100 {
+  width: 100%;
+}
 .bold {
   font-weight: bold;
 }

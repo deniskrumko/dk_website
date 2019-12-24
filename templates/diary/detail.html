@@ -6,6 +6,39 @@
 
 {% block js %}
 <script src="{% static 'js/diary/diary.js' %}" charset="utf-8"></script>
+<script type="text/javascript">
+document.addEventListener('keydown', function(e) {
+  // Enter - edit entry
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    window.location.replace("{{ edit_link }}");
+  }
+
+  // Right arrow - next entry
+  if (e.keyCode == 39) {
+    e.preventDefault();
+    window.location.replace("{% url 'diary:detail' date=next_day %}");
+  }
+
+  // Left arrow - prev entry
+  if (e.keyCode == 37) {
+    e.preventDefault();
+    window.location.replace("{% url 'diary:detail' date=prev_day %}");
+  }
+
+  // Up arrow - prev entry
+  if (e.keyCode == 38) {
+    e.preventDefault();
+    window.location.replace("{% url 'diary:detail' date=prev_week %}");
+  }
+
+  // Down arrow - prev entry
+  if (e.keyCode == 40) {
+    e.preventDefault();
+    window.location.replace("{% url 'diary:detail' date=next_week %}");
+  }
+});
+</script>
 {% endblock %}
 
 {% block body %}
@@ -128,6 +161,10 @@
             </a>
             {% endif %}
           {% endfor %}
+        </div>
+        <div class="sm-hidden graytext f12 center w100">
+          <b>Enter</b> - редактировать запись<br>
+          <b>Arrows</b> - навигация по календарю
         </div>
       </div>
       {% endblock %}

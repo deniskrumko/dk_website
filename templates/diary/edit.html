@@ -5,6 +5,15 @@
 {{ block.super }}
 <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 <script src="{% static 'js/diary/edit.js' %}" charset="utf-8"></script>
+<script type="text/javascript">
+document.addEventListener('keydown', function(e) {
+  // Esc - close edit
+  if (e.keyCode == 27) {
+    e.preventDefault();
+    window.location.replace("{{ detail_link }}");
+  }
+});
+</script>
 {% endblock %}
 
 {% block entry-date %}
