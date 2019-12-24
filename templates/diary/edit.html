@@ -2,7 +2,7 @@
 {% load static i18n %}
 
 {% block js %}
-{{ block.super }}
+<script src="{% static 'js/diary/diary.js' %}" charset="utf-8"></script>
 <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 <script src="{% static 'js/diary/edit.js' %}" charset="utf-8"></script>
 <script type="text/javascript">
