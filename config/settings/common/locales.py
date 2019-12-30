@@ -1,8 +1,11 @@
 import os
 
+from django.utils.translation import ugettext_lazy as _
+
 from .paths import BASE_DIR
 
 LANGUAGE_CODE = 'ru-RU'
+LANGUAGES = [('ru', _('Russian'))]
 
 TIME_ZONE = 'Europe/Moscow'
 
