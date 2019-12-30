@@ -64,9 +64,6 @@ a.graytext:hover {
 .series-info, .series-info.dk-h2, .series-item {
   color: #333;
 }
-#diary-top {
-  background: rgba(246, 246, 249, 0.9) !important;
-}
 footer {
   background: #f0f0f4;
 }

@@ -11,24 +11,6 @@
 
 {% block body %}
 
-{# Top auto-hide panel #}
-<div id="diary-top">
-  <div class="container pure-g">
-    <div class="entry-date inlineblock pure-u-16-24">
-      {% if selected_month != 13 %}
-        {{ selected_month_name }} {{ selected_year }}
-      {% else %}
-        Весь {{ selected_year }} год
-      {% endif %}
-    </div>
-    <div id="diary-top-buttons" class="pure-u-8-24">
-      {% block diary-top-buttons %}
-      <a class="btn" onclick="scrollToTop()">Наверх</a>
-      {% endblock %}
-    </div>
-  </div>
-</div>
-
 {# Sections links #}
 <div class="container slider-container">
   <div class="scrollable-h1">
