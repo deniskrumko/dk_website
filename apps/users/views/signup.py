@@ -1,36 +1,7 @@
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
-from django.views.generic.base import RedirectView, TemplateView
-
-from core.views import BaseView
-
-
-class LoginView(BaseView):
-    """View for users to log in."""
-
-    menu = 'login'
-    colors = ('#4A72B7', '#375d9e', '#fefefe')
-    template_name = 'login.html'
-    title = 'DK - Главная'
-    description = 'DK - Войти'
-
-    def post(self, request):
-        """Get username and password to authenticate user."""
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            next_redirect = self.request.GET.get('next')
-            return HttpResponseRedirect(
-                next_redirect if next_redirect else reverse('main:index')
-            )
-
-        return HttpResponseRedirect(reverse('users:login'))
+from django.views.generic.base import TemplateView
 
 
 class SignUpView(TemplateView):
@@ -40,7 +11,7 @@ class SignUpView(TemplateView):
 
     """
 
-    template_name = 'signup.html'
+    template_name = 'users/signup.html'
     description = 'DK - Зарегистрироваться'
 
     def get_context_data(self, **kwargs):
@@ -75,14 +46,3 @@ class SignUpView(TemplateView):
         )
 
         return HttpResponseRedirect('/login')
-
-
-class LogoutView(RedirectView):
-    """View for users to log out."""
-
-    url = '/'
-
-    def get(self, request):
-        """Log out current user."""
-        logout(request)
-        return super().get(request)
