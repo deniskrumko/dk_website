@@ -16,6 +16,7 @@ class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
     url_detail = None
 
     def reverse_url_detail_args(self, obj):
+        """Get args for URL reverse."""
         return (obj.slug,)
 
     @takes_instance_or_queryset

@@ -1,6 +1,5 @@
 def print_msg(msg, error=False, wrap=True):
     """Print message in console."""
-
     def green_msg(msg):
         """Make message green color in console."""
         return '\033[92m{0}\033[00m'.format(msg)
