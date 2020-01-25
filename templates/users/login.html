@@ -1,35 +1,29 @@
 {% extends "base.html" %}
-
-{% block css %}
-  <style media="screen">
-  .p1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 70%;
-  }
-  </style>
-{% endblock %}
+{% load i18n %}
 
 {% block body %}
+<div class="container slider-container">
+  <div class="scrollable-h1">
+    <a href="{% url 'users:login' %}" class="active">
+      {% trans "Login" %}
+    </a>
+    <a href="#" onclick="alert('Регистрации на сайт пока нет :)')">
+      {% trans "Sign up" %}
+    </a>
+  </div>
+</div>
 
-<div class="container p1">
+<div class="container">
   <div class="">
     <form action="/login/?{{ request.META.QUERY_STRING }}" method="post">
       {% csrf_token %}
-      <div class="center">
-        <h3>Войти в аккаунт</h3>
+      <div class="">
         <p><input class="text-input" type="text" name="username" placeholder="Имя пользователя"></p>
-
         <p><input class="text-input" type="password" name="password" placeholder="Пароль"></p>
         <input type="submit" value="Войти" class="btn primary">
         <a href="{% url 'main:index' %}" class="btn">Назад</a>
       </div>
     </form>
-    <div style="text-align: center;">
-      <br>
-      <p style="color: #aaa;">Регистрации на сайт пока нет :)</p>
-    </div>
   </div>
 </div>
 
