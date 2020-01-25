@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <div class="menu container pure-g">
 
@@ -37,7 +37,7 @@
     </a>
     {% endif %}
     {% if request.user.is_authenticated %}
-    <a href="{% url 'admin:index' %}" title="Настройки">
+    <a href="{% url 'users:profile' %}" title="Настройки">
       {% if active_menu == 'login' %}
       <img src="{% static 'images/menu/settings_2.svg' %}" alt="">
       {% else %}
@@ -110,18 +110,18 @@
   <div id="auth-btn" class="pure-u-sm-6-24 md-hidden">
     {% if request.user.is_authenticated %}
       {% if request.user.image %}
-      <a href="{% url 'admin:index' %}">
+      <a href="{% url 'users:profile' %}">
       <img src="{{ request.user.image_small.url }}" alt="image" id="user-image">
       </a>
       {% else %}
-      <a class="btn" id="login-btn" href="{% url 'admin:index' %}">
+      <a class="btn" id="login-btn" href="{% url 'users:profile' %}">
       {{ request.user.username }}
       </a>
       {% endif %}
     {% elif active_menu != 'login' %}
     <a class="btn primary"
     id="login-btn" href="{% url 'users:login' %}">
-      Войти
+      {% trans "Login" %}
     </a>
     {% endif %}
   </div>
