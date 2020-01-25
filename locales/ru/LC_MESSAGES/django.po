@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 14:44+0300\n"
+"POT-Creation-Date: 2020-01-25 15:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,14 +23,11 @@ msgstr ""
 msgid "Main"
 msgstr "Основное"
 
-msgid "On list page"
-msgstr "На странице со списком"
+msgid "Images"
+msgstr "Изображения"
 
-msgid "On details page"
-msgstr "На странице с подробностями"
-
-msgid "Next/previous parts"
-msgstr "Следующая/предыдущая части"
+msgid "Details"
+msgstr "Подробности"
 
 msgid "SEO"
 msgstr "SEO"
@@ -59,11 +56,8 @@ msgstr "Описание"
 msgid "Short description of blog entry"
 msgstr "Короткое описание записи блога"
 
-msgid "Wide image"
-msgstr "Широкое изображение"
-
-msgid "Image for index page"
-msgstr "Изображение для главной"
+msgid "Image"
+msgstr "Изображение"
 
 msgid "Video"
 msgstr "Видео"
@@ -80,44 +74,42 @@ msgstr "Дата"
 msgid "Show gallery"
 msgstr "Показать галерею"
 
-msgid "Previous part"
-msgstr "Предыдущая часть"
-
-msgid "Next part"
-msgstr "Следующая часть"
-
 msgid "Blog entry"
 msgstr "Запись блога"
 
 msgid "Blog entries"
 msgstr "Записи блога"
 
+msgid "Name"
+msgstr "Название"
+
+#, fuzzy
+#| msgid "Blog entries"
+msgid "Blog series"
+msgstr "Записи блога"
+
+msgid "Series"
+msgstr "Серии"
+
 msgid "Order"
 msgstr "Порядок"
 
-msgid "Related blog"
-msgstr "Сопутствующий блог"
-
-msgid "Relation"
-msgstr "Отношение"
-
-msgid "Relations"
-msgstr "Отношения"
+#, fuzzy
+#| msgid "tab title"
+msgid "Custom title"
+msgstr "Кастомный заголовок"
 
 msgid "blog"
 msgstr "Блог"
 
-msgid "Image"
-msgstr "Изображение"
-
 msgid "description"
 msgstr "Описание"
 
-msgid "Images"
-msgstr "Изображения"
+msgid "Предосмотр"
+msgstr ""
 
-msgid "View on site"
-msgstr "Посмотреть на сайте"
+msgid "Go to entry"
+msgstr "Перейти к записи"
 
 msgid "Diary"
 msgstr "Дневник"
@@ -136,6 +128,48 @@ msgstr "Запись дневника"
 
 msgid "Diary entries"
 msgstr "Записи дневника"
+
+msgid "name"
+msgstr "Название"
+
+#, fuzzy
+#| msgid "Blog entries"
+msgid "entries"
+msgstr "Записи блога"
+
+#, fuzzy
+#| msgid "Diary"
+msgid "Diary tag"
+msgstr "Дневник"
+
+#, fuzzy
+#| msgid "Diary entries"
+msgid "Diary tags"
+msgstr "Записи дневника"
+
+#, fuzzy
+#| msgid "tags"
+msgid "tag"
+msgstr "Тэги"
+
+#, fuzzy
+#| msgid "Blog entry"
+msgid "entry"
+msgstr "Запись блога"
+
+msgid "value"
+msgstr ""
+
+msgid "Diary tag value"
+msgstr ""
+
+#, fuzzy
+#| msgid "Diary entries"
+msgid "Diary tag values"
+msgstr "Записи дневника"
+
+msgid "Всего"
+msgstr ""
 
 msgid "Sources"
 msgstr "Источники"
@@ -160,9 +194,6 @@ msgstr ""
 
 msgid "Files"
 msgstr "Файлы"
-
-msgid "Name"
-msgstr "Название"
 
 msgid "File category"
 msgstr "Категория файлов"
@@ -245,44 +276,39 @@ msgstr "Тэг"
 msgid "Tags"
 msgstr "Тэги"
 
-msgid "Sort objects"
-msgstr "Сортировать объекты"
+msgid "About album"
+msgstr ""
 
 msgid "Image preview"
 msgstr "Превью"
 
+#, fuzzy
+#| msgid "Description"
+msgid "Duration"
+msgstr "Описание"
+
+#, fuzzy
+#| msgid "Tracks"
+msgid "Tracks count"
+msgstr "Треки"
+
+msgid "Sort objects"
+msgstr "Сортировать объекты"
+
 msgid "Music"
 msgstr "Музыка"
-
-msgid "Artist"
-msgstr "Исполнитель"
-
-msgid "Artists"
-msgstr "Исполнители"
-
-msgid "Accent color for index page"
-msgstr "Основной цвет на главной странице"
 
 msgid "Year"
 msgstr "Год"
 
-msgid "Short description"
-msgstr "Короткое описание"
+msgid "Status"
+msgstr ""
 
-msgid "Displayed on \"All tracks\" page"
-msgstr "Отображается на странице \"Все треки\""
+msgid "Album"
+msgstr ""
 
-msgid "Lead description"
-msgstr "Предописание"
-
-msgid "Displayed before full description"
-msgstr "Отображается перед полный описанием"
-
-msgid "Full description"
-msgstr "Полное описание"
-
-msgid "Displayed on \"Single track\" page"
-msgstr "Отображается на странице \"Один трек\""
+msgid "Albums"
+msgstr ""
 
 msgid "Track"
 msgstr "Трек"
@@ -296,47 +322,22 @@ msgstr "Файл трека"
 msgid "Track files"
 msgstr "Файлы треков"
 
-msgid "Index page"
-msgstr "Главная страница"
+msgid "Personal info"
+msgstr "Персональная информация"
 
-msgid "Optional"
-msgstr "Опционально"
+msgid "Profile image"
+msgstr "Изображение профиля"
 
-msgid "News"
-msgstr "Новости"
+msgid "Permissions"
+msgstr ""
 
-msgid "title"
-msgstr "Заголовок"
+msgid "Important dates"
+msgstr ""
 
-msgid "tab title"
-msgstr "Заголовок вкладки"
-
-msgid "Tab title is displayed on index page"
-msgstr "Заголовок вкладки отображается на главной странице"
-
-msgid "preview"
+#, fuzzy
+#| msgid "preview"
+msgid "Preview"
 msgstr "Превью"
-
-msgid "Preview is displayed on index page"
-msgstr "Превью отображается на главной"
-
-msgid "text"
-msgstr "Текст"
-
-msgid "date"
-msgstr "Дата"
-
-msgid "link"
-msgstr "Ссылка"
-
-msgid "tags"
-msgstr "Тэги"
-
-msgid "News item"
-msgstr "Новость"
-
-msgid "News items"
-msgstr "Новости"
 
 msgid "Users"
 msgstr "Пользователи"
@@ -347,11 +348,17 @@ msgstr "Адрес эл.почты"
 msgid "User"
 msgstr "Пользователь"
 
+msgid "Russian"
+msgstr "Русский"
+
 msgid "Denis Krumko"
 msgstr "Denis Krumko"
 
 msgid "DK"
 msgstr "DK"
+
+msgid "View on site"
+msgstr "Посмотреть на сайте"
 
 msgid "Reset slug"
 msgstr "Сбросить слаг"
@@ -359,5 +366,32 @@ msgstr "Сбросить слаг"
 msgid "likes counter"
 msgstr "Счетчик лайгов"
 
-msgid "Home"
-msgstr "Домой"
+msgid "Login"
+msgstr "Войти"
+
+msgid "Entry is done"
+msgstr ""
+
+msgid "Entry is not done yet"
+msgstr ""
+
+msgid "Your profile"
+msgstr "Ваш профиль"
+
+msgid "Admin UI"
+msgstr "Админка"
+
+msgid "Github"
+msgstr "Github"
+
+msgid "Personal Information"
+msgstr "Персональная информация"
+
+msgid "Avatar"
+msgstr "Аватар"
+
+msgid "Remove image"
+msgstr "Удалить изображение"
+
+msgid "Logout"
+msgstr "Выйти"
