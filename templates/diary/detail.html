@@ -95,6 +95,18 @@ document.addEventListener('keydown', function(e) {
         {% endblock %}
       </div>
 
+      {# Previous/future years of same date #}
+      <div style="float: right;">
+        {% for year in prev_years %}
+          <a href="{% url 'diary:detail' date=year.1 %}" class="graytext f12">
+            {{ year.0 }}
+          </a>
+          {% if not forloop.last %}
+            <span class="graytext">·</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+
       {% block file_upload %}
       <div class="">
         {% if entry.files.exists %}

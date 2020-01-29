@@ -99,6 +99,10 @@ class DiaryDetailView(BaseDiaryView):
             'prev_day': (dt - timedelta(days=1)).date(),
             'next_week': (dt + timedelta(days=7)).date(),
             'prev_week': (dt - timedelta(days=7)).date(),
+            'prev_years': (
+                (dt.year - i, dt.date().replace(year=(dt.year - i)),)
+                for i in range(2, -3, -1) if i != 0
+            ),
         })
         return self.render_to_response(context)
 
