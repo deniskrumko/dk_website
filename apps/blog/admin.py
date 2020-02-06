@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from adminsortable.admin import SortableAdmin, SortableTabularInline
@@ -43,7 +44,7 @@ class BlogEntryAdmin(BaseModelAdmin):
         (_('Images'), {
             'fields': (
                 'image',
-                'thumbnail',
+                '_thumbnail',
             )
         }),
         (_('Details'), {
@@ -74,6 +75,7 @@ class BlogEntryAdmin(BaseModelAdmin):
         'video',
         'date',
         'is_active',
+        '_thumbnail',
     )
     list_editable = (
         'is_active',
@@ -86,6 +88,7 @@ class BlogEntryAdmin(BaseModelAdmin):
         'created',
         'modified',
         'slug',
+        '_thumbnail',
     )
     changelist_actions = (
         'reset_slug',
@@ -98,6 +101,21 @@ class BlogEntryAdmin(BaseModelAdmin):
     inlines = (
         BlogImageInline,
     )
+
+    def _thumbnail(self, obj):
+        """Get image preview (thumbnail)."""
+        if not obj.image:
+            return _('Изображение не загружено')
+
+        try:
+            return mark_safe(
+                f'<a href="{obj.thumbnail.url}" target="_blank">'
+                f'<img src="{obj.thumbnail.url}" width="60"></a>'
+            )
+        except Exception:
+            return _('Ошибка получения превью')
+
+    _thumbnail.short_description = _('Превью')
 
 
 class BlogSeriesItemInline(SortableTabularInline):
