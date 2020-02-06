@@ -43,6 +43,7 @@ class BlogEntryAdmin(BaseModelAdmin):
         (_('Images'), {
             'fields': (
                 'image',
+                'thumbnail',
             )
         }),
         (_('Details'), {
