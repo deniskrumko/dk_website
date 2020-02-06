@@ -45,9 +45,9 @@
         <div class="album-image">
           <a href="{% url 'music:detail' album.slug %}">
             {% if album.image %}
-            <img src="{{ album.image.url }}" alt="">
+            <img src="{{ album.thumbnail.url }}" alt="{{ album.name }}">
             {% else %}
-            <img src="{% static 'images/nophoto_wide.jpg' %}" alt="">
+            <img src="{% static 'images/nophoto_wide.jpg' %}" alt="No image">
             {% endif %}
           </a>
         </div>

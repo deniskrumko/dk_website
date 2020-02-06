@@ -46,6 +46,12 @@ class Album(SortableMixin, BaseModel):
         upload_to=BaseModel.obfuscated_upload,
         verbose_name=_('Image'),
     )
+    thumbnail = ImageSpecField(
+        source='image',
+        processors=[ResizeToFit(400, 400)],
+        format='JPEG',
+        options={'quality': 100}
+    )
     order = models.PositiveIntegerField(
         default=0,
         editable=False,

@@ -94,7 +94,7 @@
       <div class="blog-item-image pure-u-1-1 pure-u-md-2-5">
         <a href="{% url 'blog:detail' item.slug %}?page={{current_page}}">
           {% if item.image %}
-          <img src="{{ item.image.url }}" alt="">
+          <img src="{{ item.thumbnail.url }}" alt="">
           {% else %}
           <img src="{% static 'images/nophoto_wide.jpg' %}" alt="">
           {% endif %}
