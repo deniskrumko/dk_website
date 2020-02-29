@@ -2,6 +2,7 @@ import calendar
 from datetime import date, datetime, timedelta
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
 from django.utils import timezone
@@ -80,9 +81,27 @@ class DiaryDetailView(BaseDiaryView):
 
     def get(self, request, date):
         """Get single entry."""
-        entry = DiaryEntry.objects.filter(author=self.user, date=date).first()
+        try:
+            entry = DiaryEntry.objects.filter(
+                author=self.user,
+                date=date,
+            ).first()
+        except ValidationError:
+            # Incorrect date format
+            return self.redirect('diary:index')
+
         dt = datetime.strptime(date, self.DATE_FORMAT)
         context = self.get_context_data(dt=dt)
+
+        try:
+            jump_to_year = [
+                (dt.year - i, dt.date().replace(year=(dt.year - i)),)
+                for i in range(2, -3, -1) if i != 0
+            ]
+        except Exception:
+            # This happened for February 29
+            jump_to_year = []
+
         context.update({
             'dt': dt,
             'entry': entry,
@@ -99,10 +118,7 @@ class DiaryDetailView(BaseDiaryView):
             'prev_day': (dt - timedelta(days=1)).date(),
             'next_week': (dt + timedelta(days=7)).date(),
             'prev_week': (dt - timedelta(days=7)).date(),
-            'prev_years': (
-                (dt.year - i, dt.date().replace(year=(dt.year - i)),)
-                for i in range(2, -3, -1) if i != 0
-            ),
+            'jump_to_year': jump_to_year,
         })
         return self.render_to_response(context)
 
