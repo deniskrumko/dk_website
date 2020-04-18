@@ -83,7 +83,7 @@
 .blog-show-all {
   height: 176px;
   width: 320px;
-  border: 2px solid;
+  border: 2px dashed;
   font-size: 16px;
   display: flex;
   justify-content: center;
@@ -93,14 +93,13 @@
   content: 'Посмотреть';
   position: absolute;
   bottom: 0;
-  left: 0px;
   height: 0;
+  text-align: center;
   opacity: 0;
   transition: all 0.3s ease;
-  background: rgb(74, 114, 183);
+  color: rgb(74, 114, 183);
   width: calc(100% - 20px);
   padding: 10px;
-  color: #fefefe;
   font-weight: bold;
 }
 .blog-show-all:hover::after {
