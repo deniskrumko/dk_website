@@ -3,7 +3,7 @@
 }
 .card-slider::after {
   content: "";
-  height: 310px;
+  height: 270px;
   position: absolute;
   right: -60px;
   top: -15px;
@@ -12,7 +12,7 @@
 }
 .card-slider::before {
   content: "";
-  height: 310px;
+  height: 270px;
   position: absolute;
   left: -60px;
   top: -15px;
@@ -80,6 +80,33 @@
   font-size: 14px;
   max-width: 320px;
 }
+.blog-show-all {
+  height: 176px;
+  width: 320px;
+  border: 2px solid;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.blog-show-all::after {
+  content: 'Посмотреть';
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  height: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+  background: rgb(74, 114, 183);
+  width: calc(100% - 20px);
+  padding: 10px;
+  color: #fefefe;
+  font-weight: bold;
+}
+.blog-show-all:hover::after {
+  height: 20px;
+  opacity: 1;
+}
 .show-more {
   font-size: 14px;
   margin-top: 20px;
@@ -103,6 +130,10 @@
 @media only screen and (max-width: 950px) {
   .card {
     max-width: 250px;
+  }
+  .blog-show-all {
+    height: 137px;
+    width: 250px;
   }
   .card-images {
     margin-bottom: 5px;
@@ -137,6 +168,14 @@
 @media only screen and (max-width: 567px) {
   .card {
     max-width: 200px;
+  }
+  .blog-show-all {
+    height: 108px;
+    width: 200px;
+    font-size: 12px;
+  }
+  .blog-show-all::after {
+    padding-bottom: 5px;
   }
   .show-more {
     margin-bottom: 10px;

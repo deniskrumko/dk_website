@@ -32,9 +32,11 @@ class IndexView(BaseView):
     def get_context_data(self):
         """Get context data."""
         context = super().get_context_data()
+        blog_qs = BlogEntry.objects.filter(is_active=True)
         context.update({
-            'blog_items': BlogEntry.objects.filter(is_active=True)[:6],
-            'music_items': Track.objects.all()[:6],
+            'blog_items': blog_qs[:5],
+            'music_items': Track.objects.all()[:5],
+            'total_blog_items': blog_qs.count() - 5,
         })
         return context
 
