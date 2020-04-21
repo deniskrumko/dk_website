@@ -12,3 +12,5 @@ DATABASES = {
 }
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+WEBSITE_URL = 'https://deniskrumko.ru'

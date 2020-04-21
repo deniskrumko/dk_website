@@ -1,6 +1,8 @@
+from django.conf import settings
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext_lazy as _
+
 from .models import RedirectPage, Tag
 
 
@@ -19,7 +21,10 @@ class RedirectPageAdmin(admin.ModelAdmin):
 
     def link_preview(self, obj: RedirectPage) -> str:
         """Clickable link preview."""
-        link = f'https://deniskrumko.ru/go/{obj.source}'
+        if not obj.source:
+            return '-'
+
+        link = settings.WEBSITE_URL + '/go/' + obj.source
         return mark_safe(f'<a href="{link}">{link}</a>')
 
     link_preview.short_description = _('Link preview')
