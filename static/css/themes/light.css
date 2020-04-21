@@ -38,10 +38,10 @@ a {
   color: #bbb;
 }
 .right-bar::after {
-  box-shadow: -20px 0 20px -20px rgba(0,0,0,.15);
+  box-shadow: -20px 0 20px -20px rgba(0,0,0,.25);
 }
 .left-bar::before {
-  box-shadow: 20px 0 20px -20px rgba(0,0,0,.15);
+  box-shadow: 20px 0 20px -20px rgba(0,0,0,.25);
 }
 .card-title {
   color: #333;
