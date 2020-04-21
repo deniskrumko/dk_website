@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-
+from django.utils.safestring import mark_safe
 from .models import RedirectPage, Tag
 
 
@@ -11,16 +11,18 @@ class RedirectPageAdmin(admin.ModelAdmin):
     list_display = (
         'source',
         'destination',
-        '_result',
+        'link_preview',
     )
     readonly_fields = (
-        '_result',
+        'link_preview',
     )
 
-    def _result(self, obj):
-        return f'http://deniskrumko.ru/go/{obj.source}'
+    def link_preview(self, obj: RedirectPage) -> str:
+        """Clickable link preview."""
+        link = f'https://deniskrumko.ru/go/{obj.source}'
+        return mark_safe(f'<a href="{link}">{link}</a>')
 
-    _result.short_description = _('Result')
+    link_preview.short_description = _('Link preview')
 
 
 @admin.register(Tag)
