@@ -109,6 +109,11 @@ class BlogEntry(LikedModel, BaseModel):
     def prev(self):
         return self._get_part(index=-1)
 
+    @property
+    def duration(self):
+        """Get video duration if it exists."""
+        return self.video.duration if self.video else None
+
     def _get_part(self, index):
         order = self.series_item.first().order + index
         return self.series.items.filter(order=order).first()

@@ -44,6 +44,7 @@ class VideoFileAdmin(admin.ModelAdmin):
             'fields': (
                 'name',
                 'source',
+                'duration',
                 'poster',
             )
         }),
@@ -65,6 +66,7 @@ class VideoFileAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'source',
+        'duration',
         '_original',
         '_1080',
         '_720',

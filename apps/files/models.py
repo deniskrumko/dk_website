@@ -142,6 +142,13 @@ class VideoFile(BaseModel):
         upload_to=BaseModel.obfuscated_upload,
         verbose_name=_('Poster image')
     )
+    duration = models.CharField(
+        max_length=8,
+        null=True,
+        blank=True,
+        verbose_name=_('Video duration'),
+        help_text=_('For example: 15:00'),
+    )
 
     def __str__(self):
         return f'{self.name} ({self.source})'
