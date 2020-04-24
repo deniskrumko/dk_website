@@ -2,6 +2,12 @@
 {% load static i18n %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/diary.css' %}">
+<style media="screen">
+#expand-btn:hover {
+  color: {{ colors.main }};
+  border-color: {{ colors.main }};
+}
+</style>
 {% endblock %}
 
 {% block js %}
@@ -55,7 +61,9 @@ document.addEventListener('keydown', function(e) {
   <form class="pure-g" action="{{ edit_link }}" method="post" id="entry_form">
     {% csrf_token %}
     <div class="pure-u-1-1 pure-u-md-17-24">
-      <div id="page">
+      {% block page_class %}
+      <div id="page" {% if entry.text|length > 500 %}class="collapsed-page"{% endif %}>
+      {% endblock %}
 
         {# Entry title #}
         {% block entry-date %}
@@ -93,6 +101,9 @@ document.addEventListener('keydown', function(e) {
           {% endif %}
         </div>
         {% endblock %}
+        {% if entry.text|length > 500 %}
+        <div id="expand-btn" onclick="expandPage(this);">Показать все</div>
+        {% endif %}
       </div>
 
       {# Previous/future years of same date #}
@@ -158,10 +169,6 @@ document.addEventListener('keydown', function(e) {
             </a>
             {% endif %}
           {% endfor %}
-        </div>
-        <div class="sm-hidden graytext f12 center w100">
-          <b>Enter</b> - редактировать запись<br>
-          <b>Arrows</b> - навигация по календарю
         </div>
       </div>
       {% endblock %}
