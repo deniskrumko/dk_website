@@ -26,6 +26,9 @@ document.addEventListener('keydown', function(e) {
 <div id="page">
 {% endblock %}
 
+{% block jump_to_year %}
+{% endblock %}
+
 {% block entry %}
 <div class="entry">
   <div class="entry-buttons">
@@ -39,6 +42,19 @@ document.addEventListener('keydown', function(e) {
     <textarea id="text" placeholder="Введите текст" name="text">{{ entry.text }}</textarea>
   </div>
 </div>
+{% endblock %}
+
+{% block after-entry %}
+  {% if popular_tags %}
+  <div class="popular-tags noselect">
+    {% for tag in popular_tags %}
+    <a class="tag graytext f12">{{ tag }}</a>
+    {% if not forloop.last %}
+      <span class="graytext">·</span>
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
 {% endblock %}
 
 {% block right-menu %}

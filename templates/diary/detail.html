@@ -100,14 +100,18 @@ document.addEventListener('keydown', function(e) {
           </div>
           {% endif %}
         </div>
-        {% endblock %}
         {% if entry.text|length > 500 %}
         <div id="expand-btn" onclick="expandPage(this);">Показать все</div>
         {% endif %}
+        {% endblock %}
       </div>
 
+      {% block after-entry %}
+      {% endblock %}
+
       {# Previous/future years of same date #}
-      <div style="float: right;">
+      {% block jump_to_year %}
+      <div style="float: right;" class="noselect">
         {% for year in jump_to_year %}
           <a href="{% url 'diary:detail' date=year.1 %}" class="graytext f12">
             {{ year.0 }}
@@ -117,6 +121,7 @@ document.addEventListener('keydown', function(e) {
           {% endif %}
         {% endfor %}
       </div>
+      {% endblock %}
 
       {% block file_upload %}
       <div class="">

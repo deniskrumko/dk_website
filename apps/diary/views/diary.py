@@ -3,6 +3,7 @@ from datetime import date, datetime, timedelta
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.db.models import Count
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
 from django.utils import timezone
@@ -120,6 +121,11 @@ class DiaryDetailView(BaseDiaryView):
             'next_week': (dt + timedelta(days=7)).date(),
             'prev_week': (dt - timedelta(days=7)).date(),
             'jump_to_year': jump_to_year,
+            'popular_tags': DiaryTag.objects.filter(
+                entries__date__gte=timezone.now() - timezone.timedelta(days=30)
+            ).annotate(
+                _entries_count=Count('entries')
+            ).order_by('-_entries_count'),
         })
         return self.render_to_response(context)
 
