@@ -108,7 +108,7 @@ document.addEventListener('keydown', function(e) {
 
       {# Previous/future years of same date #}
       <div style="float: right;">
-        {% for year in prev_years %}
+        {% for year in jump_to_year %}
           <a href="{% url 'diary:detail' date=year.1 %}" class="graytext f12">
             {{ year.0 }}
           </a>

@@ -94,9 +94,10 @@ class DiaryDetailView(BaseDiaryView):
         context = self.get_context_data(dt=dt)
 
         try:
+            years_range = 1
             jump_to_year = [
                 (dt.year - i, dt.date().replace(year=(dt.year - i)),)
-                for i in range(2, -3, -1) if i != 0
+                for i in range(years_range, -years_range - 1, -1) if i != 0
             ]
         except Exception:
             # This happened for February 29
