@@ -42,7 +42,8 @@ class DiaryEntry(BaseModel):
         ordering = ('-date',)
 
     def __str__(self):
-        return f'{self.date} ({self.author.username})'
+        author = self.author.username if self.author else 'unknown'
+        return f'{self.date} ({author})'
 
     @property
     def html(self):
