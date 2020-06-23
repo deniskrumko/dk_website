@@ -49,11 +49,11 @@ class DiaryEntry(BaseModel):
     def html(self):
         """Represent entry text as HTML."""
         def add_link(line):
-            if not line:
+            parts = line.split()
+            if not parts:
                 return line
 
-            first_word = line.split()[0]
-
+            first_word = parts[0]
             if first_word.startswith('#'):
                 link = (
                     f'<a href="/diary/tags/{first_word[1:]}" '
