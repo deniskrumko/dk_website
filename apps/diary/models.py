@@ -49,6 +49,9 @@ class DiaryEntry(BaseModel):
     def html(self):
         """Represent entry text as HTML."""
         def add_link(line):
+            if not line:
+                return line
+
             first_word = line.split()[0]
 
             if first_word.startswith('#'):
@@ -60,11 +63,14 @@ class DiaryEntry(BaseModel):
 
             return line
 
-        text = self.text.replace('\r\n', '\n')
-        return ''.join([
-            f'<p>{add_link(line)}</p>' if line else '<p>&nbsp;<p>'
-            for line in text.split('\n')
-        ])
+        try:
+            text = self.text.replace('\r\n', '\n')
+            return ''.join([
+                f'<p>{add_link(line)}</p>' if line else '<p>&nbsp;<p>'
+                for line in text.split('\n')
+            ])
+        except Exception as e:
+            return f'Ошибка получения HTML: {e!r}'
 
     @property
     def preview(self):
