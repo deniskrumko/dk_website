@@ -59,7 +59,7 @@ class WakeMyDyno(View):
 
     def get(self, request, page=None):
         """Send simple text to wake Heroku dyno."""
-        content = "I'm worse at what I do best "
+        content = "I'm worse at what I do best."
         return HttpResponse(content, content_type='text/plain')
 
 

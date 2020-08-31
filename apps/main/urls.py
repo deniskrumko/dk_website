@@ -12,5 +12,6 @@ urlpatterns = [
     path('go/<page>/', views.RedirectView.as_view(), name='redirecting'),
 
     # Wake heroku app page
-    path('wakemydyno.txt', views.WakeMyDyno.as_view(), name='awake')
+    # NOTE: Now it causes "Free app running time quota exhausted" error
+    # path('wakemydyno.txt', views.WakeMyDyno.as_view(), name='awake')
 ]
