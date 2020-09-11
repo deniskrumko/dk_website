@@ -47,7 +47,7 @@ class DiaryTagsDetailView(BaseDiaryView):
         ).order_by('-date__year').distinct()
         context = self.get_context_data(item=item)
         context['tag'] = item
-        context['stats'] = [(_('Всего'), item.entries.count())] + [
+        context['stats'] = [(_('Total'), item.entries.count())] + [
             (year, item.entries.filter(date__year=year).count())
             for year in years
         ]

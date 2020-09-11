@@ -104,7 +104,7 @@ class BlogEntryAdmin(BaseModelAdmin):
     def _thumbnail(self, obj):
         """Get image preview (thumbnail)."""
         if not obj.image:
-            return _('Изображение не загружено')
+            return _('Image is not loaded')
 
         try:
             return mark_safe(
@@ -112,9 +112,9 @@ class BlogEntryAdmin(BaseModelAdmin):
                 f'<img src="{obj.thumbnail.url}" width="60"></a>'
             )
         except Exception:
-            return _('Ошибка получения превью')
+            return _('Error while getting preview')
 
-    _thumbnail.short_description = _('Превью')
+    _thumbnail.short_description = _('Preview')
 
 
 class BlogSeriesItemInline(SortableTabularInline):

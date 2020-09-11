@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-10 22:41+0300\n"
+"POT-Creation-Date: 2020-09-11 22:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,14 +35,14 @@ msgstr "SEO"
 msgid "Created/Modified"
 msgstr "Создан/Изменен"
 
-msgid "Изображение не загружено"
-msgstr ""
+msgid "Image is not loaded"
+msgstr "Изображение не загружено"
 
-msgid "Ошибка получения превью"
-msgstr ""
+msgid "Error while getting preview"
+msgstr "Ошибка при получении превью"
 
-msgid "Превью"
-msgstr ""
+msgid "Preview"
+msgstr "Превью"
 
 msgid "Blog"
 msgstr "Блог"
@@ -92,10 +92,8 @@ msgstr "Записи блога"
 msgid "Name"
 msgstr "Название"
 
-#, fuzzy
-#| msgid "Blog entries"
 msgid "Blog series"
-msgstr "Записи блога"
+msgstr "Серии блога"
 
 msgid "Series"
 msgstr "Серии"
@@ -103,8 +101,6 @@ msgstr "Серии"
 msgid "Order"
 msgstr "Порядок"
 
-#, fuzzy
-#| msgid "tab title"
 msgid "Custom title"
 msgstr "Кастомный заголовок"
 
@@ -113,9 +109,6 @@ msgstr "Блог"
 
 msgid "description"
 msgstr "Описание"
-
-msgid "Предосмотр"
-msgstr ""
 
 msgid "Go to entry"
 msgstr "Перейти к записи"
@@ -127,7 +120,7 @@ msgid "Author"
 msgstr "Автор"
 
 msgid "done"
-msgstr ""
+msgstr "Готово"
 
 msgid "files"
 msgstr "Файлы"
@@ -141,44 +134,32 @@ msgstr "Записи дневника"
 msgid "name"
 msgstr "Название"
 
-#, fuzzy
-#| msgid "Blog entries"
 msgid "entries"
-msgstr "Записи блога"
+msgstr "Записи"
 
-#, fuzzy
-#| msgid "Diary"
 msgid "Diary tag"
-msgstr "Дневник"
+msgstr "Тэг дневника"
 
-#, fuzzy
-#| msgid "Diary entries"
 msgid "Diary tags"
-msgstr "Записи дневника"
+msgstr "Тэги дневника"
 
-#, fuzzy
-#| msgid "tags"
 msgid "tag"
-msgstr "Тэги"
+msgstr "Тэг"
 
-#, fuzzy
-#| msgid "Blog entry"
 msgid "entry"
-msgstr "Запись блога"
+msgstr "Запись"
 
 msgid "value"
-msgstr ""
+msgstr "значение"
 
 msgid "Diary tag value"
-msgstr ""
+msgstr "Значение тэга дневника"
 
-#, fuzzy
-#| msgid "Diary entries"
 msgid "Diary tag values"
-msgstr "Записи дневника"
+msgstr "Значения тэгов дневника"
 
-msgid "Всего"
-msgstr ""
+msgid "Total"
+msgstr "Всего"
 
 msgid "Sources"
 msgstr "Источники"
@@ -187,7 +168,7 @@ msgid "YouTube"
 msgstr "YouTube"
 
 msgid "Original"
-msgstr "Оригинал"
+msgstr "Исходное"
 
 msgid "1080p"
 msgstr ""
@@ -246,13 +227,11 @@ msgstr "Код видео с YouTube"
 msgid "Poster image"
 msgstr "Изображения для постера"
 
-#, fuzzy
-#| msgid "Description"
 msgid "Video duration"
-msgstr "Описание"
+msgstr "Длительность видео"
 
 msgid "For example: 15:00"
-msgstr ""
+msgstr "Например: 15:00"
 
 msgid "Video file"
 msgstr "Видео файл"
@@ -260,10 +239,8 @@ msgstr "Видео файл"
 msgid "Video files"
 msgstr "Видео файлы"
 
-#, fuzzy
-#| msgid "Image preview"
 msgid "Link preview"
-msgstr "Превью"
+msgstr "Превью ссылки"
 
 msgid "Short URL"
 msgstr "Короткая ссылка (/go/<...>)"
@@ -296,20 +273,16 @@ msgid "Tags"
 msgstr "Тэги"
 
 msgid "About album"
-msgstr ""
+msgstr "Об альбоме"
 
 msgid "Image preview"
 msgstr "Превью"
 
-#, fuzzy
-#| msgid "Description"
 msgid "Duration"
-msgstr "Описание"
+msgstr "Продолжительность"
 
-#, fuzzy
-#| msgid "Tracks"
 msgid "Tracks count"
-msgstr "Треки"
+msgstr "Количество треков"
 
 msgid "Sort objects"
 msgstr "Сортировать объекты"
@@ -321,13 +294,13 @@ msgid "Year"
 msgstr "Год"
 
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 msgid "Album"
-msgstr ""
+msgstr "Альбом"
 
 msgid "Albums"
-msgstr ""
+msgstr "Альбомы"
 
 msgid "Track"
 msgstr "Трек"
@@ -348,15 +321,10 @@ msgid "Profile image"
 msgstr "Изображение профиля"
 
 msgid "Permissions"
-msgstr ""
+msgstr "Права доступа"
 
 msgid "Important dates"
-msgstr ""
-
-#, fuzzy
-#| msgid "preview"
-msgid "Preview"
-msgstr "Превью"
+msgstr "Важные даты"
 
 msgid "Users"
 msgstr "Пользователи"
@@ -389,13 +357,13 @@ msgid "Login"
 msgstr "Войти"
 
 msgid "Entry is done"
-msgstr ""
+msgstr "Запись закончена"
 
 msgid "Entry is not done yet"
-msgstr ""
+msgstr "Запись пока не закончена"
 
 msgid "Sign up"
-msgstr ""
+msgstr "Создать аккаунт"
 
 msgid "Your profile"
 msgstr "Ваш профиль"
@@ -417,6 +385,3 @@ msgstr "Удалить изображение"
 
 msgid "Logout"
 msgstr "Выйти"
-
-#~ msgid "Result"
-#~ msgstr "Результат"

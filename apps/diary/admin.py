@@ -84,7 +84,7 @@ class DiaryEntryAdmin(PrivateQuerySet, BaseModelAdmin):
     def _preview(self, obj):
         return (obj.text[:50] + '...') if obj.text else '-'
 
-    _preview.short_description = _('Предосмотр')
+    _preview.short_description = _('Preview')
 
 
 @admin.register(DiaryTag)
