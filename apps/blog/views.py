@@ -57,7 +57,7 @@ class BlogDetailView(BaseBlogView):
             '480p': item.video.source_480,
             '720p': item.video.source_720,
             '1080p': item.video.source_1080,
-        }
+        } if item.video else {}
         quality = self.request.GET.get('quality')
         current_page = self.request.GET.get('page')
         if quality not in mapping:

@@ -6,8 +6,6 @@ from adminsortable.models import SortableMixin
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFit
 
-from libs.autoslug import AutoSlugField
-
 from core.models import BaseModel, register_liked_model
 from core.utils import time_int_to_str
 
@@ -21,9 +19,12 @@ class Album(SortableMixin, BaseModel):
         blank=False,
         verbose_name=_('Name'),
     )
-    slug = AutoSlugField(
-        populate_from='name',
-        unique_with=('name',),
+    slug = models.CharField(
+        blank=False,
+        db_index=True,
+        max_length=64,
+        null=True,
+        unique=True,
         verbose_name=_('Slug'),
     )
     year = models.IntegerField(
@@ -110,9 +111,12 @@ class Track(SortableMixin, BaseModel):
         blank=True,
         verbose_name=_('Year'),
     )
-    slug = AutoSlugField(
-        populate_from='name',
-        unique_with=('name',),
+    slug = models.CharField(
+        blank=False,
+        db_index=True,
+        max_length=64,
+        null=True,
+        unique=True,
         verbose_name=_('Slug'),
     )
     file = models.ForeignKey(

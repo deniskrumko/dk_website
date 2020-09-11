@@ -9,7 +9,7 @@ from apps.files.factories import VideoFileFactory
 from . import models
 
 
-class BlogImageFactory(factory.DjangoModelFactory):
+class BlogImageFactory(factory.django.DjangoModelFactory):
     """Factory for ``BlogImage`` model."""
 
     description = factory.sequence(lambda x: f'Title {x}')
@@ -20,7 +20,7 @@ class BlogImageFactory(factory.DjangoModelFactory):
         model = models.BlogImage
 
 
-class BlogEntryFactory(factory.DjangoModelFactory):
+class BlogEntryFactory(factory.django.DjangoModelFactory):
     """Factory for ``BlogEntry`` model."""
 
     date = factory.sequence(lambda x: timezone.now() + timedelta(days=x))
@@ -46,7 +46,7 @@ class BlogEntryFactory(factory.DjangoModelFactory):
         model = models.BlogEntry
 
 
-class BlogSeriesFactory(factory.DjangoModelFactory):
+class BlogSeriesFactory(factory.django.DjangoModelFactory):
     """Factory for ``BlogSeries`` model."""
 
     name = factory.sequence(lambda x: f'Series {x}')
@@ -55,7 +55,7 @@ class BlogSeriesFactory(factory.DjangoModelFactory):
         model = models.BlogSeries
 
 
-class BlogSeriesItemFactory(factory.DjangoModelFactory):
+class BlogSeriesItemFactory(factory.django.DjangoModelFactory):
     """Factory for ``BlogSeriesItem`` model."""
 
     title = factory.sequence(lambda x: f'Title {x}')

@@ -7,11 +7,11 @@ from .models import Album, Track, TrackFile
 __all__ = (
     'AlbumFactory',
     'TrackFactory',
-    'TrackFileFactory'
+    'TrackFileFactory',
 )
 
 
-class AlbumFactory(factory.DjangoModelFactory):
+class AlbumFactory(factory.django.DjangoModelFactory):
     """Factory for ``Album`` model."""
 
     name = factory.sequence(lambda x: f'Album {x}')
@@ -23,7 +23,7 @@ class AlbumFactory(factory.DjangoModelFactory):
         model = Album
 
 
-class TrackFactory(factory.DjangoModelFactory):
+class TrackFactory(factory.django.DjangoModelFactory):
     """Factory for ``Track`` model."""
 
     album = factory.SubFactory(AlbumFactory)
@@ -36,7 +36,7 @@ class TrackFactory(factory.DjangoModelFactory):
         model = Track
 
 
-class TrackFileFactory(factory.DjangoModelFactory):
+class TrackFileFactory(factory.django.DjangoModelFactory):
     """Factory for ``TrackFile`` model."""
 
     file = factory.SubFactory(FileFactory)

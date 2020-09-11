@@ -1,9 +1,9 @@
 import subprocess
 
-from fabric.api import task, local
+from fabric.api import local, task
 from fabric.operations import prompt
-from core.display import print_msg
 
+from core.display import print_msg
 
 # MAIN COMMANDS
 # ============================================================================
@@ -50,14 +50,14 @@ def startapp(app_name):
         return print_msg(
             'Name of app must include root folder. '
             'Like "apps.{}"'.format(names_list[0]),
-            error=True
+            error=True,
         )
 
     path = '/'.join(names_list)
     local('mkdir {0}'.format(path))
     manage(
         'startapp --template=core/app_template {0} {1}'
-        .format(names_list[-1], path)
+        .format(names_list[-1], path),
     )
     return print_msg('Please, add your app to "INSTALLED_APPS"')
 

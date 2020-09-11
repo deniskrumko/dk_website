@@ -1,11 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from import_export.admin import ImportExportMixin
-
 from core.admin import BaseModelAdmin
 
-from .import_export.resources import DiaryEntryResource
 from .models import DiaryEntry, DiaryTag, DiaryTagValue
 
 
@@ -36,11 +33,9 @@ class DiaryTagValueInline(admin.TabularInline):
 
 
 @admin.register(DiaryEntry)
-class DiaryEntryAdmin(ImportExportMixin, PrivateQuerySet, BaseModelAdmin):
+class DiaryEntryAdmin(PrivateQuerySet, BaseModelAdmin):
     """Admin class for ``DiaryEntry`` model."""
 
-    change_list_template = 'admin/import_export_and_actions.html'
-    resource_class = DiaryEntryResource
     url_index = 'diary:index'
     url_detail = 'diary:detail'
     sortable_by = 'date'
@@ -82,12 +77,6 @@ class DiaryEntryAdmin(ImportExportMixin, PrivateQuerySet, BaseModelAdmin):
         """Get queryset for items exporting."""
         qs = super().get_export_queryset(request)
         return qs.filter(author=request.user)
-
-    def get_urls(self):
-        """Prepend `get_urls` with our own patterns."""
-        urls1 = super(ImportExportMixin, self).get_urls()
-        urls2 = super(BaseModelAdmin, self).get_urls()
-        return urls1 + urls2
 
     def reverse_url_detail_args(self, obj):
         return (obj.date,)

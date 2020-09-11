@@ -62,7 +62,6 @@ class AlbumAdmin(admin.ModelAdmin):
     )
     readonly_fields = (
         'order',
-        'slug',
         '_tracks_count',
         '_duration',
         '_large_preview',
@@ -161,7 +160,6 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
         'order',
     )
     readonly_fields = (
-        'slug',
         'created',
         'modified',
         '_small_preview',

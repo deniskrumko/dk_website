@@ -1,8 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from libs.autoslug import AutoSlugField
-
 from core.models import BaseModel
 
 
@@ -52,9 +50,12 @@ class Tag(BaseModel):
         unique=True,
         verbose_name=_('Name')
     )
-    slug = AutoSlugField(
-        populate_from='name',
-        unique_with=('name',),
+    slug = models.CharField(
+        blank=False,
+        db_index=True,
+        max_length=64,
+        null=True,
+        unique=True,
         verbose_name=_('Slug'),
     )
     color = models.CharField(

@@ -87,7 +87,6 @@ class BlogEntryAdmin(BaseModelAdmin):
     readonly_fields = (
         'created',
         'modified',
-        'slug',
         '_thumbnail',
     )
     changelist_actions = (

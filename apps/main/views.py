@@ -1,5 +1,5 @@
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.views import View
 
 from core.views import BaseView
@@ -65,6 +65,6 @@ class WakeMyDyno(View):
 
 def http_404_view(request, *args, **kwargs):
     """View for HTTP 404 page."""
-    response = render_to_response("system/404.html")
+    response = render(request, "system/404.html", {})
     response.status_code = 404
     return response

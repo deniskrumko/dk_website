@@ -5,8 +5,6 @@ from adminsortable.models import SortableMixin
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFit
 
-from libs.autoslug import AutoSlugField
-
 from core.models import BaseModel, LikedModel
 
 
@@ -29,9 +27,12 @@ class BlogEntry(LikedModel, BaseModel):
         blank=True,
         verbose_name=_('Subtitle'),
     )
-    slug = AutoSlugField(
-        populate_from='title',
-        unique_with=('title',),
+    slug = models.CharField(
+        blank=False,
+        db_index=True,
+        max_length=64,
+        null=True,
+        unique=True,
         verbose_name=_('Slug'),
     )
     description = models.TextField(

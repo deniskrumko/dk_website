@@ -9,7 +9,7 @@ __all__ = (
 )
 
 
-class FileCategoryFactory(factory.DjangoModelFactory):
+class FileCategoryFactory(factory.django.DjangoModelFactory):
     """Factory for ``FileCategory`` model."""
 
     name = factory.sequence(lambda x: f'Category {x}')
@@ -19,7 +19,7 @@ class FileCategoryFactory(factory.DjangoModelFactory):
         model = models.FileCategory
 
 
-class FileFactory(factory.DjangoModelFactory):
+class FileFactory(factory.django.DjangoModelFactory):
     """Factory for ``File`` model."""
 
     name = factory.sequence(lambda x: f'Name {x}')
@@ -30,7 +30,7 @@ class FileFactory(factory.DjangoModelFactory):
         model = models.File
 
 
-class VideoFileFactory(factory.DjangoModelFactory):
+class VideoFileFactory(factory.django.DjangoModelFactory):
     """Factory for ``VideoFile`` model."""
 
     name = factory.sequence(lambda x: f'Video {x}')

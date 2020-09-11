@@ -53,6 +53,3 @@ class TagAdmin(admin.ModelAdmin):
     search_fields = (
         'name',
     )
-    readonly_fields = (
-        'slug',
-    )

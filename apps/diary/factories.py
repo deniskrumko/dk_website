@@ -3,7 +3,7 @@ import factory
 from . import models
 
 
-class DiaryEntryFactory(factory.DjangoModelFactory):
+class DiaryEntryFactory(factory.django.DjangoModelFactory):
     """Factory for ``DiaryEntry`` model."""
 
     text = factory.Faker('text', max_nb_chars=1000, locale='ru_RU')
@@ -13,7 +13,7 @@ class DiaryEntryFactory(factory.DjangoModelFactory):
         model = models.DiaryEntry
 
 
-class DiaryTagFactory(factory.DjangoModelFactory):
+class DiaryTagFactory(factory.django.DjangoModelFactory):
     """Factory for ``DiaryTag`` model."""
 
     name = factory.Faker('word', locale='ru_RU')
