@@ -7,3 +7,6 @@ AWS_S3_REGION_NAME = 'eu-central-1'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_FILE_OVERWRITE = True
+AWS_S3_OBJECT_PARAMETERS = {
+    'ACL': 'public-read',  # Allow READ on all new objects
+}
