@@ -10,3 +10,21 @@ $primary-color-dark: #1992DB;
     margin-right: -3px;
   }
 }
+
+.avatar {
+  padding-top: 20px;
+  img {
+    width: 100px;
+    border-radius: 100px;
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  .avatar {
+    text-align: center;
+  }
+  .submit-buttons {
+    padding-top: 10px;
+    text-align: center;
+  }
+}

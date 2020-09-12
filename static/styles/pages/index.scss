@@ -9,7 +9,7 @@ $primary-color-dark: #1992DB;
 }
 .card-slider::after {
   content: "";
-  height: 280px;
+  height: 270px;
   position: absolute;
   right: -60px;
   top: -15px;
@@ -18,7 +18,7 @@ $primary-color-dark: #1992DB;
 }
 .card-slider::before {
   content: "";
-  height: 280px;
+  height: 270px;
   position: absolute;
   left: -60px;
   top: -15px;
@@ -55,7 +55,7 @@ $primary-color-dark: #1992DB;
     transition: all 0.3s ease;
     .images {
       margin-bottom: 5px;
-      margin-top: 15px;
+      margin-top: 5px;
       position: relative;
       .card-play {
         position: absolute;

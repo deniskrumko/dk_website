@@ -38,7 +38,7 @@
       <div class="pure-u-1-1 pure-u-md-1-2">
         <div class="dk-h2">{% trans "Avatar" %}</div>
         {% if request.user.image %}
-        <div class="">
+        <div class="avatar">
           <img src="{{ request.user.image_small.url }}" alt="image" width="60">
         </div>
         {% endif %}
@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-    <div class="">
+    <div class="submit-buttons">
       <input type="submit" value="Сохранить" class="btn primary">
       <a href="{% url 'users:logout' %}" class="btn">
         {% trans "Logout" %}
