@@ -15,6 +15,7 @@ class AlbumFactory(factory.django.DjangoModelFactory):
     """Factory for ``Album`` model."""
 
     name = factory.sequence(lambda x: f'Album {x}')
+    slug = factory.sequence(lambda x: f'album-{x}')
     image = factory.django.ImageField(color='#777')
     order = factory.sequence(lambda x: x)
     year = 2019
@@ -28,6 +29,7 @@ class TrackFactory(factory.django.DjangoModelFactory):
 
     album = factory.SubFactory(AlbumFactory)
     name = factory.Faker('name')
+    slug = factory.sequence(lambda x: f'track-{x}')
     file = factory.SubFactory(FileFactory)
     image = factory.django.ImageField(color='#777')
     year = 2019

@@ -1,0 +1,48 @@
+@import "colors";
+@import "variables";
+
+.btn {
+  padding: 7px 22px;
+  border-radius: 22px;
+  border: none;
+  margin: 5px 5px;
+  font-size: 14px;
+  display: inline-block;
+  transition: $bg-trans;
+  text-align: center;
+  color: #000;
+  background: $primary-color;
+}
+.btn:hover {
+  background: $primary-color-dark;
+}
+.btn:active {
+  background: #cdcddd;
+}
+.btn.faded {
+  background: $primary-color-darkest;
+}
+.btn.faded:hover {
+  background: $primary-color-dark;
+}
+
+.btn.tag, .btn.tag-p {
+  padding: 5px 10px;
+  margin-right: 2px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  color: $dark-text;
+  background: $dark;
+}
+.btn.tag:hover {
+  background: $darkest;
+}
+.btn:focus, video:focus {
+  outline: none;
+}

@@ -11,6 +11,7 @@ class SignUpView(TemplateView):
 
     """
 
+    menu = 'profile'
     template_name = 'users/signup.html'
     description = 'DK - Зарегистрироваться'
 

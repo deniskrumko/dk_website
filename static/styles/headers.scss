@@ -1,0 +1,61 @@
+@import "colors";
+@import "variables";
+
+.dk-h1 {
+  display: inline-block;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0.67em 0;
+  transition: color 0.3s ease;
+}
+
+.dk-h1:hover {
+  color: $primary-color;
+}
+
+.dk-h2 {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: $text;
+}
+
+.scrollable-h1 {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  a {
+    display: inline-block;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0.67em 5px 0.67em 0;
+    color: $faded-text;
+    transition: $color-trans;
+    -webkit-overflow-scrolling: touch;
+  }
+  a.active {
+    color: $text;
+  }
+  a:hover {
+    color: $primary-color;
+  }
+}
+
+.scrollable-h1::-webkit-scrollbar {
+  background: transparent;
+}
+
+
+@media only screen and (max-width: 950px) {
+  .scrollable-h1 {
+    padding-left: 15px;
+    padding-right: 10px;
+  }
+
+  .scrollable-h1 a {
+    margin: 0.67em 0 0.4em;
+  }
+}

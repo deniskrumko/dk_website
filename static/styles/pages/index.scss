@@ -1,3 +1,9 @@
+$primary-color: #1DA1F2;
+$primary-color-dark: #1992DB;
+
+@import "../_main";
+
+// Card Slider with left and right bars
 .card-slider {
   position: relative;
 }
@@ -19,16 +25,14 @@
   width: 60px;
   transition: box-shadow 0.5s ease;
 }
-.card {
-  margin-right: 20px;
-  margin-bottom: 5px;
-  display: block;
-  transition: all 0.3s ease;
+.right-bar::after {
+  box-shadow: -20px 0 20px -20px rgba(0,0,0,.8);
 }
-.card-outer {
-  flex: 0 0 auto;
-  z-index: 10;
+.left-bar::before {
+  box-shadow: 20px 0 20px -20px rgba(0,0,0,.8);
 }
+
+// Scrollable part of card-slider
 .card-slider-scroll::-webkit-scrollbar {
   display: none;
 }
@@ -38,58 +42,68 @@
   overflow-x: auto;
   position: relative;
 }
-.card-images {
-  margin-bottom: 5px;
-  margin-top: 15px;
-  position: relative;
-}
-.card-image {
-  max-height: 180px;
-  max-width: 100%;
-  transition: filter 0.3s ease;
-}
-.card-play {
-  position: absolute;
-  height: 40px;
-  opacity: 0;
+
+// Cards
+
+.card-div {
+  flex: 0 0 auto;
   z-index: 10;
-  transition: opacity 0.3s ease, transform 0.1s ease;
-  left: 50%;
-  top: 50%;
-  margin-top: -20px;
-  margin-left: -20px;
+  .card {
+    margin-right: 20px;
+    margin-bottom: 5px;
+    display: block;
+    transition: all 0.3s ease;
+    .images {
+      margin-bottom: 5px;
+      margin-top: 15px;
+      position: relative;
+      .card-play {
+        position: absolute;
+        height: 40px;
+        opacity: 0;
+        z-index: 10;
+        transition: opacity 0.3s ease, transform 0.1s ease;
+        left: 50%;
+        top: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+      }
+      .card-image {
+        max-height: 170px;
+        max-width: 100%;
+        transition: filter 0.3s ease;
+        z-index: 9;
+      }
+    }
+    .subtitle {
+      color: $text;
+      font-weight: 400;
+      font-size: 14px;
+      margin-bottom: 5px;
+      max-width: 300px;
+    }
+    .date {
+      margin-top: 5px;
+      font-size: 10px;
+      color: $dark-text;
+    }
+  }
 }
-.card-outer:last-child .card {
+
+.card-div:last-child .card {
   margin-right: 0px;
 }
-.card-subtitle {
-  font-weight: 400;
-  font-size: 14px;
-  margin-bottom: 5px;
-  max-width: 320px;
-}
-.card-date {
-  margin-top: 5px;
-  font-size: 10px;
-  color: #777;
-}
-.music.title {
-  font-weight: 400;
-  font-size: 16px;
-  margin-bottom: 5px;
-  max-width: 180px;
-  text-align: center;
-}
-.blog-show-all {
-  height: 176px;
-  width: 320px;
-  border: 2px dashed;
+
+.show-all-btn {
+  height: 166px;
+  width: 302px;
+  border: 2px dashed $primary-color;
   font-size: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.blog-show-all::after {
+.show-all-btn::after {
   content: 'Посмотреть';
   position: absolute;
   bottom: 0;
@@ -97,12 +111,12 @@
   text-align: center;
   opacity: 0;
   transition: all 0.3s ease;
-  color: rgb(74, 114, 183);
+  color: $primary-color;
   width: calc(100% - 20px);
   padding: 10px;
   font-weight: bold;
 }
-.blog-show-all:hover::after {
+.show-all-btn:hover::after {
   height: 20px;
   opacity: 1;
 }
@@ -115,14 +129,18 @@
 }
 
 @media only screen and (min-width: 600px) {
-  .card:hover .card-image {
-    filter: brightness(75%);
+  .card:hover {
+    .card-image {
+      filter: brightness(55%);
+    }
+    .card-play{
+      opacity: 1 !important;
+    }
   }
-  .card:hover .card-play{
-    opacity: 1;
-  }
-  .card:active .card-play{
-    transform: scale(0.9);
+  .card:active {
+    .card-play {
+      transform: scale(0.9);
+    }
   }
 }
 
@@ -130,7 +148,7 @@
   .card {
     max-width: 250px;
   }
-  .blog-show-all {
+  .show-all-btn {
     height: 137px;
     width: 250px;
   }
@@ -153,10 +171,10 @@
     box-shadow: none;
     display: none;
   }
-  .card-outer:first-child .card {
+  .card-div:first-child .card {
     margin-left: 15px;
   }
-  .card-outer:last-child .card {
+  .card-div:last-child .card {
     margin-right: 15px;
   }
 }
@@ -165,12 +183,12 @@
   .card {
     max-width: 200px;
   }
-  .blog-show-all {
+  .show-all-btn {
     height: 108px;
     width: 200px;
     font-size: 12px;
   }
-  .blog-show-all::after {
+  .show-all-btn::after {
     padding-bottom: 5px;
   }
   .show-more {

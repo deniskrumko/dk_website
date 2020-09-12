@@ -1,4 +1,4 @@
-{% load static %}
+{% load sass_tags static %}
 
 <!DOCTYPE html>
 <html>
@@ -51,12 +51,6 @@
     {# FONTS #}
     <link rel="stylesheet" href="{% static 'fonts/AvenirNextCyr/stylesheet.css' %}">
 
-    {# CUSTOM CSS #}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
-    {# <link rel="stylesheet" href="{% static 'css/themes/dark.css' %}"> #}
-    <link rel="stylesheet" href="{% static 'css/themes/light.css' %}">
-
     <script type="text/javascript">
     function scrollToTop(){
       var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -66,31 +60,6 @@
       }
     };
     </script>
-
-    <style media="screen">
-      .primary {
-        background: {{ colors.main }};
-        color: {{ colors.text }};
-      }
-      .primary-border {
-        border-color: {{ colors.main }} !important;
-      }
-      .primary:hover {
-        background: {{ colors.darker }};
-      }
-      .colored, .dk-a {
-        color: {{ colors.main }};
-      }
-      .dk-a:hover {
-        color: {{ colors.darker }};
-      }
-      a.dk-h1:hover, .withhover:hover, .scrollable-h1 a:hover, .calendar-title:hover {
-        color: {{ colors.main }};
-      }
-      .text-input:focus {
-        box-shadow:inset 0px 0px 0px 1px {{ colors.main }};
-      }
-    </style>
 
     {# EXTRA CSS #}
     {% block css %}{% endblock %}
@@ -124,7 +93,7 @@
             </a>
           </div>
           <div class="pure-u-md-14-24 md-hidden">
-            <div class="footer-links">
+            <div class="footer-links noselect">
               <a href="{% url 'main:index' %}">Главная</a>
               <a href="{% url 'blog:index' %}">Блог</a>
               <a href="{% url 'music:index' %}">Музыка</a>

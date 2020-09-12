@@ -1,5 +1,5 @@
 {% extends "diary/detail.html" %}
-{% load static i18n %}
+{% load sass_tags static i18n %}
 
 {% block js %}
 <script src="{% static 'js/diary/diary.js' %}" charset="utf-8"></script>
@@ -17,7 +17,7 @@ document.addEventListener('keydown', function(e) {
 {% endblock %}
 
 {% block entry-date %}
-<div class="entry-date">
+<div class="date">
   {{ dt|date:'F d, Y (l)' }}
 </div>
 {% endblock %}
@@ -34,8 +34,8 @@ document.addEventListener('keydown', function(e) {
   <div class="entry-buttons">
     <input type="submit" name="" value="Сохранить" class="btn primary" id="save">
     <input type="hidden" name="done" id="done" value="{% if entry.done %}on{% endif %}">
-    <button type="button" name="button" class="btn {% if entry.done %}primary{% endif %}" id="is_ready">
-      <img src="{% static 'images/signs/done_white.svg' %}" alt="">
+    <button type="button" name="button" class="btn {% if not entry.done %}faded{% endif %}" id="is_ready">
+      <img src="{% static 'images/signs/done_bw.svg' %}" alt="">
     </button>
   </div>
   <div class="entry-text">
@@ -48,9 +48,9 @@ document.addEventListener('keydown', function(e) {
   {% if popular_tags %}
   <div class="popular-tags noselect">
     {% for tag in popular_tags %}
-    <a class="tag graytext f12">{{ tag }}</a>
+    <a class="tag">{{ tag }}</a>
     {% if not forloop.last %}
-      <span class="graytext">·</span>
+      <span>·</span>
     {% endif %}
     {% endfor %}
   </div>
@@ -58,7 +58,7 @@ document.addEventListener('keydown', function(e) {
 {% endblock %}
 
 {% block right-menu %}
-<div id="diary-tags">
+<div id="diary-tags" class="noselect">
   <div>
     <h2>Тэги</h2>
     <p>Нажми на тэг, чтобы добавить его</p>

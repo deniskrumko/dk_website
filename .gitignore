@@ -10,6 +10,8 @@ Icon
 
 # Distribution / packaging
 .Python
+media/
+staticfiles/
 env/
 build/
 develop-eggs/

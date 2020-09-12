@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load sass_tags static i18n %}
 
 {% block js %}
   <script type="text/javascript">
@@ -21,37 +21,35 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link href="{% sass_src 'styles/pages/index.scss' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block body %}
+
+{# BLOG section #}
+
 <div class="container">
   <a href="{% url 'blog:index' %}" class="dk-h1">Блог</a>
 </div>
-<div class="container slider-container">
+<div class="container slider">
   <div class="card-slider right-bar">
     <div class="card-slider-scroll" onscroll="hide_scroll_shadow(this)">
       {% for item in blog_items %}
-      <div class="card-outer">
+      <div class="card-div">
         <a class="card" href="{% url 'blog:detail' item.slug %}">
-          <div class="card-images">
+          <div class="images">
             <img src="{% static 'images/play.svg' %}" class="card-play" alt="">
-            <img src="
-            {% if item.thumbnail %}
-            {{ item.thumbnail.url }}
-            {% else %}
-            {% static 'images/nophoto_wide.jpg' %}
-            {% endif %}
-            " class="card-image" alt="">
+            <img src="{% if item.thumbnail %}{{ item.thumbnail.url }}{% else %}
+            {% static 'images/nophoto_wide.jpg' %}{% endif %}" class="card-image" alt="">
           </div>
-          <div class="card-subtitle">{{ item.subtitle }}</div>
-          <div class="card-date">{{ item.date }}</div>
+          <div class="subtitle">{{ item.subtitle }}</div>
+          <div class="date">{{ item.date }}</div>
         </a>
       </div>
       {% endfor %}
-      <div class="card-outer">
+      <div class="card-div">
         <a href="{% url 'blog:index' %}" class="card">
-          <div class="card-images blog-show-all primary-border">
+          <div class="images show-all-btn">
             У меня есть еще {{ total_blog_items }} блогов,<br>
             если Вам интересно.
           </div>
@@ -60,34 +58,13 @@
     </div>
   </div>
 </div>
+
+{# MUSIC section #}
+
 <div class="container">
-  <a class="show-more graytext" href="{% url 'blog:index' %}">Посмотреть все записи</a>
   <a href="{% url 'music:index' %}" class="dk-h1">Музыка</a>
 </div>
 <div class="container">
-  <p>Идет активная разработка раздела...</p>
 </div>
-{% comment %}
-<div class="container slider-container">
-  <div class="card-slider right-bar">
-    <div class="card-slider-scroll" onscroll="hide_scroll_shadow(this)">
-      {% for i in range %}
-      <div class="card-outer">
-        <a class="music card" href="#">
-          <div class="card-images">
-            <img src="{% static 'images/play.svg' %}" class="card-play" alt="">
-            <img src="{% static 'images/nophoto.jpg' %}" class="card-image">
-          </div>
-          <div class="music title">Darkness Imprisoning Me</div>
-        </a>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>
-<div class="container">
-  <a class="show-more graytext" href="{% url 'music:index' %}">Посмотреть все композиции</a>
-</div>
-{% endcomment %}
 
 {% endblock %}

@@ -1,0 +1,73 @@
+@import "colors";
+
+.menu {
+  padding-top: 30px;
+}
+#menu-logo {
+  width: 80px;
+  display: inline-block;
+}
+
+// Menu items
+#menu-items {
+  padding: 15px 0px !important;
+  a {
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 2px 0px 0px;
+    padding: 7px 15px;
+    transition: $bg-trans;
+    transition: $color-trans;
+  }
+  a.selected{
+    color: $primary-color;
+    font-weight: bold;
+  }
+  a:hover {
+    background: $dark;
+    color: $primary-color;
+  }
+}
+
+// Login section
+#login-section {
+  margin-top: 20px;
+  a {
+    float: right;
+  }
+  img {
+    width: 46px;
+    height: 46px;
+    border-radius: 40px;
+    float: right;
+    transition: transform 0.3s ease;
+  }
+  img:hover {
+    transform: scale(1.1);
+  }
+}
+
+
+.mobile-menu {
+  text-align: right;
+}
+.mobile-menu a {
+  display: inline-block;
+  padding: 13px 5px;
+}
+.mobile-menu a img {
+  width: 28px;
+  height: 28px;
+}
+
+/* MEDIA */
+@media only screen and (max-width: 700px) {
+  .menu {
+    padding-top: 10px;
+    padding-bottom: 0px;
+  }
+  #menu-logo{
+    width: 55px;
+  }
+}

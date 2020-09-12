@@ -1,0 +1,369 @@
+$primary-color: #00ACC1;
+$primary-color-dark: #057b8a;
+$primary-color-darkest: #03535d !default;
+@import "../_main";
+// Detail
+#page {
+  padding: 5px 25px;
+  background-color: $dark;
+  box-shadow: 5px 5px 0 $darkest;
+  margin-bottom: 10px;
+  word-break: break-word;
+  position: relative;
+
+  .date {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px 0;
+    position: relative;
+    color: $text;
+  }
+
+  .entry {
+    position: relative;
+
+    p {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 400 !important;
+      line-height: 24px;
+      padding: 0;
+      font-family: "Avenir Next Cyr", Arial, sans-serif !important;
+      color: $dark-text;
+    }
+
+    .entry-text {
+      padding-bottom: 20px;
+    }
+
+    .entry-buttons {
+      position: absolute;
+      right: -10px;
+      top: -52px;
+    }
+
+    #after-preview {
+      height: 4px;
+    }
+  }
+
+  .done-sign {
+    position: relative;
+    top: 4px;
+    padding-left: 5px;
+    margin-top: -2px;
+  }
+
+  #expand-btn {
+    background: $dark;
+    border-bottom: 3px solid $dark;
+    bottom: 0;
+    color: $text;
+    cursor: pointer;
+    display: inline-block;
+    left: 0;
+    padding: 7px 0;
+    position: absolute;
+    text-align: center;
+    transition: $color-trans;
+    width: 100%;
+    z-index: 200;
+  }
+
+  #expand-btn:hover {
+    color: $primary-color;
+  }
+}
+
+.jump-to-year {
+  float: right;
+
+  a,
+  span {
+    font-size: 12px;
+    color: $darkest-text;
+    transition: $color-trans;
+  }
+
+  a:hover {
+    color: $primary-color;
+  }
+}
+
+.file-upload {
+  div {
+    a {
+      font-size: 12px;
+      color: $darkest-text;
+      transition: $color-trans;
+    }
+
+    a:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.collapsed-page {
+  max-height: 380px;
+  overflow: hidden;
+  position: relative;
+}
+
+.collapsed-page::after {
+  content: '';
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(rgba(24, 25, 28, 0), rgba(24, 25, 28, 0.8), rgba(24, 25, 28, 1));
+  display: block;
+  position: absolute;
+  bottom: 0;
+}
+
+.diary-image,
+.diary-image-1-1 {
+  max-width: 100%;
+  padding: 10px 0;
+}
+
+.diary-image-1-2 {
+  max-width: calc(50% - 10px);
+  padding: 10px 5px;
+  display: inline-block;
+}
+
+.diary-image-1-3 {
+  max-width: calc(33% - 10px);
+  padding: 10px 5px;
+  display: inline-block;
+}
+
+.calendar {
+  margin-left: 20px;
+  width: 243px;
+  position: relative;
+
+  .month-name {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: $text;
+  }
+
+  .weekdays {
+    span {
+      width: 25px;
+      display: inline-block;
+      text-align: center;
+      padding: 5px 3px;
+      font-size: 14px;
+      font-weight: bold;
+      color: $dark-text;
+    }
+  }
+
+  .days {
+    padding-bottom: 10px;
+
+    .day {
+      width: 25px;
+      display: inline-block;
+      text-align: center;
+      padding: 5px 3px;
+      font-size: 14px;
+      color: $text;
+    }
+
+    .day.primary {
+      border-radius: 20px;
+      color: $dark;
+      background: $primary-color-dark;
+    }
+
+    .day.critical {
+      color: $red !important;
+    }
+
+    .day.empty {
+      visibility: hidden;
+    }
+  }
+}
+@media only screen and (max-width: 1045px) {
+  .calendar {
+    width: 200px;
+  }
+
+  .day,
+  .weekdays span {
+    width: 25px !important;
+    font-size: 12px !important;
+    padding: 5px 0 !important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .entry-buttons {
+    position: static;
+    display: block;
+    padding-bottom: 10px;
+  }
+
+  #page .date {
+    padding-bottom: 10px !important;
+  }
+
+  .calendar {
+    width: 270px;
+    margin: auto !important;
+  }
+
+  .day,
+  .weekdays span {
+    width: 25px !important;
+    font-size: 14px !important;
+    padding: 8px 5px !important;
+  }
+
+  #diary-tags {
+    padding-left: 0 !important;
+  }
+
+  #diary-tags div {
+    padding: 0 !important;
+  }
+}
+
+#diary-tags {
+  padding-left: 15px;
+
+  div {
+    padding: 0 10px;
+
+    h2 {
+      margin: 0;
+      color: $text;
+    }
+
+    p {
+      font-size: 12px;
+      margin-top: 0;
+      color: $darkest-text;
+    }
+  }
+}
+// Edit
+#text {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400 !important;
+  resize: none;
+  line-height: 24px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-family: "Avenir Next Cyr", Arial, sans-serif !important;
+  background-color: $dark;
+  color: $dark-text;
+}
+
+#text::placeholder {
+  color: #999;
+}
+
+#text:focus {
+  outline: none;
+}
+
+#is_ready {
+  padding: 7px 8px 3px;
+  top: 5px;
+  position: relative;
+  margin: -1px 0 0;
+}
+
+.popular-tags {
+  display: inline-block;
+
+  a,
+  span {
+    font-size: 12px;
+    color: $darkest-text;
+    transition: $color-trans;
+  }
+
+  a:hover {
+    color: $primary-color;
+  }
+}
+// Search page
+.calendar-title {
+  text-align: center;
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: italic;
+  color: $text;
+}
+
+.calendar-subtitle {
+  text-align: center;
+  font-size: 10px;
+  color: $darkest-text;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.calendar-entry {
+  padding-top: 10px;
+  color: $dark-text;
+}
+
+.calendar-item {
+  padding-bottom: 20px;
+}
+// Tags page
+.large-tag {
+  font-size: 24px;
+  color: $dark-text;
+  cursor: pointer;
+  background: $dark;
+  display: inline-block;
+  padding: 5px 15px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+  transition: $bg-trans;
+}
+.large-tag:hover {
+  background: $darkest;
+}
+
+.large-tag-count {
+  font-size: 24px;
+  padding-right: 10px;
+}
+
+.tag-entry {
+  padding: 5px 0;
+  color: $text;
+}
+@media only screen and (max-width: 769px) {
+  .large-tags {
+    text-align: center;
+  }
+
+  .large-tag {
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+  }
+
+  .large-tag-count {
+    font-size: 16px;
+  }
+}

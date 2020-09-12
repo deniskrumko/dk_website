@@ -1,0 +1,116 @@
+@import "colors";
+@import "buttons";
+@import "inputs";
+@import "variables";
+@import "menu";
+@import "footer";
+@import "headers";
+
+body,
+html {
+  -webkit-font-smoothing: antialiased;
+  background: $main !important;
+  color: #333;
+  font-family: $font;
+  font-weight: 400;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  z-index: 1;
+  padding-bottom: 30px;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: $text;
+}
+.dk-a {
+  color: $primary-color;
+  transition: $color-trans;
+}
+.dk-a:hover {
+  color: $primary-color-dark;
+}
+.pure-g [class*=pure-u] {
+  font-family: $font;
+}
+
+.noselect {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 1000px;
+}
+
+.center {
+  text-align: center;
+}
+
+.f12 {
+  font-size: 12px;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+/* Mobile */
+.md-hidden,
+.sm-hidden {
+  display: inline-block !important;
+}
+
+.md-visible,
+.sm-visible {
+  display: none !important;
+}
+@media only screen and (max-width: 567px) {
+  .sm-hidden {
+    display: none !important;
+  }
+
+  .sm-visible {
+    display: inline-block !important;
+  }
+}
+@media only screen and (max-width: 769px) {
+  .md-hidden {
+    display: none !important;
+  }
+
+  .md-visible {
+    display: inline-block !important;
+  }
+}
+@media only screen and (max-width: 950px) {
+  .container .slider {
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}

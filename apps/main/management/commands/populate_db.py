@@ -39,7 +39,7 @@ class Command(BaseCommand):
         # ====================================================================
 
         self.stdout.write(self.style.SUCCESS('\n2. Create blog entries'))
-        blogs = BlogEntryFactory.create_batch(12, create_images=True)
+        blogs = BlogEntryFactory.create_batch(18, create_images=True)
 
         self.stdout.write(self.style.SUCCESS('\n3. Create blog series'))
         series = BlogSeriesFactory.create_batch(3)

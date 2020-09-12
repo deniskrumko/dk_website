@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load sass_tags static i18n %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/diary.css' %}">
+<link href="{% sass_src 'styles/pages/diary.scss' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block body %}
 
 {# Sections links #}
-<div class="container slider-container">
+<div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'diary:index' %}">Дневник</a>
     <a href="{% url 'diary:search' %}">Поиск</a>

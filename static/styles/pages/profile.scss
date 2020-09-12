@@ -1,0 +1,12 @@
+$primary-color: #1DA1F2;
+$primary-color-dark: #1992DB;
+
+@import "../_main";
+
+#login-section {
+  img {
+    border: 3px solid $primary-color-dark;
+    margin-top: -3px;
+    margin-right: -3px;
+  }
+}

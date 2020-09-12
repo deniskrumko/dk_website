@@ -1,0 +1,66 @@
+// Forms
+
+.form-label {
+  margin: 12px 0;
+}
+
+.form-row {
+  padding-bottom: 5px;
+}
+
+.form-errors {
+  margin-bottom: 10px;
+}
+
+.form-error {
+  border: 2px solid #D3394C;
+  color: #D3394C;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+// Inputs
+
+.text-input {
+  padding: 7px 18px;
+  border: none;
+  margin: 5px;
+  border-radius: 20px;
+  transition: box-shadow 0.2s ease;
+  background: $dark;
+  color: $text;
+}
+
+.text-input::placeholder {
+  color: $darkest-text;
+  font-size: 16px;
+}
+
+.text-input:focus {
+  outline: none;
+}
+
+.checkbox-input, .file-input {
+  color: $text;
+}
+
+.select-input {
+  text-align-last: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 7px 18px;
+  border: none;
+  margin: 5px;
+  border-radius: 20px;
+  transition: box-shadow 0.2s ease;
+  background: $dark;
+  color: $text;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.select-input:focus {
+  outline: none;
+}

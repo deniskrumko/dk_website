@@ -30,6 +30,7 @@ class BlogEntryFactory(factory.django.DjangoModelFactory):
     text = factory.Faker('text')
     title = factory.sequence(lambda x: f'Блог {x}')
     video = factory.SubFactory(VideoFileFactory)
+    slug = factory.sequence(lambda x: f'blog-{x}')
 
     @factory.post_generation
     def create_images(self, create, extracted, **kwargs):

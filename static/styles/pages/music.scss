@@ -1,0 +1,151 @@
+$primary-color: #f45c28;
+$primary-color-dark: #c4491f;
+
+@import "../_main";
+
+// Index
+
+.album {
+  text-align: center;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  .image {
+    text-align: center;
+    img {
+      width: 80%;
+    }
+  }
+  .name {
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 5px;
+    color: $text;
+  }
+  .info {
+    font-size: 14px;
+    color: $darkest-text;
+  }
+}
+
+
+// Single album
+.album-main-image {
+  text-align: center;
+  padding-right: 50px;
+  img {
+    width: 100%;
+  }
+}
+.album-main-info {
+  .name {
+    font-size: 40px;
+    font-weight: bold;
+    padding-bottom: 15px;
+    color: $text;
+  }
+  .info {
+    padding-bottom: 5px;
+    color: $text;
+  }
+}
+
+.album-tracks {
+  padding-top: 20px;
+  .track {
+    padding: 10px 5px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $text;
+  }
+  .track:hover {
+    color: $primary-color;
+  }
+  .track.active {
+    font-weight: bold;
+    color: $primary-color;
+  }
+  .track.paused {
+    font-weight: bold;
+    color: #777;
+  }
+  .track:last-child {
+    border-bottom: none;
+  }
+}
+
+.tracks-help {
+  font-size: 14px;
+  padding-top: 20px;
+  color: $darkest-text;
+}
+
+@media only screen and (max-width: 567px) {
+  .album-main-image {
+    padding-right: 0px;
+  }
+  .album-main-image img {
+    width: 70% !important;
+    padding-bottom: 20px;
+  }
+}
+
+// Tracks
+
+.tracks {
+  padding-top: 20px;
+  .track-header {
+    padding: 10px 5px;
+    border-bottom: 2px solid #555;
+    font-weight: bold;
+    color: $text;
+  }
+  .track {
+    padding: 10px 5px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: $color-trans;
+    color: $text;
+  }
+  .track:hover {
+    color: $primary-color;
+  }
+  .track.active {
+    font-weight: bold;
+    color: $primary-color;
+  }
+  .track.paused {
+    font-weight: bold;
+    color: #777;
+  }
+  .track:last-child {
+    border-bottom: none;
+  }
+}
+
+// Player
+.player {
+  background: #F0F0F4;
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 80px;
+}
+.player-line {
+  background: #ccc;
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  cursor: pointer;
+  top: 0px;
+}
+.player-line-played {
+  background: red;
+  height: 5px;
+  width: 30%;
+  position: absolute;
+  cursor: pointer;
+  top: 0px;
+  z-index: 1000;
+}

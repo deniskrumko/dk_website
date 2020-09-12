@@ -1,153 +1,73 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load sass_tags static i18n %}
 
 {% block css %}
-  <style media="screen">
-    video {
-      max-width: 100%;
-      width: 100%;
-      object-fit: contain;
-    }
-    .video-info {
-      margin-top: 22px;
-    }
-    .blog-text {
-      background: #fefefe;
-      padding: 20px;
-      margin-bottom: 30px;
-      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-    }
-    .blog-date {
-      margin-top: 10px;
-    }
-    .blog-text h3 {
-      margin: 0px 0px 10px 0px !important;
-    }
-    .blog-title {
-      margin-bottom: 0px;
-    }
-    .blog-subtitle {
-      margin: 20px 0px 30px 0px;
-    }
-    .series-info {
-      padding: 15px 20px 5px 20px;
-      height: calc(100% - 24px);
-      position: relative;
-    }
-    .series-item {
-      display: block;
-      padding-top: 5px;
-    }
-    .series-item.active {
-      font-weight: bold;
-      color: {{ colors.main }};
-    }
-    .series-prev {
-      display: inline-block;
-      padding: 5px 6px 1px 4px;
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-    }
-    .series-next {
-      display: inline-block;
-      padding: 5px 4px 1px 6px;
-      position: absolute;
-      bottom: 10px;
-      right: 10px
-    }
-    .series-nav img {
-      width: 24px;
-      height: 24px;
-    }
-
-    @media only screen and (max-width: 769px) {
-      .series-info {
-        margin-top: 10px;
-        height: calc(100% - 20px);
-      }
-      .series-info .dk-h2 {
-        font-size: 24px !important;
-        margin-bottom: 0px;
-      }
-      .series-prev, .series-next {
-        display: none;
-      }
-    }
-  </style>
+<link href="{% sass_src 'styles/pages/blog.scss' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block body %}
 
 {% if not item.is_active %}
+  {# Show special message if blog is inactive #}
   {% include "blog/404.html" %}
 {% else %}
-<div class="container">
-
   {% if item.is_series %}
-  <div class="pure-g video-info">
-    <div class="pure-u-1-1 pure-u-md-18-24">
-      {% if item.video.source == 'youtube' %}
-      <div style="position:relative;padding-top:56.25%;">
-        <iframe src="https://www.youtube.com/embed/{{ item.video.youtube_link }}" frameborder="0" allowfullscreen
-          style="position:absolute;top:0;left:0;width:100%;height:100%;">
-        </iframe>
-      </div>
-      {% else %}
-      <video controls poster="
-      {% if item.video.poster %}
-      {{ item.video.poster.url }}
-      {% else %}
-      {% static 'images/nophoto_wide.jpg'%}
-      {% endif %}">
-        <source src="{{ video_src }}" type="video/mp4">
-        Your browser does not support HTML5 video.
-      </video>
-      {% endif %}
-    </div>
-    <div class="pure-u-1-1 pure-u-md-6-24">
-      <div class="series-info">
-        <div class="f12">Серия блогов
-        {% if request.user.is_superuser %}
-        <a href="{{ item.series.admin_changelink }}" class="withhover">(Изменить)</a>
-        {% endif %}</div>
-        <div class="dk-h2">
-          {{ item.series.name }}
+  <div class="video-series-info">
+    <div class="container">
+      <div class="pure-g">
+        <div class="pure-u-1-1 pure-u-md-18-24">
+          {% if item.video.source == 'youtube' %}
+          <div style="position:relative;padding-top:56.25%;">
+            <iframe src="https://www.youtube.com/embed/{{ item.video.youtube_link }}" frameborder="0" allowfullscreen
+              style="position:absolute;top:0;left:0;width:100%;height:100%;">
+            </iframe>
+          </div>
+          {% else %}
+          <video controls poster="
+          {% if item.video.poster %}
+          {{ item.video.poster.url }}
+          {% else %}
+          {% static 'images/nophoto_wide.jpg'%}
+          {% endif %}">
+            <source src="{{ video_src }}" type="video/mp4">
+            {% trans "Your browser does not support HTML5 video." %}
+          </video>
+          {% endif %}
         </div>
-        <div class="series-items">
-          {% for series_item in item.series.items.all %}
-            <a class="series-item {% if series_item.entry.slug == item.slug %}active{% endif %}" href="{% url 'blog:detail' series_item.entry.slug %}{% if current_page %}?page={{current_page}}{% endif%}">
-              {{ series_item }}
-            </a>
-          {% endfor %}
+        <div class="pure-u-1-1 pure-u-md-6-24">
+          <div class="series-info">
+            <div class="subtitle">Серия блогов
+            {% if request.user.is_superuser %}
+            <a href="{{ item.series.admin_changelink }}">(Изменить)</a>
+            {% endif %}</div>
+            <div class="title">
+              {{ item.series.name }}
+            </div>
+            <div class="items">
+              {% for series_item in item.series.items.all %}
+                <a class="item {% if series_item.entry.slug == item.slug %}active{% endif %}" href="{% url 'blog:detail' series_item.entry.slug %}{% if current_page %}?page={{current_page}}{% endif%}">
+                  <div class="counter">{{ forloop.counter }}</div>
+                  {{ series_item }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
         </div>
-
-        {% if item.prev %}
-        <a href="{% url 'blog:detail' item.prev.entry.slug %}{% if current_page %}?page={{current_page}}{% endif%}"
-           class="series-prev btn"
-           title="Предыдущая часть">
-          <img src="{% static 'images/arrows/left.svg' %}">
-        </a>
-        {% endif %}
-
-        {% if item.next %}
-        <a href="{% url 'blog:detail' item.next.entry.slug %}{% if current_page %}?page={{current_page}}{% endif%}"
-           class="series-next btn"
-           title="Следующая часть">
-          <img src="{% static 'images/arrows/right.svg' %}">
-        </a>
-        {% endif %}
       </div>
     </div>
   </div>
   {% elif item.video.source == 'youtube' %}
-  <div style="position:relative;padding-top:56.25%;margin-top: 22px;">
-    <iframe src="https://www.youtube.com/embed/{{ item.video.youtube_link }}" frameborder="0" allowfullscreen
-      style="position:absolute;top:0;left:0;width:100%;height:100%;">
-    </iframe>
+  <div class="youtube-video">
+    <div class="container">
+      <div class="youtube-div">
+        <iframe src="https://www.youtube.com/embed/{{ item.video.youtube_link }}" frameborder="0" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
   </div>
   {% else %}
   <div class="video-info">
+    <div class="container">
     <video controls poster="
     {% if item.video.poster %}
     {{ item.video.poster.url }}
@@ -157,39 +77,37 @@
       <source src="{{ video_src }}" type="video/mp4">
       Your browser does not support HTML5 video.
     </video>
+    </div>
   </div>
   {% endif %}
 
-  <div class="">
-    <div class="blog-title dk-h1">
+  <div class="container">
+  <div class="blog-info">
+    <div class="title dk-h1">
       {{ item.title }}
     </div>
-    <div class="blog-date f12 graytext">
-      <div class="inline-block" style="padding-right: 10px;">
+    <div class="after-title">
+      <div class="date">
         Опубликовано: {{ item.date|date:"j E Y"}}
       </div>
       {% if item.video.source != 'youtube' %}
-      <div class="inline-block">
+      <div class="quality noselect">
           Качество видео:
           {% for value in available_quality %}
-            <a href="?quality={{ value }}{% if current_page %}&page={{current_page}}{% endif%}" class="graytext" {% if value == quality %}style="color: #333; font-weight: bold;"{% endif%}>{{ value }}</a>
+            <a href="?quality={{ value }}{% if current_page %}&page={{current_page}}{% endif%}" {% if value == quality %}class="active"{% endif%}>{{ value }}</a>
           {% endfor %}
       </div>
       {% endif %}
     </div>
-    <div class="blog-subtitle">
-      {{ item.subtitle }}
-    </div>
     {% if item.text %}
-    <div class="blog-text">
-      <h3>Описание</h3>
+    <div class="text">
       {% autoescape off %}
         {{ item.text }}
       {% endautoescape %}
     </div>
     {% endif %}
   </div>
-  <div class="">
+  <div class="buttons">
     <a href="{% url 'blog:index' %}{% if current_page %}?page={{current_page}}{% endif %}#blog-{{ item.slug }}"
        class="btn primary">
        Назад

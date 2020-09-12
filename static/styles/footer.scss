@@ -1,0 +1,34 @@
+@import "colors";
+
+footer {
+  padding: 25px 0px 20px 0px;
+  flex-shrink: 0;
+  background: $dark;
+}
+
+.footer-links {
+  text-align: center;
+  a {
+    color: $dark-text;
+    font-size: 12px;
+    line-height: 30px;
+    padding: 0px 10px;
+    transition: $color-trans;
+  }
+  a:hover {
+    color: $primary-color;
+  }
+}
+
+.social {
+  display: inline-block;
+  padding: 5px 10px 5px 0px;
+}
+
+.credentials {
+  font-size: 12px;
+  float: right;
+  line-height: 30px;
+  cursor: pointer;
+  color: $dark-text;
+}

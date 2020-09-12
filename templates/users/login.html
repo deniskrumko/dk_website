@@ -1,8 +1,12 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load sass_tags static i18n %}
+
+{% block css %}
+<link href="{% sass_src 'styles/pages/profile.scss' %}" rel="stylesheet" type="text/css">
+{% endblock %}
 
 {% block body %}
-<div class="container slider-container">
+<div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'users:login' %}" class="active">
       {% trans "Login" %}

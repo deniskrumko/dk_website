@@ -9,6 +9,7 @@ INSTALLED_APPS = [
     'adminsortable',
     'django_object_actions',
     'imagekit',
+    'sass_processor',
 ]
 
 LOCAL_APPS = [

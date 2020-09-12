@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     if (hidden_done_input.value == 'on') {
       hidden_done_input.value = '';
-      done_button.classList.remove('primary');
+      done_button.classList.add('faded');
     } else {
       hidden_done_input.value = 'on';
-      done_button.classList.add('primary');
+      done_button.classList.remove('faded');
     }
   });
 
