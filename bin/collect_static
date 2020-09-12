@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-python manage.py collectstatic --noinput --clear
+python manage.py collectstatic --noinput --clear -v 0
