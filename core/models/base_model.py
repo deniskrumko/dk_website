@@ -46,5 +46,5 @@ class BaseModel(TimeStampedModel):
         """
         return reverse(
             'admin:{meta.app_label}_{meta.model_name}_change'
-            .format(meta=self.__class__._meta), args=(self.id,)
+            .format(meta=self.__class__._meta), args=(self.id,),
         )

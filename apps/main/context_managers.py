@@ -16,8 +16,8 @@ def admin_items(*items):
             'name': name[0].upper() + name[1:],
             'url': reverse(
                 'admin:{meta.app_label}_{meta.model_name}_changelist'
-                .format(meta=model._meta)
-            )
+                .format(meta=model._meta),
+            ),
         }
 
     return [create_dict(item) for item in items]
@@ -56,5 +56,5 @@ def custom_admin(request):
                 'url': '/admin/main/',
                 'items': admin_items(Tag, RedirectPage),
             },
-        ]
+        ],
     }

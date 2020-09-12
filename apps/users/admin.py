@@ -38,5 +38,5 @@ class UserAdmin(UserAdmin):
 
     class Media:
         css = {
-            'all': ('css/admin.css',)
+            'all': ('css/admin.css',),
         }

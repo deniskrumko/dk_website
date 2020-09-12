@@ -15,7 +15,7 @@ class BlogImageInline(admin.TabularInline):
     fields = (
         'image',
         'description',
-        'order'
+        'order',
     )
     readonly_fields = (
         'order',
@@ -39,31 +39,31 @@ class BlogEntryAdmin(BaseModelAdmin):
                 'subtitle',
                 'date',
                 'slug',
-            )
+            ),
         }),
         (_('Images'), {
             'fields': (
                 'image',
                 '_thumbnail',
-            )
+            ),
         }),
         (_('Details'), {
             'fields': (
                 'video',
                 'text',
                 'show_gallery',
-            )
+            ),
         }),
         (_('SEO'), {
             'fields': (
                 'description',
-            )
+            ),
         }),
         (_('Created/Modified'), {
             'fields': (
                 'created',
                 'modified',
-            )
+            ),
         }),
     )
     autocomplete_fields = (
@@ -109,7 +109,7 @@ class BlogEntryAdmin(BaseModelAdmin):
         try:
             return mark_safe(
                 f'<a href="{obj.thumbnail.url}" target="_blank">'
-                f'<img src="{obj.thumbnail.url}" width="60"></a>'
+                f'<img src="{obj.thumbnail.url}" width="60"></a>',
             )
         except Exception:
             return _('Error while getting preview')
@@ -143,7 +143,7 @@ class BlogSeriesAdmin(SortableAdmin):
         (_('Main'), {
             'fields': (
                 'name',
-            )
+            ),
         }),
     )
     list_display = (

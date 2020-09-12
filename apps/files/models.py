@@ -7,7 +7,7 @@ from core.models import BaseModel
 
 __all__ = (
     'FileCategory',
-    'File'
+    'File',
 )
 
 
@@ -18,7 +18,7 @@ class FileCategory(SortableMixin, BaseModel):
         max_length=64,
         null=True,
         blank=False,
-        verbose_name=_('Name')
+        verbose_name=_('Name'),
     )
     order = models.PositiveIntegerField(
         default=0,
@@ -50,13 +50,13 @@ class File(BaseModel):
         null=True,
         blank=False,
         max_length=255,
-        verbose_name=_('Name')
+        verbose_name=_('Name'),
     )
     data = models.FileField(
         null=True,
         blank=False,
         upload_to=BaseModel.default_upload,
-        verbose_name=_('Data')
+        verbose_name=_('Data'),
     )
     category = models.ForeignKey(
         FileCategory,
@@ -96,7 +96,7 @@ class VideoFile(BaseModel):
         null=True,
         blank=False,
         max_length=255,
-        verbose_name=_('Name')
+        verbose_name=_('Name'),
     )
     source_original = models.TextField(
         null=True,
@@ -126,7 +126,7 @@ class VideoFile(BaseModel):
     youtube_link = models.TextField(
         null=True,
         blank=True,
-        verbose_name=_('Youtube code')
+        verbose_name=_('Youtube code'),
     )
     source = models.CharField(
         max_length=64,
@@ -140,7 +140,7 @@ class VideoFile(BaseModel):
         null=True,
         blank=True,
         upload_to=BaseModel.obfuscated_upload,
-        verbose_name=_('Poster image')
+        verbose_name=_('Poster image'),
     )
     duration = models.CharField(
         max_length=8,

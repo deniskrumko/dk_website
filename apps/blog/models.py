@@ -54,7 +54,7 @@ class BlogEntry(LikedModel, BaseModel):
         source='image',
         processors=[ResizeToFit(400, 400)],
         format='JPEG',
-        options={'quality': 100}
+        options={'quality': 100},
     )
     video = models.ForeignKey(
         'files.VideoFile',
@@ -68,7 +68,7 @@ class BlogEntry(LikedModel, BaseModel):
         null=True,
         blank=True,
         verbose_name=_('Text'),
-        help_text=_('Main blog text')
+        help_text=_('Main blog text'),
     )
     date = models.DateTimeField(
         blank=False,
@@ -127,7 +127,7 @@ class BlogSeries(BaseModel):
         max_length=255,
         null=True,
         blank=False,
-        verbose_name=_('Name')
+        verbose_name=_('Name'),
     )
 
     def __str__(self):
@@ -159,7 +159,7 @@ class BlogSeriesItem(SortableMixin, BaseModel):
         max_length=255,
         null=True,
         blank=True,
-        verbose_name=_('Custom title')
+        verbose_name=_('Custom title'),
     )
     entry = models.ForeignKey(
         BlogEntry,
@@ -167,7 +167,7 @@ class BlogSeriesItem(SortableMixin, BaseModel):
         blank=False,
         on_delete=models.SET_NULL,
         related_name='series_item',
-        verbose_name=_('blog'),
+        verbose_name=_('Blog'),
     )
 
     def __str__(self):
@@ -192,7 +192,7 @@ class BlogImage(SortableMixin, BaseModel):
         blank=False,
         on_delete=models.CASCADE,
         related_name='images',
-        verbose_name=_('blog'),
+        verbose_name=_('Blog'),
     )
     image = ProcessedImageField(
         null=True,
@@ -207,13 +207,13 @@ class BlogImage(SortableMixin, BaseModel):
         source='image',
         processors=[ResizeToFit(150, 150)],
         format='JPEG',
-        options={'quality': 80}
+        options={'quality': 80},
     )
     description = models.CharField(
         max_length=255,
         null=True,
         blank=True,
-        verbose_name=_('description'),
+        verbose_name=_('Description'),
     )
     order = models.PositiveIntegerField(
         default=0,

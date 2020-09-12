@@ -46,7 +46,7 @@ class VideoFileAdmin(admin.ModelAdmin):
                 'source',
                 'duration',
                 'poster',
-            )
+            ),
         }),
         (_('Sources'), {
             'fields': (
@@ -55,12 +55,12 @@ class VideoFileAdmin(admin.ModelAdmin):
                 'source_720',
                 'source_480',
                 'source_360',
-            )
+            ),
         }),
         (_('YouTube'), {
             'fields': (
                 'youtube_link',
-            )
+            ),
         }),
     )
     list_display = (

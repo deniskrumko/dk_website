@@ -48,7 +48,7 @@ class Tag(BaseModel):
         null=True,
         blank=False,
         unique=True,
-        verbose_name=_('Name')
+        verbose_name=_('Name'),
     )
     slug = models.CharField(
         blank=False,
@@ -63,14 +63,14 @@ class Tag(BaseModel):
         null=True,
         blank=False,
         verbose_name=_('color'),
-        help_text=_('Text color: #FFF')
+        help_text=_('Text color: #FFF'),
     )
     background = models.CharField(
         max_length=255,
         null=True,
         blank=False,
         verbose_name=_('background'),
-        help_text=_('Background color: #FFF')
+        help_text=_('Background color: #FFF'),
     )
 
     def __str__(self):

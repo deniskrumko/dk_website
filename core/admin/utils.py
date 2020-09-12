@@ -1,7 +1,7 @@
 from django.utils.safestring import mark_safe
 
 
-def image_preview(obj, size, field='image',):
+def image_preview(obj, size, field='image'):
     """Get image preview."""
     assert size in ('small', 'large')
 
@@ -9,5 +9,5 @@ def image_preview(obj, size, field='image',):
     return mark_safe(
         f'<a href="{image_field.url}" target="_blank">'
         f'<img src="{image_field.url}" class="{size}-preview">'
-        f'</a>'
+        f'</a>',
     ) if image_field else '-'

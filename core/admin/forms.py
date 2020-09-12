@@ -14,7 +14,7 @@ class BaseModelForm(forms.ModelForm):
     def text_widget(cls, max_width=600, rows=2):
         """Class method to get widget for ``TextField``."""
         return forms.Textarea(attrs={
-            'style': f'max-width: {max_width}px; width: 100%;', 'rows': rows
+            'style': f'max-width: {max_width}px; width: 100%;', 'rows': rows,
         })
 
     @classmethod

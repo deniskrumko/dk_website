@@ -1,11 +1,7 @@
 from django.core.management import BaseCommand
 from django.utils import timezone
 
-from apps.blog.factories import (
-    BlogEntryFactory,
-    BlogSeriesFactory,
-    BlogSeriesItemFactory,
-)
+from apps.blog.factories import BlogEntryFactory, BlogSeriesFactory, BlogSeriesItemFactory
 from apps.diary.factories import DiaryEntryFactory, DiaryTagFactory
 from apps.files.factories import FileCategoryFactory, FileFactory
 from apps.music.factories import AlbumFactory, TrackFactory, TrackFileFactory

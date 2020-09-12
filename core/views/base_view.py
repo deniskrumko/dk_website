@@ -6,7 +6,10 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
 from django.views.generic.base import TemplateView
 
-__all__ = ('BaseView', 'LoginRequiredMixin')
+__all__ = (
+    'BaseView',
+    'LoginRequiredMixin',
+)
 
 MenuColor = namedtuple('MenuColor', ['main', 'darker', 'text'])
 

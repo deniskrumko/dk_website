@@ -51,7 +51,7 @@ class Album(SortableMixin, BaseModel):
         source='image',
         processors=[ResizeToFit(400, 400)],
         format='JPEG',
-        options={'quality': 100}
+        options={'quality': 100},
     )
     order = models.PositiveIntegerField(
         default=0,

@@ -17,7 +17,7 @@ class SignUpView(TemplateView):
     def get_context_data(self, **kwargs):
         """Get context data."""
         return {
-            'title': 'Django Diary - Регистрация'
+            'title': 'Django Diary - Регистрация',
         }
 
     def post(self, request):
@@ -42,7 +42,7 @@ class SignUpView(TemplateView):
 
         User.objects.create_user(
             username, email=email, password=password,
-            first_name=firstname, last_name=lastname
+            first_name=firstname, last_name=lastname,
         )
 
         return HttpResponseRedirect('/login')

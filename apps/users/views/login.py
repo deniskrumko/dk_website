@@ -25,7 +25,7 @@ class LoginView(BaseView):
             login(request, user)
             next_redirect = self.request.GET.get('next')
             return HttpResponseRedirect(
-                next_redirect if next_redirect else reverse('main:index')
+                next_redirect if next_redirect else reverse('main:index'),
             )
 
         return HttpResponseRedirect(reverse('users:login'))

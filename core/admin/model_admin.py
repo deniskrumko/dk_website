@@ -3,10 +3,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from django_object_actions import (
-    DjangoObjectActions,
-    takes_instance_or_queryset,
-)
+from django_object_actions import DjangoObjectActions, takes_instance_or_queryset
 
 
 class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
@@ -27,7 +24,8 @@ class BaseModelAdmin(DjangoObjectActions, admin.ModelAdmin):
 
         obj = qs.first()
         return self.redirect(reverse(
-            self.url_detail, args=self.reverse_url_detail_args(obj)
+            self.url_detail,
+            args=self.reverse_url_detail_args(obj),
         ))
 
     on_site.label = _('View on site')

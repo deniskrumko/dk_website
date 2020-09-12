@@ -12,9 +12,9 @@ class User(AbstractUser):
     """Model for app user."""
 
     email = models.EmailField(
-        _('email address'),
         blank=False,
-        unique=True
+        unique=True,
+        verbose_name=_('Email address'),
     )
     image = ProcessedImageField(
         null=True,
@@ -29,7 +29,7 @@ class User(AbstractUser):
         source='image',
         processors=[ResizeToFit(100, 100)],
         format='JPEG',
-        options={'quality': 80}
+        options={'quality': 80},
     )
 
     def __str__(self):

@@ -97,8 +97,9 @@ class DiaryDetailView(BaseDiaryView):
         try:
             years_range = 1
             jump_to_year = [
-                (dt.year - i, dt.date().replace(year=(dt.year - i)),)
-                for i in range(years_range, -years_range - 1, -1) if i != 0
+                (
+                    dt.year - i, dt.date().replace(year=(dt.year - i)),
+                ) for i in range(years_range, -years_range - 1, -1) if i != 0
             ]
         except Exception:
             # This happened for February 29
@@ -122,9 +123,9 @@ class DiaryDetailView(BaseDiaryView):
             'prev_week': (dt - timedelta(days=7)).date(),
             'jump_to_year': jump_to_year,
             'popular_tags': DiaryTag.objects.filter(
-                entries__date__gte=timezone.now() - timezone.timedelta(days=30)
+                entries__date__gte=timezone.now() - timezone.timedelta(days=30),
             ).annotate(
-                _entries_count=Count('entries')
+                _entries_count=Count('entries'),
             ).order_by('-_entries_count'),
         })
         return self.render_to_response(context)
@@ -184,8 +185,8 @@ class DiaryEditView(DiaryDetailView):
             date=date,
             defaults={
                 'text': text,
-                'done': done
-            }
+                'done': done,
+            },
         )
 
         return HttpResponseRedirect(reverse('diary:detail', args=(date,)))
@@ -227,7 +228,7 @@ class DiaryFileUploadView(BaseDiaryView):
         entry, created = DiaryEntry.objects.get_or_create(
             author=self.user,
             date=date,
-            defaults={'text': ''}
+            defaults={'text': ''},
         )
         new_file = File.objects.create(
             name=name,
@@ -267,7 +268,7 @@ class DiarySearchView(BaseDiaryView):
             for dt in rrule(
                 DAILY,
                 dtstart=date(year, start_month, 1),
-                until=date(year, end_month, last_day_of_month)
+                until=date(year, end_month, last_day_of_month),
             ):
                 cur_date = dt.date()
                 cur_entry = qs.filter(date=cur_date).first()

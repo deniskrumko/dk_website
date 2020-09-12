@@ -43,7 +43,7 @@ class DiaryTagsDetailView(BaseDiaryView):
         """Get tag details."""
         item = get_object_or_404(DiaryTag, name=tag, author=self.user)
         years = item.entries.values_list(
-            'date__year', flat=True
+            'date__year', flat=True,
         ).order_by('-date__year').distinct()
         context = self.get_context_data(item=item)
         context['tag'] = item

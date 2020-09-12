@@ -40,7 +40,7 @@ class AlbumAdmin(admin.ModelAdmin):
                 'year',
                 'image',
                 '_large_preview',
-            )
+            ),
         }),
         (_('About album'), {
             'fields': (
@@ -48,7 +48,7 @@ class AlbumAdmin(admin.ModelAdmin):
                 '_duration',
                 '_tracks_count',
                 'order',
-            )
+            ),
         }),
     )
     list_display = (
@@ -136,19 +136,19 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
                 'year',
                 'duration',
                 'file',
-            )
+            ),
         }),
         (_('Image'), {
             'fields': (
                 'image',
                 '_large_preview',
-            )
+            ),
         }),
         (_('Created/Modified'), {
             'fields': (
                 'created',
                 'modified',
-            )
+            ),
         }),
     )
     list_display = (

@@ -27,13 +27,13 @@ class DiaryEntry(BaseModel):
     )
     done = models.BooleanField(
         default=False,
-        verbose_name=_('done'),
+        verbose_name=_('Done'),
     )
     files = models.ManyToManyField(
         'files.File',
         blank=True,
         related_name='diary_entries',
-        verbose_name=_('files'),
+        verbose_name=_('Files'),
     )
 
     class Meta:
@@ -108,7 +108,7 @@ class DiaryEntry(BaseModel):
                     tag=tag,
                     author=self.author,
                     entry=self,
-                    value=' '.join(other) if other else None
+                    value=' '.join(other) if other else None,
                 )
 
         # Remove unused tags
@@ -124,7 +124,7 @@ class DiaryTag(BaseModel):
         max_length=255,
         null=True,
         blank=False,
-        verbose_name=_('name'),
+        verbose_name=_('Name'),
     )
     author = models.ForeignKey(
         'users.User',
@@ -138,7 +138,7 @@ class DiaryTag(BaseModel):
         'diary.DiaryEntry',
         through='diary.DiaryTagValue',
         blank=True,
-        verbose_name=_('entries'),
+        verbose_name=_('Entries'),
     )
 
     def __str__(self):
@@ -174,7 +174,7 @@ class DiaryTagValue(BaseModel):
         blank=False,
         on_delete=models.SET_NULL,
         related_name='values',
-        verbose_name=_('tag'),
+        verbose_name=_('Tag'),
     )
     author = models.ForeignKey(
         'users.User',
@@ -190,13 +190,13 @@ class DiaryTagValue(BaseModel):
         blank=False,
         on_delete=models.SET_NULL,
         related_name='tags',
-        verbose_name=_('entry'),
+        verbose_name=_('Entry'),
     )
     value = models.CharField(
         max_length=255,
         null=True,
         blank=True,
-        verbose_name=_('value'),
+        verbose_name=_('Value'),
     )
 
     def __str__(self):

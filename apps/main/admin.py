@@ -41,7 +41,7 @@ class TagAdmin(admin.ModelAdmin):
                 'slug',
                 'color',
                 'background',
-            )
+            ),
         }),
     )
     list_display = (

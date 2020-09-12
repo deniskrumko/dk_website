@@ -5,6 +5,7 @@ from fabric.operations import prompt
 
 from core.display import print_msg
 
+
 # MAIN COMMANDS
 # ============================================================================
 
@@ -139,7 +140,7 @@ def resetdb():
 def isort():
     """Fix imports formatting."""
     print_msg('Running imports fix')
-    local('isort apps core config -y -rc')
+    local('isort apps core config')
 
 
 @task
