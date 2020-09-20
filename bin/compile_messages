@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-python manage.py compilemessages --locale ru
+python manage.py compilemessages --locale ru -v 0
