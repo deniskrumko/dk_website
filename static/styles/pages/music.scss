@@ -2,15 +2,18 @@ $primary-color: #f45c28;
 $primary-color-dark: #c4491f;
 
 @import "../_main";
+@import "../animations";
 
 // Index
 
 .album {
   text-align: center;
+  position: relative;
   padding-bottom: 20px;
   padding-top: 10px;
   .image {
     text-align: center;
+    transition: transform 0.3s ease;
     a {
       position: relative;
     }
@@ -23,13 +26,51 @@ $primary-color-dark: #c4491f;
     font-size: 20px;
     padding-top: 5px;
     color: $text;
+    transition: $color-trans;
   }
   .info {
     font-size: 14px;
     color: $darkest-text;
   }
 }
+.album:hover {
+  .name {
+    color: $primary-color;
+  }
+}
 
+// Record image
+
+.record {
+  display: none;
+  position: absolute;
+  transition: all 0.3s ease;
+  top: -8px;
+  left: 25px;
+  margin: 19px auto;
+  z-index: -1;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background:
+    linear-gradient(30deg, transparent 40%, rgba(42, 41, 40, .85) 40%) no-repeat 100% 0,
+    linear-gradient(60deg, rgba(42, 41, 40, .85) 60%, transparent 60%) no-repeat 0 100%,
+    repeating-radial-gradient(#2a2928, #2a2928 4px, #ada9a0 5px, #2a2928 6px);
+  background-size: 50% 100%, 100% 50%, 100% 100%;
+}
+.record:after {
+  position: absolute;
+  top: 50%; left: 50%;
+  margin: -28px;
+  border: solid 1px #d9a388;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px $primary-color,
+    inset 0 0 0 27px $primary-color;
+  background: #b5ac9a;
+  content: '';
+}
 
 // Single album
 .album-main-image {
@@ -98,7 +139,21 @@ $primary-color-dark: #c4491f;
     position: absolute;
     right: 6px;
     bottom: 30px;
+  }
 }
+@media only screen and (min-width: 1030px) {
+  .album:hover {
+    .image {
+      transform: rotate(-3deg) translateX(-35px);
+    }
+    .record {
+      left: 65px;
+      top: -12px;
+    }
+  }
+  .record {
+    display: block;
+  }
 }
 
 // Tracks

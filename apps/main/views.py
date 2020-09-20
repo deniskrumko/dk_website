@@ -33,12 +33,12 @@ class IndexView(BaseView):
         context = super().get_context_data()
         blog_qs = BlogEntry.objects.filter(is_active=True)
         music_items = sorted([
-            *list(Track.objects.order_by('-created')[:8]),
-            *list(MusicVideo.objects.all()[:8]),
+            *list(Track.objects.order_by('-created')[:6]),
+            *list(MusicVideo.objects.all()[:3]),
         ], key=lambda x: -x.created.timestamp())
         context.update({
             'blog_items': blog_qs[:5],
-            'music_items': music_items[:8],
+            'music_items': music_items[:6],
             'total_blog_items': blog_qs.count() - 5,
         })
         return context

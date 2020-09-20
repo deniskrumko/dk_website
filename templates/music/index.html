@@ -18,26 +18,25 @@
 <div class="container">
   <div class="pure-g">
     {% for album in albums %}
-      <div class="album pure-u-1-1 pure-u-sm-1-4">
+      <a class="album pure-u-1-1 pure-u-sm-1-4" href="{% url 'music:detail' album.slug %}">
+        <div class="record rotating"></div>
         <div class="image">
-          <a href="{% url 'music:detail' album.slug %}">
-            {% if album.image %}
-            <img src="{{ album.thumbnail.url }}" alt="{{ album.name }}">
-            {% else %}
-            <img src="{% static 'images/nophoto_wide.jpg' %}" alt="No image">
-            {% endif %}
-            <div class="badges">
-              {% if album.status %}<div class="new">{{ album.status }}</div>{% endif %}
-            </div>
-          </a>
+          {% if album.image %}
+          <img src="{{ album.thumbnail.url }}" alt="{{ album.name }}">
+          {% else %}
+          <img src="{% static 'images/nophoto_wide.jpg' %}" alt="No image">
+          {% endif %}
+          <div class="badges">
+            {% if album.status %}<div class="new">{{ album.status }}</div>{% endif %}
+          </div>
         </div>
         <div class="name">
-          <a href="{% url 'music:detail' album.slug %}">{{ album.name }}</a>
+          {{ album.name }}
         </div>
         <div class="info">
           <span>{{ album.tracks_count }} треков · {{ album.year }}</span>
         </div>
-      </div>
+      </a>
     {% endfor %}
   </div>
 </div>
