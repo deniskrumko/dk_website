@@ -86,6 +86,9 @@
             </div>
           </div>
           <div class="subtitle">{{ item.name }}</div>
+          {% if 'youtube' in item.detail_url and not item.album %}
+          <div class="date">{% trans "Watch on YouTube" %}</div>
+          {% endif %}
         </a>
         {% if item.album %}
         <div class="album">Альбом: <a href="{% url 'music:detail' item.album.slug %}">{{ item.album }}</a> </div>
