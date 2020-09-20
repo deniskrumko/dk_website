@@ -50,7 +50,7 @@ class Album(SortableMixin, BaseModel):
     )
     thumbnail = ImageSpecField(
         source='image',
-        processors=[ResizeToFit(400, 400)],
+        processors=[ResizeToFit(200, 200)],
         format='JPEG',
         options={'quality': 100},
     )
@@ -134,7 +134,7 @@ class Track(SortableMixin, BaseModel):
     )
     thumbnail = ImageSpecField(
         source='image',
-        processors=[ResizeToFit(400, 400)],
+        processors=[ResizeToFit(200, 200)],
         format='JPEG',
         options={'quality': 80},
     )
