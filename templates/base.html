@@ -51,9 +51,6 @@
     {# FONTS #}
     <link rel="stylesheet" href="{% static 'fonts/AvenirNextCyr/stylesheet.css' %}">
 
-    {# PRELOADER #}
-    <link href="{% sass_src 'styles/preloader.scss' %}" rel="stylesheet" type="text/css">
-
     <script type="text/javascript">
     function scrollToTop(){
       var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -70,20 +67,6 @@
 
   {# BODY #}
   <body>
-    <div id="preloader-box">
-      <div id="preloader-animation">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
     <main>
       {% include 'components/menu.html' %}
 
@@ -128,6 +111,5 @@
   </body>
 
   {# EXTRA JS #}
-  <script src="{% static 'js/preloader.js' %}" charset="utf-8"></script>
   {% block js %}{% endblock %}
 </html>
