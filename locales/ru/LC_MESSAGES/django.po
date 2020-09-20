@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-11 22:37+0300\n"
+"POT-Creation-Date: 2020-09-20 10:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,12 +104,6 @@ msgstr "Порядок"
 msgid "Custom title"
 msgstr "Кастомный заголовок"
 
-msgid "blog"
-msgstr "Блог"
-
-msgid "description"
-msgstr "Описание"
-
 msgid "Go to entry"
 msgstr "Перейти к записи"
 
@@ -119,10 +113,10 @@ msgstr "Дневник"
 msgid "Author"
 msgstr "Автор"
 
-msgid "done"
+msgid "Done"
 msgstr "Готово"
 
-msgid "files"
+msgid "Files"
 msgstr "Файлы"
 
 msgid "Diary entry"
@@ -131,10 +125,7 @@ msgstr "Запись дневника"
 msgid "Diary entries"
 msgstr "Записи дневника"
 
-msgid "name"
-msgstr "Название"
-
-msgid "entries"
+msgid "Entries"
 msgstr "Записи"
 
 msgid "Diary tag"
@@ -143,14 +134,14 @@ msgstr "Тэг дневника"
 msgid "Diary tags"
 msgstr "Тэги дневника"
 
-msgid "tag"
+msgid "Tag"
 msgstr "Тэг"
 
-msgid "entry"
+msgid "Entry"
 msgstr "Запись"
 
-msgid "value"
-msgstr "значение"
+msgid "Value"
+msgstr "Значение"
 
 msgid "Diary tag value"
 msgstr "Значение тэга дневника"
@@ -181,9 +172,6 @@ msgstr ""
 
 msgid "360p"
 msgstr ""
-
-msgid "Files"
-msgstr "Файлы"
 
 msgid "File category"
 msgstr "Категория файлов"
@@ -266,9 +254,6 @@ msgstr "Фон"
 msgid "Background color: #FFF"
 msgstr "Цвет фона: #FFF"
 
-msgid "Tag"
-msgstr "Тэг"
-
 msgid "Tags"
 msgstr "Тэги"
 
@@ -329,7 +314,7 @@ msgstr "Важные даты"
 msgid "Users"
 msgstr "Пользователи"
 
-msgid "email address"
+msgid "Email address"
 msgstr "Адрес эл.почты"
 
 msgid "User"
@@ -352,6 +337,9 @@ msgstr "Сбросить слаг"
 
 msgid "likes counter"
 msgstr "Счетчик лайгов"
+
+msgid "Your browser does not support HTML5 video."
+msgstr "Ваш браузер не поддерживает HTML5 видео."
 
 msgid "Login"
 msgstr "Войти"
