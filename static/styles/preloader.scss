@@ -15,8 +15,11 @@
   transition: 0.3s opacity;
   opacity: 1;
 }
-#preloader-box.hide{
+#preloader-box.fade{
   opacity: 0;
+}
+#preloader-box.hide{
+  display: none
 }
 
 $count: 10;
@@ -24,7 +27,7 @@ $time: 2; //in seconds
 $size: 100;
 $color: #ffffff;
 
-.preloader {
+#preloader-animation {
   /* size */
   width: $size + px;
   height: $size + px;
@@ -42,13 +45,13 @@ $color: #ffffff;
   transform: translateX(-50%) translateY(-50%) rotateZ(-360deg);
   }
 }
-.preloader div {
+#preloader-animation div {
   position: absolute;
   width: 100%;
   height: 100%;
   opacity: 0;
 }
-.preloader div:before {
+#preloader-animation div:before {
   content: "";
   position: absolute;
   left: 50%;
@@ -61,7 +64,7 @@ $color: #ffffff;
 }
 
 @for $i from 1 through $count {
-  .preloader div:nth-child(#{$i}) {
+  #preloader-animation div:nth-child(#{$i}) {
     transform: rotateZ(((360 / $count) * ($i - 1)) + deg);
     animation: rotateCircle + $i $time + s infinite linear;
     z-index: $count - $i;
