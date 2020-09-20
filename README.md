@@ -1,4 +1,4 @@
-![](https://deniskrumko.ru/static/images/logo.png)
+![](https://github.com/deniskrumko/deniskrumko/raw/master/static/images/github_preview.jpg)
 
 My own website for travelling blogs and music creations.
 
