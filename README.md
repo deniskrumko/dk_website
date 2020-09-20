@@ -1,4 +1,4 @@
-![](https://github.com/deniskrumko/deniskrumko/raw/master/static/images/github_preview.jpg)
+![](https://github.com/deniskrumko/deniskrumko/raw/master/static/images/github2.png)
 
 My own website for travelling blogs and music creations.
 
