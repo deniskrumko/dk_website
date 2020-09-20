@@ -9,6 +9,7 @@
 <div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'music:index' %}" class="active">Альбомы</a>
+    <a href="{% url 'music:videos' %}">Видео</a>
     <a href="{% url 'music:tracks' %}">Треки</a>
     {# <a href="#">FAQ</a> #}
   </div>
@@ -25,6 +26,9 @@
             {% else %}
             <img src="{% static 'images/nophoto_wide.jpg' %}" alt="No image">
             {% endif %}
+            <div class="badges">
+              {% if album.status %}<div class="new">{{ album.status }}</div>{% endif %}
+            </div>
           </a>
         </div>
         <div class="name">

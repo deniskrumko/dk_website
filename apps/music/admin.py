@@ -7,7 +7,7 @@ from adminsortable.admin import SortableAdmin, SortableTabularInline
 from core.admin import BaseModelAdmin, image_preview
 
 from .forms import TrackForm
-from .models import Album, Track, TrackFile
+from .models import Album, MusicVideo, Track, TrackFile
 
 
 class TrackInline(admin.TabularInline):
@@ -17,7 +17,6 @@ class TrackInline(admin.TabularInline):
     form = TrackForm
     fields = (
         'name',
-        'year',
         'duration',
         'order',
         'is_active',
@@ -133,7 +132,6 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
                 'album',
                 'name',
                 'slug',
-                'year',
                 'duration',
                 'file',
             ),
@@ -154,7 +152,6 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
     list_display = (
         'name',
         'album',
-        'year',
         '_small_preview',
         'slug',
         'order',
@@ -200,12 +197,74 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
 
     def _small_preview(self, obj):
         """Get small image preview."""
-        return image_preview(obj, size='small', field='image_thumbnail')
+        return image_preview(obj, size='small', field='thumbnail')
 
     _small_preview.short_description = _('Image preview')
 
     def _large_preview(self, obj):
         """Get large image preview."""
-        return image_preview(obj, size='large', field='image_thumbnail')
+        return image_preview(obj, size='large', field='thumbnail')
+
+    _large_preview.short_description = _('Image preview')
+
+
+@admin.register(MusicVideo)
+class MusicVideoAdmin(admin.ModelAdmin):
+    """Admin class for ``MusicVideo`` model."""
+
+    fieldsets = (
+        (_('Main'), {
+            'fields': (
+                'is_active',
+                'name',
+                'slug',
+            ),
+        }),
+        (_('Media'), {
+            'fields': (
+                'video',
+                '_large_preview',
+            ),
+        }),
+        (_('Album'), {
+            'fields': (
+                'album',
+            ),
+        }),
+        (_('Created/Modified'), {
+            'fields': (
+                'created',
+                'modified',
+            ),
+        }),
+    )
+    list_display = (
+        'name',
+        'is_active',
+        '_small_preview',
+        'created',
+    )
+    list_filter = (
+        'is_active',
+    )
+    search_fields = (
+        'title',
+    )
+    readonly_fields = (
+        '_large_preview',
+        '_small_preview',
+        'created',
+        'modified',
+    )
+
+    def _small_preview(self, obj):
+        """Get small image preview."""
+        return image_preview(obj, size='small', field='thumbnail')
+
+    _small_preview.short_description = _('Image preview')
+
+    def _large_preview(self, obj):
+        """Get large image preview."""
+        return image_preview(obj, size='large', field='thumbnail')
 
     _large_preview.short_description = _('Image preview')

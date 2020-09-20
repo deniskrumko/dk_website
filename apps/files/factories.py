@@ -39,6 +39,9 @@ class VideoFileFactory(factory.django.DjangoModelFactory):
     source_720 = 'http://techslides.com/demos/sample-videos/small.mp4'
     source_480 = 'http://techslides.com/demos/sample-videos/small.mp4'
     source_360 = 'http://techslides.com/demos/sample-videos/small.mp4'
+    youtube_link = 'https://www.youtube.com/watch?v=yoyrUrTN7Xw'
+    poster = factory.django.ImageField(color='#E06C75', width=1280, height=720)
+    duration = '12:34'
 
     class Meta:
         model = models.VideoFile

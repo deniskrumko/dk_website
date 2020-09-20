@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n static %}
+{% load sass_tags i18n static %}
 
 {% comment %}
 
@@ -10,5 +10,5 @@
 
 {% block extrahead %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+<link href="{% sass_src 'styles/admin.scss' %}" rel="stylesheet" type="text/css">
 {% endblock %}

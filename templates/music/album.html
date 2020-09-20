@@ -14,6 +14,7 @@
 <div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'music:index' %}" class="active">Альбомы</a>
+    <a href="{% url 'music:videos' %}">Видео</a>
     <a href="{% url 'music:tracks' %}">Треки</a>
     {# <a href="#">FAQ</a> #}
   </div>
@@ -26,6 +27,9 @@
         {% if album.image %}
         <a href="{{ album.image.url }}" target="_blank">
           <img src="{{ album.thumbnail.url }}" alt="{{ album.name }}">
+          <div class="badges">
+            {% if album.status %}<div class="new">{{ album.status }}</div>{% endif %}
+          </div>
         </a>
         {% else %}
         <img src="{% static 'images/nophoto_wide.jpg' %}" alt="">
@@ -46,16 +50,11 @@
         <div class="info">
           <b>Количество треков:</b> {{ album.tracks_count }}
         </div>
-        {% if album.status %}
-        <div class="info">
-          <b>Статус:</b> {{ album.status }}
-        </div>
-        {% endif %}
         {% comment %}
           ❙❙►
         {% endcomment %}
         {% if request.user.is_superuser %}
-        <a href="{{ album.admin_changelink }}" class="withhover">Изменить описание</a>
+        <a href="{{ album.admin_changelink }}" class="btn">Изменить описание</a>
         {% endif %}
       </div>
       <div class="album-tracks">

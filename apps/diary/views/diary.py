@@ -32,7 +32,6 @@ class BaseDiaryView(LoginRequiredMixin, BaseView):
     DATE_FORMAT = '%Y-%m-%d'
     menu = 'diary'
     description = 'Дневник'
-    colors = ('#00ACC1', '#0795a6', '#f9f9f9')
 
     @property
     @cached(cache=TTLCache(maxsize=128, ttl=60))

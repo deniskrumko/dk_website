@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load sass_tags static i18n %}
+
+{% block css %}
+<link href="{% sass_src 'styles/pages/music.scss' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+
+{# Sections links #}
+<div class="container slider">
+  <div class="scrollable-h1">
+    <a href="{% url 'music:index' %}">Альбомы</a>
+    <a href="{% url 'music:videos' %}" class="active">Видео</a>
+    <a href="{% url 'music:tracks' %}">Треки</a>
+    {# <a href="{% url 'music-video:about' %}">О проекте</a> #}
+  </div>
+</div>
+
+<div class="container">
+  {% if items %}
+  <div class="pure-g">
+    <div class="music-video-items">
+    {% for item in items %}
+      <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-1-3">
+        <div class="music-video-item" id="music-video-{{ item.slug }}">
+          <a class="music-video-item-image" href="{{ item.link }}" target="_blank">
+            <img src="{% static 'images/play.svg' %}" class="music-video-play" alt="">
+            {% if item.thumbnail %}
+            <img src="{{ item.thumbnail.url }}" class="music-video-item-img" alt="">
+            {% else %}
+            <img src="{% static 'images/nophoto_wide.jpg' %}" class="music-video-item-img" alt="">
+            {% endif %}
+            <div class="badges">
+              {% if item.is_new %}<div class="new">NEW</div>{% endif %}
+              {% if item.video.duration %}
+              <div class="badge">{{ item.video.duration }}</div>
+              {% endif %}
+            </div>
+          </a>
+          <div class="music-video-item-subtitle">{{ item.name }}</div>
+          <div class="music-video-item-date">{{ item.created }}</div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <h1>Видео пока нет...</h1>
+  {% endif %}
+</div>
+{% endblock %}

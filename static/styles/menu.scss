@@ -6,6 +6,10 @@
 #menu-logo {
   width: 80px;
   display: inline-block;
+  transition: transform 0.3s ease;
+}
+#menu-logo:hover {
+  transform: scale(1.1) rotate(-2deg);
 }
 
 // Menu items

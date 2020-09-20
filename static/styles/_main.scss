@@ -32,6 +32,7 @@ a {
   cursor: pointer;
   color: $text;
 }
+
 .dk-a {
   color: $primary-color;
   transition: $color-trans;
@@ -78,6 +79,24 @@ a {
 
 .inline-block {
   display: inline-block;
+}
+
+.badges {
+  position: absolute;
+  right: 6px;
+  bottom: 10px;
+  div {
+    display: inline-block;
+    background: rgba(0,0,0,0.75);
+    color: #fefefe;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  .new {
+    color: $new-badge;
+  }
 }
 
 /* Mobile */

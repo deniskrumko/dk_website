@@ -8,4 +8,5 @@ urlpatterns = [
     path('', views.MusicIndexView.as_view(), name='index'),
     path('albums/<slug>/', views.AlbumDetailView.as_view(), name='detail'),
     path('tracks/', views.TracksView.as_view(), name='tracks'),
+    path('videos/', views.MusicVideoView.as_view(), name='videos'),
 ]

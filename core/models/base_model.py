@@ -1,12 +1,18 @@
 from uuid import uuid4
 
 from django.shortcuts import reverse
+from django.utils import timezone
 
 from django_extensions.db.models import TimeStampedModel
 
 
 class BaseModel(TimeStampedModel):
     """Base class for models."""
+
+    is_new_item = {
+        'field': 'created',
+        'timedelta': timezone.timedelta(days=7),
+    }
 
     class Meta:
         abstract = True
@@ -48,3 +54,15 @@ class BaseModel(TimeStampedModel):
             'admin:{meta.app_label}_{meta.model_name}_change'
             .format(meta=self.__class__._meta), args=(self.id,),
         )
+
+    @property
+    def is_new(self):
+        """Return True if item is new.
+
+        Used for "NEW" badge on items.
+        """
+        value = getattr(self, self.is_new_item['field'], None)
+        if not value:
+            return False
+
+        return value > timezone.now() - self.is_new_item['timedelta']

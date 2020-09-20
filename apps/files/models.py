@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from adminsortable.models import SortableMixin
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFit
 
 from core.models import BaseModel
 
@@ -141,6 +143,12 @@ class VideoFile(BaseModel):
         blank=True,
         upload_to=BaseModel.obfuscated_upload,
         verbose_name=_('Poster image'),
+    )
+    poster_thumbnail = ImageSpecField(
+        source='poster',
+        processors=[ResizeToFit(400, 400)],
+        format='JPEG',
+        options={'quality': 100},
     )
     duration = models.CharField(
         max_length=8,

@@ -8,7 +8,6 @@ from .models import BlogEntry
 class BaseBlogView(BaseView):
     """Base class for blog-related views."""
 
-    colors = ('#00B5AD', '#05a8a1', '#fefefe')
     menu = 'blog'
 
 

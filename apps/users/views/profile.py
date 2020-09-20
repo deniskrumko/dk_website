@@ -10,7 +10,6 @@ class ProfileView(LoginRequiredMixin, BaseView):
 
     menu = 'profile'
     template_name = 'users/profile.html'
-    colors = ('#4A72B7', '#375d9e', '#fefefe')
     title = 'DK - Ваш профиль'
     description = 'DK - Ваш профиль'
 

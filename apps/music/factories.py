@@ -2,10 +2,11 @@ import factory
 
 from apps.files.factories import FileFactory
 
-from .models import Album, Track, TrackFile
+from .models import Album, MusicVideo, Track, TrackFile
 
 __all__ = (
     'AlbumFactory',
+    'MusicVideoFactory',
     'TrackFactory',
     'TrackFileFactory',
 )
@@ -31,8 +32,7 @@ class TrackFactory(factory.django.DjangoModelFactory):
     name = factory.Faker('name')
     slug = factory.sequence(lambda x: f'track-{x}')
     file = factory.SubFactory(FileFactory)
-    image = factory.django.ImageField(color='#777')
-    year = 2019
+    image = factory.django.ImageField(color='#98C379', width=400, height=400)
 
     class Meta:
         model = Track
@@ -47,3 +47,14 @@ class TrackFileFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = TrackFile
+
+
+class MusicVideoFactory(factory.django.DjangoModelFactory):
+    """Factory for ``MusicVideo`` model."""
+
+    is_active = True
+    name = factory.sequence(lambda x: f'Music Video {x}')
+    slug = factory.sequence(lambda x: f'music-video-{x}')
+
+    class Meta:
+        model = MusicVideo

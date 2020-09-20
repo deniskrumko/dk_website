@@ -31,9 +31,12 @@
             {% else %}
             <img src="{% static 'images/nophoto_wide.jpg' %}" class="blog-item-img" alt="">
             {% endif %}
-            {% if item.duration %}
-            <div class="blog-item-duration">{{ item.duration }}</div>
-            {% endif %}
+            <div class="badges">
+              {% if item.is_new %}<div class="new">NEW</div>{% endif %}
+              {% if item.duration %}
+              <div class="badge">{{ item.duration }}</div>
+              {% endif %}
+            </div>
           </a>
           <div class="blog-item-subtitle">{{ item.subtitle }}</div>
           <div class="blog-item-date">{{ item.date }}</div>

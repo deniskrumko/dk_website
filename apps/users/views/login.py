@@ -9,7 +9,6 @@ class LoginView(BaseView):
     """View for users to log in."""
 
     menu = 'profile'
-    colors = ('#4A72B7', '#375d9e', '#fefefe')
     template_name = 'users/login.html'
     title = 'DK - Главная'
     description = 'DK - Войти'

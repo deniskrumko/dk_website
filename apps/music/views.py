@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 
 from core.views import BaseView
 
-from .models import Album, Track
+from .models import Album, MusicVideo, Track
 
 
 class MusicIndexView(BaseView):
@@ -11,7 +11,6 @@ class MusicIndexView(BaseView):
     template_name = 'music/index.html'
     menu = 'music'
     title = 'DK - Музыка'
-    colors = ('#f45c28', '#f45c28', '#fefefe')
     description = (
         'Dendy Not Dead — это музыкальный проект Дениса Крумко. Сам проект '
         'является собранием инструментальной рок музыки, составленной '
@@ -33,7 +32,6 @@ class AlbumDetailView(BaseView):
 
     template_name = 'music/album.html'
     menu = 'music'
-    colors = ('#f45c28', '#f45c28', '#fefefe')
     use_analytics = True
 
     def get_title(self, **kwargs):
@@ -61,11 +59,26 @@ class TracksView(BaseView):
     menu = 'music'
     title = 'DK - Музыка'
     description = 'Все треки'
-    colors = ('#f45c28', '#f45c28', '#fefefe')
     use_analytics = True
 
     def get(self, request):
         """Get all tracks."""
         context = self.get_context_data()
         context.update({'tracks': Track.objects.order_by('name')})
+        return self.render_to_response(context)
+
+
+class MusicVideoView(BaseView):
+    """View to get all music videos."""
+
+    template_name = 'music/videos.html'
+    menu = 'music'
+    title = 'DK - Музыка'
+    description = 'Музыкальные видео'
+    use_analytics = True
+
+    def get(self, request):
+        """Get all videos."""
+        context = self.get_context_data()
+        context.update({'items': MusicVideo.objects.all()})
         return self.render_to_response(context)

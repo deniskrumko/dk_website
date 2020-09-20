@@ -11,6 +11,9 @@ $primary-color-dark: #c4491f;
   padding-top: 10px;
   .image {
     text-align: center;
+    a {
+      position: relative;
+    }
     img {
       width: 80%;
     }
@@ -32,6 +35,9 @@ $primary-color-dark: #c4491f;
 .album-main-image {
   text-align: center;
   padding-right: 50px;
+  a {
+    position: relative;
+  }
   img {
     width: 100%;
   }
@@ -88,6 +94,11 @@ $primary-color-dark: #c4491f;
     width: 80% !important;
     padding-bottom: 20px;
   }
+  .badges {
+    position: absolute;
+    right: 6px;
+    bottom: 30px;
+}
 }
 
 // Tracks
@@ -148,4 +159,69 @@ $primary-color-dark: #c4491f;
   cursor: pointer;
   top: 0px;
   z-index: 1000;
+}
+
+// Videos
+
+.music-video-item {
+  margin-bottom: 30px;
+  padding: 5px;
+  .music-video-item-image {
+    display: block;
+    position: relative;
+    .music-video-play {
+      position: absolute;
+      height: 40px;
+      opacity: 0;
+      z-index: 30;
+      transition: opacity 0.3s ease, transform 0.1s ease;
+      left: 50%;
+      top: 50%;
+      margin-top: -20px;
+      margin-left: -20px;
+    }
+    .music-video-item-img {
+      width: 100%;
+      background: #f0f0f3;
+      transition: all 0.3s ease;
+    }
+  }
+  .music-video-item-subtitle {
+    margin-top: 4px;
+    font-size: 14px;
+    color: $text;
+  }
+  .music-video-item-date {
+    margin-bottom: 16px;
+    margin-top: 5px;
+    font-size: 10px;
+    color: $dark-text;
+  }
+}
+
+
+.music-video-item-image:hover {
+  .music-video-item-img {
+    filter: brightness(55%);
+  }
+  .music-video-play {
+    opacity: 1;
+  }
+}
+
+.music-video-item-image:active {
+  .music-video-play {
+    transform: scale(0.9);
+  }
+}
+
+.music-video-item:last-child {
+  margin-bottom: 0px;
+}
+
+@media only screen and (max-width: 567px) {
+  // Mobile
+  .music-video-item-info {
+    padding: 10px 0px;
+  }
 }

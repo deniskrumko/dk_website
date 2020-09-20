@@ -5,7 +5,7 @@ from django.views import View
 from core.views import BaseView
 
 from apps.blog.models import BlogEntry
-from apps.music.models import Track
+from apps.music.models import MusicVideo, Track
 
 from .models import RedirectPage
 
@@ -26,16 +26,19 @@ class IndexView(BaseView):
         'Сайт Дениса Крумко: видеоблоги о путешествиях, инструментальная '
         'музыка, ну и все. Смотрите, слушайте, узнавайте.'
     )
-    colors = ('#4A72B7', '#375d9e', '#fefefe')
     use_analytics = True
 
     def get_context_data(self):
         """Get context data."""
         context = super().get_context_data()
         blog_qs = BlogEntry.objects.filter(is_active=True)
+        music_items = sorted([
+            *list(Track.objects.order_by('-created')[:8]),
+            *list(MusicVideo.objects.all()[:8]),
+        ], key=lambda x: -x.created.timestamp())
         context.update({
             'blog_items': blog_qs[:5],
-            'music_items': Track.objects.all()[:5],
+            'music_items': music_items[:8],
             'total_blog_items': blog_qs.count() - 5,
         })
         return context

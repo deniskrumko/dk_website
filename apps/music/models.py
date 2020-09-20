@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adminsortable.fields import SortableForeignKey
@@ -106,11 +107,6 @@ class Track(SortableMixin, BaseModel):
         max_length=255,
         verbose_name=_('Name'),
     )
-    year = models.IntegerField(
-        null=True,
-        blank=True,
-        verbose_name=_('Year'),
-    )
     slug = models.CharField(
         blank=False,
         db_index=True,
@@ -136,15 +132,9 @@ class Track(SortableMixin, BaseModel):
         upload_to=BaseModel.obfuscated_upload,
         verbose_name=_('Image'),
     )
-    image_thumbnail = ImageSpecField(
+    thumbnail = ImageSpecField(
         source='image',
         processors=[ResizeToFit(400, 400)],
-        format='JPEG',
-        options={'quality': 80},
-    )
-    image_mini = ImageSpecField(
-        source='image',
-        processors=[ResizeToFit(150, 150)],
         format='JPEG',
         options={'quality': 80},
     )
@@ -177,12 +167,8 @@ class Track(SortableMixin, BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        """Get URL to specific track.
-
-        Used by sitemap engine.
-
-        """
-        return f'/music/{self.slug}'
+        """Get URL to specific track (for sitemap)."""
+        return self.detail_url
 
     @property
     def music_files(self):
@@ -198,6 +184,15 @@ class Track(SortableMixin, BaseModel):
     def displayed_duration(self) -> str:
         """Get summary album duration as MM:SS string."""
         return time_int_to_str(value=self.duration)
+
+    @property
+    def detail_url(self):
+        """Get detail url."""
+        return reverse('music:detail', args=(self.album.slug,))
+
+    @property
+    def badge(self):
+        return _('Track')
 
 
 class TrackFile(SortableMixin, models.Model):
@@ -233,3 +228,69 @@ class TrackFile(SortableMixin, models.Model):
         verbose_name = _('Track file')
         verbose_name_plural = _('Track files')
         ordering = ('order',)
+
+
+class MusicVideo(BaseModel):
+    """Model to music videos."""
+
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=_('Is active'),
+    )
+    album = models.ForeignKey(
+        Album,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='music_videos',
+        verbose_name=_('Album'),
+    )
+    name = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_('Name'),
+    )
+    slug = models.CharField(
+        blank=False,
+        db_index=True,
+        max_length=64,
+        null=True,
+        unique=True,
+        verbose_name=_('Slug'),
+    )
+    video = models.ForeignKey(
+        'files.VideoFile',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='music_videos',
+        verbose_name=_('Video'),
+    )
+
+    def __str__(self):
+        return self.name or '-'
+
+    class Meta:
+        verbose_name = _('Music video')
+        verbose_name_plural = _('Music videos')
+        ordering = ('-created',)
+
+    @property
+    def thumbnail(self):
+        """Get video image."""
+        return self.video.poster_thumbnail if (self.video and self.video.poster) else None
+
+    @property
+    def link(self):
+        """Get youtube video link."""
+        return self.video.youtube_link if self.video else None
+
+    @property
+    def detail_url(self):
+        """Get detail url."""
+        return self.link
+
+    @property
+    def badge(self):
+        return _('Video')

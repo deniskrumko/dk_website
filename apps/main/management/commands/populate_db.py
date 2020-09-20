@@ -3,8 +3,8 @@ from django.utils import timezone
 
 from apps.blog.factories import BlogEntryFactory, BlogSeriesFactory, BlogSeriesItemFactory
 from apps.diary.factories import DiaryEntryFactory, DiaryTagFactory
-from apps.files.factories import FileCategoryFactory, FileFactory
-from apps.music.factories import AlbumFactory, TrackFactory, TrackFileFactory
+from apps.files.factories import FileCategoryFactory, FileFactory, VideoFileFactory
+from apps.music.factories import AlbumFactory, MusicVideoFactory, TrackFactory, TrackFileFactory
 from apps.users.models import User
 
 
@@ -18,7 +18,6 @@ class Command(BaseCommand):
         track = TrackFactory(album=album, file=music_file)
         TrackFileFactory(track=track, file=music_file)
         TrackFileFactory(track=track, file=gtp_file)
-        self.stdout.write(self.style.SUCCESS(f'  {album.name} - {track.name}'))
 
     def handle(self, *args, **options):
         """Execute command."""
@@ -26,14 +25,23 @@ class Command(BaseCommand):
         # ====================================================================
 
         self.stdout.write(self.style.SUCCESS('\n1. Create albums'))
+        self.stdout.write(self.style.SUCCESS('\t-- albums'))
         albums = AlbumFactory.create_batch(4)
 
         self.music_category = FileCategoryFactory(name='Музыка')
         self.gtp_category = FileCategoryFactory(name='GTP')
 
+        self.stdout.write(self.style.SUCCESS('\t-- tracks'))
         for album in albums:
             for i in range(5):
                 self.create_track(album=album)
+
+        self.stdout.write(self.style.SUCCESS('\t-- music videos'))
+        MusicVideoFactory.create_batch(
+            2,
+            album=albums[0],
+            video=VideoFileFactory(source='youtube'),
+        )
 
         # Blog
         # ====================================================================
