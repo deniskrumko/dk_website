@@ -14,11 +14,16 @@ $primary-color-dark: #c4491f;
   .image {
     text-align: center;
     transition: transform 0.3s ease;
+    position: relative;
     a {
       position: relative;
     }
     img {
       width: 80%;
+    }
+    .badges {
+      position: absolute;
+      right: 30px;
     }
   }
   .name {
@@ -130,15 +135,13 @@ $primary-color-dark: #c4491f;
 @media only screen and (max-width: 567px) {
   .album-main-image {
     padding-right: 0px;
+    .badges {
+      top: -30px;
+    }
   }
   .album-main-image img {
     width: 80% !important;
     padding-bottom: 20px;
-  }
-  .badges {
-    position: absolute;
-    right: 6px;
-    bottom: 30px;
   }
 }
 @media only screen and (min-width: 1030px) {
