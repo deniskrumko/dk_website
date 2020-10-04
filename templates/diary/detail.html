@@ -56,7 +56,7 @@ document.addEventListener('keydown', function(e) {
 <div class="container">
   <form class="pure-g" action="{{ edit_link }}" method="post" id="entry_form">
     {% csrf_token %}
-    <div class="pure-u-1-1 pure-u-md-18-24">
+    <div class="pure-u-1-1 pure-u-md-17-24">
       {% block page_class %}
       <div id="page" {% if entry.text|length > 500 %}class="collapsed-page"{% endif %}>
       {% endblock %}
@@ -135,7 +135,7 @@ document.addEventListener('keydown', function(e) {
     </div>
 
     {# Right menu #}
-    <div class="pure-u-1-1 pure-u-md-6-24">
+    <div class="pure-u-1-1 pure-u-md-7-24">
       {% block right-menu %}
       <div class="calendar">
         <a href="{% url 'diary:detail' date=month_links.0 %}" style="position: absolute; top: 2px;">

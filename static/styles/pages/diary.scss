@@ -6,8 +6,9 @@ $primary-color-darkest: #03535d !default;
 #page {
   padding: 5px 25px;
   background-color: $dark;
-  box-shadow: 5px 5px 0 $darkest;
+  box-shadow: 10px 10px 0 $darkest;
   margin-bottom: 10px;
+  margin-right: 10px;
   word-break: break-word;
   position: relative;
 

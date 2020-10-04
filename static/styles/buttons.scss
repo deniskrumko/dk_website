@@ -27,9 +27,9 @@
 }
 
 .btn.tag, .btn.tag-p {
-  padding: 5px 10px;
+  padding: 5px 9px;
   margin-right: 2px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   font-size: 12px;
   font-weight: 600;
   border-radius: 30px;
@@ -38,7 +38,7 @@
   transition: all 0.2s ease;
   display: inline-block;
   color: $dark-text;
-  background: $dark;
+  background: $darken;
 }
 .btn.tag:hover {
   background: $darkest;
