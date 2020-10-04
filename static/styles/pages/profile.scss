@@ -19,12 +19,19 @@ $primary-color-dark: #1992DB;
   }
 }
 
+.submit-buttons div {
+  background: $dark;
+  padding: 5px;
+  display: inline-block;
+  border-radius: 22px;
+  text-align: center;
+}
+
 @media only screen and (max-width: 567px) {
   .avatar {
     text-align: center;
   }
   .submit-buttons {
-    padding-top: 10px;
     text-align: center;
   }
 }

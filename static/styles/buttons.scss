@@ -10,15 +10,26 @@
   display: inline-block;
   transition: $bg-trans, transform 0.1s ease;
   text-align: center;
-  color: #000;
-  background: $primary-color;
-}
-.btn:hover {
-  background: $primary-color-dark;
+  color: $text;
+  background: $darken;
 }
 .btn:active {
   transform: scale(0.95);
 }
+.btn:focus, video:focus {
+  outline: none;
+}
+
+// Primary buttons
+.btn.primary {
+  color: $dark;
+  background: $primary-color;
+}
+.btn.primary:hover {
+  background: $primary-color-dark;
+}
+
+// Faded buttons
 .btn.faded {
   background: $primary-color-darkest;
 }
@@ -26,6 +37,7 @@
   background: $primary-color-darken;
 }
 
+// Tag buttons
 .btn.tag, .btn.tag-p {
   padding: 5px 9px;
   margin-right: 2px;
@@ -42,7 +54,4 @@
 }
 .btn.tag:hover {
   background: $darkest;
-}
-.btn:focus, video:focus {
-  outline: none;
 }

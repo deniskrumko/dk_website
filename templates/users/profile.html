@@ -42,26 +42,31 @@
           <img src="{{ request.user.image_small.url }}" alt="image" width="60">
         </div>
         {% endif %}
-        <div class="">
+        <div>
+          {% if request.user.image %}
           <p>
             <label class="checkbox-input">
               <input type="checkbox" name="remove_avatar">
               {% trans "Remove image" %}
             </label>
           </p>
+          {% endif %}
           <p>
             <label class="file-input">
-              <input type="file" name="avatar" value="Upload new">
+              <input type="file" name="avatar" id="avatar" value="Upload new">
+              <label for="avatar" class="btn">Загрузить файл</label>
             </label>
           </p>
         </div>
       </div>
     </div>
     <div class="submit-buttons">
-      <input type="submit" value="Сохранить" class="btn primary">
-      <a href="{% url 'users:logout' %}" class="btn">
-        {% trans "Logout" %}
-      </a>
+      <div>
+        <input type="submit" value="Сохранить" class="btn primary">
+        <a href="{% url 'users:logout' %}" class="btn">
+          {% trans "Logout" %}
+        </a>
+      </div>
     </div>
   </form>
 </div>

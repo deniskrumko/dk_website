@@ -44,6 +44,12 @@
 .checkbox-input, .file-input {
   color: $text;
 }
+.file-input input {
+  display: none;
+}
+.file-input label {
+  cursor: pointer;
+}
 
 .select-input {
   text-align-last: center;
