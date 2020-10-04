@@ -125,7 +125,7 @@ class DiaryDetailView(BaseDiaryView):
                 entries__date__gte=timezone.now() - timezone.timedelta(days=30),
             ).annotate(
                 _entries_count=Count('entries'),
-            ).order_by('-_entries_count'),
+            ).order_by('-_entries_count')[:10],
         })
         return self.render_to_response(context)
 

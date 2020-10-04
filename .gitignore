@@ -6,6 +6,8 @@ __pycache__/
 local.py
 # C extensions
 *.so
+.idea/
+*.dump
 Icon
 
 # Distribution / packaging
