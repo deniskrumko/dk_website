@@ -116,7 +116,9 @@ $primary-color-dark: #1992DB;
 .show-all-btn::after {
   content: 'Посмотреть';
   position: absolute;
+  display: block;
   bottom: 0;
+  left: 0;
   height: 0;
   text-align: center;
   opacity: 0;
