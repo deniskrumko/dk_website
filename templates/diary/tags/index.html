@@ -19,9 +19,30 @@
 {# Main #}
 <div class="container">
   <div class="large-tags">
-    {% for tag in tags %}
-      <a href="{% url 'diary:tag' tag=tag %}" class="large-tag">#{{ tag }}</a>
-    {% endfor %}
+    <div class="pure-g">
+      {% for group in groups %}
+        <div class="diarty-tag-group-large pure-u-1-2">
+          <div class="dk-h2">{{ group }}</div>
+          <br>
+            {% for tag in group.tags.all %}
+              <a href="{% url 'diary:tag' tag=tag %}" class="large-tag" {% if group.color %}style="color: {{group.color }};"{% endif %}>#{{ tag }}</a>
+            {% endfor %}
+          <br>
+        </div>
+      {% endfor %}
+      {% if without_groups.exists %}
+      <div class="diarty-tag-group-large pure-u-1-2">
+        <div class="dk-h2">Без группы</div>
+        <br>
+          {% for tag in without_groups %}
+            <a href="{% url 'diary:tag' tag=tag %}" class="large-tag">#{{ tag }}</a>
+          {% endfor %}
+        {% endif %}
+        <br>
+      </div>
+    </div>
+
+    <a href="{% url 'diary:edit_groups' %}" class="btn primary">Редактировать группы</a>
   </div>
 </div>
 {% endblock %}

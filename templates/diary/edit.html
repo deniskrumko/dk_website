@@ -61,10 +61,14 @@ document.addEventListener('keydown', function(e) {
 <div id="diary-tags" class="noselect">
   <div>
     <h2>Тэги</h2>
-    <p>Нажми на тэг, чтобы добавить его</p>
   </div>
-  {% for tag in tags %}
-    <button type="button" name="button" class="btn tag">{{ tag }}</button>
+  {% for group in tag_groups %}
+  <div class="diary-tag-group-small">
+    <span>{{ group.name }}</span>
+    {% for tag in group.tags %}
+    <button type="button" name="button" class="btn tag" {% if group.color %}style="color: {{group.color }};"{% endif %}>{{ tag }}</button>
+    {% endfor %}
+  </div>
   {% endfor %}
   <button type="button" name="button" class="btn tag">+ фото</button>
 </div>

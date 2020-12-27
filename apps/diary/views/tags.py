@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 
-from ..models import DiaryTag
+from ..models import DiaryTag, DiaryTagGroup
 from .diary import BaseDiaryView
 
 __all__ = (
     'DiaryTagsIndexView',
     'DiaryTagsDetailView',
+    'DiaryEditGroupsView',
 )
 
 
@@ -20,7 +21,8 @@ class DiaryTagsIndexView(BaseDiaryView):
     def get_context_data(self):
         """Get context data."""
         context = super().get_context_data()
-        context['tags'] = DiaryTag.objects.filter(author=self.user)
+        context['groups'] = DiaryTagGroup.objects.filter(author=self.user)
+        context['without_groups'] = DiaryTag.objects.filter(author=self.user, group__isnull=True)
         return context
 
 
@@ -52,3 +54,54 @@ class DiaryTagsDetailView(BaseDiaryView):
             for year in years
         ]
         return self.render_to_response(context)
+
+
+class DiaryEditGroupsView(BaseDiaryView):
+    """View to edit tags/tag groups."""
+
+    template_name = 'diary/tags/edit_groups.html'
+    title = 'DK - Редактировать группы'
+
+    def get(self, request):
+        """Get tag groups."""
+        context = self.get_context_data()
+        context['groups'] = DiaryTagGroup.objects.filter(author=self.user)
+        context['tags'] = DiaryTag.objects.filter(author=self.user)
+        return self.render_to_response(context)
+
+    def post(self, request):
+        """Create/update/delete tag groups."""
+        data = self.request.POST
+
+        if 'save_groups' in data:
+            for group in DiaryTagGroup.objects.filter(author=self.user):
+                to_delete = data.get(f'group__{group.id}__delete')
+                if to_delete:
+                    group.delete()
+                    continue
+
+                group.name = data.get(f'group__{group.id}__name')
+                group.color = data.get(f'group__{group.id}__color')
+                group.order = data.get(f'group__{group.id}__order')
+                group.save()
+
+            new_groups = data.get('new_groups')
+            if new_groups:
+                for new_group in new_groups.split(','):
+                    DiaryTagGroup.objects.get_or_create(
+                        author=self.user,
+                        name=new_group.strip(),
+                    )
+
+        if 'save_tags' in data:
+            for tag in DiaryTag.objects.filter(author=self.user):
+                new_value = data.get(f'tag__{tag.id}')
+                if tag.group and not new_value:
+                    tag.group = None
+                    tag.save()
+
+                if new_value:
+                    tag.group = DiaryTagGroup.objects.filter(author=self.user, id=new_value).first()
+                    tag.save()
+
+        return self.redirect('diary:edit_groups')

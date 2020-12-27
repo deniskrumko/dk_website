@@ -11,5 +11,6 @@ urlpatterns = [
     path('date/<date>/file_upload/', views.DiaryFileUploadView.as_view(), name='file_upload'),
     path('search/', views.DiarySearchView.as_view(), name='search'),
     path('tags/', views.DiaryTagsIndexView.as_view(), name='tags'),
+    path('tags/edit_groups/', views.DiaryEditGroupsView.as_view(), name='edit_groups'),
     path('tags/<tag>/', views.DiaryTagsDetailView.as_view(), name='tag'),
 ]

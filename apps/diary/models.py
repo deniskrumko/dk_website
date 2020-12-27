@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from adminsortable.models import SortableMixin
+
 from core.models import BaseModel
 
 
@@ -140,6 +142,14 @@ class DiaryTag(BaseModel):
         blank=True,
         verbose_name=_('Entries'),
     )
+    group = models.ForeignKey(
+        'diary.DiaryTagGroup',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='tags',
+        verbose_name=_('Group'),
+    )
 
     def __str__(self):
         return self.name or '-'
@@ -147,7 +157,7 @@ class DiaryTag(BaseModel):
     class Meta:
         verbose_name = _('Diary tag')
         verbose_name_plural = _('Diary tags')
-        ordering = ('name',)
+        ordering = ('group', 'name')
 
     @property
     def ordered_entries(self):
@@ -163,6 +173,45 @@ class DiaryTag(BaseModel):
         elif str(count)[-1] in ('2', '3', '4'):
             word = 'записи'
         return f'{count} {word}'
+
+
+class DiaryTagGroup(SortableMixin, BaseModel):
+    """Model for group of diary tags."""
+
+    name = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_('Name'),
+    )
+    color = models.CharField(
+        max_length=32,
+        null=True,
+        blank=True,
+        verbose_name=_('Color'),
+    )
+    author = models.ForeignKey(
+        'users.User',
+        null=True,
+        blank=False,
+        related_name='diary_tag_groups',
+        on_delete=models.SET_NULL,
+        verbose_name=_('Author'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True,
+        verbose_name=_('Order'),
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Diary tag group')
+        verbose_name_plural = _('Diary tag groups')
+        ordering = ('order',)
 
 
 class DiaryTagValue(BaseModel):

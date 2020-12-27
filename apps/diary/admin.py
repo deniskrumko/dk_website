@@ -3,15 +3,18 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.admin import BaseModelAdmin
 
-from .models import DiaryEntry, DiaryTag, DiaryTagValue
+from .models import DiaryEntry, DiaryTag, DiaryTagGroup, DiaryTagValue
 
 
 class PrivateQuerySet(object):
     """Allow to view only own diary entries."""
 
+    private_queryset_field = 'author'
+
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        return qs.filter(author=request.user)
+        params = {self.private_queryset_field: request.user}
+        return qs.filter(**params)
 
 
 class DiaryTagValueInline(admin.TabularInline):
@@ -136,3 +139,42 @@ class DiaryTagValueAdmin(PrivateQuerySet, BaseModelAdmin):
 
     redirect_to_entry.label = _('Go to entry')
     redirect_to_entry.short_description = _('Go to entry')
+
+
+class DiaryTagInline(admin.TabularInline):
+    """Inline class for ``DiaryTag`` model."""
+
+    model = DiaryTag
+    extra = 0
+
+    def has_add_permission(self, *args, **kwargs):
+        return False
+
+    def has_change_permission(self, *args, **kwargs):
+        return False
+
+
+@admin.register(DiaryTagGroup)
+class DiaryTagGroupAdmin(PrivateQuerySet, BaseModelAdmin):
+    """Admin class for ``DiaryTagGroup`` model."""
+
+    list_display = (
+        'name',
+        'color',
+        'order',
+    )
+    search_fields = (
+        'name',
+    )
+    readonly_fields = (
+        'author',
+    )
+    inlines = (
+        DiaryTagInline,
+    )
+
+    def save_model(self, request, obj, form, change):
+        if not obj.author:
+            obj.author = request.user
+
+        return super().save_model(request, obj, form, change)

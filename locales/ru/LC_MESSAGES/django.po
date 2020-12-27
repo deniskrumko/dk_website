@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-20 13:00+0300\n"
+"POT-Creation-Date: 2020-12-27 17:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,11 +128,23 @@ msgstr "Записи дневника"
 msgid "Entries"
 msgstr "Записи"
 
+msgid "Group"
+msgstr "Группа"
+
 msgid "Diary tag"
 msgstr "Тэг дневника"
 
 msgid "Diary tags"
 msgstr "Тэги дневника"
+
+msgid "Color"
+msgstr "Цвет"
+
+msgid "Diary tag group"
+msgstr "Группа тэгов"
+
+msgid "Diary tag groups"
+msgstr "Группы тэгов"
 
 msgid "Tag"
 msgstr "Тэг"

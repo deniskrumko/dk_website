@@ -15,7 +15,7 @@ from core.views import BaseView, LoginRequiredMixin
 
 from apps.files.models import File, FileCategory
 
-from ..models import DiaryEntry, DiaryTag
+from ..models import DiaryEntry, DiaryTag, DiaryTagGroup
 
 __all__ = (
     'DiaryDetailView',
@@ -104,10 +104,26 @@ class DiaryDetailView(BaseDiaryView):
             # This happened for February 29
             jump_to_year = []
 
+        tag_groups = []
+        for group in DiaryTagGroup.objects.filter(author=self.user):
+            tag_groups.append({
+                'name': group.name,
+                'color': group.color,
+                'tags': group.tags.all(),
+            })
+
+        without_group = DiaryTag.objects.filter(author=self.user, group__isnull=True)
+        if without_group.exists():
+            tag_groups.append({
+                'name': '',
+                'color': '',
+                'tags': without_group.all(),
+            })
+
         context.update({
             'dt': dt,
             'entry': entry,
-            'tags': DiaryTag.objects.filter(author=self.user),
+            'tag_groups': tag_groups,
             'month': self.get_month_data(dt),
             'current': self.now,
             # TODO: Move to template later ---
