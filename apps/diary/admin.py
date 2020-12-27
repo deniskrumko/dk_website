@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.shortcuts import reverse
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from core.admin import BaseModelAdmin
@@ -96,11 +98,31 @@ class DiaryTagAdmin(PrivateQuerySet, admin.ModelAdmin):
 
     list_display = (
         'name',
-        'author',
+        'group',
+        'values_count',
+    )
+    list_filter = (
+        'group',
     )
     search_fields = (
         'name',
     )
+    readonly_fields = (
+        'group',
+        'values_count',
+    )
+
+    def get_actions(self, *args, **kwargs):
+        """Forbid any actions."""
+        return []
+
+    def values_count(self, obj):
+        """Get number of diary tag values."""
+        count = obj.values.count()
+        url = reverse('diary:tag', args=(obj.name,))
+        return mark_safe(f'<a href="{url}" target="_blank">{count}</a>')
+
+    values_count.short_description = _('Количество записей')
 
 
 @admin.register(DiaryTagValue)
@@ -174,6 +196,7 @@ class DiaryTagGroupAdmin(PrivateQuerySet, BaseModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
+        """Save model and set author."""
         if not obj.author:
             obj.author = request.user
 
