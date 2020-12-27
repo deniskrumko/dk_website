@@ -7,7 +7,7 @@ Check it out:
 
 # About project
 
-* Python 3.8.5
+* Python 3.8.7
 * Django 3.1
 * Amazon S3 as storage
-* Hosted by [Heroku](https://www.heroku.com/)
+* Hosted by [Heroku](https://www.heroku.com/) (v.20)
