@@ -150,16 +150,6 @@ def pep8(path='apps core'):
     return local('flake8 --config=.flake8 {}'.format(path))
 
 
-# REQUIREMENTS
-# ============================================================================
-
-@task
-def requirements():
-    """Install requirements."""
-    print_msg('Installing requirements')
-    local('pip install -r requirements.txt')
-
-
 # HEROKU
 # ============================================================================
 
