@@ -102,7 +102,6 @@ $primary-color-dark: #c4491f;
 }
 
 .album-tracks {
-  padding-top: 20px;
   .track {
     padding: 10px 5px;
     border-bottom: 1px solid #ddd;
@@ -159,6 +158,9 @@ $primary-color-dark: #c4491f;
   }
 }
 
+.btn-controls {
+    margin: 10px 0px;
+}
 // Tracks
 
 .tracks {

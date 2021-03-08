@@ -50,12 +50,13 @@
         <div class="info">
           <b>Количество треков:</b> {{ album.tracks_count }}
         </div>
-        {% comment %}
-          ❙❙►
-        {% endcomment %}
-        {% if request.user.is_superuser %}
-        <a href="{{ album.admin_changelink }}" class="btn">Изменить описание</a>
-        {% endif %}
+
+        <div class="btn-controls">
+          <button class="btn primary" onclick="playPauseTrack();" id="playBtn">Воспроизвести</button>
+          {% if request.user.is_superuser %}
+          <a href="{{ album.admin_changelink }}" class="btn">Изменить описание</a>
+          {% endif %}
+        </div>
       </div>
       <div class="album-tracks">
         {% for track in album.tracks.all %}

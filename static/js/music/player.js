@@ -7,10 +7,13 @@ function playPauseTrack() {
 
   var e = current_track_obj;
   if (current_track.paused) {
+    document.getElementById('playBtn').innerHTML = "Приостановить";
     current_track.play();
     e.classList.add("active");
     e.classList.remove("paused");
   } else {
+    document.getElementById('playBtn').innerHTML = "Воспроизвести";
+
     current_track.pause();
     e.classList.add("paused");
     e.classList.remove("active");

@@ -7,22 +7,31 @@ $primary-color-dark: #1992DB;
   float: right;
 }
 
+.album-items,
+.blog-items {
+  width: 100%;
+}
+
 // Cards
 
 .card {
   position: relative;
   display: block;
-  background: #18191c;
+  background: $dark;
   color: #e0e0e0;
   padding: 20px;
   margin-bottom: 20px;
   margin-right: 20px;
-  box-shadow: 10px 10px 0px #111214;
-  transition: transform 0.3s ease;
+  box-shadow: 10px 10px 0px $darkest;
+  transition: box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  box-shadow: 6px 6px 0px $darkest;
+
+  .subtitle {
+    color: $primary-color;
+  }
 }
 
 .primary-card {
@@ -104,12 +113,19 @@ $primary-color-dark: #1992DB;
     font-size: 14px;
     margin-top: 6px;
     max-width: 300px;
+    transition: color 0.3s ease;
   }
 
   .date {
     margin-top: 5px;
     font-size: 10px;
     color: $dark-text;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
   }
 }
 
@@ -124,6 +140,7 @@ $primary-color-dark: #1992DB;
 
     .image-box {
       text-align: center;
+      position: relative;
 
       .image {
         width: 200px;
@@ -131,11 +148,13 @@ $primary-color-dark: #1992DB;
         border-radius: 100px;
         margin-bottom: 20px;
         transition: transform 1s ease;
+        cursor: progress;
       }
 
       .image:hover {
-        transform: rotate(360deg);
+        animation: rotate 3s linear infinite;
       }
+
     }
 
     .text {
@@ -162,10 +181,6 @@ $primary-color-dark: #1992DB;
 
 @media only screen and (max-width: 769px) {
   .album-badges {
-    display: none;
-  }
-
-  .index-slider {
     display: none;
   }
 

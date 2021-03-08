@@ -11,40 +11,35 @@
 <div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'blog:index' %}" class="active">Истории</a>
-    <a href="#" onclick="alert('Пока раздел не готов...');">О проекте</a>
     {# <a href="{% url 'blog:about' %}">О проекте</a> #}
   </div>
 </div>
 
 <div class="container">
   {% if items %}
-  <div class="pure-g">
-    <div class="blog-items">
-    {% for item in items %}
-      <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-1-3">
-        <div class="blog-item" id="blog-{{ item.slug }}">
-          <a class="blog-item-image"
-             href="{% url 'blog:detail' item.slug %}?page={{current_page}}">
-            <img src="{% static 'images/play.svg' %}" class="blog-play" alt="">
-            {% if item.image %}
-            <img src="{{ item.thumbnail.url }}" class="blog-item-img" alt="">
-            {% else %}
-            <img src="{% static 'images/nophoto_wide.jpg' %}" class="blog-item-img" alt="">
-            {% endif %}
+
+    <div class="pure-g">
+      <div class="blog-items">
+        {% for item in items %}
+        <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-1-3">
+          <a href="{% url 'blog:detail' item.slug %}" class="card secondary-card">
+            <div class="image-box">
+              <img src="{% if item.thumbnail %}{{ item.thumbnail.url }}{% else %}
+            {% static 'images/nophoto_wide.jpg' %}{% endif %}" class="image" alt="">
             <div class="badges">
               {% if item.is_new %}<div class="new">NEW</div>{% endif %}
               {% if item.duration %}
               <div class="badge">{{ item.duration }}</div>
               {% endif %}
             </div>
+            </div>
+            <div class="subtitle">{{ item.subtitle }}</div>
+            <div class="date">{{ item.date }}</div>
           </a>
-          <div class="blog-item-subtitle">{{ item.subtitle }}</div>
-          <div class="blog-item-date">{{ item.date }}</div>
         </div>
+        {% endfor %}
       </div>
-    {% endfor %}
     </div>
-  </div>
   {% if paginator.num_pages > 1 %}
   <div class="pagination">
     <div>
