@@ -3,219 +3,191 @@ $primary-color-dark: #1992DB;
 
 @import "../_main";
 
-// Card Slider with left and right bars
-.card-slider {
-  position: relative;
-}
-.card-slider::after {
-  content: "";
-  height: 270px;
-  position: absolute;
-  right: -60px;
-  top: -15px;
-  width: 60px;
-  transition: box-shadow 0.5s ease;
-}
-.card-slider::before {
-  content: "";
-  height: 270px;
-  position: absolute;
-  left: -60px;
-  top: -15px;
-  width: 60px;
-  transition: box-shadow 0.5s ease;
-}
-.right-bar::after {
-  box-shadow: -20px 0 20px -20px rgba(0,0,0,.8);
-}
-.left-bar::before {
-  box-shadow: 20px 0 20px -20px rgba(0,0,0,.8);
-}
-
-// Scrollable part of card-slider
-.card-slider-scroll::-webkit-scrollbar {
-  display: none;
-}
-.card-slider-scroll {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  position: relative;
+.show-all {
+  float: right;
 }
 
 // Cards
 
-.card-div {
-  flex: 0 0 auto;
-  z-index: 10;
-  .card {
-    margin-right: 20px;
-    margin-bottom: 5px;
-    display: block;
-    transition: all 0.3s ease;
-    .images {
-      margin-bottom: 5px;
-      margin-top: 5px;
-      position: relative;
-      .card-play {
-        position: absolute;
-        height: 40px;
-        opacity: 0;
-        z-index: 10;
-        transition: opacity 0.3s ease, transform 0.1s ease;
-        left: 50%;
-        top: 50%;
-        margin-top: -20px;
-        margin-left: -20px;
-      }
-      .card-image {
-        height: 170px;
-        transition: filter 0.3s ease;
-        z-index: 9;
-      }
-    }
-    .subtitle {
+.card {
+  position: relative;
+  display: block;
+  background: #18191c;
+  color: #e0e0e0;
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  box-shadow: 10px 10px 0px #111214;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.primary-card {
+  .image {
+    width: 100%;
+  }
+
+  .left-section {
+    position: relative;
+  }
+
+  .right-section {
+    padding-left: 15px;
+
+    .title {
       color: $text;
-      font-weight: 400;
-      font-size: 14px;
+      font-weight: 700;
+      font-size: 28px;
       margin-bottom: 5px;
       max-width: 300px;
     }
+
+    .subtitle {
+      color: $text;
+      font-weight: 400;
+      font-size: 16px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      max-width: 300px;
+    }
+
     .date {
       margin-top: 5px;
       font-size: 10px;
       color: $dark-text;
     }
+
+    .year {
+      margin-top: 5px;
+      font-size: 14px;
+      color: $dark-text;
+    }
+
+    .info {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .btn {
+      text-align: center;
+    }
   }
-  .album {
+
+}
+
+.secondary-card {
+
+  .image-box {
+    height: 133px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    overflow: hidden;
+
+    .image {
+      width: 100%;
+    }
+
+    .badges {
+      bottom: 6px;
+    }
+  }
+
+  .subtitle {
+    color: $text;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 6px;
+    max-width: 300px;
+  }
+
+  .date {
     margin-top: 5px;
     font-size: 10px;
     color: $dark-text;
   }
-  .album a {
-    transition: $color-trans;
-  }
-  .album a:hover {
-    color: $primary-color;
-  }
 }
 
-.card-div:last-child .card {
-  margin-right: 0px;
-}
-
-.show-all-btn {
-  height: 166px;
-  width: 302px;
-  border: 2px dashed $primary-color;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.show-all-btn::after {
-  content: 'Посмотреть';
-  position: absolute;
-  display: block;
-  bottom: 0;
-  left: 0;
-  height: 0;
-  text-align: center;
-  opacity: 0;
-  transition: all 0.3s ease;
-  color: $primary-color;
-  width: calc(100% - 20px);
-  padding: 10px;
-  font-weight: bold;
-}
-.show-all-btn:hover::after {
-  height: 20px;
-  opacity: 1;
-}
-.show-more {
-  font-size: 14px;
+.welcome {
   margin-top: 20px;
-  margin-bottom: 40px;
-  display: block;
-  transition: color 0.2s ease;
+  margin-bottom: 20px;
+  background: $dark;
+
+  .container {
+    padding: 30px;
+    color: $text;
+
+    .image-box {
+      text-align: center;
+
+      .image {
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+        margin-bottom: 20px;
+        transition: transform 1s ease;
+      }
+
+      .image:hover {
+        transform: rotate(360deg);
+      }
+    }
+
+    .text {
+      font-size: 18px;
+
+      a {
+        color: $primary-color;
+        font-weight: 500;
+      }
+
+      a:hover {
+        color: $primary-color-dark;
+      }
+    }
+
+  }
 }
 
-@media only screen and (min-width: 600px) {
-  .card:hover {
-    .card-image {
-      filter: brightness(55%);
-    }
-    .card-play{
-      opacity: 1 !important;
-    }
-  }
-  .card:active {
-    .card-play {
-      transform: scale(0.9);
-    }
+@media only screen and (max-width: 970px) {
+  .welcome .container .text {
+    font-size: 16px;
   }
 }
 
-@media only screen and (max-width: 950px) {
-  .card {
-    max-width: 250px;
-  }
-  .show-all-btn {
-    height: 137px;
-    width: 250px;
-  }
-  .card-images {
-    margin-bottom: 5px;
-    margin-top: 0px;
-    position: relative;
-  }
-  .card-image {
-    height: 140px !important;
-  }
-  .music.card {
-    max-width: 150px;
-  }
-  .music.title {
-    font-size: 14px;
-  }
-  .right-bar::after {
-    box-shadow: none;
+@media only screen and (max-width: 769px) {
+  .album-badges {
     display: none;
   }
-  .left-bar::before {
-    box-shadow: none;
+
+  .index-slider {
     display: none;
   }
-  .card-div:first-child .card {
-    margin-left: 15px;
-  }
-  .card-div:last-child .card {
-    margin-right: 15px;
-  }
-}
 
-@media only screen and (max-width: 567px) {
   .card {
-    max-width: 200px;
+    margin-right: 10px;
+
+    .btn {
+      width: 100%;
+    }
   }
-  .card-image {
-    height: 112px !important;
+
+  .primary-card .right-section {
+    padding-left: 0px;
+
+    .title {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+    }
   }
-  .show-all-btn {
-    height: 108px;
-    width: 200px;
-    font-size: 12px;
-  }
-  .show-all-btn::after {
-    padding-bottom: 5px;
-  }
-  .show-more {
-    margin-bottom: 10px;
-  }
-  .music.card {
-    max-width: 120px;
-  }
-  .music.title {
-    font-size: 12px;
-  }
+
 }
