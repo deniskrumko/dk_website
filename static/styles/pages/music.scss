@@ -104,7 +104,7 @@ $primary-color-dark: #c4491f;
 .album-tracks {
   .track {
     padding: 10px 5px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $faded-text;
     cursor: pointer;
     transition: all 0.3s ease;
     color: $text;
@@ -177,7 +177,7 @@ $primary-color-dark: #c4491f;
   }
   .track {
     padding: 10px 5px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $faded-text;
     cursor: pointer;
     transition: $color-trans;
     color: $text;
