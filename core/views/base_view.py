@@ -63,7 +63,7 @@ class BaseView(TemplateView):
 
         try:
             page = int(self.request.GET.get('page', 1))
-            if page > paginator.num_pages:
+            if not (1 < page <= paginator.num_pages):
                 raise ValueError
         except Exception:
             page = 1
