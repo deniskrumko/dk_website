@@ -9,7 +9,7 @@
 {# Sections links #}
 <div class="container slider index-slider">
   <div class="scrollable-h1">
-    <a class="active">Видео</a>
+    <a href="{% url 'blog:index' %}" class="active">Видео</a>
     <a href="{% url 'blog:index' %}" class="show-all md-hidden">
       Посмотреть все
     </a>
@@ -69,6 +69,11 @@
     {% endfor %}
     </div>
   </div>
+  <div style="margin: 10px 0px;">
+    <a href="{% url 'blog:index' %}" class="btn primary wide md-visible">
+      Посмотреть все видео
+    </a>
+  </div>
 </div>
 
 <div class="welcome">
@@ -93,7 +98,7 @@
 {# Sections links #}
 <div class="container slider index-slider">
   <div class="scrollable-h1">
-    <a class="active">Музыка</a>
+    <a href="{% url 'music:index' %}" class="active">Музыка</a>
     <a href="{% url 'music:index' %}" class="show-all md-hidden">
       Послушать больше
     </a>

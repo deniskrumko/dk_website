@@ -20,6 +20,10 @@
   outline: none;
 }
 
+.btn.wide {
+    width: calc(100% - 54px);
+}
+
 // Primary buttons
 .btn.primary {
   color: $dark;

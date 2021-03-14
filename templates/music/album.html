@@ -26,7 +26,7 @@
       <div class="album-main-image">
         {% if album.image %}
         <a href="{{ album.image.url }}" target="_blank">
-          <img src="{{ album.thumbnail.url }}" alt="{{ album.name }}">
+          <img src="{{ album.image.url }}" alt="{{ album.name }}">
           <div class="badges">
             {% if album.status %}<div class="new">{{ album.status }}</div>{% endif %}
           </div>
