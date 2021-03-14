@@ -50,7 +50,7 @@ class Album(SortableMixin, BaseModel):
     )
     thumbnail = ImageSpecField(
         source='image',
-        processors=[ResizeToFit(200, 200)],
+        processors=[ResizeToFit(300, 300)],
         format='JPEG',
         options={'quality': 100},
     )
