@@ -8,7 +8,7 @@
   margin: 5px 5px;
   font-size: 14px;
   display: inline-block;
-  transition: $bg-trans, transform 0.1s ease;
+  transition: all 0.1s ease;
   text-align: center;
   color: $text;
   background: $darken;
@@ -31,6 +31,17 @@
 }
 .btn.primary:hover {
   background: $primary-color-dark;
+}
+
+.btn.lined.primary {
+    color: $primary-color;
+    background: transparent;
+    box-shadow: inset 0px 0px 0px 1px $primary-color;
+}
+.btn.lined.primary:hover {
+    color: $primary-color-dark;
+    background: transparent;
+    box-shadow: inset 0px 0px 0px 1px $primary-color-dark;
 }
 
 // Faded buttons

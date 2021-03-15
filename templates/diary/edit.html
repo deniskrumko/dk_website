@@ -32,9 +32,9 @@ document.addEventListener('keydown', function(e) {
 {% block entry %}
 <div class="entry">
   <div class="entry-buttons">
-    <input type="submit" name="" value="Сохранить" class="btn primary" id="save">
+    <input type="submit" name="" value="Сохранить" class="btn lined primary" id="save">
     <input type="hidden" name="done" id="done" value="{% if entry.done %}on{% endif %}">
-    <button type="button" name="button" class="btn {% if not entry.done %}faded{% endif %}" id="is_ready">
+    <button type="button" name="button" class="btn {% if entry.done %}primary{% else %}faded{% endif %}" id="is_ready">
       <img src="{% static 'images/signs/done_bw.svg' %}" alt="">
     </button>
   </div>

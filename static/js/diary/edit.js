@@ -28,9 +28,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (hidden_done_input.value == 'on') {
       hidden_done_input.value = '';
       done_button.classList.add('faded');
+      done_button.classList.remove('primary');
     } else {
       hidden_done_input.value = 'on';
       done_button.classList.remove('faded');
+      done_button.classList.add('primary');
     }
   });
 
