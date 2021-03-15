@@ -1,6 +1,4 @@
 from django.contrib.auth import authenticate, login
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import reverse
 
 from core.views import BaseView
 
@@ -23,8 +21,6 @@ class LoginView(BaseView):
         if user is not None:
             login(request, user)
             next_redirect = self.request.GET.get('next')
-            return HttpResponseRedirect(
-                next_redirect if next_redirect else reverse('main:index'),
-            )
+            return self.redirect(next_redirect or 'main:index', use_reverse=not next_redirect)
 
-        return HttpResponseRedirect(reverse('users:login'))
+        return self.redirect('users:login')
