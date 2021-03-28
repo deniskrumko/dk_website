@@ -3,11 +3,13 @@
 .menu {
   padding-top: 30px;
 }
+
 #menu-logo {
   width: 80px;
   display: inline-block;
   transition: filter 0.3s ease;
 }
+
 #menu-logo:hover {
   filter: brightness(0.3);
 }
@@ -15,6 +17,7 @@
 // Menu items
 #menu-items {
   padding: 15px 0px !important;
+
   a {
     border-radius: 20px;
     display: inline-block;
@@ -24,10 +27,12 @@
     transition: $bg-trans;
     transition: $color-trans;
   }
-  a.selected{
+
+  a.selected {
     color: $primary-color;
     font-weight: bold;
   }
+
   a:hover {
     background: $dark;
     color: $primary-color;
@@ -37,9 +42,11 @@
 // Login section
 #login-section {
   margin-top: 20px;
+
   a {
     float: right;
   }
+
   img {
     width: 46px;
     height: 46px;
@@ -47,23 +54,147 @@
     float: right;
     transition: transform 0.3s ease;
   }
+
   img:hover {
     transform: scale(1.1);
   }
 }
 
-
 .mobile-menu {
-  text-align: right;
-  a {
-    display: inline-block;
-    padding: 17px 0px 0px 10px;
-    img {
-      width: 35px;
-      height: 35px;
-    }
-  }
+    text-align: right;
+    padding-top: 10px;
+    position: relative;
 }
+
+.mobile-menu-title {
+    display: inline-block;
+    color: $primary-color;
+    position: absolute;
+    top: 24px;
+    right: 50px;
+    font-family: "Avenir Next Cyr";
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#menu-items-box {
+    background: $darken;
+    height: 0px;
+    transition: height 0.3s ease;
+}
+#menu-items-box.active {
+    height: 150px;
+}
+
+#menu-items-box-inside {
+    display: none;
+}
+#menu-items-box-inside.active {
+    display: block;
+}
+
+.hamburger {
+  padding: 12px 0px;
+  display: inline-block;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+}
+.hamburger:focus {
+    outline: none;
+}
+
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::before,
+.hamburger.is-active .hamburger-inner::after {
+  background-color: $primary-color;
+}
+
+.hamburger-box {
+  width: 35px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px;
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  width: 30px;
+  height: 3px;
+  background-color: $primary-color;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+  content: "";
+  display: block;
+}
+
+.hamburger-inner::before {
+  top: -10px;
+}
+
+.hamburger-inner::after {
+  bottom: -10px;
+}
+
+.hamburger--collapse .hamburger-inner {
+  top: auto;
+  bottom: 0;
+  transition-duration: 0.13s;
+  transition-delay: 0.13s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger--collapse .hamburger-inner::after {
+  top: -20px;
+  transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), opacity 0.1s linear;
+}
+
+.hamburger--collapse .hamburger-inner::before {
+  transition: top 0.12s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger--collapse.is-active .hamburger-inner {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+  transition-delay: 0.22s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.hamburger--collapse.is-active .hamburger-inner::after {
+  top: 0;
+  opacity: 0;
+  transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), opacity 0.1s 0.22s linear;
+}
+
+.hamburger--collapse.is-active .hamburger-inner::before {
+  top: 0;
+  transform: rotate(-90deg);
+  transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+
+
 
 /* MEDIA */
 @media only screen and (max-width: 700px) {
@@ -71,7 +202,8 @@
     padding-top: 10px;
     padding-bottom: 0px;
   }
-  #menu-logo{
+
+  #menu-logo {
     width: 70px;
   }
 }

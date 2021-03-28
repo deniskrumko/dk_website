@@ -51,16 +51,6 @@
     {# FONTS #}
     <link rel="stylesheet" href="{% static 'fonts/AvenirNextCyr/stylesheet.css' %}">
 
-    <script type="text/javascript">
-    function scrollToTop(){
-      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-      if (currentScroll > 0) {
-        window.requestAnimationFrame(scrollToTop);
-        window.scrollTo (0,currentScroll - (currentScroll/5));
-      }
-    };
-    </script>
-
     {# EXTRA CSS #}
     {% block css %}{% endblock %}
   </head>
@@ -111,5 +101,6 @@
   </body>
 
   {# EXTRA JS #}
+  <script src="{% static 'js/base.js' %}" charset="utf-8"></script>
   {% block js %}{% endblock %}
 </html>
