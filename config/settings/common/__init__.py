@@ -13,3 +13,4 @@ from .templates import *  # noqa
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 ALLOWED_HOSTS = ['*']
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
