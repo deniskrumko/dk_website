@@ -17,9 +17,9 @@ class BlogIndexView(BaseBlogView):
     template_name = 'blog/index.html'
     queryset = BlogEntry.objects.filter(is_active=True)
     max_items_on_page = 12
-    title = 'DK - Блог'
+    title = 'DK - Видео'
     description = (
-        'Блог Дениса Крумко: видео о путешествиях за границу и '
+        'DK: видео о путешествиях за границу и '
         'на различные музыкальные концерты. Много музыки и много видео :)'
     )
     use_analytics = True

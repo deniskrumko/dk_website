@@ -94,7 +94,6 @@ $primary-color-dark: #1992DB;
 .secondary-card {
 
   .image-box {
-    height: 133px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -115,7 +114,7 @@ $primary-color-dark: #1992DB;
     color: $text;
     font-weight: 400;
     font-size: 16px;
-    margin-top: 6px;
+    margin-top: 10px;
     max-width: 300px;
     transition: color 0.3s ease;
   }

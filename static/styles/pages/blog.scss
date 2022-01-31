@@ -42,7 +42,7 @@ $primary-color-dark: #059891;
   .subtitle {
     color: $text;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 6px;
     max-width: 300px;
     transition: color 0.3s ease;
@@ -50,7 +50,7 @@ $primary-color-dark: #059891;
 
   .date {
     margin-top: 5px;
-    font-size: 10px;
+    font-size: 13px;
     color: $dark-text;
   }
 }

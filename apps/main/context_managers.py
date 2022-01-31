@@ -27,7 +27,7 @@ def custom_admin(request):
     return {
         'left_menu': [
             {
-                'title': 'Блог',
+                'title': 'Видео',
                 'url': '/admin/blog/',
                 'items': admin_items(BlogSeries, BlogEntry),
             },
