@@ -153,12 +153,13 @@ $primary-color-dark: #059891;
 
 .blog-info {
   .title {
+    font-family: $font2;
     margin-bottom: 0px;
     color: $text;
   }
 
   .after-title {
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 10px;
     color: $text;
 
@@ -189,6 +190,8 @@ $primary-color-dark: #059891;
   .text {
     background: $dark;
     color: $text;
+    font-size: 18px;
+    line-height: 24px;
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 10px;

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sass_tags static i18n %}
+{% load sass_tags static %}
 
 {% block css %}
 <link href="{% sass_src 'styles/pages/profile.scss' %}" rel="stylesheet" type="text/css">
@@ -9,10 +9,10 @@
 <div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'users:login' %}" class="active">
-      {% trans "Login" %}
+      Войти
     </a>
     <a href="#" onclick="alert('Регистрации на сайт пока нет :)')">
-      {% trans "Sign up" %}
+      Зарегистрироваться
     </a>
   </div>
 </div>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sass_tags static i18n %}
+{% load sass_tags static %}
 
 {% block css %}
 <link href="{% sass_src 'styles/pages/blog.scss' %}" rel="stylesheet" type="text/css">
@@ -10,8 +10,8 @@
 {# Sections links #}
 <div class="container slider">
   <div class="scrollable-h1">
-    <a href="{% url 'blog:index' %}" class="active">Истории</a>
-    {# <a href="{% url 'blog:about' %}">О проекте</a> #}
+    <a href="{% url 'video:index' %}" class="active">Истории</a>
+    {# <a href="{% url 'video:about' %}">О проекте</a> #}
   </div>
 </div>
 
@@ -22,7 +22,7 @@
       <div class="blog-items">
         {% for item in items %}
         <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-1-3">
-          <a href="{% url 'blog:detail' item.slug %}" class="card secondary-card">
+          <a href="{% url 'video:detail' item.slug %}" class="card secondary-card">
             <div class="image-box">
               <img src="{% if item.thumbnail %}{{ item.thumbnail.url }}{% else %}
             {% static 'images/nophoto_wide.jpg' %}{% endif %}" class="image" alt="">

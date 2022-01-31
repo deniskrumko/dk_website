@@ -89,7 +89,7 @@ class BlogEntry(LikedModel, BaseModel):
 
     def get_absolute_url(self):
         """Get absolute URL for sitemap."""
-        return f'/blog/{self.slug}'
+        return f'/video/{self.slug}'
 
     # Blog series navigation
     # ========================================================================

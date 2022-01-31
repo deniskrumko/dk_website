@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static %}
 
 <div class="menu container pure-g">
 
@@ -14,8 +14,8 @@
     <a href="{% url 'main:index' %}" class="{% if active_menu == 'index'%}selected{% endif %}">
       ГЛАВНАЯ
     </a>
-    <a href="{% url 'blog:index' %}" class="{% if active_menu == 'blog' %}selected{% endif %}">
-      БЛОГ
+    <a href="{% url 'video:index' %}" class="{% if active_menu == 'blog' %}selected{% endif %}">
+      ВИДЕО
     </a>
     {% if request.user.is_staff %}
     <a href="{% url 'diary:index' %}" class="{% if active_menu == 'diary' %}selected{% endif %}">
@@ -29,7 +29,7 @@
 
   {# Mobile menu #}
   <div class="pure-u-18-24 pure-u-sm-21-24 md-visible mobile-menu">
-    <a href="{% url 'blog:index' %}" title="Блог">
+    <a href="{% url 'video:index' %}" title="Видео">
       {% if active_menu == 'blog' %}
       <img src="{% static 'images/menu/blog_2.svg' %}" alt="">
       {% else %}
@@ -84,7 +84,7 @@
       {% endif %}
     {% elif active_menu != 'login' %}
     <a class="btn primary" href="{% url 'users:login' %}?next={{ request.path }}">
-      {% trans "Login" %}
+      Войти
     </a>
     {% endif %}
   </div>

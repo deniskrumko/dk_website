@@ -28,8 +28,8 @@ class BlogImageInline(admin.TabularInline):
 class BlogEntryAdmin(BaseModelAdmin):
     """Admin class for ``BlogEntry`` model."""
 
-    url_index = 'blog:index'
-    url_detail = 'blog:detail'
+    url_index = 'video:index'
+    url_detail = 'video:detail'
 
     fieldsets = (
         (_('Main'), {

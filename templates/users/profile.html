@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sass_tags static i18n %}
+{% load sass_tags static %}
 
 {% block css %}
 <link href="{% sass_src 'styles/pages/profile.scss' %}" rel="stylesheet" type="text/css">
@@ -9,12 +9,12 @@
 <div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'users:profile' %}" class="active">
-      {% trans "Your profile" %}
+      Ваш профиль
     </a>
     {% if user.is_superuser %}
-    <a href="{% url 'admin:index' %}">{% trans "Admin UI" %}</a>
+    <a href="{% url 'admin:index' %}">Админка</a>
     <a href="https://github.com/users/deniskrumko/projects/1" target="_blank">
-      {% trans "Github" %}
+      Github
     </a>
     {% endif %}
   </div>
@@ -25,7 +25,7 @@
     {% csrf_token %}
     <div class="pure-g">
       <div class="pure-u-1-1 pure-u-md-1-2">
-        <div class="dk-h2">{% trans "Personal Information" %}</div>
+        <div class="dk-h2">Персональная информация</div>
         <p>
           <input class="text-input" type="text" name="first_name" placeholder="Ваше имя"
             value="{{ user.first_name }}">
@@ -36,7 +36,7 @@
         </p>
       </div>
       <div class="pure-u-1-1 pure-u-md-1-2">
-        <div class="dk-h2">{% trans "Avatar" %}</div>
+        <div class="dk-h2">Изображение профиля</div>
         {% if request.user.image %}
         <div class="avatar">
           <img src="{{ request.user.image_small.url }}" alt="image" width="60">
@@ -47,7 +47,7 @@
           <p>
             <label class="checkbox-input">
               <input type="checkbox" name="remove_avatar">
-              {% trans "Remove image" %}
+              Удалить изображение
             </label>
           </p>
           {% endif %}
@@ -64,7 +64,7 @@
       <div>
         <input type="submit" value="Сохранить" class="btn primary">
         <a href="{% url 'users:logout' %}" class="btn">
-          {% trans "Logout" %}
+          Выйти
         </a>
       </div>
     </div>

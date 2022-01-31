@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sass_tags static i18n %}
+{% load sass_tags static %}
 
 {% block css %}
 <link href="{% sass_src 'styles/pages/diary.scss' %}" rel="stylesheet" type="text/css">
@@ -49,7 +49,7 @@
     <br>
     <div class="dk-h2">Добавление групп для тегов</div>
     <br><br>
-    
+
     <div class="pure-g">
       {% for tag in tags %}
       <div class="pure-u-1-1 pure-u-md-1-2">

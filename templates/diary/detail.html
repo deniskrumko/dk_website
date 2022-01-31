@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sass_tags static i18n %}
+{% load sass_tags static %}
 
 {% block css %}
 <link href="{% sass_src 'styles/pages/diary.scss' %}" rel="stylesheet" type="text/css">
@@ -66,9 +66,9 @@ document.addEventListener('keydown', function(e) {
         <div class="date">
           {{ dt|date:'F d, Y (l)' }}
           {% if entry.done %}
-          <img src="{% static 'images/signs/done.svg' %}" class="done-sign" alt="V" title="{% trans 'Entry is done' %}">
+          <img src="{% static 'images/signs/done.svg' %}" class="done-sign" alt="V" title="Запись закочена">
           {% else %}
-          <img src="{% static 'images/signs/cross.svg' %}" class="done-sign" alt="X" title="{% trans 'Entry is not done yet' %}">
+          <img src="{% static 'images/signs/cross.svg' %}" class="done-sign" alt="X" title="Запись пока не закончена">
           {% endif %}
         </div>
         {% endblock %}
@@ -127,7 +127,6 @@ document.addEventListener('keydown', function(e) {
         {% endfor %}
         <a href="{{ file_link }}" class="btn tag-p primary">＋</a>
         {% else %}
-        <div><a href="{{ file_link }}">Прикрепить файл</a></div>
         {% endif %}
       </div>
       {% endblock %}

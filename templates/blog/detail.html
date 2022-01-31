@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sass_tags static i18n %}
+{% load sass_tags static %}
 
 {% block css %}
 <link href="{% sass_src 'styles/pages/blog.scss' %}" rel="stylesheet" type="text/css">
@@ -30,7 +30,7 @@
           {% static 'images/nophoto_wide.jpg'%}
           {% endif %}">
             <source src="{{ video_src }}" type="video/mp4">
-            {% trans "Your browser does not support HTML5 video." %}
+            Ваш браузер не поддерживает HTML5
           </video>
           {% endif %}
         </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="items">
               {% for series_item in item.series.items.all %}
-                <a class="item {% if series_item.entry.slug == item.slug %}active{% endif %}" href="{% url 'blog:detail' series_item.entry.slug %}{% if current_page %}?page={{current_page}}{% endif%}">
+                <a class="item {% if series_item.entry.slug == item.slug %}active{% endif %}" href="{% url 'video:detail' series_item.entry.slug %}{% if current_page %}?page={{current_page}}{% endif%}">
                   <div class="counter">{{ forloop.counter }}</div>
                   {{ series_item }}
                 </a>
@@ -108,7 +108,7 @@
     {% endif %}
   </div>
   <div class="buttons">
-    <a href="{% url 'blog:index' %}{% if current_page %}?page={{current_page}}{% endif %}#blog-{{ item.slug }}"
+    <a href="{% url 'video:index' %}{% if current_page %}?page={{current_page}}{% endif %}#blog-{{ item.slug }}"
        class="btn primary">
        Назад
      </a>

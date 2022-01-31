@@ -13,7 +13,7 @@ admin.site.site_title = _('DK')
 urlpatterns = [
     # Apps
     path('', include('apps.main.urls', namespace='main')),
-    path('blog/', include('apps.blog.urls', namespace='blog')),
+    path('video/', include('apps.blog.urls', namespace='video')),
     path('music/', include('apps.music.urls', namespace='music')),
     path('diary/', include('apps.diary.urls', namespace='diary')),
 

@@ -15,7 +15,7 @@ $primary-color-darkest: #02434b !default;
 
   .date {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
     padding: 20px 0;
     position: relative;
     color: $text;
@@ -30,7 +30,7 @@ $primary-color-darkest: #02434b !default;
       font-weight: 400 !important;
       line-height: 24px;
       padding: 0;
-      font-family: "Avenir Next Cyr", Arial, sans-serif !important;
+      font-family: $font, Arial, sans-serif !important;
       color: $dark-text;
     }
 
@@ -156,7 +156,7 @@ $primary-color-darkest: #02434b !default;
 
   .weekdays {
     span {
-      width: 25px;
+      width: 24px;
       display: inline-block;
       text-align: center;
       padding: 5px 3px;
@@ -170,7 +170,7 @@ $primary-color-darkest: #02434b !default;
     padding-bottom: 10px;
 
     .day {
-      width: 25px;
+      width: 24px;
       display: inline-block;
       text-align: center;
       padding: 5px 3px;
@@ -256,7 +256,7 @@ $primary-color-darkest: #02434b !default;
   border: none;
   margin: 0;
   padding: 0;
-  font-family: "Avenir Next Cyr", Arial, sans-serif !important;
+  font-family: $font, Arial, sans-serif !important;
   background-color: $dark;
   color: $dark-text;
 }
