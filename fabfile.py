@@ -5,9 +5,9 @@ from fabric.operations import prompt
 
 from core.display import print_msg
 
-
 # MAIN COMMANDS
 # ============================================================================
+
 
 @task
 def manage(command):

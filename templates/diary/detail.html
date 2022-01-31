@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sass_tags static %}
+{% load sass_tags static custom_tags %}
 
 {% block css %}
 <link href="{% sass_src 'styles/pages/diary.scss' %}" rel="stylesheet" type="text/css">
@@ -64,7 +64,7 @@ document.addEventListener('keydown', function(e) {
         {# Entry title #}
         {% block entry-date %}
         <div class="date">
-          {{ dt|date:'F d, Y (l)' }}
+          {{ dt|rdate:'%d %RXM, %Y (%RWD)' }}
           {% if entry.done %}
           <img src="{% static 'images/signs/done.svg' %}" class="done-sign" alt="V" title="Запись закочена">
           {% else %}
@@ -144,7 +144,7 @@ document.addEventListener('keydown', function(e) {
           <img src="{% static 'images/arrows/right.svg' %}" alt="">
         </a>
         <div class="month-name">
-          {{ dt|date:"F Y" }}
+          {{ dt|rdate:"%RFM %Y" }}
         </div>
         <div class="weekdays">
           <span>ПН</span>

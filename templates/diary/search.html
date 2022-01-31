@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sass_tags static %}
+{% load sass_tags static custom_tags %}
 
 {% block css %}
 <link href="{% sass_src 'styles/pages/diary.scss' %}" rel="stylesheet" type="text/css">
@@ -53,9 +53,9 @@
     {% for entry in entries %}
       <div class="calendar-item">
         <a href="{% url 'diary:edit' date=entry.0 %}" class="calendar-title">
-          {{ entry.0|date:'F d, Y' }}
+          {{ entry.0|rdate:'%d %RXM, %Y' }}
         </a>
-        <div class="calendar-subtitle">{{ entry.0|date:'l' }}</div>
+        <div class="calendar-subtitle">{{ entry.0|rdate:'%RWD' }}</div>
         {% if entry.1 and entry.1.text %}
         <div class="entry calendar-entry">
           {% autoescape off %}

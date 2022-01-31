@@ -1,6 +1,5 @@
 from .auth import *  # noqa
 from .aws_s3 import *  # noqa
-from .datetime import *  # noqa
 from .imagekit import *  # noqa
 from .installed_apps import *  # noqa
 from .locales import *  # noqa

@@ -6,6 +6,40 @@ from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFit
 
 from core.models import BaseModel, LikedModel
+from core.utils import ru_date_format
+
+
+class BlogCategory(SortableMixin, BaseModel):
+    """Model for blog category."""
+
+    name = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_('Name'),
+    )
+    slug = models.CharField(
+        blank=False,
+        db_index=True,
+        max_length=64,
+        null=True,
+        unique=True,
+        verbose_name=_('Slug'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True,
+        verbose_name=_('Order'),
+    )
+
+    def __str__(self):
+        return self.name or '-'
+
+    class Meta:
+        verbose_name = _('Blog category')
+        verbose_name_plural = _('Blog categories')
+        ordering = ('order',)
 
 
 class BlogEntry(LikedModel, BaseModel):
@@ -78,6 +112,14 @@ class BlogEntry(LikedModel, BaseModel):
         default=False,
         verbose_name=_('Show gallery'),
     )
+    category = models.ForeignKey(
+        BlogCategory,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='blogs',
+        verbose_name=_('Category'),
+    )
 
     def __str__(self):
         return self.title or '-'
@@ -93,6 +135,10 @@ class BlogEntry(LikedModel, BaseModel):
 
     # Blog series navigation
     # ========================================================================
+
+    @property
+    def date_str(self):
+        return ru_date_format(self.date, '%d %RSM. %Y')
 
     @property
     def is_series(self):

@@ -10,8 +10,13 @@
 {# Sections links #}
 <div class="container slider">
   <div class="scrollable-h1">
-    <a href="{% url 'video:index' %}" class="active">Видео</a>
-    {# <a href="{% url 'video:about' %}">О проекте</a> #}
+    <a href="{% url 'video:index' %}" {% if not current_category %}class="active"{% endif %}>Все</a>
+    {% for category in categories %}
+    <a href="{% url 'video:index' %}?category={{ category.slug }}"
+    {% if category.slug == current_category %}class="active"{% endif %}>
+      {{ category.name }}
+    </a>
+    {% endfor %}
   </div>
 </div>
 
@@ -34,7 +39,7 @@
             </div>
             </div>
             <div class="subtitle">{{ item.subtitle }}</div>
-            <div class="date">{{ item.date }}</div>
+            <div class="date">{{ item.date_str }}</div>
           </a>
         </div>
         {% endfor %}

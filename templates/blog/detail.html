@@ -88,7 +88,7 @@
     </div>
     <div class="after-title">
       <div class="date">
-        Опубликовано: {{ item.date|date:"j E Y"}}
+        Опубликовано: {{ item.date_str }}
       </div>
       {% if item.video.source != 'youtube' %}
       <div class="quality noselect">

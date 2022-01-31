@@ -9,6 +9,36 @@ from core.admin import BaseModelAdmin
 from . import models
 
 
+@admin.register(models.BlogCategory)
+class BlogCategoryAdmin(SortableAdmin, admin.ModelAdmin):
+    """Admin class for ``BlogCategory`` model."""
+
+    fieldsets = (
+        (_('Main'), {
+            'fields': (
+                'name',
+                'slug',
+                'order',
+            ),
+        }),
+    )
+    list_display = (
+        'name',
+        'slug',
+        'order',
+        'created',
+        'modified',
+    )
+    search_fields = (
+        'name',
+    )
+    readonly_fields = (
+        'created',
+        'modified',
+        'order',
+    )
+
+
 class BlogImageInline(admin.TabularInline):
     """Inline class for ``BlogImage`` model."""
 
@@ -51,6 +81,7 @@ class BlogEntryAdmin(BaseModelAdmin):
             'fields': (
                 'video',
                 'text',
+                'category',
                 'show_gallery',
             ),
         }),

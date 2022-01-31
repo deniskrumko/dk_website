@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 
 from core.views import BaseView
 
-from .models import BlogEntry
+from .models import BlogCategory, BlogEntry
 
 
 class BaseBlogView(BaseView):
@@ -24,10 +24,25 @@ class BlogIndexView(BaseBlogView):
     )
     use_analytics = True
 
-    def get_context_data(self):
+    def get(self, request):
+        category = request.GET.get('category')
+        context = self.get_context_data(category)
+        return self.render_to_response(context)
+
+    def get_queryset(self, category: str):
+        if category and BlogCategory.objects.filter(slug=category).exists():
+            return self.queryset.filter(category__slug=category)
+
+        return self.queryset
+
+    def get_context_data(self, category: str = None):
         """Get context data."""
         context = super().get_context_data()
-        context.update(self.get_paginated_data(items=self.queryset))
+        queryset = self.get_queryset(category)
+        context.update(self.get_paginated_data(items=queryset))
+
+        context['categories'] = BlogCategory.objects.all()
+        context['current_category'] = category
         return context
 
 

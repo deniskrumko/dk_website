@@ -1,7 +1,6 @@
 import calendar
 from datetime import date, datetime, timedelta
 
-from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db.models import Count
 from django.http.response import HttpResponseRedirect
@@ -11,6 +10,7 @@ from django.utils import timezone
 from cachetools import TTLCache, cached
 from dateutil.rrule import DAILY, rrule
 
+from core.utils import MONTH_LIST
 from core.views import BaseView, LoginRequiredMixin
 
 from apps.files.models import File, FileCategory
@@ -292,12 +292,10 @@ class DiarySearchView(BaseDiaryView):
         context.update({
             'entries': days,
             'query': query,
-            'months': settings.MONTH_LIST,
+            'months': MONTH_LIST,
             'years': self.years,
             'selected_month': month,
-            'selected_month_name': (
-                settings.MONTH_LIST[month - 1] if month < 13 else ''
-            ),
+            'selected_month_name': MONTH_LIST[month - 1] if month < 13 else '',
             'selected_year': year,
         })
         return self.render_to_response(context)

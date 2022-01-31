@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from adminsortable.models import SortableMixin
 
 from core.models import BaseModel
+from core.utils import ru_date_format
 
 
 class DiaryEntry(BaseModel):
@@ -46,6 +47,10 @@ class DiaryEntry(BaseModel):
     def __str__(self):
         author = self.author.username if self.author else 'unknown'
         return f'{self.date} ({author})'
+
+    @property
+    def full_date_str(self):
+        return ru_date_format(self.date, '%RFM')
 
     @property
     def html(self):
