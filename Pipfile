@@ -26,7 +26,7 @@ urllib3 = "*"
 whitenoise = "*"
 Django = "==3.2.11"
 Faker = "*"
-Pillow = "==8.2.0"
+Pillow = "==9.0.0"
 Pygments = "*"
 
 [dev-packages]
