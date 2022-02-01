@@ -52,7 +52,7 @@
   <div class="">
     {% for entry in entries %}
       <div class="calendar-item">
-        <a href="{% url 'diary:edit' date=entry.0 %}" class="calendar-title">
+        <a href="{% url 'diary:detail' date=entry.0 %}" class="calendar-title">
           {{ entry.0|rdate:'%d %RXM, %Y' }}
         </a>
         <div class="calendar-subtitle">{{ entry.0|rdate:'%RWD' }}</div>
@@ -72,7 +72,6 @@
         </div>
         {% endif %}
         {% if entry.1.text or entry.1.files.exists %}
-        <br>
         {% endif %}
       </div>
     {% endfor %}

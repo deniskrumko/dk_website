@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sass_tags static %}
+{% load sass_tags static custom_tags %}
 
 {% block css %}
 <link href="{% sass_src 'styles/pages/diary.scss' %}" rel="stylesheet" type="text/css">
@@ -52,7 +52,9 @@
     {% for entry in tag.ordered_entries %}
     <div class="pure-g tag-entry">
       <div class="pure-u-11-24" style="text-align: right;">
-        <a href="{% url 'diary:detail' date=entry.entry.date %}" class="dk-a">{{ entry.entry.date }}</a>
+        <a href="{% url 'diary:detail' date=entry.entry.date %}" class="dk-a">
+          {{ entry.entry.date|rdate:'%d %RXM %Y' }}
+        </a>
       </div>
       <div class="pure-u-2-24" style="text-align: center;">
         ·

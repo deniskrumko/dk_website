@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext_lazy as _
 
 from ..models import DiaryTag, DiaryTagGroup
 from .diary import BaseDiaryView
@@ -49,7 +48,7 @@ class DiaryTagsDetailView(BaseDiaryView):
         ).order_by('-date__year').distinct()
         context = self.get_context_data(item=item)
         context['tag'] = item
-        context['stats'] = [(_('Total'), item.entries.count())] + [
+        context['stats'] = [('Всего', item.entries.count())] + [
             (year, item.entries.filter(date__year=year).count())
             for year in years
         ]
