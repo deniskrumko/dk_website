@@ -7,7 +7,26 @@ from adminsortable.admin import SortableAdmin, SortableTabularInline
 from core.admin import BaseModelAdmin, image_preview
 
 from .forms import TrackForm
-from .models import Album, MusicVideo, Track, TrackFile
+from .models import Album, AlbumFile, MusicVideo, MusicVideoType, Track, TrackFile
+
+
+class AlbumFileInline(admin.TabularInline):
+    """Inline class for ``AlbumFile`` model."""
+
+    model = AlbumFile
+    fields = (
+        'file',
+        'button_text',
+        'button_class',
+        'order',
+    )
+    autocomplete_fields = (
+        'file',
+    )
+    readonly_fields = (
+        'order',
+    )
+    extra = 0
 
 
 class TrackInline(admin.TabularInline):
@@ -28,9 +47,11 @@ class TrackInline(admin.TabularInline):
 
 
 @admin.register(Album)
-class AlbumAdmin(admin.ModelAdmin):
+class AlbumAdmin(BaseModelAdmin):
     """Admin class for ``Album`` model."""
 
+    url_index = 'music:index'
+    url_detail = 'music:detail'
     fieldsets = (
         (_('Main'), {
             'fields': (
@@ -43,6 +64,7 @@ class AlbumAdmin(admin.ModelAdmin):
         }),
         (_('About album'), {
             'fields': (
+                'description',
                 'status',
                 '_duration',
                 '_tracks_count',
@@ -67,6 +89,13 @@ class AlbumAdmin(admin.ModelAdmin):
     )
     inlines = (
         TrackInline,
+        AlbumFileInline,
+    )
+    changelist_actions = (
+        'on_site',
+    )
+    change_actions = (
+        'on_site',
     )
     search_fields = (
         'name',
@@ -96,6 +125,36 @@ class AlbumAdmin(admin.ModelAdmin):
         return obj.tracks_count
 
     _tracks_count.short_description = _('Tracks count')
+
+
+@admin.register(AlbumFile)
+class AlbumFileAdmin(admin.ModelAdmin):
+    """Admin class for ``AlbumFile`` model."""
+
+    fieldsets = (
+        (_('Main'), {
+            'fields': (
+                'album',
+                'file',
+                'order',
+            ),
+        }),
+        (_('Button'), {
+            'fields': (
+                'button_text',
+                'button_class',
+            ),
+        }),
+    )
+    list_display = (
+        'album',
+        'file',
+        'button_text',
+        'button_class',
+    )
+    readonly_fields = (
+        'order',
+    )
 
 
 class TrackFileInline(SortableTabularInline):
@@ -169,7 +228,9 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
         'album__name',
         'name',
     )
-    inlines = (TrackFileInline,)
+    inlines = (
+        TrackFileInline,
+    )
     change_actions = (
         'reset_slug',
         'on_site',
@@ -208,6 +269,31 @@ class TrackAdmin(BaseModelAdmin, SortableAdmin):
     _large_preview.short_description = _('Image preview')
 
 
+@admin.register(MusicVideoType)
+class MusicVideoTypeAdmin(SortableAdmin, BaseModelAdmin):
+    """Admin class for ``MusicVideoType`` model."""
+
+    fieldsets = (
+        (_('Main'), {
+            'fields': (
+                'name',
+                'description',
+                'slug',
+                'order',
+            ),
+        }),
+    )
+    list_display = (
+        'name',
+        'description',
+        'slug',
+        'order',
+    )
+    readonly_fields = (
+        'order',
+    )
+
+
 @admin.register(MusicVideo)
 class MusicVideoAdmin(admin.ModelAdmin):
     """Admin class for ``MusicVideo`` model."""
@@ -218,6 +304,7 @@ class MusicVideoAdmin(admin.ModelAdmin):
                 'is_active',
                 'name',
                 'slug',
+                'video_type',
             ),
         }),
         (_('Media'), {
@@ -240,6 +327,7 @@ class MusicVideoAdmin(admin.ModelAdmin):
     )
     list_display = (
         'name',
+        'video_type',
         'is_active',
         '_small_preview',
         'created',

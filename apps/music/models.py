@@ -54,6 +54,11 @@ class Album(SortableMixin, BaseModel):
         format='JPEG',
         options={'quality': 100},
     )
+    description = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Description'),
+    )
     order = models.PositiveIntegerField(
         default=0,
         editable=False,
@@ -83,6 +88,55 @@ class Album(SortableMixin, BaseModel):
     def displayed_duration(self) -> str:
         """Get summary album duration as MM:SS string."""
         return time_int_to_str(value=self.duration)
+
+
+class AlbumFile(SortableMixin, BaseModel):
+    """Model for files attached to album.
+
+    For thinks like "download album as zip" links.
+    """
+
+    album = SortableForeignKey(
+        Album,
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name='album_files',
+        verbose_name=_('Album'),
+    )
+    file = models.ForeignKey(
+        'files.File',
+        null=True,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name='album_files',
+        verbose_name=_('File'),
+    )
+    button_text = models.CharField(
+        null=True,
+        blank=False,
+        max_length=255,
+        verbose_name=_('Button text'),
+    )
+    button_class = models.CharField(
+        blank=True,
+        max_length=255,
+        verbose_name=_('Button class'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True,
+        verbose_name=_('Order'),
+    )
+
+    def __str__(self):
+        return f'{self.album} - {self.button_text} ({self.button_class})'
+
+    class Meta:
+        verbose_name = _('Album file')
+        verbose_name_plural = _('Album files')
+        ordering = ('order',)
 
 
 @register_liked_model(name='music_track')
@@ -230,12 +284,58 @@ class TrackFile(SortableMixin, models.Model):
         ordering = ('order',)
 
 
+class MusicVideoType(SortableMixin, BaseModel):
+    """Model for music video type."""
+
+    name = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        verbose_name=_('Name'),
+    )
+    description = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Description'),
+    )
+    slug = models.CharField(
+        blank=False,
+        db_index=True,
+        max_length=64,
+        null=True,
+        unique=True,
+        verbose_name=_('Slug'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True,
+        verbose_name=_('Order'),
+    )
+
+    def __str__(self):
+        return self.name or '-'
+
+    class Meta:
+        verbose_name = _('Music video type')
+        verbose_name_plural = _('Music video types')
+        ordering = ('order',)
+
+
 class MusicVideo(BaseModel):
     """Model to music videos."""
 
     is_active = models.BooleanField(
         default=True,
         verbose_name=_('Is active'),
+    )
+    video_type = models.ForeignKey(
+        MusicVideoType,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='videos',
+        verbose_name=_('Type'),
     )
     album = models.ForeignKey(
         Album,

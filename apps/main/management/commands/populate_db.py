@@ -4,7 +4,13 @@ from django.utils import timezone
 from apps.blog.factories import BlogEntryFactory, BlogSeriesFactory, BlogSeriesItemFactory
 from apps.diary.factories import DiaryEntryFactory, DiaryTagFactory
 from apps.files.factories import FileCategoryFactory, FileFactory, VideoFileFactory
-from apps.music.factories import AlbumFactory, MusicVideoFactory, TrackFactory, TrackFileFactory
+from apps.music.factories import (
+    AlbumFactory,
+    MusicVideoFactory,
+    MusicVideoTypeFactory,
+    TrackFactory,
+    TrackFileFactory,
+)
 from apps.users.models import User
 
 
@@ -36,9 +42,19 @@ class Command(BaseCommand):
             for i in range(5):
                 self.create_track(album=album)
 
+        self.stdout.write(self.style.SUCCESS('\t-- music video types'))
+        type_1, type_2 = MusicVideoTypeFactory.create_batch(2)
+
         self.stdout.write(self.style.SUCCESS('\t-- music videos'))
         MusicVideoFactory.create_batch(
             2,
+            video_type=type_1,
+            album=albums[0],
+            video=VideoFileFactory(source='youtube'),
+        )
+        MusicVideoFactory.create_batch(
+            2,
+            video_type=type_2,
             album=albums[0],
             video=VideoFileFactory(source='youtube'),
         )

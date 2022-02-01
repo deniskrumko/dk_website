@@ -2,7 +2,6 @@ $primary-color: #f45c28;
 $primary-color-dark: #c4491f;
 
 @import "../_main";
-@import "../animations";
 
 // Index
 
@@ -11,21 +10,26 @@ $primary-color-dark: #c4491f;
   position: relative;
   padding-bottom: 20px;
   padding-top: 10px;
+
   .image {
     text-align: center;
     transition: transform 0.3s ease;
     position: relative;
+
     a {
       position: relative;
     }
+
     img {
       width: 80%;
     }
+
     .badges {
       position: absolute;
       right: 30px;
     }
   }
+
   .name {
     font-weight: bold;
     font-size: 20px;
@@ -33,72 +37,52 @@ $primary-color-dark: #c4491f;
     color: $text;
     transition: $color-trans;
   }
+
   .info {
     font-size: 14px;
     color: $darkest-text;
   }
 }
+
 .album:hover {
   .name {
     color: $primary-color;
   }
 }
 
-// Record image
-
-.record {
-  display: none;
-  position: absolute;
-  transition: all 0.3s ease;
-  top: -8px;
-  left: 25px;
-  margin: 19px auto;
-  z-index: -1;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background:
-    linear-gradient(30deg, transparent 40%, rgba(42, 41, 40, .85) 40%) no-repeat 100% 0,
-    linear-gradient(60deg, rgba(42, 41, 40, .85) 60%, transparent 60%) no-repeat 0 100%,
-    repeating-radial-gradient(#2a2928, #2a2928 4px, #ada9a0 5px, #2a2928 6px);
-  background-size: 50% 100%, 100% 50%, 100% 100%;
-}
-.record:after {
-  position: absolute;
-  top: 50%; left: 50%;
-  margin: -28px;
-  border: solid 1px #d9a388;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px $primary-color,
-    inset 0 0 0 27px $primary-color;
-  background: #b5ac9a;
-  content: '';
-}
-
 // Single album
 .album-main-image {
   text-align: center;
   padding-right: 50px;
+
   a {
     position: relative;
   }
+
   img {
     width: 100%;
   }
 }
+
 .album-main-info {
   .name {
-    font-size: 40px;
+    font-size: 46px;
     font-weight: bold;
     padding-bottom: 15px;
     color: $text;
   }
+
   .info {
+    font-size: 18px;
     padding-bottom: 5px;
     color: $text;
   }
+}
+
+.album-tracks-container {
+  margin-top: 20px;
+  padding: 20px 0px;
+  background: $dark;
 }
 
 .album-tracks {
@@ -108,18 +92,23 @@ $primary-color-dark: #c4491f;
     cursor: pointer;
     transition: all 0.3s ease;
     color: $text;
+    font-size: 18px;
   }
+
   .track:hover {
     color: $primary-color;
   }
+
   .track.active {
     font-weight: bold;
     color: $primary-color;
   }
+
   .track.paused {
     font-weight: bold;
     color: #777;
   }
+
   .track:last-child {
     border-bottom: none;
   }
@@ -134,47 +123,39 @@ $primary-color-dark: #c4491f;
 @media only screen and (max-width: 567px) {
   .album-main-image {
     padding-right: 0px;
+
     .badges {
       top: -30px;
     }
   }
+
   .album-main-image img {
     width: 80% !important;
     padding-bottom: 20px;
   }
-  #playBtn {
-      width: 100%;
-      margin: 0;
-  }
-}
-@media only screen and (min-width: 1030px) {
-  .album:hover {
-    .image {
-      transform: rotate(-3deg) translateX(-35px);
-    }
-    .record {
-      left: 65px;
-      top: -12px;
-    }
-  }
-  .record {
-    display: block;
+
+  .btn-controls .btn {
+    width: 100%;
+    margin: 0px 0px 10px 0px;
   }
 }
 
 .btn-controls {
-    margin: 10px 0px;
+  margin: 10px 0px;
 }
+
 // Tracks
 
 .tracks {
   padding-top: 20px;
+
   .track-header {
     padding: 10px 5px;
     border-bottom: 2px solid #555;
     font-weight: bold;
     color: $text;
   }
+
   .track {
     padding: 10px 5px;
     border-bottom: 1px solid $faded-text;
@@ -182,17 +163,21 @@ $primary-color-dark: #c4491f;
     transition: $color-trans;
     color: $text;
   }
+
   .track:hover {
     color: $primary-color;
   }
+
   .track.active {
     font-weight: bold;
     color: $primary-color;
   }
+
   .track.paused {
     font-weight: bold;
     color: #777;
   }
+
   .track:last-child {
     border-bottom: none;
   }
@@ -207,6 +192,7 @@ $primary-color-dark: #c4491f;
   width: 100%;
   height: 80px;
 }
+
 .player-line {
   background: #ccc;
   height: 5px;
@@ -215,6 +201,7 @@ $primary-color-dark: #c4491f;
   cursor: pointer;
   top: 0px;
 }
+
 .player-line-played {
   background: red;
   height: 5px;
@@ -227,12 +214,38 @@ $primary-color-dark: #c4491f;
 
 // Videos
 
+.music-video-container {
+  background: $dark;
+  margin: 0px 0px 40px 0px;
+  padding: 20px 0px 10px 0px;
+}
+
+.music-video-type {
+  color: $text;
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    color: $dark-text;
+    margin-top: 5px;
+    font-size: 18px;
+
+    a {
+      color: $primary-color;
+    }
+  }
+}
+
 .music-video-item {
   margin-bottom: 30px;
   padding: 5px;
+
   .music-video-item-image {
     display: block;
     position: relative;
+
     .music-video-play {
       position: absolute;
       height: 40px;
@@ -244,21 +257,24 @@ $primary-color-dark: #c4491f;
       margin-top: -20px;
       margin-left: -20px;
     }
+
     .music-video-item-img {
       width: 100%;
       background: #f0f0f3;
       transition: all 0.3s ease;
     }
   }
+
   .music-video-item-subtitle {
     margin-top: 4px;
-    font-size: 14px;
+    font-size: 16px;
     color: $text;
   }
+
   .music-video-item-date {
     margin-bottom: 16px;
     margin-top: 5px;
-    font-size: 10px;
+    font-size: 13px;
     color: $dark-text;
   }
 }
@@ -268,6 +284,7 @@ $primary-color-dark: #c4491f;
   .music-video-item-img {
     filter: brightness(55%);
   }
+
   .music-video-play {
     opacity: 1;
   }
@@ -284,6 +301,7 @@ $primary-color-dark: #c4491f;
 }
 
 @media only screen and (max-width: 567px) {
+
   // Mobile
   .music-video-item-info {
     padding: 10px 0px;

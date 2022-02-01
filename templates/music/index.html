@@ -9,8 +9,7 @@
 <div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'music:index' %}" class="active">Альбомы</a>
-    <a href="{% url 'music:videos' %}">Видео</a>
-    <a href="{% url 'music:tracks' %}">Треки</a>
+    <a href="{% url 'music:videos' %}">Каверы/репетиции</a>
     {# <a href="#">FAQ</a> #}
   </div>
 </div>
@@ -18,8 +17,7 @@
 <div class="container">
   <div class="pure-g">
     {% for album in albums %}
-      <a class="album pure-u-1-1 pure-u-sm-1-4" href="{% url 'music:detail' album.slug %}">
-        <div class="record rotating"></div>
+      <a class="album pure-u-1-1 pure-u-sm-1-3" href="{% url 'music:detail' album.slug %}">
         <div class="image">
           {% if album.image %}
           <img src="{{ album.thumbnail.url }}" alt="{{ album.name }}">

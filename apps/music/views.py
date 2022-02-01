@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 
 from core.views import BaseView
 
-from .models import Album, MusicVideo, Track
+from .models import Album, MusicVideoType, Track
 
 
 class MusicIndexView(BaseView):
@@ -80,5 +80,5 @@ class MusicVideoView(BaseView):
     def get(self, request):
         """Get all videos."""
         context = self.get_context_data()
-        context.update({'items': MusicVideo.objects.all()})
+        context.update({'video_types': MusicVideoType.objects.all()})
         return self.render_to_response(context)

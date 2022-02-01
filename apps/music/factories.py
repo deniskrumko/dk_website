@@ -2,7 +2,7 @@ import factory
 
 from apps.files.factories import FileFactory
 
-from .models import Album, MusicVideo, Track, TrackFile
+from .models import Album, MusicVideo, MusicVideoType, Track, TrackFile
 
 __all__ = (
     'AlbumFactory',
@@ -49,10 +49,22 @@ class TrackFileFactory(factory.django.DjangoModelFactory):
         model = TrackFile
 
 
+class MusicVideoTypeFactory(factory.django.DjangoModelFactory):
+    """Factory for ``MusicVideoType`` model."""
+
+    name = factory.sequence(lambda x: f'Name {x}')
+    slug = factory.sequence(lambda x: f'name-{x}')
+    description = factory.Faker('sentence')
+
+    class Meta:
+        model = MusicVideoType
+
+
 class MusicVideoFactory(factory.django.DjangoModelFactory):
     """Factory for ``MusicVideo`` model."""
 
     is_active = True
+    video_type = factory.SubFactory(MusicVideoTypeFactory)
     name = factory.sequence(lambda x: f'Music Video {x}')
     slug = factory.sequence(lambda x: f'music-video-{x}')
 

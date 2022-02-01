@@ -9,7 +9,7 @@
 <div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'users:profile' %}" class="active">
-      Ваш профиль
+      Профиль
     </a>
     {% if user.is_superuser %}
     <a href="{% url 'admin:index' %}">Админка</a>

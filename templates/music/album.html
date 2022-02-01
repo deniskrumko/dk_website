@@ -7,6 +7,7 @@
 
 {% block js %}
 <script src="{% static 'js/music/player.js' %}" charset="utf-8"></script>
+<script src="{% static 'js/music/download.js' %}" charset="utf-8"></script>
 {% endblock %}
 
 {% block body %}
@@ -14,8 +15,7 @@
 <div class="container slider">
   <div class="scrollable-h1">
     <a href="{% url 'music:index' %}" class="active">Альбомы</a>
-    <a href="{% url 'music:videos' %}">Видео</a>
-    <a href="{% url 'music:tracks' %}">Треки</a>
+    <a href="{% url 'music:videos' %}">Каверы/репетиции</a>
     {# <a href="#">FAQ</a> #}
   </div>
 </div>
@@ -50,31 +50,55 @@
         <div class="info">
           <b>Количество треков:</b> {{ album.tracks_count }}
         </div>
+        {% if album.description %}
+        <div class="info" style="padding-top: 10px;">
+          {% autoescape off %}
+            {{ album.description }}
+          {% endautoescape %}
+        </div>
+        {% endif %}
 
         <div class="btn-controls">
           <button class="btn primary" onclick="playPauseTrack();" id="playBtn">Воспроизвести</button>
-          {% if request.user.is_superuser %}
-          <a href="{{ album.admin_changelink }}" class="btn">Изменить описание</a>
-          {% endif %}
+          {% for album_file in album.album_files.all %}
+          <button class="btn {{ album_file.button_class }}"
+          onclick="downloadFile('{{ album_file.file.name }}', '{{ album_file.file.data }}');">
+          {{ album_file.button_text }}
+          </button>
+          {% endfor %}
         </div>
       </div>
-      <div class="album-tracks">
-        {% for track in album.tracks.all %}
-          <div class="track pure-g" onclick="playTrack(this);" data-src="{{ track.file.url }}">
-            <div class="pure-u-2-24 track-number">
-              {{ forloop.counter }}
-            </div>
-            <div class="pure-u-19-24">
-              {{ track.name }}
-            </div>
-            <div class="pure-u-3-24" style="text-align: right;">
-              {{ track.displayed_duration }}
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-      {% include "music/components/tracks_help.html" %}
     </div>
   </div>
+</div>
+
+<div class="album-tracks-container">
+  <div class="container">
+    <div class="album-tracks">
+      {% for track in album.tracks.all %}
+        <div class="track pure-g" onclick="playTrack(this);" data-src="{{ track.file.url }}">
+          <div class="pure-u-2-24 track-number">
+            {{ forloop.counter }}
+          </div>
+          <div class="pure-u-19-24">
+            {{ track.name }}
+          </div>
+          <div class="pure-u-3-24" style="text-align: right;">
+            {{ track.displayed_duration }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="container" style="text-align: center;">
+  {% include "music/components/tracks_help.html" %}
+  {% if request.user.is_superuser %}
+  <br>
+  <div>
+    <a href="{{ album.admin_changelink }}" class="tracks-help">Изменить описание альбома</a>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
