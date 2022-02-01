@@ -48,17 +48,17 @@
   {% if paginator.num_pages > 1 %}
   <div class="pagination">
     <div>
-      <a {% if prev_page %}href="?page={{ prev_page}}{% endif %}"
+      <a {% if prev_page %}href="?page={{ prev_page}}&category={{ ccurrent_category }}{% endif %}"
          class="page-nav {% if not prev_page %}inactive{% endif %}">
         <img src="{% static 'images/arrows/left.svg' %}">
       </a>
       {% for i in paginator.page_range %}
-        <a href="?page={{ i }}"
+        <a href="?page={{ i }}&category={{ ccurrent_category }}"
            class="page-link {% if i == current_page %}active{% endif %}">
            {{ i }}
          </a>
       {% endfor %}
-      <a {% if next_page %}href="?page={{ next_page}}{% endif %}"
+      <a {% if next_page %}href="?page={{ next_page}}&category={{ ccurrent_category }}{% endif %}"
          class="page-nav {% if not next_page %}inactive{% endif %}">
         <img src="{% static 'images/arrows/right.svg' %}">
       </a>
