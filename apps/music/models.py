@@ -384,7 +384,7 @@ class MusicVideo(BaseModel):
     @property
     def link(self):
         """Get youtube video link."""
-        return self.video.youtube_link if self.video else None
+        return f'https://www.youtube.com/watch?v={self.video.youtube_link}'
 
     @property
     def detail_url(self):
