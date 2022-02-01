@@ -7,12 +7,11 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import reverse
 from django.utils import timezone
 
-from cachetools import TTLCache, cached
 from dateutil.rrule import DAILY, rrule
 
 from core.utils import MONTH_LIST
 from core.views import BaseView, LoginRequiredMixin
-
+from functools import cached_property
 from apps.files.models import File, FileCategory
 
 from ..models import DiaryEntry, DiaryTag, DiaryTagGroup
@@ -33,8 +32,7 @@ class BaseDiaryView(LoginRequiredMixin, BaseView):
     menu = 'diary'
     description = 'Дневник'
 
-    @property
-    @cached(cache=TTLCache(maxsize=128, ttl=60))
+    @cached_property
     def now(self):
         return timezone.now()
 
