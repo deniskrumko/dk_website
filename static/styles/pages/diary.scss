@@ -16,7 +16,7 @@ $primary-color-darkest: #02434b !default;
 
   .date {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 28px;
     padding: 20px 0;
     position: relative;
     color: $text;
@@ -27,7 +27,7 @@ $primary-color-darkest: #02434b !default;
 
     p {
       margin: 0;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 400 !important;
       line-height: 24px;
       padding: 0;
@@ -42,7 +42,7 @@ $primary-color-darkest: #02434b !default;
     .entry-buttons {
       position: absolute;
       right: -10px;
-      top: -52px;
+      top: -58px;
     }
 
     #after-preview {
@@ -258,6 +258,7 @@ $primary-color-darkest: #02434b !default;
     h2 {
       margin: 0;
       color: $text;
+      font-size: 28px;
     }
   }
 }
@@ -265,7 +266,7 @@ $primary-color-darkest: #02434b !default;
 // Edit
 #text {
   width: 100%;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400 !important;
   resize: none;
   line-height: 24px;
@@ -414,7 +415,7 @@ $primary-color-darkest: #02434b !default;
 .diary-tag-group-small {
   span {
     display: block;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
     color: $dark-text;
     padding: 5px;
