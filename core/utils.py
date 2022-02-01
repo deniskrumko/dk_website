@@ -49,18 +49,18 @@ def ru_date_format(date, format_str) -> str:
     Available tags:
         %RSM - russian short month
         %RFM - russian full month
-        %RXM - russian full month (with correct ending)
+        %RXM - russian full month (with correct suffix)
         %RWD - russian weekday
     """
-    if '%RSM' in format_str:
+    if '%RSM' in format_str:  # янв, фев, мар...
         short_name = MONTH_LIST[date.month - 1][:3].lower()
         format_str = format_str.replace('%RSM', short_name)
 
-    if '%RFM' in format_str:
+    if '%RFM' in format_str:  # Январь, Февраль, Март...
         full_name = MONTH_LIST[date.month - 1]
         format_str = format_str.replace('%RFM', full_name)
 
-    if '%RXM' in format_str:
+    if '%RXM' in format_str:  # Января, Февраля, Марта...
         full_name = MONTH_LIST[date.month - 1]
         if full_name[-1] in ('ь', 'й'):
             full_name = full_name[:-1] + 'я'
@@ -69,7 +69,7 @@ def ru_date_format(date, format_str) -> str:
 
         format_str = format_str.replace('%RXM', full_name)
 
-    if '%RWD' in format_str:
+    if '%RWD' in format_str:  # Понедельник, Вторник, Среда...
         weekday = WEEKDAY_LIST[date.weekday()]
         format_str = format_str.replace('%RWD', weekday)
 
