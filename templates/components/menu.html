@@ -14,7 +14,7 @@
     <a href="{% url 'main:index' %}" class="{% if active_menu == 'index'%}selected{% endif %}">
       ГЛАВНАЯ
     </a>
-    <a href="{% url 'video:index' %}" class="{% if active_menu == 'blog' %}selected{% endif %}">
+    <a href="{% url 'video:index' %}" class="{% if active_menu == 'video' %}selected{% endif %}">
       ВИДЕО
     </a>
     {% if request.user.is_staff %}
@@ -27,48 +27,25 @@
     </a>
   </div>
 
-  {# Mobile menu #}
-  <div class="pure-u-18-24 pure-u-sm-21-24 md-visible mobile-menu">
-    <a href="{% url 'video:index' %}" title="Видео">
-      {% if active_menu == 'blog' %}
-      <img src="{% static 'images/menu/blog_2.svg' %}" alt="">
-      {% else %}
-      <img src="{% static 'images/menu/blog.svg' %}" alt="">
+  {# Mobile header #}
+  <div class="pure-g pure-u-18-24 pure-u-sm-21-24 md-visible">
+    <div class="mobile-header">
+      {% if active_menu == 'index'%}
+      <a href="{% url 'main:index' %}">ГЛАВНАЯ</a>
       {% endif %}
-    </a>
-    <a href="{% url 'music:index' %}" title="Музыка">
-      {% if active_menu == 'music' %}
-      <img src="{% static 'images/menu/music_2.svg' %}" alt="">
-      {% else %}
-      <img src="{% static 'images/menu/music.svg' %}" alt="">
+      {% if active_menu == 'video'%}
+      <a href="{% url 'video:index' %}">ВИДЕО</a>
       {% endif %}
-    </a>
-    {% if request.user.is_staff %}
-    <a href="{% url 'diary:index' %}" title="Дневник">
-      {% if active_menu == 'diary' %}
-      <img src="{% static 'images/menu/diary_2.svg' %}" alt="">
-      {% else %}
-      <img src="{% static 'images/menu/diary.svg' %}" alt="">
+      {% if active_menu == 'music'%}
+      <a href="{% url 'music:index' %}">МУЗЫКА</a>
       {% endif %}
-    </a>
-    {% endif %}
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'users:profile' %}" title="Настройки">
-      {% if active_menu == 'profile' %}
-      <img src="{% static 'images/menu/settings_2.svg' %}" alt="">
-      {% else %}
-      <img src="{% static 'images/menu/settings.svg' %}" alt="">
+      {% if active_menu == 'diary'%}
+      <a href="{% url 'diary:index' %}">ДНЕВНИК</a>
       {% endif %}
-    </a>
-    {% else %}
-    <a href="{% url 'users:login' %}?next={{ request.path }}" title="Войти">
-      {% if active_menu == 'profile' %}
-      <img src="{% static 'images/menu/auth_2.svg' %}" alt="">
-      {% else %}
-      <img src="{% static 'images/menu/auth.svg' %}" alt="">
+      {% if active_menu == 'user'%}
+      <a href="{% url 'users:profile' %}">НАСТРОЙКИ</a>
       {% endif %}
-    </a>
-    {% endif %}
+    </div>
   </div>
 
   {# Right menu #}
@@ -88,4 +65,36 @@
     </a>
     {% endif %}
   </div>
+</div>
+
+
+{# Mobile menu #}
+<div class="pure-g md-visible mobile-menu">
+  {# index #}
+
+  <a href="{% url 'main:index' %}" title="Главная"
+  class="pure-u-1-4 {% if active_menu == 'index' %}active{% endif %}">
+    <img src="{% static 'images/menu2/icons8-home-96.png' %}" alt="">
+  </a>
+
+  {# video #}
+
+  <a href="{% url 'video:index' %}" title="Видео"
+  class="pure-u-1-4 {% if active_menu == 'video' %}active{% endif %}">
+    <img src="{% static 'images/menu2/icons8-video-96.png' %}" alt="">
+  </a>
+
+  {# music #}
+
+  <a href="{% url 'music:index' %}" title="Музыка"
+  class="pure-u-1-4 {% if active_menu == 'music' %}active{% endif %}">
+    <img src="{% static 'images/menu2/icons8-music-96.png' %}" alt="">
+  </a>
+
+  {# user #}
+
+  <a href="{% url 'users:profile' %}" title="Пользователь"
+  class="pure-u-1-4 {% if active_menu == 'user' or active_menu == 'diary' %}active{% endif %}">
+    <img src="{% static 'images/menu2/icons8-user-96.png' %}" alt="">
+  </a>
 </div>

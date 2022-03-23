@@ -6,7 +6,7 @@ from core.views import BaseView
 class LoginView(BaseView):
     """View for users to log in."""
 
-    menu = 'profile'
+    menu = 'user'
     template_name = 'users/login.html'
     title = 'DK - Главная'
     description = 'DK - Войти'

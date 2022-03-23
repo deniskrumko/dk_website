@@ -3,11 +3,13 @@
 .menu {
   padding-top: 30px;
 }
+
 #menu-logo {
   width: 80px;
   display: inline-block;
   transition: filter 0.3s ease;
 }
+
 #menu-logo:hover {
   filter: brightness(0.3);
 }
@@ -15,6 +17,7 @@
 // Menu items
 #menu-items {
   padding: 15px 0px !important;
+
   a {
     border-radius: 20px;
     display: inline-block;
@@ -24,10 +27,12 @@
     transition: $bg-trans;
     transition: $color-trans;
   }
-  a.selected{
+
+  a.selected {
     color: $primary-color;
     font-weight: bold;
   }
+
   a:hover {
     background: $dark;
     color: $primary-color;
@@ -37,9 +42,11 @@
 // Login section
 #login-section {
   margin-top: 20px;
+
   a {
     float: right;
   }
+
   img {
     width: 46px;
     height: 46px;
@@ -47,20 +54,44 @@
     float: right;
     transition: transform 0.3s ease;
   }
+
   img:hover {
     transform: scale(1.1);
   }
 }
 
+.mobile-header {
+  font-family: $font2;
+
+  font-size: 32px;
+  text-align: right;
+  padding-top: 15px;
+  a {
+    color: $primary-color;
+  }
+}
 
 .mobile-menu {
   text-align: right;
+  position: fixed;
+  z-index: 1000;
+  bottom: 0px;
+  background: $darkest;
+  padding: 10px 0px;
+  width: 100%;
+  text-align: center;
+
   a {
-    display: inline-block;
-    padding: 17px 0px 0px 10px;
     img {
       width: 35px;
       height: 35px;
+      opacity: 45%;
+    }
+  }
+
+  .active {
+    img {
+      opacity: 90%;
     }
   }
 }
@@ -71,7 +102,8 @@
     padding-top: 10px;
     padding-bottom: 0px;
   }
-  #menu-logo{
+
+  #menu-logo {
     width: 70px;
   }
 }

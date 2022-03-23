@@ -6,8 +6,15 @@ footer {
   background: $dark;
 }
 
+@media only screen and (max-width: 767px) {
+  footer {
+    padding: 10px 0px 10px 0px;
+  }
+}
+
 .footer-links {
   text-align: center;
+
   a {
     color: $dark-text;
     font-size: 14px;
@@ -15,6 +22,7 @@ footer {
     padding: 0px 10px;
     transition: $color-trans;
   }
+
   a:hover {
     color: $primary-color;
   }

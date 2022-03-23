@@ -8,7 +8,7 @@ class ProfileView(LoginRequiredMixin, BaseView):
 
     """
 
-    menu = 'profile'
+    menu = 'user'
     template_name = 'users/profile.html'
     title = 'DK - Ваш профиль'
     description = 'DK - Ваш профиль'

@@ -8,7 +8,7 @@ from .models import BlogCategory, BlogEntry
 class BaseBlogView(BaseView):
     """Base class for blog-related views."""
 
-    menu = 'blog'
+    menu = 'video'
 
 
 class BlogIndexView(BaseBlogView):
