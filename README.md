@@ -9,5 +9,6 @@ Check it out:
 
 * Python 3.9.10
 * Django 3.2.11
+* PostgreSQL 13.7
 * Amazon S3 as storage
 * Hosted by [Heroku](https://www.heroku.com/) (v.20)

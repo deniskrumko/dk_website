@@ -39,6 +39,8 @@ isort = "*"
 factory-boy = "*"
 flake8 = "*"
 flake8-commas = "*"
+mypy = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.9"

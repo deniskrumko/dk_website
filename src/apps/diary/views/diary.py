@@ -1,5 +1,6 @@
 import calendar
 from datetime import date, datetime, timedelta
+from functools import cached_property
 
 from django.core.exceptions import ValidationError
 from django.db.models import Count
@@ -11,7 +12,7 @@ from dateutil.rrule import DAILY, rrule
 
 from core.utils import MONTH_LIST
 from core.views import BaseView, LoginRequiredMixin
-from functools import cached_property
+
 from apps.files.models import File, FileCategory
 
 from ..models import DiaryEntry, DiaryTag, DiaryTagGroup
