@@ -15,7 +15,7 @@ from whitenoise import WhiteNoise
 
 from core.display import print_msg
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
 application = WhiteNoise(get_wsgi_application())
 

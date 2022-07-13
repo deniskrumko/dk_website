@@ -26,6 +26,12 @@ def remote(host='192.168.1.11', port=8000):
 
 
 @task
+def gunicorn():
+    """Run server using gunicorn."""
+    return local('PYTHONPATH=src gunicorn config.wsgi')
+
+
+@task
 def run():
     """Run server"""
     return manage('runserver')
