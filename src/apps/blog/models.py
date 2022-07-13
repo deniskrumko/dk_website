@@ -33,7 +33,7 @@ class BlogCategory(SortableMixin, BaseModel):
         verbose_name=_('Order'),
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name or '-'
 
     class Meta:
@@ -121,7 +121,7 @@ class BlogEntry(LikedModel, BaseModel):
         verbose_name=_('Category'),
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title or '-'
 
     class Meta:
@@ -129,7 +129,7 @@ class BlogEntry(LikedModel, BaseModel):
         verbose_name_plural = _('Blog entries')
         ordering = ('-date',)
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         """Get absolute URL for sitemap."""
         return f'/video/{self.slug}'
 
@@ -137,33 +137,37 @@ class BlogEntry(LikedModel, BaseModel):
     # ========================================================================
 
     @property
-    def date_str(self):
+    def date_str(self) -> str:
         return ru_date_format(self.date, '%d %RSM. %Y')
 
     @property
-    def is_series(self):
-        return self.series_item.exists()
+    def is_series(self) -> bool:
+        return bool(self.series_item.exists())
 
     @property
-    def series(self):
-        return self.series_item.first().series
+    def series(self) -> 'BlogSeries':
+        blog_series = self.series_item.first().series
+        assert isinstance(blog_series, BlogSeries)
+        return blog_series
 
     @property
-    def next(self):
+    def next(self) -> 'BlogSeriesItem':
         return self._get_part(index=1)
 
     @property
-    def prev(self):
+    def prev(self) -> 'BlogSeriesItem':
         return self._get_part(index=-1)
 
     @property
-    def duration(self):
+    def duration(self) -> str:
         """Get video duration if it exists."""
-        return self.video.duration if self.video else None
+        return self.video.duration if self.video else None  # type: ignore
 
-    def _get_part(self, index):
+    def _get_part(self, index: int) -> 'BlogSeriesItem':
         order = self.series_item.first().order + index
-        return self.series.items.filter(order=order).first()
+        series_item = self.series.items.filter(order=order).first()
+        assert isinstance(series_item, BlogSeriesItem)
+        return series_item
 
 
 class BlogSeries(BaseModel):
@@ -176,8 +180,8 @@ class BlogSeries(BaseModel):
         verbose_name=_('Name'),
     )
 
-    def __str__(self):
-        return self.name
+    def __str__(self) -> str:
+        return self.name or '-'
 
     class Meta:
         verbose_name = _('Blog series')

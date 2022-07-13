@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -132,7 +134,7 @@ class BlogEntryAdmin(BaseModelAdmin):
         BlogImageInline,
     )
 
-    def _thumbnail(self, obj):
+    def _thumbnail(self, obj: models.BlogEntry) -> Any:
         """Get image preview (thumbnail)."""
         if not obj.image:
             return _('Image is not loaded')

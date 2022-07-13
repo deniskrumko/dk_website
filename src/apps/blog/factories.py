@@ -1,4 +1,5 @@
 from datetime import timedelta
+from typing import Any
 
 from django.utils import timezone
 
@@ -32,8 +33,8 @@ class BlogEntryFactory(factory.django.DjangoModelFactory):
     video = factory.SubFactory(VideoFileFactory)
     slug = factory.sequence(lambda x: f'blog-{x}')
 
-    @factory.post_generation
-    def create_images(self, create, extracted, **kwargs):
+    @factory.post_generation  # type: ignore
+    def create_images(self, create: bool, extracted: bool, **kwargs: Any) -> None:
         """Create images for blog."""
         if not create:
             # Simple build, do nothing.
