@@ -1,10 +1,10 @@
-def print_msg(msg, error=False, wrap=True):
+def print_msg(msg: str, error: bool = False, wrap: bool = True) -> None:
     """Print message in console."""
-    def green_msg(msg):
+    def green_msg(msg: str) -> str:
         """Make message green color in console."""
         return '\033[92m{0}\033[00m'.format(msg)
 
-    def red_msg(msg):
+    def red_msg(msg: str) -> str:
         """Make message red color in console."""
         return '\033[91m{0}\033[00m'.format(msg)
 

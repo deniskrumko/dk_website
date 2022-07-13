@@ -3,7 +3,7 @@ import subprocess
 from fabric.api import local, task
 from fabric.operations import prompt
 
-from core.display import print_msg
+from src.core.display import print_msg
 
 # MAIN COMMANDS
 # ============================================================================
@@ -12,7 +12,7 @@ from core.display import print_msg
 @task
 def manage(command):
     """Run ``python3 manage.py`` command."""
-    return local('python3 manage.py {}'.format(command))
+    return local('python3 src/manage.py {}'.format(command))
 
 
 @task
