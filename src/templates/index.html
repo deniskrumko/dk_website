@@ -96,8 +96,8 @@
         <div class="pure-u-1-2 pure-u-sm-1-2 pure-u-md-1-2">
           <div class="last-rep-box">
             <a class="last-rep" href="{{ rep.link }}">
-              <img src="{% if rep.video.thumbnail %}
-                {{ rep.video.thumbnail.url }}
+              <img src="{% if rep.video.poster_thumbnail %}
+                {{ rep.video.poster_thumbnail.url }}
                 {% else %}
                 {% static 'images/nophoto_wide.jpg' %}{% endif %}">
             </a>
