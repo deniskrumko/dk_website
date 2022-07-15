@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib import admin
 from django.shortcuts import reverse
 from django.utils.safestring import mark_safe
@@ -8,13 +10,13 @@ from core.admin import BaseModelAdmin
 from .models import DiaryEntry, DiaryTag, DiaryTagGroup, DiaryTagValue
 
 
-class PrivateQuerySet(object):
+class PrivateQuerySetMixin:
     """Allow to view only own diary entries."""
 
     private_queryset_field = 'author'
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
+        qs = super().get_queryset(request)  # type: ignore
         params = {self.private_queryset_field: request.user}
         return qs.filter(**params)
 
@@ -30,15 +32,17 @@ class DiaryTagValueInline(admin.TabularInline):
         'value',
     )
 
-    def has_delete_permission(self, *args, **kwargs):
+    def has_delete_permission(self, *args: Any, **kwargs: Any) -> bool:
+        """Forbid to delete objects."""
         return False
 
-    def has_add_permission(self, *args, **kwargs):
+    def has_add_permission(self, *args: Any, **kwargs: Any) -> bool:
+        """Forbid to add objects."""
         return False
 
 
 @admin.register(DiaryEntry)
-class DiaryEntryAdmin(PrivateQuerySet, BaseModelAdmin):
+class DiaryEntryAdmin(PrivateQuerySetMixin, BaseModelAdmin):
     """Admin class for ``DiaryEntry`` model."""
 
     url_index = 'diary:index'
@@ -83,17 +87,17 @@ class DiaryEntryAdmin(PrivateQuerySet, BaseModelAdmin):
         qs = super().get_export_queryset(request)
         return qs.filter(author=request.user)
 
-    def reverse_url_detail_args(self, obj):
+    def reverse_url_detail_args(self, obj: DiaryEntry) -> tuple:
         return (obj.date,)
 
-    def _preview(self, obj):
-        return (obj.text[:50] + '...') if obj.text else '-'
+    def _preview(self, obj: DiaryEntry) -> str:
+        return str(obj.text[:50] + '...') if obj.text else '-'
 
     _preview.short_description = _('Preview')
 
 
 @admin.register(DiaryTag)
-class DiaryTagAdmin(PrivateQuerySet, admin.ModelAdmin):
+class DiaryTagAdmin(PrivateQuerySetMixin, admin.ModelAdmin):
     """Admin class for ``DiaryTag`` model."""
 
     list_display = (
@@ -112,11 +116,11 @@ class DiaryTagAdmin(PrivateQuerySet, admin.ModelAdmin):
         'values_count',
     )
 
-    def get_actions(self, *args, **kwargs):
+    def get_actions(self, *args: Any, **kwargs: Any) -> list:
         """Forbid any actions."""
         return []
 
-    def values_count(self, obj):
+    def values_count(self, obj: DiaryTag) -> Any:
         """Get number of diary tag values."""
         count = obj.values.count()
         url = reverse('diary:tag', args=(obj.name,))
@@ -126,7 +130,7 @@ class DiaryTagAdmin(PrivateQuerySet, admin.ModelAdmin):
 
 
 @admin.register(DiaryTagValue)
-class DiaryTagValueAdmin(PrivateQuerySet, BaseModelAdmin):
+class DiaryTagValueAdmin(PrivateQuerySetMixin, BaseModelAdmin):
     """Admin class for ``DiaryTagValue`` model."""
 
     list_display = (
@@ -147,13 +151,16 @@ class DiaryTagValueAdmin(PrivateQuerySet, BaseModelAdmin):
         'redirect_to_entry',
     )
 
-    def has_delete_permission(self, *args, **kwargs):
+    def has_delete_permission(self, *args: Any, **kwargs: Any) -> bool:
+        """Forbid to delete objects."""
         return False
 
-    def has_add_permission(self, *args, **kwargs):
+    def has_add_permission(self, *args: Any, **kwargs: Any) -> bool:
+        """Forbid to add objects."""
         return False
 
-    def has_change_permission(self, *args, **kwargs):
+    def has_change_permission(self, *args: Any, **kwargs: Any) -> bool:
+        """Forbid to change objects."""
         return False
 
     def redirect_to_entry(self, request, obj):
@@ -169,15 +176,17 @@ class DiaryTagInline(admin.TabularInline):
     model = DiaryTag
     extra = 0
 
-    def has_add_permission(self, *args, **kwargs):
+    def has_add_permission(self, *args: Any, **kwargs: Any) -> bool:
+        """Forbid to add objects."""
         return False
 
-    def has_change_permission(self, *args, **kwargs):
+    def has_change_permission(self, *args: Any, **kwargs: Any) -> bool:
+        """Forbid to change objects."""
         return False
 
 
 @admin.register(DiaryTagGroup)
-class DiaryTagGroupAdmin(PrivateQuerySet, BaseModelAdmin):
+class DiaryTagGroupAdmin(PrivateQuerySetMixin, BaseModelAdmin):
     """Admin class for ``DiaryTagGroup`` model."""
 
     list_display = (

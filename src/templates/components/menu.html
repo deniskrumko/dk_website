@@ -29,8 +29,8 @@
 
   {# Mobile header #}
   <div class="pure-u-18-24 pure-u-sm-21-24 md-visible">
-    <div class="mobile-header">
-      <a onclick="toggleMenu();">
+    <div id="mobile-header">
+      <a class="noselect" onclick="toggleMenu();">
         {% if active_menu == 'index'%}
         МЕНЮ
         {% endif %}
@@ -53,6 +53,38 @@
 
 <div id="mobile-menu">
   <div class="container">
-    123
+    <br>
+    <div class="menu-boy">
+      Посмотрим, что у нас в меню... 🧑‍🍳
+    </div>
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <a href="{% url 'main:index' %}"
+        class="btn {% if active_menu == 'index'%}primary{% else %}lined{% endif %}">
+          ГЛАВНАЯ
+        </a>
+      </div>
+      <div class="pure-u-1-1">
+        <a href="{% url 'video:index' %}"
+        class="btn {% if active_menu == 'video' %}primary{% else %}lined{% endif %}">
+          ВИДЕО
+        </a>
+      </div>
+      {% if request.user.is_staff %}
+      <div class="pure-u-1-1">
+        <a href="{% url 'diary:index' %}"
+        class="btn {% if active_menu == 'diary' %}primary{% else %}lined{% endif %}">
+          ДНЕВНИК
+        </a>
+      </div>
+      {% endif %}
+      <div class="pure-u-1-1">
+        <a href="{% url 'music:index' %}"
+        class="btn {% if active_menu == 'music' %}primary{% else %}lined{% endif %}">
+          МУЗЫКА
+        </a>
+      </div>
+    </div>
+    <br>
   </div>
 </div>

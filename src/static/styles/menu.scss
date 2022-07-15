@@ -41,7 +41,7 @@
   }
 }
 
-.mobile-header {
+#mobile-header {
   font-family: $font2;
 
   font-size: 32px;
@@ -50,6 +50,25 @@
   a {
     color: $primary-color;
   }
+}
+
+#mobile-menu {
+    background-color: $dark;
+    margin-bottom: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+
+    a {
+        padding: 13px 20px 10px 20px;
+        font-size: 18px;
+        margin: 5px 0px;
+        width: calc(100% - 40px);
+    }
+    .menu-boy {
+        padding-bottom: 7px;
+        font-size: 20px;
+    }
 }
 
 /* MEDIA */

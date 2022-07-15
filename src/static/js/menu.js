@@ -1,5 +1,10 @@
 function toggleMenu() {
-  alert();
+  var content = document.getElementById('mobile-menu');
+  if (content.style.maxHeight){
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
+  }
 }
 
 function scrollToTop(){

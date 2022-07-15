@@ -24,9 +24,9 @@ pytz = "==2021.1"
 sqlparse = "*"
 urllib3 = "*"
 whitenoise = "*"
-Django = "==3.2.11"
+Django = "==3.2.14"
 Faker = "*"
-Pillow = "==8.2.0"
+Pillow = "==9.0.1"
 Pygments = "*"
 
 [dev-packages]

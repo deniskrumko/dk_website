@@ -12,6 +12,7 @@
   text-align: center;
   color: $text;
   background: $dark;
+  cursor: pointer;
 }
 .btn:active {
   transform: scale(0.95);
@@ -39,6 +40,17 @@
     box-shadow: inset 0px 0px 0px 1px $primary-color;
 }
 .btn.lined.primary:hover {
+    color: $primary-color-dark;
+    background: transparent;
+    box-shadow: inset 0px 0px 0px 1px $primary-color-dark;
+}
+
+.btn.lined {
+    color: $text;
+    background: transparent;
+    box-shadow: inset 0px 0px 0px 1px $faded-text;
+}
+.btn.lined:hover {
     color: $primary-color-dark;
     background: transparent;
     box-shadow: inset 0px 0px 0px 1px $primary-color-dark;
