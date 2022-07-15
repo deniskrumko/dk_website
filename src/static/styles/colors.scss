@@ -1,21 +1,21 @@
 // Main colors
-$main: #1b1c1f;
-$dark: #18191c;
-$darken: #16171a;
-$darkest: #111214;
+$main: #1B2430;
+$dark: #171e28;
+$darken: #ff0000;
+$darkest: #151c25;
 
 // Text
-$text: #e0e0e0;
-$dark-text: #aaa;
+$text: #b6b8d0;
+$dark-text: #87899c;
 $darkest-text: #777;
-$faded-text: #333;
+$faded-text: #3f5471;
 
 // Different
 $red: #E06C75;
 $new-badge: #e94e5a;
 
-// Colors to override
-$primary-color: #ff0000 !default;
-$primary-color-dark: #ff0000 !default;
-$primary-color-darken: #ff0000 !default;
-$primary-color-darkest: #ff0000 !default;
+// Primary
+$primary-color: #00ACC1 !default;
+$primary-color-dark: #057b8a !default;
+$primary-color-darken: #3d4162 !default;
+$primary-color-darkest: #30334e !default;

@@ -1,212 +1,141 @@
-$primary-color: #1DA1F2;
-$primary-color-dark: #1992DB;
-
 @import "../_main";
 
-.show-all {
-  float: right;
+h1 {
+  font-size: 48px;
+  margin: 0;
+  display: inline-block;
+}
+.index-section-a:hover {
+  h1 {
+    color: $primary-color;
+    text-decoration: underline;
+  }
 }
 
-.album-items,
-.blog-items {
-  width: 100%;
+.index-icon {
+  font-size: 48px;
+  padding-left: 10px;
+  display: inline-block;
 }
 
-// Cards
+#index-me {
+  text-align: left;
 
-.card {
-  position: relative;
-  display: block;
-  background: $dark;
-  color: #e0e0e0;
-  padding: 20px;
-  margin-bottom: 20px;
-  margin-right: 20px;
-  box-shadow: 10px 10px 0px $darkest;
-  transition: box-shadow 0.3s ease;
+  img {
+    width: 100%;
+    border-radius: $bradius;
+    transition: transform 0.3s ease;
+  }
+  img:hover {
+    transform: scale(1.05);
+  }
 }
 
-.card:hover {
-  box-shadow: 6px 6px 0px $darkest;
+.index-wide-block {
+    margin-bottom: 50px;
+}
 
-  .subtitle {
+.index-text {
+  font-size: 20px;
+  line-height: 30px;
+  a {
     color: $primary-color;
   }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+.index-small-text {
+  font-size: 16px;
+  color: $dark-text;
+}
+.index-faded {
+  margin-top: 5px;
+  color: $faded-text;
+}
+.index-left-margin {
+  margin-left: 40px;
+}
+.index-right-margin {
+  margin-right: 10px;
 }
 
-.primary-card {
-  .image {
+.last-video,
+.last-rep {
+  position: relative;
+  display: block;
+  img {
     width: 100%;
-  }
-
-  .left-section {
-    position: relative;
-  }
-
-  .right-section {
-    padding-left: 15px;
-
-    .title {
-      color: $text;
-      font-weight: 700;
-      font-size: 28px;
-      margin-bottom: 5px;
-      max-width: 300px;
-    }
-
-    .subtitle {
-      color: $text;
-      font-weight: 400;
-      font-size: 16px;
-      margin-top: 15px;
-      margin-bottom: 15px;
-      max-width: 300px;
-    }
-
-    .date {
-      margin-top: 5px;
-      font-size: 13px;
-      color: $dark-text;
-    }
-
-    .year {
-      margin-top: 5px;
-      font-size: 14px;
-      color: $dark-text;
-    }
-
-    .info {
-      margin-top: 5px;
-      margin-bottom: 15px;
-      span {
-          display: block;
-          margin-bottom: 5px;
-      }
-    }
-
-    .btn {
-      text-align: center;
-    }
-  }
-
-}
-
-.secondary-card {
-
-  .image-box {
-    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    overflow: hidden;
-
-    .image {
-      width: 100%;
-    }
-
-    .badges {
-      bottom: 6px;
-    }
+    position: relative;
+    border-radius: $bradius;
+    transition: transform 0.3s ease;
   }
+  img:hover {
+    transform: scale(1.05);
+  }
+}
 
-  .subtitle {
+.last-rep-box {
+  margin: 5px;
+}
+
+.last-video-title {
+  a {
+    display: block;
+    font-weight: bold;
+    font-size: 32px;
     color: $text;
-    font-weight: 400;
-    font-size: 16px;
-    margin-top: 10px;
-    max-width: 300px;
-    transition: color 0.3s ease;
+    padding-top: 15px;
   }
-
-  .date {
-    margin-top: 5px;
-    font-size: 13px;
-    color: $dark-text;
+  a:hover {
+    color: $primary-color;
+    text-decoration: underline;
   }
 }
 
-@keyframes rotate {
-  100% {
-    transform: rotate(1turn);
-  }
-}
-
-.welcome {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background: $dark;
-
-  .container {
-    padding: 30px;
-    color: $text;
-
-    .image-box {
-      text-align: center;
-      position: relative;
-
-      .image {
-        width: 200px;
-        height: 200px;
-        border-radius: 100px;
-        margin-bottom: 20px;
-        transition: transform 1s ease;
-        cursor: progress;
-      }
-
-      .image:hover {
-        animation: rotate 3s linear infinite;
-      }
-
+.index-links-block {
+    margin-top: 30px;
+    text-align: center;
+    div {
+        font-size: 18px;
+        padding: 10px 30px;
+        border-radius: $bradius;
+        border: 1px solid $faded-text;
+        display: inline-block;
     }
-
-    .text {
-      font-size: 19px;
-
-      a {
-        color: $primary-color;
-        font-weight: 500;
-      }
-
-      a:hover {
-        color: $primary-color-dark;
-      }
-    }
-
-  }
 }
-
-@media only screen and (max-width: 970px) {
-  .welcome .container .text {
-    font-size: 16px;
+@media only screen and (max-width: 900px) {
+  .index-left-margin {
+    margin-left: 20px;
+  }
+  .index-text {
+    font-size: 18px;
+    line-height: 24px;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .album-badges {
-    display: none;
+  h1,
+  .index-icon {
+    font-size: 38px;
+  }
+  .index-small-text {
+    font-size: 16px;
   }
 
-  .card {
-    margin-right: 10px;
-
-    .btn {
-      width: 100%;
-      margin: 0;
-    }
+  .index-left-margin,
+  .index-right-margin {
+    margin: 0px;
   }
 
-  .primary-card .right-section {
-    padding-left: 0px;
-
-    .title {
-      font-size: 24px;
-      margin-top: 10px;
+  .index-wide-block {
+    margin-bottom: 30px;
     }
-
-    .subtitle {
-      font-size: 14px;
+.last-video-title {
+    margin-bottom: 20px;
+    a {
+        font-size: 30px;
     }
-  }
-
+}
 }

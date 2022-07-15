@@ -3,7 +3,7 @@
 
 .btn {
   padding: 10px 20px 7px 20px;
-  border-radius: 22px;
+  border-radius: $bradius;
   border: none;
   margin: 5px 5px;
   font-size: 16px;
@@ -11,7 +11,7 @@
   transition: all 0.1s ease;
   text-align: center;
   color: $text;
-  background: $darken;
+  background: $dark;
 }
 .btn:active {
   transform: scale(0.95);
@@ -64,7 +64,7 @@
   transition: all 0.2s ease;
   display: inline-block;
   color: $dark-text;
-  background: $darken;
+  background: $dark;
 }
 .btn.tag:hover {
   background: $darkest;

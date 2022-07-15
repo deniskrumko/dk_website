@@ -10,7 +10,7 @@
   </div>
 
   {# Desktop menu #}
-  <div class="pure-u-18-24 pure-u-sm-15-24 md-hidden noselect" id="menu-items">
+  <div class="pure-u-18-24 pure-u-sm-21-24 md-hidden noselect" id="desktop-menu-items">
     <a href="{% url 'main:index' %}" class="{% if active_menu == 'index'%}selected{% endif %}">
       ГЛАВНАЯ
     </a>
@@ -28,73 +28,31 @@
   </div>
 
   {# Mobile header #}
-  <div class="pure-g pure-u-18-24 pure-u-sm-21-24 md-visible">
+  <div class="pure-u-18-24 pure-u-sm-21-24 md-visible">
     <div class="mobile-header">
-      {% if active_menu == 'index'%}
-      <a href="{% url 'main:index' %}">ГЛАВНАЯ</a>
-      {% endif %}
-      {% if active_menu == 'video'%}
-      <a href="{% url 'video:index' %}">ВИДЕО</a>
-      {% endif %}
-      {% if active_menu == 'music'%}
-      <a href="{% url 'music:index' %}">МУЗЫКА</a>
-      {% endif %}
-      {% if active_menu == 'diary'%}
-      <a href="{% url 'diary:index' %}">ДНЕВНИК</a>
-      {% endif %}
-      {% if active_menu == 'user'%}
-      <a href="{% url 'users:profile' %}">НАСТРОЙКИ</a>
-      {% endif %}
-    </div>
-  </div>
-
-  {# Right menu #}
-
-  <div id="login-section" class="pure-u-sm-6-24 md-hidden">
-    {% if request.user.is_authenticated %}
-      {% if request.user.image %}
-      <a href="{% url 'users:profile' %}">
-        <img src="{{ request.user.image_small.url }}" alt="image">
+      <a onclick="toggleMenu();">
+        {% if active_menu == 'index'%}
+        МЕНЮ
+        {% endif %}
+        {% if active_menu == 'video'%}
+        ВИДЕО
+        {% endif %}
+        {% if active_menu == 'music'%}
+        МУЗЫКА
+        {% endif %}
+        {% if active_menu == 'diary'%}
+        ДНЕВНИК
+        {% endif %}
+        {% if active_menu == 'user'%}
+        НАСТРОЙКИ
+        {% endif %}
       </a>
-      {% else %}
-      <a class="btn" href="{% url 'users:profile' %}">{{ request.user.username }}</a>
-      {% endif %}
-    {% elif active_menu != 'login' %}
-    <a class="btn primary" href="{% url 'users:login' %}?next={{ request.path }}">
-      Войти
-    </a>
-    {% endif %}
+    </div>
   </div>
 </div>
 
-
-{# Mobile menu #}
-<div class="pure-g md-visible mobile-menu">
-  {# index #}
-
-  <a href="{% url 'main:index' %}" title="Главная"
-  class="pure-u-1-4 {% if active_menu == 'index' %}active{% endif %}">
-    <img src="{% static 'images/menu2/icons8-home-96.png' %}" alt="">
-  </a>
-
-  {# video #}
-
-  <a href="{% url 'video:index' %}" title="Видео"
-  class="pure-u-1-4 {% if active_menu == 'video' %}active{% endif %}">
-    <img src="{% static 'images/menu2/icons8-video-96.png' %}" alt="">
-  </a>
-
-  {# music #}
-
-  <a href="{% url 'music:index' %}" title="Музыка"
-  class="pure-u-1-4 {% if active_menu == 'music' %}active{% endif %}">
-    <img src="{% static 'images/menu2/icons8-music-96.png' %}" alt="">
-  </a>
-
-  {# user #}
-
-  <a href="{% url 'users:profile' %}" title="Пользователь"
-  class="pure-u-1-4 {% if active_menu == 'user' or active_menu == 'diary' %}active{% endif %}">
-    <img src="{% static 'images/menu2/icons8-user-96.png' %}" alt="">
-  </a>
+<div id="mobile-menu">
+  <div class="container">
+    123
+  </div>
 </div>

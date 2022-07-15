@@ -10,11 +10,15 @@ body,
 html {
   -webkit-font-smoothing: antialiased;
   background: $main !important;
-  color: #333;
+  color: $text;
   font-family: $font;
   font-weight: 400;
   height: 100%;
 }
+h1, h2, h3 {
+    font-family: $font2;
+}
+
 
 body {
   display: flex;
@@ -27,6 +31,11 @@ main {
   padding-bottom: 30px;
 }
 
+.wide-dark-container {
+    background-color: $dark;
+    padding: 20px 0px;
+    margin: 20px 0px;
+}
 a {
   text-decoration: none;
   cursor: pointer;
@@ -82,9 +91,12 @@ a {
 }
 
 .badges {
-  position: absolute;
-  right: 6px;
+  position: relative;
+  right: 10px;
   bottom: 10px;
+  text-align: right;
+  margin-top: -20px;
+
   div {
     display: inline-block;
     background: rgba(0,0,0,0.75);

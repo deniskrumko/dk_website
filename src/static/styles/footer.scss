@@ -1,42 +1,48 @@
 @import "colors";
+@import "variables";
 
 footer {
-  padding: 25px 0px 20px 0px;
+  padding: 50px 0px 50px 0px;
   flex-shrink: 0;
   background: $dark;
 }
 
+.footer-block {
+    a, b, div {
+        display: block;
+        color: $dark-text;
+    }
+    a:not(#Jesus) {
+        padding: 0px 0px 10px 10px;
+    }
+    b {
+        padding: 20px 0px;
+        font-size: 20px;
+        font-family: $font2;;
+    }
+    div {
+        line-height: 24px;
+        padding-left: 10px;
+    }
+}
+
 @media only screen and (max-width: 767px) {
   footer {
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0px 30px 0px;
+  }
+  .footer-block {
+    b {
+        font-size: 26px;
+        padding: 20px 0px 10px 0px;
+    }
+    a:not(#Jesus) {
+        display: inline-block;
+        font-size: 18px;
+        padding: 4px 10px;
+    }
   }
 }
 
-.footer-links {
-  text-align: center;
-
-  a {
-    color: $dark-text;
-    font-size: 14px;
-    line-height: 30px;
-    padding: 0px 10px;
-    transition: $color-trans;
-  }
-
-  a:hover {
-    color: $primary-color;
-  }
-}
-
-.social {
-  display: inline-block;
-  padding: 5px 10px 5px 0px;
-}
-
-.credentials {
-  font-size: 14px;
-  float: right;
-  line-height: 30px;
-  cursor: pointer;
-  color: $dark-text;
+#Jesus {
+    display: inline-block !important;
 }

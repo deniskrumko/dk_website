@@ -6,139 +6,133 @@
 {% endblock %}
 
 {% block body %}
-{# Sections links #}
-<div class="container slider index-slider">
-  <div class="scrollable-h1">
-    <a href="{% url 'video:index' %}" class="active">Видео</a>
-    <a href="{% url 'video:index' %}" class="show-all md-hidden">
-      Посмотреть все
-    </a>
-  </div>
-</div>
-
 <div class="container">
-  <div class="pure-g">
-    <div class="blog-items">
-      {% for item in blog_items %}
-      {% if forloop.counter == 1 %}
-      <div class="pure-u-1-1 pure-u-sm-1-1 pure-u-md-2-3">
-        <a href="{% url 'video:detail' item.slug %}" class="card primary-card">
-          <div class="pure-g">
-            <div class="pure-u-1-1 pure-u-sm-1-1 pure-u-md-1-2">
-              <div class="left-section">
-                <img src="{% if item.thumbnail %}{{ item.thumbnail.url }}{% else %}
-            {% static 'images/nophoto_wide.jpg' %}{% endif %}" class="image" alt="">
-                <div class="badges">
-                  {% if item.is_new %}<div class="new">NEW</div>{% endif %}
-                  {% if item.duration %}
-                  <div class="badge">{{ item.duration }}</div>
-                  {% endif %}
-                </div>
-              </div>
 
-            </div>
-            <div class="pure-u-1-1 pure-u-sm-1-1 pure-u-md-1-2">
-              <div class="right-section">
-                <div class="title">{{ item.title }}</div>
-                <div class="date">{{ item.date_str }}</div>
-                <div class="subtitle">{{ item.subtitle }}</div>
-                <button class="btn primary">Посмотреть</button>
-              </div>
-            </div>
-          </div>
-        </a>
+  <div class="pure-g index-wide-block">
+    <div class="pure-u-1-1 pure-u-sm-2-5 pure-u-md-2-5">
+      <div id="index-me">
+        <img src="{% static 'images/me4.jpg' %}" alt="It's me">
+        <div class="index-faded">
+          Я тот гном слева
+        </div>
       </div>
-      {% else %}
-      <div class="pure-u-1-1 pure-u-sm-1-1 pure-u-md-1-3">
-        <a href="{% url 'video:detail' item.slug %}" class="card secondary-card">
-          <div class="image-box">
-            <img src="{% if item.thumbnail %}{{ item.thumbnail.url }}{% else %}
-          {% static 'images/nophoto_wide.jpg' %}{% endif %}" class="image" alt="">
-          <div class="badges">
-            {% if item.is_new %}<div class="new">NEW</div>{% endif %}
-            {% if item.duration %}
-            <div class="badge">{{ item.duration }}</div>
-            {% endif %}
-          </div>
-          </div>
-          <div class="subtitle">{{ item.subtitle }}</div>
-          <div class="date">{{ item.date_str }}</div>
-        </a>
-      </div>
-      {% endif %}
-    {% endfor %}
     </div>
-  </div>
-  <div style="margin: 10px 0px;">
-    <a href="{% url 'video:index' %}" class="btn primary wide md-visible">
-      Посмотреть все видео
-    </a>
-  </div>
-</div>
 
-<div class="welcome">
-  <div class="container">
-    <div class="pure-g">
-      <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-1-3 image-box">
-        <img src="{% static 'images/me.jpeg' %}" alt="It's me" class="image">
-      </div>
-      <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-2-3">
-        <div class="text noselect">
-          Привет! Меня зовут Денис. Добро пожаловать на мой небольшой уютный веб-сайт:)
-          <br><br>Здесь я собрал свои <a href="{% url 'video:index' %}">видео</a> о путешествиях, концертах и прочих интересных событиях. Я, конечно, не путешественник или
-          видеоблогер, но люблю таскать с собой камеру и все снимать, а потом монтировать в
-          более-менее интересные ролики.
-          <br><br>Также я иногда сочиняю <a href="{% url 'music:index' %}">музыку</a> в Guitar Pro, тяжелую, незамысловатую, с искусственным звучанием, но если интересно — то можете ознакомиться 🤘
+    <div class="pure-u-1-1 pure-u-sm-3-5 pure-u-md-3-5">
+      <div class="index-left-margin">
+        <h1 id="index-hi">Привет</h1>
+        <span class="index-icon">👋</span>
+        <br><br>
+        <div class="index-text index-left-margin">
+          Меня зовут <b>Денис Крумко</b>, очень приятно :)
+          <br>
+          И так, вас каким-то образом занесло на мой сайт.
+          <br><br>
+          Предлагаю немного поскроллить страничку, и посмотреть, что у меня тут есть ⬇️
         </div>
       </div>
     </div>
   </div>
-</div>
 
-{# Sections links #}
-<div class="container slider index-slider">
-  <div class="scrollable-h1">
-    <a href="{% url 'music:index' %}" class="active">Музыка</a>
-    <a href="{% url 'music:index' %}" class="show-all md-hidden">
-      Послушать больше
-    </a>
-  </div>
-</div>
-
-<div class="container">
-  <div class="pure-g">
-    <div class="album-items">
-      {% for item in album_items %}
-      <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-1-2">
-        <a href="{% url 'music:detail' item.slug %}" class="card primary-card">
-          <div class="badges album-badges">
-            {% if item.status %}<div class="new">{{ item.status }}</div>{% endif %}
-          </div>
-          <div class="pure-g">
-            <div class="pure-u-1-1 pure-u-sm-1-1 pure-u-md-1-3">
-              <img src="{% if item.thumbnail %}{{ item.thumbnail.url }}{% else %}
-            {% static 'images/nophoto_wide.jpg' %}{% endif %}" class="image" alt="">
-            </div>
-            <div class="pure-u-1-1 pure-u-sm-1-1 pure-u-md-2-3">
-              <div class="right-section">
-                <div class="title">{{ item.name }}</div>
-                <div class="year">{{ item.year }}</div>
-                <div class="info">
-                  <span>
-                    <b>Длительность:</b> {{ item.displayed_duration }}
-                  </span>
-                  <span>
-                    <b>Треков:</b> {{ item.tracks_count }}
-                  </span>
-                </div>
-                <button class="btn primary">Послушать</button>
-              </div>
-            </div>
-          </div>
+  <div class="pure-g index-wide-block">
+    <div class="pure-u-1-1 pure-u-sm-3-5 pure-u-md-3-5">
+      <div class="">
+        <div class="index-small-text">
+          Например, я иногда снимаю и выкладываю...
+        </div>
+        <a href="{% url 'video:index' %}" class="index-section-a">
+          <h1>видосы</h1>
+          <span class="index-icon">🔥</span>
         </a>
+
+        <br><br>
+        <div class="index-text index-left-margin index-right-margin">
+          Путешествия там, обзоры иногда, про музыку и все такое.
+          Все видео <a href="{% url 'video:index' %}">можно посмотреть тут</a>. А вот последнее видео:
+          <div class="last-video-title">
+          <a href="{% url 'video:detail' last_video.slug %}">
+            {{ last_video.title }}
+          </a>
+          </div>
+        </div>
       </div>
-      {% endfor %}
+    </div>
+
+    <div class="pure-u-1-1 pure-u-sm-2-5 pure-u-md-2-5">
+      <a class="last-video" href="{% url 'video:detail' last_video.slug %}">
+        <img src="{% if last_video.thumbnail %}
+          {{ last_video.thumbnail.url }}
+          {% else %}
+          {% static 'images/nophoto_wide.jpg' %}{% endif %}">
+        <div class="badges">
+          {% if last_video.is_new %}<div class="new">NEW</div>{% endif %}
+          {% if last_video.duration %}
+          <div class="badge">{{ last_video.duration }}</div>
+          {% endif %}
+        </div>
+      </a>
+      <div class="index-faded" style="margin-top: 10px;">
+        {{ last_video.subtitle }}
+      </div>
+    </div>
+    <div class="pure-u-1-1">
+      <div class="index-links-block">
+        <div>
+          Еще можно и на странички подписаться:
+          <span class="inline-block">
+            <a href="https://www.youtube.com/channel/UCByZJxhmHycQ9NI3tYnodKw" class="btn primary">YouTube</a>
+            <a href="https://zen.yandex.ru/deniskrumko" class="btn primary">Яндекс.Дзен</a>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
+
+
+  <div class="pure-g index-wide-block">
+    <div class="pure-u-1-1 pure-u-sm-2-5 pure-u-md-2-5">
+      <div class="pure-g">
+        {% for rep in last_rep %}
+        <div class="pure-u-1-2 pure-u-sm-1-2 pure-u-md-1-2">
+          <div class="last-rep-box">
+            <a class="last-rep" href="{{ rep.link }}">
+              <img src="{% if rep.video.thumbnail %}
+                {{ rep.video.thumbnail.url }}
+                {% else %}
+                {% static 'images/nophoto_wide.jpg' %}{% endif %}">
+            </a>
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+      <br>
+    </div>
+
+    <div class="pure-u-1-1 pure-u-sm-3-5 pure-u-md-3-5">
+      <div class="index-left-margin">
+        <div class="index-small-text">
+          Да, конечно же очень люблю слушать, играть и сочинять...
+        </div>
+        <a href="{% url 'music:index' %}" class="index-section-a">
+          <h1>музыку</h1>
+          <span class="index-icon">🤘</span>
+        </a>
+        <br><br>
+        <div class="index-text">
+          Уже накопилось прилично записей с репетиций, где мы играем каверы,
+          все они есть на канале <a href="https://www.youtube.com/channel/UCbVIrtVCFAuqsG28c2tBdkw">Polystra Music</a>.
+          <br><br>
+          Еще есть мой старый канал <a href="https://www.youtube.com/user/dendynotdead">Dendy Not Dead</a>, но я туда уже ничего не добавляю.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="index-text index-faded center">
+    ✨ На этом пока все ✨
+  </div>
+
 </div>
+
 {% endblock %}

@@ -2,6 +2,7 @@
 
 .menu {
   padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 #menu-logo {
@@ -15,8 +16,9 @@
 }
 
 // Menu items
-#menu-items {
+#desktop-menu-items {
   padding: 15px 0px !important;
+  text-align: left;
 
   a {
     border-radius: 20px;
@@ -39,27 +41,6 @@
   }
 }
 
-// Login section
-#login-section {
-  margin-top: 20px;
-
-  a {
-    float: right;
-  }
-
-  img {
-    width: 46px;
-    height: 46px;
-    border-radius: 40px;
-    float: right;
-    transition: transform 0.3s ease;
-  }
-
-  img:hover {
-    transform: scale(1.1);
-  }
-}
-
 .mobile-header {
   font-family: $font2;
 
@@ -68,31 +49,6 @@
   padding-top: 15px;
   a {
     color: $primary-color;
-  }
-}
-
-.mobile-menu {
-  text-align: right;
-  position: fixed;
-  z-index: 1000;
-  bottom: 0px;
-  background: $darkest;
-  padding: 10px 0px;
-  width: 100%;
-  text-align: center;
-
-  a {
-    img {
-      width: 35px;
-      height: 35px;
-      opacity: 45%;
-    }
-  }
-
-  .active {
-    img {
-      opacity: 90%;
-    }
   }
 }
 

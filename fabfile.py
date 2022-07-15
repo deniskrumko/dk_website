@@ -16,7 +16,7 @@ def manage(command):
 
 
 @task
-def remote(host='192.168.1.11', port=8000):
+def remote(host='10.0.1.7', port=8000):
     """Run remove server."""
     ifconfig = subprocess.check_output('ifconfig')
     if host not in ifconfig.decode('utf-8'):

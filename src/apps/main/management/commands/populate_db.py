@@ -43,17 +43,18 @@ class Command(BaseCommand):
                 self.create_track(album=album)
 
         self.stdout.write(self.style.SUCCESS('\t-- music video types'))
-        type_1, type_2 = MusicVideoTypeFactory.create_batch(2)
+        type_1 = MusicVideoTypeFactory(name='Каверы')
+        type_2 = MusicVideoTypeFactory(name='Репетиции')
 
         self.stdout.write(self.style.SUCCESS('\t-- music videos'))
         MusicVideoFactory.create_batch(
-            2,
+            6,
             video_type=type_1,
             album=albums[0],
             video=VideoFileFactory(source='youtube'),
         )
         MusicVideoFactory.create_batch(
-            2,
+            6,
             video_type=type_2,
             album=albums[0],
             video=VideoFileFactory(source='youtube'),

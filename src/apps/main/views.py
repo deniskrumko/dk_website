@@ -5,7 +5,7 @@ from django.views import View
 from core.views import BaseView
 
 from apps.blog.models import BlogEntry
-from apps.music.models import Album
+from apps.music.models import Album, MusicVideo
 
 from .models import RedirectPage
 
@@ -31,11 +31,13 @@ class IndexView(BaseView):
     def get_context_data(self):
         """Get context data."""
         context = super().get_context_data()
-        blog_qs = BlogEntry.objects.filter(is_active=True)
+        last_video = BlogEntry.objects.filter(is_active=True).first()
+        last_album = Album.objects.first()
+        last_rep = MusicVideo.objects.filter(video_type__name='Репетиции')[:4]
         context.update({
-            'blog_items': blog_qs[:5],
-            'album_items': Album.objects.all()[:5],
-            'total_blog_items': blog_qs.count() - 5,
+            'last_video': last_video,
+            'last_album': last_album,
+            'last_rep': last_rep,
         })
         return context
 
