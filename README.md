@@ -1,9 +1,16 @@
-![](https://github.com/deniskrumko/deniskrumko/raw/master/static/images/github2.png)
+# DK Website
 
-My small website for video blogs and music.
+My small website for video blogs, music + own diary.
 
-Check it out:
-**[deniskrumko.ru](https://deniskrumko.ru/)**
+Coded and designed all by myself :)
+
+# ☠️ THIS PROJECT IS NO LONGER SUPPORTED ☠️
+
+Due to [death of free Heroku apps](https://blog.heroku.com/next-chapter) I will no longer host this website.
+
+Checkout my github.io page to find my contacts: https://deniskrumko.github.io/
+
+You may be interested in this project if you want to create own website with similar sections.
 
 # About project
 
@@ -11,4 +18,15 @@ Check it out:
 * Django 3.2.11
 * PostgreSQL 13.7
 * Amazon S3 as storage
-* Hosted by [Heroku](https://www.heroku.com/) (v.20)
+* 🚫 Hosted by [Heroku](https://www.heroku.com/) (v.20)
+
+# Screenshots
+
+## Index page
+![](https://github.com/deniskrumko/dk_website/raw/master/src/static/images/screenshots/1.png)
+
+## Videos page
+![](https://github.com/deniskrumko/dk_website/raw/master/src/static/images/screenshots/2.png)
+
+## Music page
+![](https://github.com/deniskrumko/dk_website/raw/master/src/static/images/screenshots/3.png)
